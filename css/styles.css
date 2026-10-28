@@ -86,7 +86,12 @@ a { color: inherit; }
 .hero-brand .logo { width: min(56vw, 250px); }
 /* Static hero (no JS / reduced motion): leave room for the always-visible bar. */
 :root:not(.hero-ready) .hero-pin { padding-top: calc(var(--bar) + env(safe-area-inset-top, 0px) + 20px); }
-.hint { margin: 0; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--choco); display: flex; align-items: center; gap: 8px; }
+/* "Desliza" sits under the strawberry, near the bottom of the screen. */
+.hint {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: calc(48px + env(safe-area-inset-bottom, 0px));
+  margin: 0; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--choco);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
 .hint svg { width: 12px; height: 12px; animation: nudge 1.8s ease-in-out infinite; }
 @keyframes nudge { 50% { transform: translateY(3px); } }
 
@@ -128,6 +133,7 @@ a { color: inherit; }
   .hero-brand .logo { width: min(32vw, 400px); }
   /* Desktop: the video sits in the right column; its top edge fades so the stream enters softly. */
   .hero-stage { position: relative; inset: auto; min-height: 0; grid-column: 2; grid-row: 1; --hero-fit: contain; }
+  .hint { left: 50%; bottom: 6vh; }
   .hero-stage canvas, .hero-poster {
     -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14%);
             mask-image: linear-gradient(to bottom, transparent 0, #000 14%);
