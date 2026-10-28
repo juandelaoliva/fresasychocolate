@@ -256,11 +256,7 @@ a { color: inherit; }
 .total-al { grid-column: 1; font-size: 12px; letter-spacing: .03em; opacity: .75; margin-top: 4px !important; }
 .total-price { grid-column: 2; grid-row: 1 / span 2; font: 500 30px/1 var(--font-body); font-variant-numeric: tabular-nums; color: var(--oro); white-space: nowrap; }
 
-.alergenos { margin-top: 28px; font-size: 14px; color: var(--choco-soft); }
-.alergenos summary { cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
-.alergenos ol { list-style: none; margin: 12px 0 8px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; }
-.alergenos b { font-weight: 600; color: var(--choco); }
-.alergenos p { margin: 0; }
+.alergenos { margin: 28px 0 0; font-size: 14px; color: var(--choco-soft); }
 
 /* ---------- bebidas ---------- */
 .bebidas { background: var(--rosa); }
@@ -316,12 +312,42 @@ a { color: inherit; }
 
 /* ---------- instagram ---------- */
 .nosotras { padding-top: 8px; }
-.insta { padding-top: 64px; }
+.insta { padding-top: 64px; padding-bottom: 32px; }
 .mosaic { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin: 24px 0 28px; border-radius: 18px; overflow: hidden; }
 .mosaic img { width: 100%; aspect-ratio: 1; object-fit: cover; }
 .mosaic img { transition: filter .3s; }
 @media (hover: hover) { .mosaic:hover img { filter: brightness(.85); } .mosaic:hover img:hover { filter: none; } }
 .mosaic:focus-visible { outline: 3px solid var(--fresa); outline-offset: 4px; }
+
+/* ---------- preguntas frecuentes ---------- */
+.faq { padding-top: 24px; }
+.faq-list { margin-top: 28px; max-width: 760px; border-top: 1px solid var(--line); }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item summary {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0;
+  cursor: pointer; list-style: none; font-size: 18px; font-weight: 500; line-height: 1.35;
+  transition: color .2s;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+/* The + turns into a × in a strawberry circle while the answer is open. */
+.faq-item summary::after {
+  content: ""; flex: none; width: 34px; height: 34px; box-sizing: border-box; border-radius: 50%;
+  color: var(--fresa); border: 1.5px solid color-mix(in srgb, var(--fresa) 35%, transparent);
+  /* The cross is drawn, not typed, so it sits exactly in the middle whatever the font. */
+  background-image: linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor);
+  background-size: 13px 1.5px, 1.5px 13px; background-position: center; background-repeat: no-repeat;
+  transition: transform .32s cubic-bezier(.2, .7, .2, 1), background-color .25s, color .25s, border-color .25s;
+}
+.faq-item[open]:not(.is-closing) summary::after { transform: rotate(135deg); background-color: var(--fresa); border-color: var(--fresa); color: var(--nata); }
+@media (hover: hover) { .faq-item summary:hover { color: var(--fresa); } .faq-item summary:hover::after { border-color: var(--fresa); } }
+.faq-item summary:focus-visible { outline: 3px solid var(--fresa); outline-offset: 4px; }
+.faq-item p { margin: -4px 0 20px; max-width: 62ch; color: var(--choco-soft); }
+/* The answer slides in a touch after the row starts to open. */
+.faq-item[open] p { animation: faq-in .38s .06s cubic-bezier(.2, .7, .2, 1) both; }
+.faq-item.is-closing p { opacity: 0; transform: translateY(-4px); transition: opacity .2s, transform .2s; }
+@keyframes faq-in { from { opacity: 0; transform: translateY(-6px); } }
+@media (prefers-reduced-motion: reduce) { .faq-item[open] p { animation: none; } }
+.faq-item a { color: var(--choco); text-underline-offset: 3px; }
 
 /* ---------- visita ---------- */
 .visita .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
@@ -364,6 +390,8 @@ a { color: inherit; }
   .bandejas { margin-top: 40px; }
   .nosotras .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 64px; }
   .nosotras { padding-top: 16px; }
+  .insta { padding-bottom: 48px; }
+  .faq { padding-top: 24px; }
   .chocolate .wrap { display: grid; grid-template-columns: minmax(0, 1fr) 360px; grid-template-rows: auto auto 1fr; column-gap: 64px; }
   .chocolate .wrap > :not(.chocolate-video) { grid-column: 1; }
   .chocolate-video { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; }

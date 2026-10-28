@@ -12,6 +12,7 @@ js/hero.js                 animación del hero ligada al scroll
 js/menu.js                 menú hamburguesa
 js/vaso.js                 "Monta tu vaso": suma el precio y los alérgenos de lo elegido
 js/videos.js               vídeos cortos de la tienda: cargan al acercarse y solo se reproducen en pantalla
+js/faq.js                  preguntas frecuentes: abren y cierran con animación
 assets/hero/frames/        el vídeo del hero convertido en fotogramas WebP (0030–0156)
 assets/hero/poster.webp    último fotograma (sin JS / movimiento reducido)
 assets/hero/manifest.js    nº de fotogramas, tamaño y color de fondo del vídeo
@@ -35,7 +36,7 @@ texto, en Jost; los detalles caligráficos (antetítulos y lema del hero), en Pe
 2. **Para beber**: tira de fotos deslizable y los precios de batidos, matcha y café.
 3. **Por encargo**: bandejas solo fresas y mixtas, caja personalizada y botón para encargar
    por mensaje de Instagram.
-4. **De Salamanca** y **el chocolate**: el origen de las fresas (Fresgallimazo). La foto se funde
+4. **De Salamanca** y **el chocolate**: el origen de las fresas (de proximidad, de Salamanca). La foto se funde
    en marrón chocolate y continúa en el bloque del chocolate belga Callebaut, con el vídeo de la fuente.
 5. **Quiénes somos**: Rosi y Adri.
 6. **Del día a día**: mosaico de fotos de Instagram.
@@ -90,6 +91,54 @@ Para que el vídeo funcione bien en el hero:
 - Vertical (9:16) o 3:4. En escritorio se ve centrado bajo el logo y sus bordes laterales se difuminan
   con el fondo; con el móvil en horizontal ocupa la columna derecha.
 - Unos 8–10 s a 24 fps, que son unos 200–240 fotogramas y 3–5 MB.
+
+## SEO y GEO
+
+La web está preparada para Google (SEO local) y para que los asistentes de IA (ChatGPT, Perplexity,
+Gemini, el modo IA de Google…) encuentren la tienda y la citen con datos correctos (GEO).
+
+- `<head>` de `index.html`: título, descripción, URL canónica (https://fresasychocolate.com/),
+  tarjetas para compartir (imagen en `assets/og/og.jpg`) y coordenadas de la tienda.
+- Datos estructurados (JSON-LD, en el `<head>`): la tienda con dirección, coordenadas, horario,
+  Instagram y forma de encargar; la carta completa con precios; y las preguntas frecuentes.
+- Sección **Preguntas frecuentes** (`#preguntas`): respuestas cortas y concretas, que es lo que más
+  citan las IA. Sus textos también están en el JSON-LD.
+- `llms.txt`: ficha de la tienda en texto plano para asistentes de IA.
+- `robots.txt` (permite buscadores y bots de IA) y `sitemap.xml`.
+
+**Si cambian precios, horario o carta**, hay que actualizarlo en cuatro sitios: la sección visible de
+`index.html`, el JSON-LD del `<head>`, las preguntas frecuentes y `llms.txt`.
+
+## Revisión de posicionamiento (pendiente, 28/10/2026)
+
+Por orden de impacto. Nada de esto está hecho todavía.
+
+**Fuera de la web**
+- Ficha de Google Business: nombre, dirección y horario idénticos a la web; categorías (tienda de
+  postres, cafetería); web enlazada; fotos y carta; responder reseñas.
+- Bing Places (ChatGPT busca con Bing) y Apple Business Connect (Siri, Apple Maps).
+- TripAdvisor y Yelp. Pedir reseñas a clientes.
+- Menciones en blogs, guías y prensa local de Salamanca.
+- Enlace a la web en la bio de Instagram.
+
+**Legal (obligatorio)**
+- Aviso legal (LSSI: titular, NIF, domicilio, email), política de privacidad y de cookies.
+- Alojar las fuentes en la propia web y cargar el mapa de Google solo al pulsarlo (ahora ambos
+  envían datos de cada visita a Google sin consentimiento).
+
+**Técnico, al conectar el dominio**
+- `CNAME` en el repo, HTTPS y redirección de www a sin www.
+- Google Search Console y Bing Webmaster Tools, con el sitemap.
+- Página 404 propia.
+- Analítica sin cookies (Plausible o GoatCounter).
+
+**Datos que faltan**
+- Teléfono y email de la tienda (para la web y los datos estructurados).
+
+**Oportunidades**
+- Versión en inglés (turistas y Erasmus).
+- Página de encargos (San Valentín, Día de la Madre…).
+- Hero más ligero en móvil: cargar los fotogramas después del resto o menos con ahorro de datos.
 
 ## Pendiente / por confirmar
 
