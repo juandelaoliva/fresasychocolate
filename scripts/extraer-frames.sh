@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 # Convierte el vídeo del hero en la secuencia de fotogramas WebP que recorre el scroll.
-# Uso:  scripts/extraer-frames.sh ruta/al/video.mp4 [ultimo-fotograma=todos] [calidad=70] [ancho=720]
-# El último fotograma es donde se detiene la animación (p. ej. 156); 0 o vacío = el vídeo entero.
-# Genera assets/hero/frames/0001.webp… y assets/hero/manifest.json (nº de fotogramas,
-# tamaño y color de fondo muestreado de la esquina, que la web usa para fundir el hero).
+# Uso:  scripts/extraer-frames.sh ruta/al/video.mp4 [fotogramas=todos] [calidad=70] [ancho=720]
+# fotogramas: "156" = del 1 al 156; "30-156" = del 30 al 156 (donde empieza y se detiene la
+# animación); 0 o vacío = el vídeo entero. Los archivos conservan su número de fotograma
+# (0030.webp…) y assets/hero/manifest.js recoge el primero, el nº de fotogramas, el tamaño y el
+# color de fondo muestreado de la esquina, que la web usa para fundir el hero.
 set -euo pipefail
 
-VIDEO="${1:?Uso: $0 video.mp4 [ultimo-fotograma] [calidad] [ancho]}"
-LAST_FRAME="${2:-0}"
+VIDEO="${1:?Uso: $0 video.mp4 [fotogramas] [calidad] [ancho]}"
+RANGE="${2:-0}"
 QUALITY="${3:-70}"
 WIDTH="${4:-720}"
+if [[ "$RANGE" == *-* ]]; then FIRST="${RANGE%-*}"; LAST_FRAME="${RANGE#*-}"; else FIRST=1; LAST_FRAME="$RANGE"; fi
 LIMIT=()
-[ "$LAST_FRAME" -gt 0 ] && LIMIT=(-frames:v "$LAST_FRAME")
+[ "$LAST_FRAME" -gt 0 ] && LIMIT=(-frames:v "$((LAST_FRAME - FIRST + 1))")
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/assets/hero"
 
@@ -20,17 +22,19 @@ command -v ffmpeg >/dev/null || { echo "Falta ffmpeg (brew install ffmpeg)"; exi
 rm -rf "$OUT/frames"
 mkdir -p "$OUT/frames"
 
-ffmpeg -loglevel error -i "$VIDEO" -an ${LIMIT[@]+"${LIMIT[@]}"} -vf "scale=${WIDTH}:-2" \
-  -c:v libwebp -quality "$QUALITY" -compression_level 4 "$OUT/frames/%04d.webp"
+ffmpeg -loglevel error -i "$VIDEO" -an ${LIMIT[@]+"${LIMIT[@]}"} \
+  -vf "select='gte(n\,$((FIRST - 1)))',scale=${WIDTH}:-2" -fps_mode passthrough \
+  -c:v libwebp -quality "$QUALITY" -compression_level 4 -start_number "$FIRST" "$OUT/frames/%04d.webp"
 
 # Último fotograma como imagen estática (sin JS / prefers-reduced-motion).
 LAST="$(ls "$OUT/frames" | sort | tail -1)"
 cp "$OUT/frames/$LAST" "$OUT/poster.webp"
 
 COUNT="$(ls "$OUT/frames" | wc -l | tr -d ' ')"
-SIZE="$( (ffmpeg -hide_banner -i "$OUT/frames/0001.webp" 2>&1 || true) | grep -oE '[0-9]{2,5}x[0-9]{2,5}' | head -1)"
+FIRST_FILE="$OUT/frames/$(ls "$OUT/frames" | sort | head -1)"
+SIZE="$( (ffmpeg -hide_banner -i "$FIRST_FILE" 2>&1 || true) | grep -oE '[0-9]{2,5}x[0-9]{2,5}' | head -1)"
 W="${SIZE%x*}"; H="${SIZE#*x}"
-BG="#$(ffmpeg -loglevel error -i "$OUT/frames/0001.webp" -vf "crop=24:24:4:4,scale=1:1" \
+BG="#$(ffmpeg -loglevel error -i "$FIRST_FILE" -vf "crop=24:24:4:4,scale=1:1" \
   -f rawvideo -pix_fmt rgb24 - | xxd -p)"
 
 # Franja vertical que ocupa el motivo (la fresa) en el último fotograma, en fracciones de la altura.
@@ -47,6 +51,7 @@ print(f"[{rows[0]/H:.3f}, {(rows[-1]+1)/H:.3f}]" if rows else "[0, 1]")
 cat > "$OUT/manifest.js" <<JS
 window.HERO_MANIFEST = {
   count: $COUNT,
+  start: $FIRST,
   width: $W,
   height: $H,
   background: "$BG",

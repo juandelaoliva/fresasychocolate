@@ -22,7 +22,7 @@
   const ctx = canvas.getContext('2d');
   const frames = new Array(m.count);
   let shown = 0, dirty = true, raf = 0, cw = 0, ch = 0, lift = 0, fitHeight = false;
-  const src = (i) => m.pattern.replace('{n}', String(i + 1).padStart(m.pad, '0'));
+  const src = (i) => m.pattern.replace('{n}', String(i + (m.start || 1)).padStart(m.pad, '0'));
   const clamp01 = (x) => Math.max(0, Math.min(1, x));
   const smooth = (a, b, x) => { const t = clamp01((x - a) / (b - a)); return t * t * (3 - 2 * t); };
 

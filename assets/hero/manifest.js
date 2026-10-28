@@ -1,5 +1,6 @@
 window.HERO_MANIFEST = {
-  count: 156,
+  count: 127,
+  start: 30,
   width: 720,
   height: 1280,
   background: "#acc5aa",

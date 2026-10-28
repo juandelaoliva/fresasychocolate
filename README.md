@@ -44,12 +44,15 @@ Secuencia (constantes `ANIM_OVERRUN`, `CLOSE` y `BAR_AT` en `js/hero.js`, en alt
 ## Cambiar el vídeo
 
 ```
-scripts/extraer-frames.sh ruta/al/video.mp4 156             # la animación se detiene en el fotograma 156
+scripts/extraer-frames.sh ruta/al/video.mp4 30-156          # empieza en el 30 y se detiene en el 156
+scripts/extraer-frames.sh ruta/al/video.mp4 156             # del 1 al 156
 scripts/extraer-frames.sh ruta/al/video.mp4 0               # usar el vídeo entero
-scripts/extraer-frames.sh ruta/al/video.mp4 156 75 1080     # más calidad / más resolución
+scripts/extraer-frames.sh ruta/al/video.mp4 30-156 75 1080  # más calidad / más resolución
 ```
 
-El vídeo actual se extrae con `156`: es el fotograma donde termina la animación.
+El vídeo actual usa `30-156`. Los primeros fotogramas se descartaron porque el chocolate tardaba
+en aparecer. Los archivos conservan su número original (0030.webp…) y el manifest guarda en
+`start` el primero.
 
 Necesita `ffmpeg`. El script sustituye los fotogramas, el póster y el manifest. El JS toma el
 color de fondo del manifest. Para que la versión sin JS también coincida, copia en
