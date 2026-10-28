@@ -48,7 +48,7 @@ bajado se dibuja un fotograma u otro en un `<canvas>`, así que la animación av
 con el dedo o la rueda. No se usa `<video>` porque buscar fotogramas con `currentTime` da
 tirones, sobre todo en iPhone.
 
-En móvil, el vídeo ocupa toda la pantalla por detrás del logo y el chocolate cae desde arriba.
+En móvil y en escritorio, el vídeo va centrado por detrás del logo y el chocolate cae desde arriba.
 El vídeo se amplía (sin mover su borde superior) para que la fresa y "Desliza" queden centrados
 debajo del logo, y vuelve a su tamaño mientras aparece el lema.
 Secuencia (constantes `ANIM_OVERRUN`, `CLOSE` y `BAR_AT` en `js/hero.js`, en alturas de pantalla):
@@ -87,7 +87,8 @@ color de fondo del manifest. Para que la versión sin JS también coincida, copi
 Para que el vídeo funcione bien en el hero:
 - Fondo plano y uniforme durante todo el vídeo. Si el fondo se mueve o cambia de color, se
   notará el borde del vídeo sobre la página.
-- Vertical (9:16) o 3:4. En escritorio ocupa la columna derecha.
+- Vertical (9:16) o 3:4. En escritorio se ve centrado bajo el logo y sus bordes laterales se difuminan
+  con el fondo; con el móvil en horizontal ocupa la columna derecha.
 - Unos 8–10 s a 24 fps, que son unos 200–240 fotogramas y 3–5 MB.
 
 ## Pendiente / por confirmar

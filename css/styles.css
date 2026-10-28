@@ -135,15 +135,25 @@ a { color: inherit; }
   .hint { display: none; }
 }
 
-/* Desktop, and phones held sideways: logo and closing line on the left, video on the right. */
-@media (min-width: 900px), (orientation: landscape) and (max-height: 520px) {
+/* Desktop: the same centred composition as on mobile, scaled to the screen height. The video zooms in
+   (js/hero.js) so the strawberry sits centred under the logo, and the chocolate pours from behind it. */
+@media (min-width: 900px) and (min-height: 521px) {
+  .hero-brand { padding-top: 5vh; }
+  .hero-brand .logo { width: min(32vh, 380px); }
+  .hint { font-size: 13px; }
+  .lema { font-size: clamp(34px, 5vh, 54px); }
+  .hero-close { gap: 20px; padding-bottom: 6vh; padding-top: 96px; }
+}
+
+/* Phones held sideways: too short for that, so logo and closing line on the left, video on the right. */
+@media (orientation: landscape) and (max-height: 520px) {
   .hero-pin {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr);
     max-width: 1280px; margin: 0 auto; padding-block: 0; column-gap: 32px;
   }
   .hero-brand { grid-column: 1; grid-row: 1; align-self: start; align-items: flex-start; text-align: left; padding-top: 14vh; }
   .hero-brand .logo { width: min(32vw, 400px); }
-  /* Desktop: the video sits in the right column; its top edge fades so the stream enters softly. */
+  /* The video sits in the right column; its top edge fades so the stream enters softly. */
   .hero-stage { position: relative; inset: auto; min-height: 0; grid-column: 2; grid-row: 1; --hero-fit: contain; }
   .hint { left: 50%; bottom: 6vh; }
   .hero-stage canvas, .hero-poster {
@@ -183,9 +193,9 @@ a { color: inherit; }
 .menu small { display: block; font-size: 13px; opacity: .75; }
 
 /* Dark grounds: the shop wall. */
-.encargos, .visita, .foot { background: var(--pared); color: var(--nata); }
-.encargos .display, .visita .display { color: var(--oro); }
-.encargos .kicker, .visita .kicker, .origen .kicker { color: var(--rosa); }
+.encargos, .nosotras, .visita, .foot { background: var(--pared); color: var(--nata); }
+.encargos .display, .nosotras .display, .visita .display { color: var(--oro); }
+.encargos .kicker, .nosotras .kicker, .visita .kicker, .origen .kicker { color: var(--rosa); }
 .encargos .btn, .visita .btn { border-color: var(--nata); color: var(--nata); }
 .encargos .btn:hover, .visita .btn:hover { background: var(--nata); color: var(--pared); }
 .btn.gold, .encargos .btn.gold, .visita .btn.gold { background: var(--oro); border-color: var(--oro); color: var(--pared-honda); }
@@ -288,7 +298,11 @@ a { color: inherit; }
 .origen a { text-underline-offset: 3px; }
 
 /* ---------- chocolate ---------- */
-.chocolate { background: var(--choco-fundido); color: var(--nata); padding: 24px var(--gutter) 88px; }
+/* The chocolate darkens into the shop's teal wall, the backdrop of Rosi and Adri's photo below. */
+.chocolate {
+  background: linear-gradient(to bottom, var(--choco-fundido) calc(100% - 300px), var(--pared) 100%);
+  color: var(--nata); padding: 24px var(--gutter) 48px;
+}
 .chocolate .display { color: var(--oro); font-size: clamp(40px, 11vw, 76px); }
 .chocolate .kicker { color: var(--rosa); }
 .chocolate .lead { max-width: 30ch; }
@@ -301,7 +315,8 @@ a { color: inherit; }
 .nosotras-foto img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 22px; }
 
 /* ---------- instagram ---------- */
-.insta { padding-top: 0; }
+.nosotras { padding-top: 8px; }
+.insta { padding-top: 64px; }
 .mosaic { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin: 24px 0 28px; border-radius: 18px; overflow: hidden; }
 .mosaic img { width: 100%; aspect-ratio: 1; object-fit: cover; }
 .mosaic img { transition: filter .3s; }
@@ -328,6 +343,9 @@ a { color: inherit; }
 .foot .logo { color: var(--oro); width: min(70vw, 320px); }
 .foot p { margin: 0; font-size: 14px; letter-spacing: .04em; opacity: .85; }
 .foot a { text-underline-offset: 3px; }
+.foot .firma { font-size: 13px; opacity: .65; }
+.foot .firma a { color: inherit; }
+.foot .firma a:hover { color: var(--oro); }
 
 /* ---------- wider screens ---------- */
 @media (min-width: 900px) {
@@ -345,6 +363,7 @@ a { color: inherit; }
   .bandejas, .como { grid-column: 2; }
   .bandejas { margin-top: 40px; }
   .nosotras .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 64px; }
+  .nosotras { padding-top: 16px; }
   .chocolate .wrap { display: grid; grid-template-columns: minmax(0, 1fr) 360px; grid-template-rows: auto auto 1fr; column-gap: 64px; }
   .chocolate .wrap > :not(.chocolate-video) { grid-column: 1; }
   .chocolate-video { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; }

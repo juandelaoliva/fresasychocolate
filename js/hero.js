@@ -9,6 +9,7 @@
 (function () {
   const ANIM_OVERRUN = 0.3, CLOSE = [-0.5, -0.1], BAR_AT = 0.6; // in vh
   const SUBJECT_W = 0.6; // share of the frame width the strawberry spans, leaves and drips included
+  const STALK = 0.04; // share of the frame height the thin stalk rises above the detected strawberry
   const m = window.HERO_MANIFEST;
   const hero = document.getElementById('hero');
   const canvas = document.getElementById('hero-canvas');
@@ -77,7 +78,7 @@
     if (fitHeight && mobile && m.subjectStart) {
       const s0 = r.height / m.height;
       const want = (stageBottom + logoBottom - 2 * stageTop - 20 - hint.offsetHeight) /
-        ((m.subjectStart[0] + m.subjectStart[1]) * m.height);
+        ((m.subjectStart[0] - STALK + m.subjectStart[1]) * m.height);
       const widest = (0.96 * r.width) / (SUBJECT_W * m.width);
       zoom = Math.max(1, Math.min(want, widest) / s0);
     }
@@ -111,6 +112,20 @@
     const w = m.width * s, h = m.height * s;
     ctx.clearRect(0, 0, cw, ch);
     ctx.drawImage(img, (cw - w) / 2, fitHeight ? 0 : (ch - h) / 2, w, h);
+    // Narrower than the screen (desktop): the frame's edges are a shade darker than the background, so
+    // fade them out instead of leaving a visible seam.
+    if (w < cw) {
+      const x = (cw - w) / 2, f = w * 0.12;
+      const g = ctx.createLinearGradient(x, 0, x + w, 0);
+      g.addColorStop(0, 'rgba(0,0,0,0)');
+      g.addColorStop(f / w, '#000');
+      g.addColorStop(1 - f / w, '#000');
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.globalCompositeOperation = 'destination-in';
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, cw, ch);
+      ctx.globalCompositeOperation = 'source-over';
+    }
   }
 
   // The drawn frame eases toward the scroll target, which smooths out coarse wheel steps.
