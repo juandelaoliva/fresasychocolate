@@ -91,8 +91,8 @@ a { color: inherit; }
   display: grid; grid-template-rows: auto minmax(0, 1fr);
   padding: max(20px, env(safe-area-inset-top, 0px)) var(--gutter) 0;
 }
-.hero-brand { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; position: relative; z-index: 2; }
-.hero-brand .logo { width: min(56vw, 250px); }
+.hero-brand { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; position: relative; z-index: 2; padding-top: 5svh; }
+.hero-brand .logo { width: min(68vw, 310px); }
 /* Static hero (no JS / reduced motion): leave room for the always-visible bar. */
 :root:not(.hero-ready) .hero-pin { padding-top: calc(var(--bar) + env(safe-area-inset-top, 0px) + 20px); }
 /* "Desliza" sits under the strawberry, near the bottom of the screen. */
