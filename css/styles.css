@@ -174,6 +174,8 @@ a { color: inherit; }
   margin: 0 0 18px; text-wrap: balance;
 }
 .lead { margin: 0; max-width: 34ch; font-size: 18px; line-height: 1.5; }
+/* Italiana's figures don't read well: numbers inside display headings use the body face, light. */
+.num { font-family: var(--font-body); font-weight: 300; letter-spacing: 0; }
 .menu { list-style: none; margin: 0; padding: 0; }
 .menu li { display: flex; align-items: baseline; gap: 10px; padding: 8px 0; }
 .menu li::after { content: ""; order: 1; flex: 1; min-width: 16px; border-bottom: 1.5px dotted currentColor; opacity: .3; transform: translateY(-4px); }
@@ -194,10 +196,26 @@ a { color: inherit; }
 
 /* ---------- monta tu vaso ---------- */
 .vaso { padding-top: 32px; }
-.builder { margin-top: 36px; display: grid; gap: 30px; }
-.paso { margin: 0; padding: 0; border: 0; min-width: 0; }
-.paso h3, .paso legend { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; padding: 0; margin: 0 0 14px; font: 500 21px/1.2 var(--font-body); }
-.paso .n { font: 400 40px/.8 var(--font-display); color: var(--fresa); min-width: .8em; }
+.builder { margin-top: 36px; display: grid; gap: 22px; }
+/* One card per step, like the three panels of the shop's printed menu: a photo or clip on top, the
+   step number in a coloured corner (pink, chocolate, strawberry as on the menu), the options below. */
+.paso {
+  position: relative; margin: 0; padding: 0; border: 0; min-width: 0; overflow: hidden;
+  border-radius: 24px; background: var(--peonia-suave);
+}
+.paso::before {
+  content: ""; position: absolute; z-index: 1; top: 0; left: 0; width: 92px; height: 92px;
+  clip-path: polygon(0 0, 100% 0, 0 100%); background: var(--corner);
+}
+.p1 { --corner: var(--rosa); --n: var(--choco); }
+.p2 { --corner: var(--choco); --n: var(--nata); }
+.p3 { --corner: var(--fresa); --n: var(--nata); }
+.paso-media { aspect-ratio: 4 / 3; background: var(--rosa); }
+.paso-media img, .paso-media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.p3 .paso-media img { object-position: 85% 60%; }
+.paso-body { padding: 20px 18px 24px; }
+.paso-t { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 0; margin: 0 0 14px; font: 400 clamp(30px, 8vw, 38px)/1 var(--font-display); text-transform: uppercase; }
+.paso .n { position: absolute; z-index: 2; top: 12px; left: 18px; font: 300 34px/1 var(--font-body); color: var(--n); }
 .paso .p, .tier {
   font: 600 13px/1 var(--font-body); font-variant-numeric: tabular-nums; letter-spacing: .04em;
   color: #fff; background: var(--fresa); border-radius: 999px; padding: 7px 11px;
@@ -274,6 +292,8 @@ a { color: inherit; }
 .chocolate .display { color: var(--oro); font-size: clamp(40px, 11vw, 76px); }
 .chocolate .kicker { color: var(--rosa); }
 .chocolate .lead { max-width: 30ch; }
+.chocolate-video { margin-top: 32px; width: 100%; max-width: 420px; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 24px; background: var(--choco); }
+.chocolate-video video { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* ---------- quiénes somos ---------- */
 .nosotras .wrap { display: grid; gap: 28px; }
@@ -284,6 +304,9 @@ a { color: inherit; }
 .insta { padding-top: 0; }
 .mosaic { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin: 24px 0 28px; border-radius: 18px; overflow: hidden; }
 .mosaic img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.mosaic img { transition: filter .3s; }
+@media (hover: hover) { .mosaic:hover img { filter: brightness(.85); } .mosaic:hover img:hover { filter: none; } }
+.mosaic:focus-visible { outline: 3px solid var(--fresa); outline-offset: 4px; }
 
 /* ---------- visita ---------- */
 .visita .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
@@ -309,10 +332,10 @@ a { color: inherit; }
 /* ---------- wider screens ---------- */
 @media (min-width: 900px) {
   .block { padding-block: 96px 112px; }
-  .builder { grid-template-columns: minmax(0, 1fr) 320px; column-gap: 56px; align-items: start; }
-  .builder .paso { grid-column: 1; }
-  .total { grid-column: 2; grid-row: 1 / span 3; position: sticky; top: calc(var(--bar) + 32px); bottom: auto; grid-template-columns: 1fr; padding: 24px; }
-  .total-price { grid-column: 1; grid-row: auto; font-size: 48px; margin: 10px 0 6px !important; }
+  /* The three cards side by side, as on the shop's menu; the total stays docked underneath. */
+  .builder { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; }
+  .total { grid-column: 1 / -1; width: min(100%, 640px); justify-self: center; padding: 18px 24px; }
+  .total-price { font-size: 40px; }
   .strip { max-width: 1120px; margin-inline: auto; padding: 0; overflow: visible; display: grid; grid-template-columns: repeat(4, 1fr); }
   .strip img { width: 100%; }
   .drinks { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 48px; }
@@ -322,6 +345,9 @@ a { color: inherit; }
   .bandejas, .como { grid-column: 2; }
   .bandejas { margin-top: 40px; }
   .nosotras .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 64px; }
+  .chocolate .wrap { display: grid; grid-template-columns: minmax(0, 1fr) 360px; grid-template-rows: auto auto 1fr; column-gap: 64px; }
+  .chocolate .wrap > :not(.chocolate-video) { grid-column: 1; }
+  .chocolate-video { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; }
   .mosaic { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .visita .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
   .fachada { max-width: 420px; }

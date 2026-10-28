@@ -47,7 +47,7 @@
       </div>
       <p class="hint" id="hero-hint"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v9M2 6.5 6 10.5 10 6.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Desliza</p>
       <div class="hero-close" id="hero-close">
-        <p class="lema">Con amor desde Salamanca</p>
+        <p class="lema">El amor es el sustituto del chocolate</p>
         <div class="actions">
           <a class="btn primary" href="#carta">Ver la carta</a>
           <a class="btn" href="https://maps.app.goo.gl/JiWYEt8AWk3Wj6eS6" target="_blank" rel="noopener">Cómo llegar</a>
@@ -65,13 +65,19 @@
       <p class="lead">Fresas frescas, la crema que más te guste y un topping para terminar. Elige y te decimos el precio.</p>
 
       <form class="builder" id="builder" aria-describedby="builder-total">
-        <div class="paso">
-          <h3><span class="n">1</span> Vaso de fresas <span class="p">3,50 €</span></h3>
-          <p class="paso-note">La base: un vaso lleno de fresas.</p>
+        <div class="paso p1">
+          <div class="paso-media"><img src="assets/img/insta/vaso-fresas.webp" alt="Vaso de fresas con la pegatina de Fresas y Chocolate" loading="lazy" width="1000" height="690"></div>
+          <div class="paso-body">
+            <h3 class="paso-t"><span class="n">1</span> Vaso de fresas <span class="p">3,50 €</span></h3>
+            <p class="paso-note">La base: un vaso lleno de fresas.</p>
+          </div>
         </div>
 
-        <fieldset class="paso">
-          <legend><span class="n">2</span> Elige tu crema <span class="p">+1,25 €</span></legend>
+        <fieldset class="paso p2">
+          <legend class="sr-only">Paso 2: elige tu crema, +1,25 €</legend>
+          <div class="paso-media"><video class="loop" muted loop playsinline preload="none" poster="assets/video/bano.webp" data-src="assets/video/bano.mp4" aria-label="Bañando un vaso de fresas bajo la fuente de chocolate"></video></div>
+          <div class="paso-body">
+          <p class="paso-t" aria-hidden="true"><span class="n">2</span> Elige tu crema <span class="p">+1,25 €</span></p>
           <div class="chips">
             <label class="chip"><input type="radio" name="crema" value="" data-price="0" checked><span>Sin crema</span></label>
             <label class="chip"><input type="radio" name="crema" value="Chocolate con leche" data-price="1.25" data-al="2"><span>Chocolate con leche</span></label>
@@ -83,10 +89,14 @@
             <label class="chip"><input type="radio" name="crema" value="Crema de leche condensada" data-price="1.25" data-al="2"><span>Crema de leche condensada</span></label>
             <label class="chip"><input type="radio" name="crema" value="Nata montada" data-price="1.25" data-al="2"><span>Nata montada</span></label>
           </div>
+          </div>
         </fieldset>
 
-        <fieldset class="paso">
-          <legend><span class="n">3</span> Elige tu topping</legend>
+        <fieldset class="paso p3">
+          <legend class="sr-only">Paso 3: elige tu topping</legend>
+          <div class="paso-media"><img src="assets/img/insta/copa-pistacho.webp" alt="Vaso de fresas con chocolate y Lacasitos por encima, junto a una copa de pistacho" loading="lazy" width="1000" height="1348"></div>
+          <div class="paso-body">
+          <p class="paso-t" aria-hidden="true"><span class="n">3</span> Elige tu topping</p>
           <div class="chips">
             <label class="chip"><input type="radio" name="topping" value="" data-price="0" checked><span>Sin topping</span></label>
           </div>
@@ -107,6 +117,7 @@
             <label class="chip"><input type="radio" name="topping" value="Pistachos con chocolate" data-price="1" data-al="1,2,5,6,8"><span>Pistachos con chocolate</span></label>
             <label class="chip"><input type="radio" name="topping" value="Avellanas con chocolate negro" data-price="1" data-al="8"><span>Avellanas con chocolate negro</span></label>
             <label class="chip"><input type="radio" name="topping" value="Crumble de avellanas caramelizadas" data-price="1" data-al="8"><span>Crumble de avellanas caramelizadas</span></label>
+          </div>
           </div>
         </fieldset>
 
@@ -221,8 +232,8 @@
   <section class="origen" id="origen" aria-labelledby="origen-t">
     <img class="origen-img" src="assets/img/insta/fresas-cajas.webp" alt="Cajas de madera llenas de fresas recién recogidas" loading="lazy" width="1000" height="1328">
     <div class="origen-text">
-      <p class="kicker">de Salamanca</p>
-      <h2 class="display" id="origen-t">La diferencia empieza mucho antes del chocolate</h2>
+      <p class="kicker">las fresas</p>
+      <h2 class="display" id="origen-t">De Salamanca</h2>
       <p>Trabajamos con fresas nacionales y de proximidad, cultivadas en Salamanca por <a href="https://www.instagram.com/fresgallimazo/" target="_blank" rel="noopener">Fresgallimazo</a>.</p>
     </div>
   </section>
@@ -231,7 +242,8 @@
     <div class="wrap">
       <p class="kicker">y el chocolate</p>
       <h2 class="display" id="chocolate-t">Belga, de Callebaut</h2>
-      <p class="lead">Las fresas son de Salamanca y el chocolate, belga: trabajamos con Callebaut.</p>
+      <p class="lead">Bañamos las fresas en chocolate belga Callebaut.</p>
+      <div class="chocolate-video"><video class="loop" muted loop playsinline preload="none" poster="assets/video/fuente.webp" data-src="assets/video/fuente.mp4" aria-label="La fuente de chocolate llenando un vaso de fresas en la barra de la tienda"></video></div>
     </div>
   </section>
 
@@ -252,14 +264,14 @@
     <div class="wrap">
       <p class="kicker">en Instagram</p>
       <h2 class="display" id="insta-t">Del día a día</h2>
-      <div class="mosaic">
+      <a class="mosaic" href="https://www.instagram.com/fresasychocolate.salamanca/" target="_blank" rel="noopener" aria-label="Ver más fotos en el Instagram de Fresas y Chocolate">
         <img src="assets/img/insta/bol-fresas.webp" alt="Bol de fresas junto al árbol de Navidad" loading="lazy" width="1000" height="1364">
-        <img src="assets/img/insta/copa-pistacho.webp" alt="Copa de barquillo con helado de pistacho y fresas" loading="lazy" width="1000" height="1348">
+        <img src="assets/img/insta/cortando-fresas.webp" alt="Cortando fresas sobre una tabla verde" loading="lazy" width="1000" height="700">
         <img src="assets/img/insta/mesa-tartas.webp" alt="Mesa con tartas decoradas y cajas de fresas bañadas" loading="lazy" width="1000" height="1378">
         <img src="assets/img/insta/matcha-flores.webp" alt="Matcha con hielo entre flores y fresas" loading="lazy" width="1000" height="1384">
         <img src="assets/img/insta/adri-cajas.webp" alt="Adri mostrando dos cajas de fresas bañadas en chocolate" loading="lazy" width="1000" height="1368">
         <img src="assets/img/insta/donuts-detalle.webp" alt="Detalle de bombones de chocolate con fresas y pan de oro" loading="lazy" width="1000" height="1344">
-      </div>
+      </a>
       <a class="btn" href="https://www.instagram.com/fresasychocolate.salamanca/" target="_blank" rel="noopener">Ver @fresasychocolate.salamanca</a>
     </div>
   </section>
@@ -269,7 +281,7 @@
       <img class="fachada" src="assets/img/fachada.webp" alt="Ilustración de la fachada de Fresas y Chocolate en Espoz y Mina 38" loading="lazy" width="900" height="1600">
       <div>
         <p class="kicker">visítanos</p>
-        <h2 class="display" id="visita-t">Espoz y Mina, 38</h2>
+        <h2 class="display" id="visita-t">Espoz y Mina, <span class="num">38</span></h2>
         <address class="addr">Calle Espoz y Mina, 38<br>37002 Salamanca</address>
         <div class="horario">
           <h3>Horario</h3>
@@ -301,5 +313,6 @@
 <script src="js/hero.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/vaso.js"></script>
+<script src="js/videos.js"></script>
 </body>
 </html>

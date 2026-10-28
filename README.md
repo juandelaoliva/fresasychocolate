@@ -11,10 +11,12 @@ css/styles.css             estilos, mobile first; paleta de marca en :root
 js/hero.js                 animación del hero ligada al scroll
 js/menu.js                 menú hamburguesa
 js/vaso.js                 "Monta tu vaso": suma el precio y los alérgenos de lo elegido
+js/videos.js               vídeos cortos de la tienda: cargan al acercarse y solo se reproducen en pantalla
 assets/hero/frames/        el vídeo del hero convertido en fotogramas WebP (0030–0156)
 assets/hero/poster.webp    último fotograma (sin JS / movimiento reducido)
 assets/hero/manifest.js    nº de fotogramas, tamaño y color de fondo del vídeo
 assets/img/insta/          fotos de Instagram optimizadas (1000 px de ancho)
+assets/video/              clips de los reels (recortados, sin sonido) y su fotograma de portada
 assets/img/                fachada y fotos antiguas de WhatsApp (algunas ya sin usar)
 assets/logo/               logos SVG limpios (fill = currentColor) y el símbolo de la fresa
 assets/icons/              favicon (SVG + PNG) e icono para la pantalla de inicio del iPhone
@@ -27,13 +29,14 @@ Debajo del hero, la página imita la tienda: el verde petróleo de la pared y el
 logo se alternan con el rosa del packaging y un fondo nata. Los titulares van en Italiana; el
 texto, en Jost; los detalles caligráficos (antetítulos y lema del hero), en Petit Formal Script.
 
-1. **Monta tu vaso**: la carta de 3 pasos con opciones seleccionables. Suma el precio y lista
+1. **Monta tu vaso**: la carta de 3 pasos en tres tarjetas, como la carta impresa de la tienda, cada
+   una con su foto o vídeo y el número en la esquina. Las opciones se pueden seleccionar. Suma el precio y lista
    los alérgenos de la combinación. Sin JavaScript sigue funcionando como una lista de opciones.
 2. **Para beber**: tira de fotos deslizable y los precios de batidos, matcha y café.
 3. **Por encargo**: bandejas solo fresas y mixtas, caja personalizada y botón para encargar
    por mensaje de Instagram.
 4. **De Salamanca** y **el chocolate**: el origen de las fresas (Fresgallimazo). La foto se funde
-   en marrón chocolate y continúa en el bloque del chocolate belga Callebaut.
+   en marrón chocolate y continúa en el bloque del chocolate belga Callebaut, con el vídeo de la fuente.
 5. **Quiénes somos**: Rosi y Adri.
 6. **Del día a día**: mosaico de fotos de Instagram.
 7. **Visítanos**: dirección, horario, mapa e ilustración de la fachada.
