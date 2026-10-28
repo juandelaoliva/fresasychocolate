@@ -45,6 +45,8 @@ con el dedo o la rueda. No se usa `<video>` porque buscar fotogramas con `curren
 tirones, sobre todo en iPhone.
 
 En móvil, el vídeo ocupa toda la pantalla por detrás del logo y el chocolate cae desde arriba.
+El vídeo se amplía (sin mover su borde superior) para que la fresa y "Desliza" queden centrados
+debajo del logo, y vuelve a su tamaño mientras aparece el lema.
 Secuencia (constantes `ANIM_OVERRUN`, `CLOSE` y `BAR_AT` en `js/hero.js`, en alturas de pantalla):
 
 1. El hero queda fijo durante 2 pantallas de scroll mientras el vídeo avanza.

@@ -24,11 +24,11 @@
   --font-script: "Petit Formal Script", "Snell Roundhand", "Apple Chancery", cursive;
   --gutter: max(16px, env(safe-area-inset-left, 0px));
   --hero-run: 300vh;
-  --bar: 64px;
+  --bar: 72px;
   color-scheme: light;
 }
 * { box-sizing: border-box; }
-html { background: var(--hero-bg); -webkit-text-size-adjust: 100%; }
+html { background: var(--hero-bg); -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--bar) + env(safe-area-inset-top, 0px)); }
 body { margin: 0; background: var(--nata); color: var(--choco); font-family: var(--font-body); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
@@ -50,8 +50,11 @@ a { color: inherit; }
   transition: transform .35s cubic-bezier(.2, .7, .2, 1);
 }
 .hero-ready .topbar:not(.show) { transform: translateY(-110%); }
-.topbar-logo { display: block; }
-.topbar-logo .logo { height: 28px; width: auto; }
+.topbar-logo { display: flex; align-items: center; gap: 10px; color: var(--choco); }
+.topbar-logo .simbolo { height: 44px; width: auto; flex: none; }
+/* As tall as the bar allows (54px), narrower on small phones so the burger still fits. The swash under
+   FRESAS makes the box bottom-heavy: nudge it down so the capitals, not the box, sit on the bar's centre. */
+.topbar-logo .logo { width: min(282px, 100vw - 2 * var(--gutter) - 112px); height: auto; transform: translateY(13.6%); }
 .burger {
   width: 48px; height: 48px; margin-right: -10px; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer;
   display: grid; place-content: center; gap: 6px; color: var(--choco);

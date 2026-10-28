@@ -8,6 +8,7 @@
 // - the top bar slides down once the hero's bottom edge is above BAR_AT of the viewport.
 (function () {
   const ANIM_OVERRUN = 0.3, CLOSE = [-0.5, -0.1], BAR_AT = 0.6; // in vh
+  const SUBJECT_W = 0.6; // share of the frame width the strawberry spans, leaves and drips included
   const m = window.HERO_MANIFEST;
   const hero = document.getElementById('hero');
   const canvas = document.getElementById('hero-canvas');
@@ -21,7 +22,7 @@
 
   const ctx = canvas.getContext('2d');
   const frames = new Array(m.count);
-  let shown = 0, dirty = true, raf = 0, cw = 0, ch = 0, drop = 0, lift = 0, offset = 0, fitHeight = false;
+  let shown = 0, dirty = true, raf = 0, cw = 0, ch = 0, zoom = 1, lift = 0, fitHeight = false;
   const src = (i) => m.pattern.replace('{n}', String(i + (m.start || 1)).padStart(m.pad, '0'));
   const clamp01 = (x) => Math.max(0, Math.min(1, x));
   const smooth = (a, b, x) => { const t = clamp01((x - a) / (b - a)); return t * t * (3 - 2 * t); };
@@ -66,23 +67,30 @@
     fitHeight = getComputedStyle(canvas).getPropertyValue('--hero-fit').trim() === 'height';
     // Positions below are in pin coordinates so they hold wherever the page is scrolled.
     const pr = pin.getBoundingClientRect();
-    const s = fitHeight ? r.height / m.height : Math.min(r.width / m.width, r.height / m.height);
-    const top = r.top - pr.top + (r.height - m.height * s) / 2;
-    const mobile = getComputedStyle(close).position === 'absolute';
+    const stageTop = r.top - pr.top, stageBottom = stageTop + r.height;
     const logoBottom = logo.getBoundingClientRect().bottom - pr.top;
-    const stageBottom = r.top - pr.top + r.height;
-    drop = 0; lift = 0;
-    // "Desliza" sits just under the strawberry of the first frame. Mobile: the video is centred on the
-    // whole screen, so the strawberry and "Desliza" are dropped to centre them below the logo instead.
+    const mobile = getComputedStyle(close).position === 'absolute';
+    zoom = 1; lift = 0;
+    // Mobile: fitted to the height, the strawberry sits high and leaves the bottom of the screen empty.
+    // Zoom in, keeping the top edge so the chocolate still pours from the top of the screen, until the
+    // strawberry plus "Desliza" are centred below the logo, without cropping the strawberry's sides.
+    if (fitHeight && mobile && m.subjectStart) {
+      const s0 = r.height / m.height;
+      const want = (stageBottom + logoBottom - 2 * stageTop - 20 - hint.offsetHeight) /
+        ((m.subjectStart[0] + m.subjectStart[1]) * m.height);
+      const widest = (0.96 * r.width) / (SUBJECT_W * m.width);
+      zoom = Math.max(1, Math.min(want, widest) / s0);
+    }
+    const s = fitHeight ? r.height / m.height : Math.min(r.width / m.width, r.height / m.height);
+    const top = fitHeight ? stageTop : stageTop + (r.height - m.height * s) / 2;
+    // "Desliza" sits just under the strawberry of the first frame.
     if (m.subjectStart) {
-      const startTop = top + m.subjectStart[0] * m.height * s;
-      const hintTop = top + m.subjectStart[1] * m.height * s + 20;
-      if (mobile) drop = Math.max(0, (stageBottom - (hintTop + hint.offsetHeight) - (startTop - logoBottom)) / 2);
-      hint.style.top = `${Math.round(hintTop + drop)}px`;
+      hint.style.top = `${Math.round(top + m.subjectStart[1] * m.height * s * zoom + 20)}px`;
       hint.style.bottom = 'auto';
     }
-    // Mobile: the closing line overlays the bottom of the screen. Lift the strawberry (its extent in the
-    // last frame comes from the manifest) just enough to clear it, but never into the logo.
+    // Mobile: the closing line overlays the bottom of the screen. The zoom eases back out as it comes
+    // in; lift the strawberry (its extent in the last frame comes from the manifest) just enough to
+    // clear it, but never into the logo.
     if (mobile && m.subject) {
       const subjTop = top + m.subject[0] * m.height * s;
       const subjBottom = top + m.subject[1] * m.height * s;
@@ -94,19 +102,15 @@
     dirty = true;
   }
 
-  function draw(i) {
+  function draw(i, zoom) {
     const img = nearest(i);
     if (!img || !cw || !ch) return;
-    // Centred, either fitted to the height (sides may crop) or contained. The frame edges are the same
-    // colour as the hero, so any letterbox is invisible.
-    const s = fitHeight ? ch / m.height : Math.min(cw / m.width, ch / m.height);
+    // Either fitted to the height (top edge kept, zoomed on mobile, sides may crop) or contained and
+    // centred. The frame edges are the same colour as the hero, so any letterbox is invisible.
+    const s = (fitHeight ? ch / m.height : Math.min(cw / m.width, ch / m.height)) * zoom;
     const w = m.width * s, h = m.height * s;
-    const x = (cw - w) / 2, y = (ch - h) / 2 + offset * Math.min(window.devicePixelRatio || 1, 2);
     ctx.clearRect(0, 0, cw, ch);
-    ctx.drawImage(img, x, y, w, h);
-    // Shifted down: stretch the frame's top row over the gap so the pouring chocolate still comes
-    // from the top of the screen.
-    if (y > 0) ctx.drawImage(img, 0, 0, m.width, 1, x, 0, w, Math.ceil(y));
+    ctx.drawImage(img, (cw - w) / 2, fitHeight ? 0 : (ch - h) / 2, w, h);
   }
 
   // The drawn frame eases toward the scroll target, which smooths out coarse wheel steps.
@@ -120,13 +124,13 @@
     const delta = target - shown;
     shown = Math.abs(delta) < 0.5 ? target : shown + delta * 0.3;
     const c = smooth(run + CLOSE[0] * vh, run + CLOSE[1] * vh, y);
-    offset = drop * (1 - c) - lift * c;
-    draw(Math.round(shown));
+    draw(Math.round(shown), 1 + (zoom - 1) * (1 - c));
     dirty = false;
     hint.style.opacity = String(1 - smooth(0.02, 0.12, y / run));
     close.style.opacity = String(c);
     close.style.transform = `translateY(${(1 - c) * 14}px)`;
     close.classList.toggle('on', c > 0.5);
+    canvas.style.transform = lift ? `translateY(${-c * lift}px)` : '';
     topbar.classList.toggle('show', r.bottom < BAR_AT * vh);
     if (shown !== target) request();
   }
