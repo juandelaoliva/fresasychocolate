@@ -1,0 +1,239 @@
+/* Fresas y Chocolate · web. Mobile first. Brand palette from the identity; --hero-bg is the flat
+   background of the hero video (scripts/extraer-frames.sh prints it) so the frames blend in. */
+:root {
+  --crema: #fdf6cd;
+  --papel: #fcf6e9;
+  --menta: #cdded2;
+  --peonia: #fbcac3;
+  --peonia-suave: #fde4df;
+  --choco: #613613;
+  --choco-soft: #8a6a52;
+  --fresa: #b5485c;
+  --hero-bg: #acc5aa; /* js/hero.js overrides it with the manifest's colour */
+  --line: color-mix(in srgb, var(--choco) 20%, transparent);
+  --font-body: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+  --font-script: "Pinyon Script", "Snell Roundhand", "Apple Chancery", cursive;
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --hero-run: 300vh;
+  --bar: 64px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { background: var(--hero-bg); -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--papel); color: var(--choco); font-family: var(--font-body); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--fresa); outline-offset: 3px; }
+::selection { background: var(--peonia); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: fixed; z-index: 50; left: 16px; top: 12px; padding: 12px 16px; border-radius: 999px; background: var(--choco); color: var(--crema); text-decoration: none; transform: translateY(-200%); }
+.skip:focus { transform: none; }
+.logo { display: block; color: var(--choco); height: auto; }
+
+/* ---------- top bar + burger menu ----------
+   With the scroll hero running, the bar stays hidden above the screen and slides down (.show, set by
+   js/hero.js) just before the menu section arrives. Without it (no JS, reduced motion) it is always there. */
+.topbar {
+  position: fixed; z-index: 40; top: 0; left: 0; right: 0;
+  height: calc(var(--bar) + env(safe-area-inset-top, 0px)); padding: env(safe-area-inset-top, 0px) var(--gutter) 0;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--hero-bg); box-shadow: 0 6px 18px -14px rgba(97, 54, 19, .6);
+  transition: transform .35s cubic-bezier(.2, .7, .2, 1);
+}
+.hero-ready .topbar:not(.show) { transform: translateY(-110%); }
+.topbar-logo { display: block; }
+.topbar-logo .logo { height: 28px; width: auto; }
+.burger {
+  width: 48px; height: 48px; margin-right: -10px; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer;
+  display: grid; place-content: center; gap: 6px; color: var(--choco);
+}
+.burger span { display: block; width: 24px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .25s, opacity .2s; }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.no-js .burger { display: none; }
+
+.nav-panel {
+  position: fixed; z-index: 39; inset: 0; padding: calc(var(--bar) + env(safe-area-inset-top, 0px) + 32px) var(--gutter) 40px;
+  background: var(--hero-bg); display: flex; flex-direction: column; justify-content: space-between;
+}
+.nav-panel[hidden] { display: none; }
+.nav-panel ul { list-style: none; margin: 0; padding: 0; }
+.nav-panel li a { display: block; padding: 10px 0; font: 400 clamp(34px, 10vw, 52px)/1.1 var(--font-body); text-decoration: none; }
+.nav-foot { margin: 0; font-size: 15px; letter-spacing: .04em; }
+.nav-open, .nav-open body { overflow: hidden; }
+
+/* ---------- buttons ---------- */
+.actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 48px;
+  font: 500 15px/1 var(--font-body); letter-spacing: .04em; text-decoration: none;
+  padding: 14px 22px; border-radius: 999px; border: 1.5px solid var(--choco);
+  color: var(--choco); background: transparent; transition: background-color .2s, color .2s;
+}
+.btn.primary { background: var(--choco); color: var(--crema); }
+.btn:hover { background: var(--choco); color: var(--crema); }
+.btn.primary:hover { background: #4a280d; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; height: var(--hero-run); background: var(--hero-bg); }
+.hero-pin {
+  position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
+  display: grid; grid-template-rows: auto minmax(0, 1fr);
+  padding: max(20px, env(safe-area-inset-top, 0px)) var(--gutter) 0;
+}
+.hero-brand { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; position: relative; z-index: 2; }
+.hero-brand .logo { width: min(56vw, 250px); }
+/* Static hero (no JS / reduced motion): leave room for the always-visible bar. */
+:root:not(.hero-ready) .hero-pin { padding-top: calc(var(--bar) + env(safe-area-inset-top, 0px) + 20px); }
+.hint { margin: 0; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--choco); display: flex; align-items: center; gap: 8px; }
+.hint svg { width: 12px; height: 12px; animation: nudge 1.8s ease-in-out infinite; }
+@keyframes nudge { 50% { transform: translateY(3px); } }
+
+/* Mobile: the video fills the whole screen behind the logo, scaled to the screen height (--hero-fit,
+   read by js/hero.js), so the chocolate pours in from the top edge. */
+.hero-stage { position: absolute; inset: 0; z-index: 0; --hero-fit: height; }
+.hero-stage canvas, .hero-poster { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-poster { object-fit: cover; }
+.hero-ready .hero-poster { display: none; }
+
+.hero-close {
+  position: absolute; z-index: 3; left: 0; right: 0; bottom: 0;
+  padding: 0 var(--gutter) calc(28px + env(safe-area-inset-bottom, 0px));
+  display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center;
+  background: linear-gradient(to top, var(--hero-bg) 55%, transparent);
+  padding-top: 48px;
+}
+.hero-ready .hero-close { opacity: 0; transform: translateY(14px); pointer-events: none; }
+.hero-ready .hero-close.on { pointer-events: auto; }
+.lema { font-family: var(--font-script); font-size: clamp(32px, 9vw, 52px); line-height: 1.1; margin: 0; text-wrap: balance; }
+
+/* Without JS or with reduced motion the hero is a single static screen showing the last frame. */
+.no-js .hero { height: auto; }
+.no-js .hero-pin { position: relative; }
+.no-js .hint { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hero { height: auto; }
+  .hero-pin { position: relative; }
+  .hint { display: none; }
+}
+
+/* Desktop, and phones held sideways: logo and closing line on the left, video on the right. */
+@media (min-width: 900px), (orientation: landscape) and (max-height: 520px) {
+  .hero-pin {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr);
+    max-width: 1280px; margin: 0 auto; padding-block: 0; column-gap: 32px;
+  }
+  .hero-brand { grid-column: 1; grid-row: 1; align-self: start; align-items: flex-start; text-align: left; padding-top: 14vh; }
+  .hero-brand .logo { width: min(32vw, 400px); }
+  /* Desktop: the video sits in the right column; its top edge fades so the stream enters softly. */
+  .hero-stage { position: relative; inset: auto; min-height: 0; grid-column: 2; grid-row: 1; --hero-fit: contain; }
+  .hero-stage canvas, .hero-poster {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14%);
+            mask-image: linear-gradient(to bottom, transparent 0, #000 14%);
+  }
+  .hero-poster { object-fit: contain; }
+  .hero-close {
+    position: relative; grid-column: 1; grid-row: 1; align-self: end; align-items: flex-start; text-align: left;
+    background: none; padding: 0 0 14vh;
+  }
+  .hero-close .actions { justify-content: flex-start; }
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+  .hero-brand { padding-top: 6vh; }
+  .hero-brand .logo { width: min(32vw, 40vh); }
+  .hero-close { padding-bottom: 6vh; }
+  .lema { font-size: clamp(24px, 7vh, 40px); }
+}
+
+/* ---------- sections ---------- */
+.section { padding: 72px var(--gutter) 88px; position: relative; }
+.wrap { max-width: 1120px; margin: 0 auto; }
+.kicker { font-family: var(--font-script); font-size: clamp(30px, 7vw, 40px); line-height: 1; color: var(--fresa); margin: 0 0 4px; }
+.section h2 { font: 500 clamp(28px, 6.4vw, 46px)/1.12 var(--font-body); margin: 0 0 14px; text-wrap: balance; letter-spacing: -.01em; }
+.lead { margin: 0; max-width: 58ch; font-size: 18px; color: var(--choco-soft); }
+
+/* Chocolate drip where the hero meets the menu. */
+.drip { display: block; width: 100%; height: clamp(40px, 7vw, 80px); color: var(--papel); margin-bottom: -1px; background: var(--hero-bg); }
+
+/* ---------- carta ---------- */
+.carta { background: var(--papel); padding-top: 40px; }
+.steps { list-style: none; margin: 36px 0 0; padding: 0; display: grid; gap: 16px; counter-reset: paso; }
+.step {
+  position: relative; overflow: hidden; background: var(--peonia-suave); border-radius: 22px; padding: 24px 20px 26px;
+  display: flex; flex-direction: column; gap: 14px; min-width: 0;
+}
+.step::before {
+  counter-increment: paso; content: counter(paso);
+  position: absolute; top: 0; left: 0; width: 64px; height: 64px; padding: 8px 0 0 13px;
+  font: 300 30px/1 var(--font-body); color: var(--crema);
+  background: var(--fresa); clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+.step:nth-child(2)::before { background: var(--choco); }
+.step-head { padding-left: 52px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 12px; }
+.step h3 { margin: 0; font: 500 22px/1.2 var(--font-body); }
+.price {
+  display: inline-block; font: 600 15px/1 var(--font-body); font-variant-numeric: tabular-nums; letter-spacing: .02em;
+  color: #fff; background: var(--fresa); border-radius: 999px; padding: 8px 12px; white-space: nowrap;
+}
+.step p { margin: 0; color: var(--choco-soft); }
+.opts { list-style: none; margin: 0; padding: 0; }
+.opts li { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 15px; letter-spacing: .05em; text-transform: uppercase; }
+.opts li:first-child { border-top: 0; }
+.tier { display: flex; align-items: center; gap: 10px; margin: 6px 0 2px; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--choco-soft); }
+.tier .price { font-size: 13px; padding: 6px 10px; }
+.al { font-size: 11px; letter-spacing: 0; color: var(--choco-soft); white-space: nowrap; align-self: center; }
+
+.extras { display: grid; gap: 16px; margin-top: 16px; }
+.panel { background: #edf3e3; border-radius: 22px; padding: 24px 20px; }
+.panel h3 { margin: 0 0 10px; font: 500 22px/1.2 var(--font-body); }
+.menu { list-style: none; margin: 0; padding: 0; }
+.menu li { display: flex; align-items: baseline; gap: 10px; padding: 7px 0; font-size: 15px; letter-spacing: .05em; text-transform: uppercase; }
+.menu li::after { content: ""; order: 1; flex: 1; border-bottom: 1.5px dotted var(--line); transform: translateY(-4px); min-width: 12px; }
+.menu .p { order: 2; font-variant-numeric: tabular-nums; font-weight: 600; color: var(--fresa); white-space: nowrap; }
+.menu small { display: block; font-size: 12px; text-transform: none; letter-spacing: .02em; color: var(--choco-soft); }
+.menu .gap { margin-top: 10px; }
+
+.alergenos { margin-top: 28px; font-size: 13px; color: var(--choco-soft); }
+.alergenos h3 { font: 600 12px/1 var(--font-body); letter-spacing: .16em; text-transform: uppercase; margin: 0 0 10px; color: var(--choco); }
+.alergenos ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.alergenos b { font-weight: 600; color: var(--choco); }
+
+@media (min-width: 760px) {
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
+  .extras { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+}
+
+/* ---------- regalos ---------- */
+.regalos { background: var(--peonia-suave); }
+.gallery { display: grid; gap: 12px; margin-top: 32px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.gallery figure { margin: 0; border-radius: 18px; overflow: hidden; background: var(--peonia); }
+.gallery img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 5; }
+.gallery .wide { grid-column: 1 / -1; }
+.gallery .wide img { aspect-ratio: 16 / 10; }
+.regalos .actions { justify-content: flex-start; margin-top: 28px; }
+@media (min-width: 900px) {
+  .gallery { grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: auto auto; }
+  .gallery .tall { grid-row: span 2; }
+  .gallery .tall img { aspect-ratio: auto; height: 100%; }
+  .gallery .wide { grid-column: 2 / 4; }
+}
+
+/* ---------- visita ---------- */
+.visita { background: var(--menta); }
+.visita .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: center; }
+.fachada { width: 100%; border-radius: 22px; overflow: hidden; max-width: 420px; justify-self: center; box-shadow: 0 18px 40px -24px rgba(97, 54, 19, .5); }
+.addr { font-style: normal; font-size: 20px; line-height: 1.4; margin: 6px 0 24px; }
+.visita .actions { justify-content: flex-start; }
+@media (min-width: 900px) {
+  .visita .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; }
+  .fachada { order: 2; }
+}
+
+/* ---------- footer ---------- */
+.foot { background: var(--choco); color: var(--crema); padding: 48px var(--gutter) calc(40px + env(safe-area-inset-bottom, 0px)); }
+.foot .wrap { display: flex; flex-direction: column; gap: 20px; align-items: center; text-align: center; }
+.foot .logo { color: var(--crema); width: min(70vw, 320px); }
+.foot p { margin: 0; font-size: 14px; letter-spacing: .04em; opacity: .85; }
+.foot a { text-underline-offset: 3px; }
