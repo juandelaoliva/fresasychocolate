@@ -64,14 +64,19 @@
     cw = Math.round(r.width * dpr); ch = Math.round(r.height * dpr);
     if (canvas.width !== cw || canvas.height !== ch) { canvas.width = cw; canvas.height = ch; }
     fitHeight = getComputedStyle(canvas).getPropertyValue('--hero-fit').trim() === 'height';
+    // Positions below are in pin coordinates so they hold wherever the page is scrolled.
+    const pr = pin.getBoundingClientRect();
+    const s = fitHeight ? r.height / m.height : Math.min(r.width / m.width, r.height / m.height);
+    const top = r.top - pr.top + (r.height - m.height * s) / 2;
+    // "Desliza" sits just under the strawberry of the first frame.
+    if (m.subjectStart) {
+      hint.style.top = `${Math.round(top + m.subjectStart[1] * m.height * s + 20)}px`;
+      hint.style.bottom = 'auto';
+    }
     lift = 0;
     // Mobile: the closing line overlays the bottom of the screen. Lift the strawberry (its extent in the
     // last frame comes from the manifest) just enough to clear it, but never into the logo.
-    // Measured in pin coordinates so it holds wherever the page is scrolled.
     if (getComputedStyle(close).position === 'absolute' && m.subject) {
-      const pr = pin.getBoundingClientRect();
-      const s = fitHeight ? r.height / m.height : Math.min(r.width / m.width, r.height / m.height);
-      const top = r.top - pr.top + (r.height - m.height * s) / 2;
       const subjTop = top + m.subject[0] * m.height * s;
       const subjBottom = top + m.subject[1] * m.height * s;
       const closeTop = r.top - pr.top + r.height - close.offsetHeight + 24;

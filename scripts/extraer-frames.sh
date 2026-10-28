@@ -37,15 +37,20 @@ W="${SIZE%x*}"; H="${SIZE#*x}"
 BG="#$(ffmpeg -loglevel error -i "$FIRST_FILE" -vf "crop=24:24:4:4,scale=1:1" \
   -f rawvideo -pix_fmt rgb24 - | xxd -p)"
 
-# Franja vertical que ocupa el motivo (la fresa) en el último fotograma, en fracciones de la altura.
-# La web la usa en móvil para subir la fresa lo justo al aparecer el lema, sin chocar con el logo.
+# Franja vertical que ocupa el motivo (la fresa) en un fotograma, en fracciones de la altura.
+# La web usa la del último fotograma para subir la fresa lo justo al aparecer el lema, y la del
+# primero para colocar "Desliza" justo debajo de la fresa.
 # Se ignoran las filas estrechas (el chorro, gotas sueltas, salpicaduras): cuentan las de ≥ 10/90 px.
-SUBJECT="$(ffmpeg -loglevel error -i "$OUT/poster.webp" -vf "scale=90:160" -f rawvideo -pix_fmt rgb24 - | python3 -c '
+subject() {
+  ffmpeg -loglevel error -i "$1" -vf "scale=90:160" -f rawvideo -pix_fmt rgb24 - | python3 -c '
 import sys
 bg = bytes.fromhex(sys.argv[1].lstrip("#")); px = sys.stdin.buffer.read(); W, H = 90, 160
 rows = [i for i in range(H) if sum(sum(abs(px[(i*W+x)*3+k] - bg[k]) for k in range(3)) > 90 for x in range(W)) >= 10]
 print(f"[{rows[0]/H:.3f}, {(rows[-1]+1)/H:.3f}]" if rows else "[0, 1]")
-' "$BG")"
+' "$BG"
+}
+SUBJECT="$(subject "$OUT/poster.webp")"
+SUBJECT_START="$(subject "$FIRST_FILE")"
 
 # Se escribe como script (no JSON) para que la web funcione también abierta con doble clic (file://).
 cat > "$OUT/manifest.js" <<JS
@@ -56,6 +61,7 @@ window.HERO_MANIFEST = {
   height: $H,
   background: "$BG",
   subject: $SUBJECT,
+  subjectStart: $SUBJECT_START,
   pattern: "assets/hero/frames/{n}.webp",
   pad: 4
 };

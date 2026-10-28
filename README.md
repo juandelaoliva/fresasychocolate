@@ -9,13 +9,33 @@ tal cual en cualquier hosting estático (Netlify, Vercel, GitHub Pages, un servi
 index.html                 página completa (los logos van incrustados como SVG)
 css/styles.css             estilos, mobile first; paleta de marca en :root
 js/hero.js                 animación del hero ligada al scroll
-assets/hero/frames/        el vídeo del hero convertido en 240 fotogramas WebP
+js/menu.js                 menú hamburguesa
+js/vaso.js                 "Monta tu vaso": suma el precio y los alérgenos de lo elegido
+assets/hero/frames/        el vídeo del hero convertido en fotogramas WebP (0030–0156)
 assets/hero/poster.webp    último fotograma (sin JS / movimiento reducido)
 assets/hero/manifest.js    nº de fotogramas, tamaño y color de fondo del vídeo
-assets/img/                fotos de producto optimizadas
+assets/img/insta/          fotos de Instagram optimizadas (1000 px de ancho)
+assets/img/                fachada y fotos antiguas de WhatsApp (algunas ya sin usar)
 assets/logo/               logos SVG limpios (fill = currentColor)
 scripts/extraer-frames.sh  regenera los fotogramas a partir de un vídeo
 ```
+
+## Secciones
+
+Debajo del hero, la página imita la tienda: el verde petróleo de la pared y el dorado del
+logo se alternan con el rosa del packaging y un fondo nata. Los titulares van en Italiana; el
+texto, en Jost; los detalles caligráficos (antetítulos y lema del hero), en Petit Formal Script.
+
+1. **Monta tu vaso**: la carta de 3 pasos con opciones seleccionables. Suma el precio y lista
+   los alérgenos de la combinación. Sin JavaScript sigue funcionando como una lista de opciones.
+2. **Para beber**: tira de fotos deslizable y los precios de batidos, matcha y café.
+3. **Por encargo**: bandejas solo fresas y mixtas, caja personalizada y botón para encargar
+   por mensaje de Instagram.
+4. **De Salamanca** y **el chocolate**: el origen de las fresas (Fresgallimazo). La foto se funde
+   en marrón chocolate y continúa en el bloque del chocolate belga Callebaut.
+5. **Quiénes somos**: Rosi y Adri.
+6. **Del día a día**: mosaico de fotos de Instagram.
+7. **Visítanos**: dirección, horario, mapa e ilustración de la fachada.
 
 ## Cómo funciona el hero
 
@@ -66,11 +86,13 @@ Para que el vídeo funcione bien en el hero:
 
 ## Pendiente / por confirmar
 
-- Horario de apertura: no aparece en ningún material, así que no se ha puesto.
-- Textos de las secciones "para regalar" y "visítanos": son una propuesta. Hay que confirmar
-  si se aceptan encargos y por qué canal.
+- Alérgenos de las cremas Chocolate Dubái y Chocolate Tokyo: aún no se conocen. Mientras tanto,
+  "Monta tu vaso" pide preguntar en tienda (atributo `data-al-pending` en `index.html`). Cuando
+  se sepan, cámbialo por `data-al="…"` con los números.
+- Precios de las bandejas: se han tomado de la publicación de Instagram del 9 de mayo.
+  Confirmar que siguen vigentes.
 - Leyenda de alérgenos: en la carta, el nº 7 dice "frutos de cáscara" en español y "peanuts"
   en inglés. Conviene revisarlo con el local.
 - Revisar precios y carta con el local antes de publicar.
-- Fotos: de momento son las de WhatsApp. Si hay originales en mejor calidad, sustitúyelas en
-  `assets/img/` con el mismo nombre.
+- Las fotos del mosaico de Instagram son una selección fija. Para cambiarlas, sustituye los
+  archivos en `assets/img/insta/` o edita la sección en `index.html`.

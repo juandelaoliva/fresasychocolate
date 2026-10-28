@@ -9,7 +9,7 @@
 <link rel="icon" href="assets/logo/logo-cuadrado.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500;600&family=Petit+Formal+Script&display=swap">
 <link rel="preload" as="image" href="assets/hero/frames/0030.webp">
 <link rel="stylesheet" href="css/styles.css">
 <script>document.documentElement.classList.replace('no-js', 'js');</script>
@@ -23,11 +23,13 @@
 </header>
 <nav class="nav-panel" id="nav-panel" aria-label="Menú principal" hidden>
   <ul>
-    <li><a href="#carta">La carta</a></li>
-    <li><a href="#regalos">Para regalar</a></li>
+    <li><a href="#carta">Monta tu vaso</a></li>
+    <li><a href="#bebidas">Para beber</a></li>
+    <li><a href="#encargos">Por encargo</a></li>
+    <li><a href="#nosotras">Quiénes somos</a></li>
     <li><a href="#visita">Visítanos</a></li>
   </ul>
-  <p class="nav-foot">Espoz y Mina, 38 · Salamanca<br><a href="https://www.instagram.com/fresasychocolate.salamanca/" target="_blank" rel="noopener">@fresasychocolate.salamanca</a></p>
+  <p class="nav-foot">Espoz y Mina, 38 · 37002 Salamanca<br><a href="https://www.instagram.com/fresasychocolate.salamanca/" target="_blank" rel="noopener">@fresasychocolate.salamanca</a></p>
 </nav>
 
 <main>
@@ -46,7 +48,7 @@
         <p class="lema">El amor es el sustituto del chocolate</p>
         <div class="actions">
           <a class="btn primary" href="#carta">Ver la carta</a>
-          <a class="btn" href="#visita">Cómo llegar</a>
+          <a class="btn" href="https://maps.app.goo.gl/JiWYEt8AWk3Wj6eS6" target="_blank" rel="noopener">Cómo llegar</a>
         </div>
       </div>
     </div>
@@ -54,76 +56,67 @@
 
   <svg class="drip" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 80V34c40 0 52 12 70 12s22-26 64-26 50 38 74 38 18-30 60-30 56 22 84 22 30-34 74-34 44 46 72 46 26-38 66-38 50 18 80 18 34-26 70-26 46 40 74 40 28-30 66-30 54 20 84 20 30-36 72-36 46 30 72 30 28-22 66-22 52 32 80 32 32-30 72-30 42 18 70 18 30-22 70-22h48v80Z"/></svg>
 
-  <section class="section carta" id="carta" aria-labelledby="carta-t">
+  <section class="block vaso" id="carta" aria-labelledby="vaso-t">
     <div class="wrap">
       <p class="kicker">la carta</p>
-      <h2 id="carta-t">Tu vaso de fresas, en tres pasos</h2>
-      <p class="lead">Fresas frescas, la crema que más te guste y un topping para terminar.</p>
+      <h2 class="display" id="vaso-t">Monta tu vaso</h2>
+      <p class="lead">Fresas frescas, la crema que más te guste y un topping para terminar. Elige y te decimos el precio.</p>
 
-      <ol class="steps">
-        <li class="step">
-          <div class="step-head"><h3>Vaso de fresas</h3><span class="price">3,50 €</span></div>
-          <p>Empieza por la base: un vaso lleno de fresas.</p>
-        </li>
-        <li class="step">
-          <div class="step-head"><h3>Elige tu crema</h3><span class="price">+1,25 €</span></div>
-          <ul class="opts">
-            <li>Chocolate con leche <span class="al">2</span></li>
-            <li>Chocolate blanco <span class="al">2</span></li>
-            <li>Chocolate negro <span class="al">2</span></li>
-            <li>Crema con avellanas <span class="al">8</span></li>
-            <li>Crema de leche condensada <span class="al">2</span></li>
-            <li>Nata montada <span class="al">2</span></li>
-          </ul>
-        </li>
-        <li class="step">
-          <div class="step-head"><h3>Elige tu topping</h3></div>
-          <p class="tier"><span class="price">+0,50 €</span></p>
-          <ul class="opts">
-            <li>Crumble de Lotus <span class="al">1, 5</span></li>
-            <li>Crumble de Oreo <span class="al">1, 5</span></li>
-            <li>Coco <span class="al">10</span></li>
-            <li>Mikado <span class="al">1, 2, 5, 8</span></li>
-            <li>Nubes (marshmallows)</li>
-          </ul>
-          <p class="tier"><span class="price">+1,00 €</span></p>
-          <ul class="opts">
-            <li>Crumble de pistacho <span class="al">6</span></li>
-            <li>Conguitos <span class="al">2, 5, 7</span></li>
-            <li>Kinder Bueno <span class="al">1, 2, 5, 8, 9</span></li>
-            <li>Lacasitos <span class="al">8</span></li>
-            <li>Pistachos con chocolate <span class="al">1, 2, 5, 6, 8</span></li>
-            <li>Avellanas con chocolate negro <span class="al">8</span></li>
-            <li>Crumble de avellanas caramelizadas <span class="al">8</span></li>
-          </ul>
-        </li>
-      </ol>
-
-      <div class="extras">
-        <div class="panel">
-          <h3>Cafés y tés</h3>
-          <ul class="menu">
-            <li>Espresso <span class="p">1,70 €</span></li>
-            <li>Café con leche <span class="p">1,70 €</span></li>
-            <li>Cortado <span class="p">1,70 €</span></li>
-            <li>Café bombón <span class="p">2,50 €</span></li>
-            <li class="gap">Té matcha <span class="p">3,80 €</span></li>
-            <li>Té matcha con leche <span class="p">4,20 €</span></li>
-            <li>Matcha strawberry <span class="p">5,00 €</span></li>
-            <li class="gap">Botella de agua <span class="p">1,50 €</span></li>
-          </ul>
+      <form class="builder" id="builder" aria-describedby="builder-total">
+        <div class="paso">
+          <h3><span class="n">1</span> Vaso de fresas <span class="p">3,50 €</span></h3>
+          <p class="paso-note">La base: un vaso lleno de fresas.</p>
         </div>
-        <div class="panel">
-          <h3>Batidos</h3>
-          <ul class="menu">
-            <li><span>Batido de fresas <small>Fresas, leche y miel</small></span> <span class="p">4,80 €</span></li>
-            <li><span>Batido de fresas con nata</span> <span class="p">5,25 €</span></li>
-          </ul>
-        </div>
-      </div>
 
-      <div class="alergenos">
-        <h3>Referencias de alérgenos</h3>
+        <fieldset class="paso">
+          <legend><span class="n">2</span> Elige tu crema <span class="p">+1,25 €</span></legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="crema" value="" data-price="0" checked><span>Sin crema</span></label>
+            <label class="chip"><input type="radio" name="crema" value="Chocolate con leche" data-price="1.25" data-al="2"><span>Chocolate con leche</span></label>
+            <label class="chip"><input type="radio" name="crema" value="Chocolate blanco" data-price="1.25" data-al="2"><span>Chocolate blanco</span></label>
+            <label class="chip"><input type="radio" name="crema" value="Chocolate negro" data-price="1.25" data-al="2"><span>Chocolate negro</span></label>
+            <label class="chip"><input type="radio" name="crema" value="Chocolate Dubái" data-price="1.25" data-al-pending><span>Chocolate Dubái</span></label>
+            <label class="chip"><input type="radio" name="crema" value="Chocolate Tokyo" data-price="1.25" data-al-pending><span>Chocolate Tokyo</span></label>
+            <label class="chip"><input type="radio" name="crema" value="Crema con avellanas" data-price="1.25" data-al="8"><span>Crema con avellanas</span></label>
+            <label class="chip"><input type="radio" name="crema" value="Crema de leche condensada" data-price="1.25" data-al="2"><span>Crema de leche condensada</span></label>
+            <label class="chip"><input type="radio" name="crema" value="Nata montada" data-price="1.25" data-al="2"><span>Nata montada</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="paso">
+          <legend><span class="n">3</span> Elige tu topping</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="topping" value="" data-price="0" checked><span>Sin topping</span></label>
+          </div>
+          <p class="tier">+0,50 €</p>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="topping" value="Crumble de Lotus" data-price="0.5" data-al="1,5"><span>Crumble de Lotus</span></label>
+            <label class="chip"><input type="radio" name="topping" value="Crumble de Oreo" data-price="0.5" data-al="1,5"><span>Crumble de Oreo</span></label>
+            <label class="chip"><input type="radio" name="topping" value="Coco" data-price="0.5" data-al="10"><span>Coco</span></label>
+            <label class="chip"><input type="radio" name="topping" value="Mikado" data-price="0.5" data-al="1,2,5,8"><span>Mikado</span></label>
+            <label class="chip"><input type="radio" name="topping" value="Nubes" data-price="0.5"><span>Nubes</span></label>
+          </div>
+          <p class="tier">+1,00 €</p>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="topping" value="Crumble de pistacho" data-price="1" data-al="6"><span>Crumble de pistacho</span></label>
+            <label class="chip"><input type="radio" name="topping" value="Conguitos" data-price="1" data-al="2,5,7"><span>Conguitos</span></label>
+            <label class="chip"><input type="radio" name="topping" value="Kinder Bueno" data-price="1" data-al="1,2,5,8,9"><span>Kinder Bueno</span></label>
+            <label class="chip"><input type="radio" name="topping" value="Lacasitos" data-price="1" data-al="8"><span>Lacasitos</span></label>
+            <label class="chip"><input type="radio" name="topping" value="Pistachos con chocolate" data-price="1" data-al="1,2,5,6,8"><span>Pistachos con chocolate</span></label>
+            <label class="chip"><input type="radio" name="topping" value="Avellanas con chocolate negro" data-price="1" data-al="8"><span>Avellanas con chocolate negro</span></label>
+            <label class="chip"><input type="radio" name="topping" value="Crumble de avellanas caramelizadas" data-price="1" data-al="8"><span>Crumble de avellanas caramelizadas</span></label>
+          </div>
+        </fieldset>
+
+        <div class="total" id="builder-total" aria-live="polite">
+          <p class="total-desc" id="total-desc">Vaso de fresas</p>
+          <p class="total-price"><output id="total-price" for="builder">3,50 €</output></p>
+          <p class="total-al" id="total-al">Sin alérgenos de la carta</p>
+        </div>
+      </form>
+
+      <details class="alergenos">
+        <summary>Qué significa cada número de alérgeno</summary>
         <ol>
           <li><b>1</b> Gluten</li>
           <li><b>2</b> Leche / lactosa</li>
@@ -136,38 +129,159 @@
           <li><b>9</b> Mantequilla</li>
           <li><b>10</b> Coco</li>
         </ol>
+        <p>Según la carta de la tienda. Si tienes alguna alergia, avísanos al pedir.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="block bebidas" id="bebidas" aria-labelledby="bebidas-t">
+    <div class="wrap">
+      <p class="kicker">para beber</p>
+      <h2 class="display" id="bebidas-t">Batidos, matcha y café</h2>
+    </div>
+    <div class="strip" role="list">
+      <img role="listitem" src="assets/img/insta/batido-rosa.webp" alt="Batido rosa de fresas con nata en un vaso de Fresas y Chocolate" loading="lazy" width="1000" height="1316">
+      <img role="listitem" src="assets/img/insta/matcha-fresas.webp" alt="Matcha con hielo y fresas rodeado de flores" loading="lazy" width="1000" height="1320">
+      <img role="listitem" src="assets/img/insta/batidos-rosas.webp" alt="Dos batidos rosas decorados en el mostrador" loading="lazy" width="1000" height="1352">
+      <img role="listitem" src="assets/img/insta/matcha-barra.webp" alt="Matcha con fresa sobre la barra de la tienda" loading="lazy" width="1000" height="1356">
+    </div>
+    <div class="wrap drinks">
+      <div>
+        <h3>Batidos</h3>
+        <ul class="menu">
+          <li><span>Batido de fresas <small>Fresas, leche y miel</small></span><span class="p">4,80 €</span></li>
+          <li><span>Batido de fresas con nata</span><span class="p">5,25 €</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Matcha</h3>
+        <ul class="menu">
+          <li><span>Té matcha</span><span class="p">3,80 €</span></li>
+          <li><span>Té matcha con leche</span><span class="p">4,20 €</span></li>
+          <li><span>Matcha strawberry</span><span class="p">5,00 €</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Café</h3>
+        <ul class="menu">
+          <li><span>Espresso</span><span class="p">1,70 €</span></li>
+          <li><span>Café con leche</span><span class="p">1,70 €</span></li>
+          <li><span>Cortado</span><span class="p">1,70 €</span></li>
+          <li><span>Café bombón</span><span class="p">2,50 €</span></li>
+          <li><span>Botella de agua</span><span class="p">1,50 €</span></li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="section regalos" id="regalos" aria-labelledby="regalos-t">
+  <section class="block encargos" id="encargos" aria-labelledby="encargos-t">
     <div class="wrap">
       <p class="kicker">para regalar</p>
-      <h2 id="regalos-t">Tartas, cajas y brochetas de fresas bañadas</h2>
-      <p class="lead">Para cumpleaños, celebraciones o porque sí. Escríbenos por Instagram y te contamos.</p>
-      <div class="gallery">
-        <figure class="tall"><img src="assets/img/tarta-cajas.webp" alt="Tarta de fresas bañadas en chocolate rosa, blanco y con leche con un cartel de Happy Birthday, junto a las cajas de Fresas y Chocolate" loading="lazy" width="1100" height="1375"></figure>
-        <figure><img src="assets/img/brocheta.webp" alt="Brocheta de frutas con chocolate en su caja y un vaso de fresas" loading="lazy" width="1100" height="1375"></figure>
-        <figure><img src="assets/img/batido-matcha.webp" alt="Mano sosteniendo un batido de matcha con el logo de Fresas y Chocolate" loading="lazy" width="1100" height="955"></figure>
-        <figure class="wide"><img src="assets/img/cajas.webp" alt="Cajas de regalo de Fresas y Chocolate en verde menta y rosa" loading="lazy" width="1400" height="730"></figure>
+      <h2 class="display" id="encargos-t">Por encargo</h2>
+      <p class="lead">Bandejas de fresas bañadas para regalar, compartir o darte un capricho.</p>
+
+      <div class="encargo-fotos">
+        <img class="f1" src="assets/img/insta/caja-para-mama.webp" alt="Caja de fresas bañadas en chocolate rosa con lazos y una tarjeta que dice Para mamá" loading="lazy" width="1000" height="1394">
+        <img class="f2" src="assets/img/insta/donuts-pan-de-oro.webp" alt="Bombones de chocolate con fresas, arándanos y pan de oro" loading="lazy" width="1000" height="1342">
       </div>
-      <div class="actions">
-        <a class="btn primary" href="https://www.instagram.com/fresasychocolate.salamanca/" target="_blank" rel="noopener">Escríbenos en Instagram</a>
+
+      <div class="bandejas">
+        <div class="bandeja">
+          <h3>Solo fresas</h3>
+          <ul class="menu">
+            <li><span>Pequeña <small>6 fresas aprox.</small></span><span class="p">12 €</span></li>
+            <li><span>Mediana <small>12 fresas aprox.</small></span><span class="p">25 €</span></li>
+            <li><span>Grande <small>24 fresas aprox.</small></span><span class="p">54 €</span></li>
+          </ul>
+        </div>
+        <div class="bandeja">
+          <h3>Mixtas</h3>
+          <p class="bandeja-note">Fresas y bombones variados</p>
+          <ul class="menu">
+            <li><span>Pequeña</span><span class="p">16 €</span></li>
+            <li><span>Mediana</span><span class="p">35 €</span></li>
+            <li><span>Grande</span><span class="p">46 €</span></li>
+          </ul>
+        </div>
+        <div class="bandeja">
+          <h3>Caja personalizada</h3>
+          <p class="bandeja-note">La montamos contigo. El precio depende de lo que lleve.</p>
+        </div>
+      </div>
+
+      <div class="como">
+        <p>Se encargan por Instagram y se recogen en la tienda. Pídelas con antelación, sobre todo para fines de semana y fechas especiales.</p>
+        <a class="btn gold" href="https://ig.me/m/fresasychocolate.salamanca" target="_blank" rel="noopener">Encargar por Instagram</a>
       </div>
     </div>
   </section>
 
-  <section class="section visita" id="visita" aria-labelledby="visita-t">
+  <section class="origen" id="origen" aria-labelledby="origen-t">
+    <img class="origen-img" src="assets/img/insta/fresas-cajas.webp" alt="Cajas de madera llenas de fresas recién recogidas" loading="lazy" width="1000" height="1328">
+    <div class="origen-text">
+      <p class="kicker">de Salamanca</p>
+      <h2 class="display" id="origen-t">La diferencia empieza mucho antes del chocolate</h2>
+      <p>Trabajamos con fresas nacionales y de proximidad, cultivadas en Salamanca por <a href="https://www.instagram.com/fresgallimazo/" target="_blank" rel="noopener">Fresgallimazo</a>.</p>
+    </div>
+  </section>
+
+  <section class="chocolate" id="chocolate" aria-labelledby="chocolate-t">
+    <div class="wrap">
+      <p class="kicker">y el chocolate</p>
+      <h2 class="display" id="chocolate-t">Belga, de Callebaut</h2>
+      <p class="lead">Las fresas son de Salamanca y el chocolate, belga: trabajamos con Callebaut.</p>
+    </div>
+  </section>
+
+  <section class="block nosotras" id="nosotras" aria-labelledby="nosotras-t">
+    <div class="wrap">
+      <figure class="nosotras-foto">
+        <img src="assets/img/insta/rosi-adri.webp" alt="Rosi y Adri sonriendo en la tienda, delante del logo dorado de Fresas y Chocolate" loading="lazy" width="1000" height="1358">
+      </figure>
+      <div>
+        <p class="kicker">quiénes somos</p>
+        <h2 class="display" id="nosotras-t">Rosi y Adri</h2>
+        <p class="lead">Rosi lleva la tienda y su hija Adri le ayuda con todo. Desde 2024 en la calle Espoz y Mina.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block insta" id="instagram" aria-labelledby="insta-t">
+    <div class="wrap">
+      <p class="kicker">en Instagram</p>
+      <h2 class="display" id="insta-t">Del día a día</h2>
+      <div class="mosaic">
+        <img src="assets/img/insta/bol-fresas.webp" alt="Bol de fresas junto al árbol de Navidad" loading="lazy" width="1000" height="1364">
+        <img src="assets/img/insta/copa-pistacho.webp" alt="Copa de barquillo con helado de pistacho y fresas" loading="lazy" width="1000" height="1348">
+        <img src="assets/img/insta/mesa-tartas.webp" alt="Mesa con tartas decoradas y cajas de fresas bañadas" loading="lazy" width="1000" height="1378">
+        <img src="assets/img/insta/matcha-flores.webp" alt="Matcha con hielo entre flores y fresas" loading="lazy" width="1000" height="1384">
+        <img src="assets/img/insta/adri-cajas.webp" alt="Adri mostrando dos cajas de fresas bañadas en chocolate" loading="lazy" width="1000" height="1368">
+        <img src="assets/img/insta/donuts-detalle.webp" alt="Detalle de bombones de chocolate con fresas y pan de oro" loading="lazy" width="1000" height="1344">
+      </div>
+      <a class="btn" href="https://www.instagram.com/fresasychocolate.salamanca/" target="_blank" rel="noopener">Ver @fresasychocolate.salamanca</a>
+    </div>
+  </section>
+
+  <section class="block visita" id="visita" aria-labelledby="visita-t">
     <div class="wrap">
       <img class="fachada" src="assets/img/fachada.webp" alt="Ilustración de la fachada de Fresas y Chocolate en Espoz y Mina 38" loading="lazy" width="900" height="1600">
       <div>
         <p class="kicker">visítanos</p>
-        <h2 id="visita-t">Te esperamos en Salamanca</h2>
-        <address class="addr">Calle Espoz y Mina, 38<br>Salamanca</address>
+        <h2 class="display" id="visita-t">Espoz y Mina, 38</h2>
+        <address class="addr">Calle Espoz y Mina, 38<br>37002 Salamanca</address>
+        <div class="horario">
+          <h3>Horario</h3>
+          <dl>
+            <div><dt>Lunes a jueves</dt><dd>14:00 – 22:00</dd></div>
+            <div><dt>Viernes y sábado</dt><dd>14:00 – 22:30</dd></div>
+            <div><dt>Domingo</dt><dd>14:00 – 22:00</dd></div>
+          </dl>
+        </div>
         <div class="actions">
-          <a class="btn primary" href="https://www.google.com/maps/search/?api=1&query=Espoz+y+Mina+38+Salamanca" target="_blank" rel="noopener">Cómo llegar</a>
+          <a class="btn gold" href="https://maps.app.goo.gl/JiWYEt8AWk3Wj6eS6" target="_blank" rel="noopener">Cómo llegar</a>
           <a class="btn" href="https://www.instagram.com/fresasychocolate.salamanca/" target="_blank" rel="noopener">Instagram</a>
         </div>
+        <iframe class="mapa" src="https://maps.google.com/maps?q=Fresas+y+Chocolate,+Calle+Espoz+y+Mina+38,+Salamanca&amp;output=embed&amp;hl=es&amp;z=16" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Fresas y Chocolate"></iframe>
       </div>
     </div>
   </section>
@@ -176,7 +290,7 @@
 <footer class="foot">
   <div class="wrap">
     <svg class="logo" role="img" aria-label="Fresas y Chocolate" xmlns="http://www.w3.org/2000/svg" viewBox="170.07 100.61 532.33 102.07"><g fill="currentColor"><path d="M 172.070312 105.03125 L 172.070312 105.441406 C 174.324219 105.441406 175.601562 107.476562 175.601562 110.792969 L 175.601562 164.222656 C 175.601562 167.539062 174.324219 169.761719 172.070312 169.761719 L 172.070312 170.25 L 184.070312 170.316406 L 184.070312 169.824219 C 181.816406 169.824219 180.539062 167.605469 180.539062 164.289062 L 180.539062 106.613281 L 185.121094 106.613281 C 192.261719 106.613281 193.238281 113.917969 193.238281 113.917969 L 193.613281 113.917969 L 193.613281 105.03125 Z M 172.070312 105.03125 "/><path d="M 189.097656 126.878906 C 189.097656 126.878906 188.582031 129.3125 185.800781 130.859375 C 184.449219 131.605469 183.320312 131.535156 180.214844 131.535156 C 180.234375 131.816406 180.207031 131.921875 180.1875 132.03125 L 179.335938 132.066406 C 179.226562 132.609375 180.253906 132.492188 180.214844 133.042969 C 183.320312 133.042969 184.449219 132.96875 185.800781 133.71875 C 188.582031 135.261719 189.097656 138.070312 189.097656 138.070312 L 189.472656 138.070312 L 189.472656 126.878906 Z M 189.097656 126.878906 "/><path d="M 227.296875 105.039062 L 227.296875 105.449219 C 229.550781 105.449219 230.828125 107.476562 230.828125 110.789062 L 230.828125 164.101562 C 230.828125 164.707031 230.785156 167.703125 230.699219 168.226562 C 232.40625 168.074219 234.117188 169.535156 235.824219 169.355469 C 235.785156 168.980469 235.761719 164.578125 235.761719 164.167969 L 235.761719 106.617188 L 240.347656 106.617188 C 247.484375 106.617188 248.460938 113.90625 248.460938 113.90625 L 248.835938 113.90625 L 248.835938 105.039062 Z M 227.296875 105.039062 "/><path d="M 244.320312 126.878906 C 244.320312 126.878906 243.808594 129.3125 241.023438 130.859375 C 239.675781 131.605469 238.542969 131.535156 235.4375 131.535156 C 235.457031 131.816406 235.429688 131.921875 235.410156 132.03125 L 234.5625 132.066406 C 234.453125 132.609375 235.480469 132.492188 235.4375 133.042969 C 238.542969 133.042969 239.675781 132.96875 241.023438 133.71875 C 243.808594 135.261719 244.320312 138.070312 244.320312 138.070312 L 244.695312 138.070312 L 244.695312 126.878906 Z M 244.320312 126.878906 "/><path d="M 206.464844 164.289062 L 206.464844 105.640625 C 206.464844 105.640625 207.28125 105.726562 206.539062 105.640625 C 205.976562 105.574219 205.453125 105.363281 205.050781 105.03125 L 198 105.03125 L 198 105.441406 C 200.253906 105.441406 201.527344 107.476562 201.527344 110.792969 L 201.527344 164.222656 C 201.527344 167.539062 200.253906 169.761719 198 169.761719 L 198 170.25 L 209.996094 170.316406 L 209.996094 169.828125 C 207.742188 169.828125 206.464844 167.601562 206.464844 164.289062 "/><path d="M 206.089844 140.171875 C 206.089844 140.171875 209.746094 140.472656 213.152344 137.117188 C 216.558594 133.761719 217.710938 129.351562 217.910156 124.566406 C 218.113281 119.785156 217.289062 109.316406 208.382812 106.660156 C 199.476562 104.007812 204.789062 108.914062 204.789062 108.914062 C 204.789062 108.914062 199.128906 105.03125 201.632812 105.03125 L 205.050781 105.03125 C 207.390625 105.03125 219.515625 105.207031 222.71875 116.429688 C 225.925781 127.648438 218.964844 141.324219 206.238281 141.421875 Z M 206.089844 140.171875 "/><path d="M 337.765625 104.316406 L 337.765625 116.320312 L 337.164062 116.320312 C 337.164062 116.320312 336.160156 109.015625 332.957031 106.808594 C 329.75 104.601562 327.445312 105.113281 325.542969 106.910156 C 323.636719 108.707031 322.1875 113.449219 325.292969 119.347656 C 328.398438 125.246094 336.414062 134.6875 338.96875 138.945312 C 341.519531 143.203125 344.675781 150.742188 342.421875 159.105469 C 340.167969 167.464844 333.808594 171.773438 327.996094 171.363281 C 322.1875 170.953125 316.226562 166.644531 315.425781 160.796875 C 314.621094 154.949219 317.628906 149.050781 322.789062 149.101562 C 322.789062 149.101562 319.632812 152.792969 319.933594 158.128906 C 320.234375 163.464844 322.832031 170.074219 329.246094 170.074219 C 335.445312 170.074219 338.722656 163.984375 339.515625 160.027344 C 340.269531 156.28125 340.078125 151.894531 337.964844 147.511719 C 334.207031 139.710938 328.398438 133.199219 325.992188 129.144531 C 323.589844 125.09375 319.132812 119.65625 320.683594 112.472656 C 322.238281 105.292969 327.046875 103.957031 329.351562 103.957031 C 331.652344 103.957031 333.554688 105.085938 334.410156 105.546875 C 335.257812 106.007812 336.414062 106.164062 337.765625 104.316406 "/><path d="M 275.570312 104.316406 L 275.570312 116.320312 L 274.96875 116.320312 C 274.96875 116.320312 273.96875 109.015625 270.761719 106.808594 C 267.558594 104.601562 265.253906 105.113281 263.347656 106.910156 C 261.445312 108.707031 259.992188 113.449219 263.097656 119.347656 C 266.203125 125.246094 274.21875 134.6875 276.773438 138.945312 C 279.328125 143.203125 282.484375 150.742188 280.230469 159.105469 C 277.976562 167.464844 271.613281 171.773438 265.804688 171.363281 C 259.992188 170.953125 254.03125 166.644531 253.230469 160.796875 C 252.429688 154.949219 255.433594 149.050781 260.59375 149.101562 C 260.59375 149.101562 257.4375 152.792969 257.738281 158.128906 C 258.039062 163.464844 260.640625 170.074219 267.050781 170.074219 C 273.25 170.074219 276.53125 163.984375 277.324219 160.027344 C 278.078125 156.28125 277.882812 151.894531 275.773438 147.511719 C 272.015625 139.710938 266.203125 133.199219 263.800781 129.144531 C 261.394531 125.09375 256.9375 119.65625 258.492188 112.472656 C 260.042969 105.292969 264.851562 103.957031 267.15625 103.957031 C 269.460938 103.957031 271.363281 105.085938 272.214844 105.546875 C 273.066406 106.007812 274.21875 106.164062 275.570312 104.316406 "/><path d="M 313.59375 168.949219 C 312.742188 168.226562 312.496094 167.683594 310.777344 159.359375 L 300.636719 110.289062 L 299.617188 104.480469 L 291.585938 104.480469 L 291.585938 104.894531 C 293.839844 104.894531 296.003906 105.707031 295.117188 110.289062 L 284.976562 159.359375 C 283.253906 167.683594 283.011719 168.226562 282.160156 168.949219 C 281.242188 169.726562 280.089844 169.902344 280.089844 169.902344 L 280.089844 170.316406 L 291.4375 170.316406 L 291.476562 169.9375 L 289.183594 169.808594 C 287.253906 169.117188 285.9375 168.152344 286.5 165.070312 L 287.496094 159.839844 L 296.695312 113.296875 L 304.359375 152.082031 C 304.554688 152.273438 304.738281 152.472656 304.910156 152.679688 L 306.324219 159.839844 L 307.269531 164.792969 C 307.234375 164.863281 307.199219 164.929688 307.160156 165 C 307.253906 165.226562 307.328125 165.464844 307.382812 165.699219 C 307.59375 166.566406 307.640625 167.476562 307.605469 168.367188 C 307.582031 169.019531 307.515625 169.675781 307.382812 170.316406 L 315.664062 170.316406 L 315.664062 169.902344 C 315.664062 169.902344 314.511719 169.726562 313.59375 168.949219 "/><path d="M 612.335938 161.429688 C 612.335938 161.429688 611.355469 168.734375 604.203125 168.734375 L 599.644531 168.734375 C 599.621094 167.359375 599.605469 164.609375 599.605469 164.285156 L 599.609375 110.78125 C 599.609375 107.464844 600.890625 105.429688 603.148438 105.429688 L 603.148438 105.019531 L 591.121094 105.019531 L 591.121094 105.429688 C 593.378906 105.429688 594.660156 107.464844 594.660156 110.78125 L 594.660156 164.222656 C 594.660156 164.324219 594.660156 164.496094 594.65625 164.707031 C 594.617188 167.929688 593.34375 169.90625 591.121094 169.90625 L 591.121094 170.316406 L 612.710938 170.316406 L 612.710938 161.429688 Z M 612.335938 161.429688 "/><path d="M 459.042969 110.78125 C 459.042969 107.464844 460.339844 105.429688 462.597656 105.429688 L 462.597656 105.019531 L 450.570312 105.019531 L 450.570312 105.429688 C 452.828125 105.429688 454.109375 107.464844 454.109375 110.78125 C 454.109375 110.78125 454.105469 164.042969 454.105469 164.253906 C 454.066406 167.480469 452.792969 169.90625 450.570312 169.90625 L 450.570312 170.316406 L 462.542969 170.316406 L 462.542969 169.90625 C 460.320312 169.90625 459.082031 167.480469 459.042969 164.253906 C 459.039062 164.042969 459.042969 110.78125 459.042969 110.78125 "/><path d="M 667.925781 164.253906 C 667.925781 164.042969 667.929688 106.214844 667.929688 106.214844 C 667.929688 106.007812 668.320312 105.792969 669.046875 105.640625 C 667.191406 105.644531 665.332031 105.65625 663.476562 105.667969 C 663.023438 105.667969 662.570312 105.671875 662.117188 105.671875 C 662.691406 105.816406 662.996094 106.007812 662.996094 106.214844 L 662.996094 164.222656 C 662.996094 164.324219 662.992188 164.042969 662.992188 164.253906 C 662.953125 167.476562 661.679688 169.90625 659.457031 169.90625 L 659.457031 170.316406 L 671.429688 170.316406 L 671.429688 169.90625 C 669.207031 169.90625 667.964844 167.476562 667.925781 164.253906 "/><path d="M 481.75 110.78125 C 481.75 107.464844 482.921875 105.429688 485.183594 105.429688 L 485.183594 105.019531 L 473.15625 105.019531 L 473.15625 105.429688 C 475.414062 105.429688 476.695312 107.464844 476.695312 110.78125 C 476.695312 110.78125 476.691406 164.042969 476.691406 164.253906 C 476.652344 167.480469 475.378906 169.90625 473.15625 169.90625 L 473.15625 170.316406 L 485.128906 170.316406 L 485.128906 169.90625 C 482.90625 169.90625 481.667969 167.480469 481.625 164.253906 C 481.625 164.042969 481.75 110.78125 481.75 110.78125 "/><path d="M 649.890625 105.019531 L 649.890625 113.90625 L 650.265625 113.90625 C 650.265625 113.90625 651.246094 106.601562 658.402344 106.601562 L 691.886719 106.601562 C 699.042969 106.601562 700.023438 113.90625 700.023438 113.90625 L 700.398438 113.90625 L 700.398438 105.019531 Z M 649.890625 105.019531 "/><path d="M 691.886719 106.601562 C 699.042969 106.601562 700.019531 113.90625 700.019531 113.90625 L 700.398438 113.90625 L 700.398438 105.019531 L 678.804688 105.019531 L 678.804688 105.429688 C 681.066406 105.429688 682.347656 107.464844 682.347656 110.78125 L 682.347656 164.179688 C 682.347656 164.28125 682.34375 164.445312 682.34375 164.644531 C 682.304688 167.875 681.03125 169.851562 678.804688 169.851562 L 678.804688 170.257812 L 700.398438 170.257812 L 700.398438 161.371094 L 700.019531 161.371094 C 700.019531 161.371094 699.042969 168.675781 691.886719 168.675781 L 687.332031 168.675781 C 687.308594 167.304688 687.292969 164.550781 687.292969 164.230469 L 687.292969 133.082031 C 690.15625 133.078125 691.265625 133.039062 692.566406 133.761719 C 695.355469 135.308594 695.871094 138.125 695.871094 138.125 L 696.246094 138.125 L 696.246094 126.90625 L 695.871094 126.90625 C 695.871094 126.90625 695.355469 129.347656 692.566406 130.894531 C 691.265625 131.617188 690.15625 131.578125 687.292969 131.574219 L 687.292969 106.601562 Z M 691.886719 106.601562 "/><path d="M 629.464844 137.625 L 634.230469 113.761719 L 640.484375 145.074219 C 637.582031 142.105469 633.832031 139.464844 629.464844 137.625 M 651.171875 168.957031 C 650.316406 168.242188 650.070312 167.703125 648.347656 159.445312 L 638.183594 110.78125 L 637.164062 105.019531 L 629.109375 105.019531 L 629.109375 105.429688 C 631.371094 105.429688 633.539062 106.234375 632.652344 110.78125 L 622.484375 159.445312 C 620.761719 167.703125 620.515625 168.242188 619.660156 168.957031 C 618.742188 169.730469 617.589844 169.902344 617.589844 169.902344 L 617.589844 170.3125 L 628.964844 170.3125 L 629 169.9375 L 626.703125 169.808594 C 624.765625 169.125 623.449219 168.167969 624.011719 165.109375 L 625.011719 159.921875 L 629.097656 139.453125 C 634.570312 142.5625 639.6875 147.847656 642.550781 155.414062 L 643.453125 159.921875 L 644.453125 165.109375 C 645.011719 168.167969 643.695312 169.125 641.757812 169.808594 L 641.398438 169.9375 L 641.4375 170.3125 L 653.242188 170.3125 L 653.242188 169.902344 C 653.242188 169.902344 652.089844 169.730469 651.171875 168.957031 "/><path d="M 443.628906 154.667969 C 442.835938 154.332031 441.617188 154.367188 441.617188 154.367188 C 445.054688 161.878906 441.148438 170.578125 436.628906 170.191406 C 432.109375 169.808594 428.324219 161.996094 427.167969 154.636719 C 426.007812 147.28125 425.042969 139.808594 426.046875 129.296875 C 427.050781 118.78125 428.671875 113.429688 431.222656 109.460938 C 433.773438 105.496094 435.597656 105.394531 436.925781 105.34375 C 437.886719 105.476562 438.871094 106.007812 439.957031 107.152344 C 443.972656 111.386719 444.90625 118.050781 444.90625 118.050781 L 445.523438 118.050781 L 445.523438 104.507812 C 445.453125 104.605469 445.378906 104.695312 445.308594 104.78125 C 444.570312 105.644531 443.527344 106.214844 441.894531 105.644531 C 441.542969 105.460938 441.070312 105.207031 440.5 104.964844 C 440.5 104.964844 440.5 104.960938 440.5 104.960938 C 437.835938 103.3125 433.8125 103.300781 429.292969 107.960938 C 424.773438 112.621094 420.953125 123.339844 420.328125 134.265625 C 419.96875 140.570312 420.214844 149.824219 424 159.257812 C 427.785156 168.695312 432.652344 171.390625 436.476562 171.390625 C 440.304688 171.390625 445.867188 168.042969 446.640625 162.265625 C 447.410156 156.488281 444.171875 154.898438 443.628906 154.667969 "/><path d="M 478.339844 133 L 456.582031 133 L 456.582031 131.570312 L 478.339844 131.570312 Z M 478.339844 133 "/><path d="M 562.816406 159.3125 C 554.066406 159.3125 547.683594 149.652344 547.683594 137.738281 C 547.683594 125.824219 554.066406 116.164062 562.816406 116.164062 C 571.5625 116.164062 577.75 125.824219 577.75 137.738281 C 577.75 149.652344 571.5625 159.3125 562.816406 159.3125 M 562.921875 114.796875 C 552.003906 114.796875 542.695312 125.042969 542.695312 137.683594 C 542.695312 150.324219 552.003906 160.570312 562.921875 160.570312 C 573.84375 160.570312 583.148438 150.324219 583.148438 137.683594 C 583.148438 125.042969 573.84375 114.796875 562.921875 114.796875 "/><path d="M 561.84375 170.101562 C 558.03125 170.101562 554.566406 169.027344 551.445312 167.964844 C 541.09375 163.695312 533.640625 151.753906 533.640625 137.6875 C 533.640625 129.578125 536.121094 122.175781 540.203125 116.539062 C 545.910156 108.753906 553.515625 105.597656 560.550781 105.328125 C 560.683594 105.335938 560.949219 105.316406 560.949219 105.316406 C 567.25 105.160156 573.050781 107.378906 576.550781 109.257812 C 582.574219 112.496094 586.585938 117.839844 586.585938 117.839844 L 587.113281 117.839844 L 583.988281 106.140625 C 583.988281 106.140625 582.511719 108.070312 580.753906 108.070312 C 579 108.070312 575.6875 106.726562 572.566406 105.71875 C 566.945312 103.902344 557.855469 102.605469 548.175781 106.597656 C 546.554688 107.242188 545.007812 108.019531 543.542969 108.917969 C 543.511719 108.933594 543.480469 108.949219 543.453125 108.96875 C 543.378906 109.015625 543.304688 109.0625 543.230469 109.109375 C 543.179688 109.140625 543.132812 109.167969 543.082031 109.203125 C 543.015625 109.246094 542.949219 109.285156 542.886719 109.332031 C 533.910156 115.144531 528.214844 125.554688 528.214844 137.582031 C 528.214844 153.535156 538.230469 166.878906 552.625 170.257812 C 569.507812 174.894531 584.601562 163.96875 586.597656 161.757812 L 587.042969 152.851562 C 587.042969 152.851562 582.359375 170.101562 561.84375 170.101562 "/><path d="M 505.71875 170.113281 C 499.628906 170.113281 494.695312 155.507812 494.695312 137.511719 C 494.695312 119.515625 499.628906 105.328125 505.71875 105.328125 C 506.523438 105.328125 508.042969 105.5 509.707031 107.164062 C 512.058594 110.15625 512.96875 115.796875 510.601562 120.980469 C 510.601562 120.980469 511.984375 121.164062 512.863281 120.6875 C 513.125 120.542969 514.023438 120.054688 514.75 118.875 C 516 124.15625 516.738281 130.574219 516.738281 137.511719 C 516.738281 155.507812 511.804688 170.113281 505.71875 170.113281 M 505.613281 103.976562 C 496.476562 103.976562 489.070312 119.070312 489.070312 137.683594 C 489.070312 156.300781 496.476562 171.390625 505.613281 171.390625 C 514.75 171.390625 522.15625 156.300781 522.15625 137.683594 C 522.15625 119.070312 514.75 103.976562 505.613281 103.976562 "/><path d="M 307.867188 154.484375 C 303.382812 141.0625 291.683594 137.296875 291.683594 137.296875 L 290.238281 138.050781 L 291.191406 139.214844 C 300.375 144.023438 306.660156 153.714844 306.660156 164.910156 C 306.660156 173.054688 303.328125 180.402344 297.976562 185.660156 C 293.082031 190.566406 285.234375 193.710938 277.675781 194.453125 C 247.113281 197.453125 228.644531 177.902344 222.867188 165.757812 C 218.691406 156.984375 219.464844 152.441406 214.960938 146.460938 C 210.453125 140.484375 205.667969 141.480469 205.667969 141.480469 L 204.21875 141.632812 C 208.023438 142.113281 209.210938 145.402344 210.554688 147.976562 C 211.902344 150.546875 213.484375 158.648438 217.335938 166.113281 C 223.160156 177.410156 234.585938 186.039062 246.253906 191.625 C 257.125 196.828125 280.515625 200.671875 295.152344 191.09375 C 306.636719 183.578125 312.347656 167.875 307.867188 154.484375 "/><path d="M 381.101562 151.214844 L 381.097656 151.21875 C 378.71875 154.617188 375.976562 157.363281 373.28125 159.324219 C 370.351562 161.457031 366.554688 163.03125 363.664062 161.738281 C 362.917969 161.40625 362.558594 160.53125 362.480469 159.644531 C 362.402344 158.753906 362.59375 157.804688 362.921875 156.90625 C 363.253906 156.003906 363.714844 155.132812 364.25 154.308594 C 364.785156 153.484375 365.398438 152.699219 366.054688 151.953125 C 366.714844 151.210938 367.425781 150.515625 368.183594 149.875 C 369.695312 148.585938 371.390625 147.515625 373.195312 146.679688 C 375 145.84375 376.917969 145.242188 378.875 144.882812 C 380.835938 144.527344 382.84375 144.402344 384.824219 144.566406 C 385.015625 144.582031 385.207031 144.605469 385.398438 144.625 C 383.941406 147.070312 382.71875 148.960938 381.101562 151.214844 M 394.351562 133.054688 C 396.589844 129.367188 399.46875 127.03125 400.4375 126.734375 C 400.347656 127.082031 399.984375 127.839844 399.035156 129.082031 L 399.027344 129.097656 C 397.894531 130.707031 395.847656 132.746094 393.375 134.746094 C 393.699219 134.140625 394.023438 133.570312 394.351562 133.054688 M 391.519531 138.378906 L 391.535156 138.34375 C 391.710938 137.945312 391.929688 137.523438 392.160156 137.089844 C 395.390625 134.679688 398.359375 131.890625 399.929688 129.789062 C 401.054688 128.257812 401.601562 127.171875 401.601562 126.464844 C 401.601562 125.839844 401.199219 125.449219 400.558594 125.449219 C 398.8125 125.449219 394.851562 128.5 392.550781 132.277344 C 391.441406 134.023438 390.371094 135.8125 389.289062 137.742188 C 388.554688 138.222656 384.964844 140.503906 382.804688 140.503906 C 381.871094 140.503906 381.617188 140.054688 381.496094 139.660156 C 381.433594 139.441406 381.402344 139.210938 381.402344 138.90625 C 381.402344 136.628906 384.035156 133.515625 386.578125 130.5 C 389.945312 126.484375 393.078125 122.417969 393.039062 117.007812 C 393.023438 115.15625 391.789062 110.105469 385.65625 108.964844 C 384.972656 108.835938 384.328125 108.816406 383.75 108.816406 C 376.953125 108.816406 369.65625 113.867188 367.140625 120.320312 L 367.128906 120.347656 C 366.734375 121.59375 366.53125 122.792969 366.53125 123.90625 C 366.53125 128.691406 369.816406 131.902344 374.699219 131.902344 L 375.089844 131.902344 C 378.789062 131.785156 382.160156 129.886719 384.335938 126.707031 C 385.855469 124.546875 386.660156 122.378906 386.660156 120.429688 L 386.660156 120.257812 C 386.417969 116.363281 383.679688 115.941406 382.515625 115.941406 C 380.710938 115.941406 378.589844 116.808594 376.835938 118.261719 C 374.960938 119.8125 373.886719 121.722656 373.886719 123.503906 C 373.886719 124.417969 374.175781 125.3125 374.71875 126.097656 L 374.949219 126.433594 L 375.449219 125.984375 C 375.449219 125.984375 375.277344 125.765625 375.34375 124.800781 C 375.449219 123.1875 376.441406 121.648438 378.058594 120.160156 C 379.722656 118.632812 381.628906 117.667969 383.03125 117.679688 C 386.335938 117.714844 386.136719 122.539062 383.601562 126.1875 C 381.621094 129.046875 378.425781 130.683594 375.066406 130.796875 L 374.730469 130.796875 C 372.785156 130.796875 371.183594 130.097656 370.109375 128.773438 C 369.128906 127.570312 368.589844 125.863281 368.589844 123.964844 C 368.589844 123.070312 368.699219 122.167969 368.917969 121.296875 C 369.714844 118.238281 371.6875 115.375 374.480469 113.226562 C 377.277344 111.078125 380.578125 109.894531 383.78125 109.894531 C 384.429688 109.894531 384.996094 109.929688 385.515625 110.003906 C 390.117188 110.863281 391.464844 114.0625 391.464844 117.089844 C 391.464844 121.542969 387.6875 126.035156 384.847656 129.046875 L 384.722656 129.175781 C 383.199219 130.800781 379.144531 135.113281 379.144531 138.53125 C 379.144531 139.488281 379.441406 140.28125 380.023438 140.894531 L 380.070312 140.9375 C 380.679688 141.425781 381.472656 141.671875 382.429688 141.671875 C 384.296875 141.671875 386.410156 140.71875 388.175781 139.714844 C 388.042969 139.949219 387.910156 140.183594 387.78125 140.414062 C 387.484375 140.949219 386.441406 142.800781 385.867188 143.816406 C 385.859375 143.816406 385.851562 143.816406 385.851562 143.816406 L 385.863281 143.824219 C 385.863281 143.828125 385.859375 143.832031 385.859375 143.832031 C 385.539062 143.789062 385.21875 143.753906 384.898438 143.726562 C 380.765625 143.390625 376.597656 144.195312 372.824219 145.875 C 370.941406 146.726562 369.167969 147.828125 367.578125 149.15625 C 366.78125 149.820312 366.035156 150.542969 365.335938 151.308594 C 364.640625 152.070312 363.984375 152.878906 363.394531 153.742188 C 362.808594 154.605469 362.292969 155.527344 361.90625 156.523438 C 361.523438 157.519531 361.261719 158.597656 361.339844 159.738281 C 361.382812 160.304688 361.519531 160.886719 361.796875 161.421875 C 362.074219 161.957031 362.496094 162.433594 363.007812 162.765625 C 363.148438 162.859375 363.292969 162.941406 363.445312 163.011719 C 365.039062 163.886719 367.960938 164.1875 373.214844 161.191406 C 375.429688 160.019531 377.410156 158.53125 379.1875 156.847656 C 379.699219 156.375 380.226562 155.851562 380.714844 155.304688 C 383.40625 152.417969 385.605469 149.121094 387.449219 145.941406 C 387.449219 145.941406 387.628906 145.609375 387.90625 145.101562 C 388.089844 145.15625 388.273438 145.207031 388.460938 145.269531 C 388.699219 145.347656 388.933594 145.425781 389.167969 145.511719 C 389.640625 145.679688 390.105469 145.859375 390.5625 146.058594 C 391.472656 146.453125 392.359375 146.90625 393.179688 147.453125 C 393.589844 147.722656 393.988281 148.015625 394.355469 148.332031 C 394.390625 148.363281 394.425781 148.398438 394.464844 148.429688 C 394.769531 148.714844 395.054688 149.015625 395.316406 149.335938 L 395.320312 149.339844 C 395.832031 149.96875 396.25 150.667969 396.539062 151.429688 C 398.292969 156.082031 394.542969 159.652344 390.847656 161.296875 C 387.148438 162.941406 383.667969 161.640625 383.667969 161.640625 C 385.042969 165.398438 390.046875 166.003906 393.972656 163.855469 C 396.886719 162.261719 398.421875 158.828125 398.480469 155.390625 C 398.53125 154.644531 398.480469 153.121094 397.863281 151.441406 C 397.859375 151.429688 397.855469 151.421875 397.851562 151.410156 C 397.828125 151.347656 397.804688 151.285156 397.777344 151.222656 C 397.765625 151.1875 397.75 151.15625 397.738281 151.121094 C 397.257812 149.945312 396.488281 148.71875 395.273438 147.644531 C 395.210938 147.589844 395.148438 147.53125 395.085938 147.476562 C 394.671875 147.121094 394.234375 146.8125 393.78125 146.53125 C 393.128906 146.113281 392.433594 145.773438 391.722656 145.484375 C 390.527344 144.96875 389.328125 144.59375 388.324219 144.332031 C 389.121094 142.875 390.207031 140.878906 390.464844 140.378906 C 390.828125 139.679688 391.175781 139.019531 391.519531 138.378906 "/><path d="M 400.304688 126.875 C 399.203125 127.347656 396.519531 129.648438 394.421875 133.101562 C 394.1875 133.46875 393.9375 133.890625 393.652344 134.414062 C 395.976562 132.496094 397.898438 130.554688 398.957031 129.050781 L 398.96875 129.035156 C 399.859375 127.863281 400.1875 127.183594 400.304688 126.875 M 393.105469 135.074219 L 393.300781 134.707031 C 393.679688 134.003906 393.988281 133.464844 394.277344 133.011719 C 396.507812 129.34375 399.414062 126.957031 400.414062 126.652344 L 400.558594 126.609375 L 400.519531 126.757812 C 400.457031 126.992188 400.195312 127.699219 399.105469 129.132812 L 399.09375 129.148438 C 397.976562 130.734375 395.914062 132.800781 393.429688 134.8125 Z M 383.070312 144.578125 C 381.699219 144.578125 380.300781 144.710938 378.890625 144.964844 C 376.910156 145.332031 375.003906 145.933594 373.230469 146.757812 C 371.410156 147.597656 369.730469 148.667969 368.238281 149.9375 C 367.480469 150.582031 366.765625 151.277344 366.117188 152.007812 C 365.425781 152.792969 364.824219 153.582031 364.320312 154.355469 C 363.746094 155.238281 363.304688 156.105469 363 156.933594 C 362.640625 157.925781 362.492188 158.835938 362.566406 159.636719 C 362.605469 160.113281 362.800781 161.261719 363.699219 161.664062 C 364.859375 162.179688 368.109375 162.984375 373.230469 159.257812 C 376.078125 157.1875 378.773438 154.390625 381.03125 151.171875 L 381.03125 151.167969 C 382.574219 149.019531 383.765625 147.191406 385.261719 144.695312 C 385.101562 144.675781 384.957031 144.664062 384.816406 144.652344 C 384.242188 144.601562 383.660156 144.578125 383.070312 144.578125 M 365.980469 162.292969 C 365.125 162.292969 364.339844 162.132812 363.628906 161.816406 C 362.9375 161.507812 362.492188 160.71875 362.398438 159.652344 C 362.324219 158.824219 362.472656 157.890625 362.84375 156.875 C 363.152344 156.035156 363.601562 155.15625 364.179688 154.261719 C 364.6875 153.484375 365.296875 152.6875 365.992188 151.898438 C 366.644531 151.160156 367.367188 150.457031 368.128906 149.808594 C 369.632812 148.53125 371.328125 147.453125 373.160156 146.605469 C 374.949219 145.773438 376.863281 145.167969 378.859375 144.800781 C 380.890625 144.429688 382.898438 144.324219 384.832031 144.484375 C 385.007812 144.5 385.195312 144.515625 385.410156 144.542969 L 385.539062 144.554688 L 385.472656 144.667969 C 383.945312 147.230469 382.738281 149.078125 381.167969 151.265625 L 381.167969 151.269531 C 378.902344 154.503906 376.191406 157.3125 373.328125 159.394531 C 371.714844 160.566406 370.039062 161.433594 368.480469 161.894531 C 367.59375 162.160156 366.757812 162.292969 365.980469 162.292969 M 383.808594 161.777344 C 384.335938 163.078125 385.351562 164.042969 386.75 164.570312 C 388.847656 165.359375 391.601562 165.058594 393.929688 163.78125 C 396.621094 162.3125 398.332031 159.097656 398.398438 155.390625 C 398.429688 154.941406 398.476562 153.34375 397.785156 151.472656 L 397.773438 151.4375 C 397.75 151.378906 397.726562 151.316406 397.699219 151.253906 L 397.660156 151.152344 C 397.113281 149.816406 396.292969 148.65625 395.21875 147.707031 C 395.15625 147.652344 395.09375 147.59375 395.027344 147.539062 C 394.664062 147.226562 394.242188 146.917969 393.738281 146.601562 C 393.132812 146.214844 392.464844 145.875 391.691406 145.5625 C 390.664062 145.117188 389.523438 144.734375 388.304688 144.414062 L 388.199219 144.386719 L 388.253906 144.292969 C 389.085938 142.761719 390.136719 140.832031 390.390625 140.339844 C 390.753906 139.644531 391.097656 138.984375 391.441406 138.339844 L 391.460938 138.308594 C 391.640625 137.890625 391.878906 137.441406 392.085938 137.050781 L 392.09375 137.035156 L 392.109375 137.023438 C 395.328125 134.621094 398.300781 131.828125 399.863281 129.738281 C 400.976562 128.222656 401.515625 127.152344 401.515625 126.464844 C 401.515625 125.882812 401.160156 125.535156 400.558594 125.535156 C 398.835938 125.535156 394.910156 128.5625 392.621094 132.320312 C 391.511719 134.066406 390.445312 135.855469 389.363281 137.785156 L 389.351562 137.804688 L 389.335938 137.816406 C 388.628906 138.277344 384.992188 140.589844 382.804688 140.589844 C 381.804688 140.589844 381.535156 140.074219 381.417969 139.683594 C 381.347656 139.457031 381.320312 139.21875 381.320312 138.90625 C 381.320312 136.597656 383.960938 133.46875 386.515625 130.445312 C 390.0625 126.214844 392.992188 122.285156 392.953125 117.011719 C 392.9375 114.722656 391.386719 110.117188 385.640625 109.046875 C 384.945312 108.917969 384.296875 108.902344 383.75 108.902344 C 376.984375 108.902344 369.722656 113.929688 367.21875 120.351562 L 367.207031 120.375 C 366.816406 121.613281 366.617188 122.800781 366.617188 123.90625 C 366.617188 128.640625 369.867188 131.820312 374.699219 131.820312 L 375.085938 131.820312 C 378.761719 131.703125 382.105469 129.820312 384.265625 126.65625 C 385.777344 124.511719 386.578125 122.359375 386.578125 120.433594 L 386.578125 120.261719 C 386.339844 116.4375 383.65625 116.023438 382.515625 116.023438 C 380.730469 116.023438 378.628906 116.886719 376.886719 118.324219 C 375.035156 119.859375 373.972656 121.746094 373.972656 123.503906 C 373.972656 124.402344 374.253906 125.28125 374.789062 126.050781 L 374.964844 126.304688 L 375.347656 125.964844 C 375.292969 125.835938 375.210938 125.515625 375.257812 124.796875 C 375.363281 123.238281 376.261719 121.703125 378.003906 120.097656 C 379.695312 118.542969 381.625 117.582031 383.035156 117.597656 C 384.027344 117.605469 384.777344 118.046875 385.199219 118.867188 C 386.085938 120.585938 385.445312 123.683594 383.671875 126.238281 C 381.734375 129.03125 378.515625 130.765625 375.070312 130.878906 L 374.730469 130.878906 C 372.757812 130.878906 371.136719 130.167969 370.042969 128.828125 C 369.050781 127.609375 368.503906 125.882812 368.503906 123.964844 C 368.503906 123.0625 368.617188 122.15625 368.835938 121.277344 C 369.636719 118.199219 371.621094 115.316406 374.429688 113.160156 C 377.238281 111 380.558594 109.8125 383.78125 109.8125 C 384.433594 109.8125 385.003906 109.847656 385.527344 109.921875 C 390.765625 110.898438 391.546875 114.832031 391.546875 117.089844 C 391.546875 121.542969 387.757812 126.078125 384.90625 129.105469 L 384.785156 129.234375 C 383.265625 130.851562 379.230469 135.144531 379.230469 138.53125 C 379.230469 139.464844 379.515625 140.238281 380.082031 140.835938 L 380.125 140.875 C 380.714844 141.347656 381.492188 141.585938 382.429688 141.585938 C 383.964844 141.585938 385.828125 140.949219 388.132812 139.640625 L 388.398438 139.492188 L 387.714844 140.703125 C 387.308594 141.429688 386.445312 142.96875 385.941406 143.859375 L 385.910156 143.90625 L 385.902344 143.925781 L 385.847656 143.917969 C 385.519531 143.875 385.199219 143.839844 384.890625 143.8125 C 380.898438 143.484375 376.738281 144.226562 372.859375 145.953125 C 370.960938 146.8125 369.203125 147.914062 367.632812 149.222656 C 366.851562 149.871094 366.097656 150.59375 365.398438 151.363281 C 364.648438 152.183594 364.019531 152.976562 363.464844 153.789062 C 362.820312 154.738281 362.335938 155.644531 361.984375 156.554688 C 361.539062 157.707031 361.359375 158.75 361.421875 159.734375 C 361.46875 160.339844 361.621094 160.898438 361.875 161.382812 C 362.148438 161.914062 362.566406 162.378906 363.054688 162.695312 C 363.183594 162.785156 363.324219 162.863281 363.480469 162.9375 C 366.21875 164.4375 370.265625 162.777344 373.175781 161.117188 C 375.25 160.019531 377.25 158.5625 379.132812 156.785156 C 379.699219 156.257812 380.214844 155.738281 380.65625 155.25 C 382.96875 152.765625 385.164062 149.707031 387.375 145.902344 L 387.863281 145.003906 L 387.929688 145.023438 C 388.105469 145.070312 388.292969 145.125 388.488281 145.191406 C 388.695312 145.257812 388.921875 145.332031 389.199219 145.433594 C 389.722656 145.621094 390.179688 145.800781 390.59375 145.980469 C 391.609375 146.421875 392.46875 146.878906 393.226562 147.382812 C 393.660156 147.667969 394.058594 147.96875 394.410156 148.269531 C 394.433594 148.289062 394.453125 148.308594 394.476562 148.328125 L 394.519531 148.367188 C 394.828125 148.65625 395.121094 148.960938 395.382812 149.285156 C 395.921875 149.945312 396.335938 150.65625 396.617188 151.398438 C 398.386719 156.09375 394.632812 159.707031 390.882812 161.375 C 387.65625 162.808594 384.558594 162.007812 383.808594 161.777344 M 389.285156 165.171875 C 388.367188 165.171875 387.484375 165.023438 386.691406 164.726562 C 385.1875 164.160156 384.113281 163.105469 383.585938 161.667969 L 383.523438 161.496094 L 383.695312 161.5625 C 383.730469 161.574219 387.191406 162.832031 390.8125 161.222656 C 394.5 159.582031 398.1875 156.042969 396.460938 151.460938 C 396.183594 150.734375 395.78125 150.039062 395.253906 149.394531 C 394.992188 149.074219 394.710938 148.773438 394.40625 148.492188 L 394.363281 148.453125 C 394.339844 148.433594 394.320312 148.414062 394.296875 148.398438 C 393.953125 148.097656 393.5625 147.804688 393.132812 147.523438 C 392.386719 147.023438 391.53125 146.570312 390.527344 146.132812 C 390.113281 145.957031 389.660156 145.777344 389.140625 145.589844 C 388.867188 145.492188 388.640625 145.417969 388.433594 145.351562 C 388.265625 145.292969 388.101562 145.246094 387.949219 145.203125 L 387.523438 145.984375 C 385.304688 149.804688 383.097656 152.871094 380.777344 155.363281 C 380.335938 155.855469 379.820312 156.375 379.246094 156.910156 C 377.355469 158.695312 375.339844 160.160156 373.253906 161.265625 C 370.308594 162.945312 366.207031 164.625 363.40625 163.085938 C 363.246094 163.011719 363.097656 162.925781 362.960938 162.835938 C 362.453125 162.503906 362.011719 162.015625 361.722656 161.460938 C 361.460938 160.953125 361.300781 160.375 361.257812 159.746094 C 361.1875 158.734375 361.375 157.671875 361.828125 156.492188 C 362.183594 155.570312 362.675781 154.65625 363.328125 153.695312 C 363.882812 152.875 364.519531 152.074219 365.273438 151.25 C 365.980469 150.476562 366.738281 149.75 367.523438 149.09375 C 369.105469 147.773438 370.875 146.664062 372.789062 145.800781 C 376.695312 144.058594 380.882812 143.316406 384.902344 143.644531 C 385.136719 143.664062 385.371094 143.6875 385.613281 143.71875 L 385.582031 143.691406 L 385.820312 143.726562 C 386.328125 142.828125 387.167969 141.332031 387.570312 140.621094 L 387.957031 139.933594 C 385.746094 141.160156 383.933594 141.753906 382.429688 141.753906 C 381.453125 141.753906 380.640625 141.503906 380.015625 141 L 379.964844 140.957031 C 379.363281 140.324219 379.0625 139.507812 379.0625 138.53125 C 379.0625 135.078125 383.128906 130.75 384.664062 129.121094 L 384.785156 128.988281 C 390.695312 122.71875 391.378906 119.195312 391.378906 117.089844 C 391.378906 114.882812 390.617188 111.042969 385.5 110.085938 C 384.988281 110.015625 384.425781 109.980469 383.78125 109.980469 C 380.597656 109.980469 377.3125 111.15625 374.53125 113.292969 C 371.753906 115.429688 369.789062 118.277344 369 121.316406 C 368.78125 122.183594 368.671875 123.078125 368.671875 123.964844 C 368.671875 125.84375 369.207031 127.535156 370.171875 128.71875 C 371.234375 130.023438 372.808594 130.710938 374.730469 130.710938 L 375.066406 130.710938 C 378.460938 130.597656 381.625 128.890625 383.535156 126.140625 C 385.273438 123.636719 385.910156 120.609375 385.050781 118.945312 C 384.65625 118.183594 383.957031 117.773438 383.03125 117.765625 C 383.023438 117.765625 383.011719 117.765625 383 117.765625 C 381.636719 117.765625 379.765625 118.703125 378.117188 120.222656 C 376.40625 121.796875 375.527344 123.292969 375.425781 124.804688 C 375.367188 125.703125 375.515625 125.933594 375.519531 125.933594 L 375.5625 125.996094 L 375.507812 126.046875 L 374.933594 126.558594 L 374.648438 126.148438 C 374.097656 125.347656 373.804688 124.433594 373.804688 123.503906 C 373.804688 121.695312 374.890625 119.761719 376.78125 118.195312 C 378.550781 116.730469 380.691406 115.855469 382.515625 115.855469 C 383.703125 115.855469 386.5 116.285156 386.742188 120.253906 L 386.746094 120.433594 C 386.746094 122.394531 385.933594 124.582031 384.402344 126.753906 C 382.214844 129.960938 378.820312 131.867188 375.09375 131.988281 L 374.699219 131.988281 C 369.765625 131.988281 366.449219 128.738281 366.449219 123.90625 C 366.449219 122.785156 366.652344 121.578125 367.050781 120.320312 L 367.0625 120.289062 C 369.585938 113.808594 376.917969 108.730469 383.75 108.730469 C 384.304688 108.730469 384.960938 108.75 385.671875 108.882812 C 391.523438 109.972656 393.105469 114.675781 393.121094 117.007812 C 393.164062 122.34375 390.210938 126.300781 386.644531 130.554688 C 384.109375 133.554688 381.488281 136.660156 381.488281 138.90625 C 381.488281 139.199219 381.515625 139.425781 381.578125 139.636719 C 381.695312 140.023438 381.933594 140.421875 382.804688 140.421875 C 384.929688 140.421875 388.484375 138.167969 389.226562 137.683594 C 390.308594 135.757812 391.371094 133.972656 392.480469 132.230469 C 393.550781 130.46875 395.054688 128.746094 396.707031 127.382812 C 398.238281 126.121094 399.679688 125.367188 400.558594 125.367188 C 401.242188 125.367188 401.683594 125.796875 401.683594 126.464844 C 401.683594 127.191406 401.132812 128.292969 399.996094 129.835938 C 398.429688 131.9375 395.453125 134.738281 392.222656 137.148438 C 392.019531 137.53125 391.789062 137.972656 391.609375 138.378906 L 391.59375 138.417969 C 391.246094 139.0625 390.902344 139.71875 390.539062 140.417969 C 390.289062 140.902344 389.277344 142.761719 388.449219 144.28125 C 389.640625 144.59375 390.753906 144.972656 391.757812 145.40625 C 392.539062 145.722656 393.214844 146.070312 393.828125 146.460938 C 394.339844 146.78125 394.769531 147.09375 395.140625 147.414062 C 395.203125 147.46875 395.265625 147.523438 395.328125 147.582031 C 396.421875 148.546875 397.257812 149.726562 397.816406 151.089844 L 397.855469 151.191406 C 397.882812 151.253906 397.90625 151.316406 397.929688 151.378906 L 397.941406 151.414062 C 398.644531 153.316406 398.597656 154.945312 398.566406 155.398438 C 398.5 159.160156 396.753906 162.433594 394.011719 163.929688 C 392.515625 164.746094 390.851562 165.171875 389.285156 165.171875 "/><path d="M 296.492188 141.347656 C 296.777344 141.105469 296.285156 140.953125 296.613281 140.753906 C 294.648438 139.417969 293.269531 138.164062 290.945312 137.226562 C 283.789062 134.34375 275.089844 133.695312 265.816406 137.527344 C 249.765625 144.15625 245.820312 158.691406 244.855469 166.078125 C 244.660156 167.597656 243.367188 168.738281 241.835938 168.738281 L 235.765625 168.738281 L 235.765625 158.929688 C 234.109375 159.171875 232.464844 159.441406 230.828125 159.765625 L 230.828125 164.566406 C 230.828125 167.878906 229.550781 169.90625 227.296875 169.90625 L 227.296875 170.316406 L 248.835938 170.316406 C 248.824219 170.28125 248.816406 170.242188 248.808594 170.207031 C 248.585938 167.324219 248.367188 163.191406 249.96875 157.285156 C 254.777344 139.554688 271.679688 135.949219 280.921875 136.472656 C 284.753906 136.691406 290.304688 139.191406 293.128906 140.769531 C 294.449219 141.503906 295.953125 142.441406 298.257812 144.410156 C 298.257812 144.410156 295.566406 140.976562 296.492188 141.347656 "/></g></svg>
-    <p>Espoz y Mina, 38 · Salamanca · <a href="https://www.instagram.com/fresasychocolate.salamanca/" target="_blank" rel="noopener">@fresasychocolate.salamanca</a></p>
+    <p>Espoz y Mina, 38 · 37002 Salamanca · <a href="https://www.instagram.com/fresasychocolate.salamanca/" target="_blank" rel="noopener">@fresasychocolate.salamanca</a></p>
     <p>© 2026 Fresas y Chocolate</p>
   </div>
 </footer>
@@ -184,5 +298,6 @@
 <script src="assets/hero/manifest.js"></script>
 <script src="js/hero.js"></script>
 <script src="js/menu.js"></script>
+<script src="js/vaso.js"></script>
 </body>
 </html>
