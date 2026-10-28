@@ -16,7 +16,8 @@ assets/hero/poster.webp    último fotograma (sin JS / movimiento reducido)
 assets/hero/manifest.js    nº de fotogramas, tamaño y color de fondo del vídeo
 assets/img/insta/          fotos de Instagram optimizadas (1000 px de ancho)
 assets/img/                fachada y fotos antiguas de WhatsApp (algunas ya sin usar)
-assets/logo/               logos SVG limpios (fill = currentColor)
+assets/logo/               logos SVG limpios (fill = currentColor) y el símbolo de la fresa
+assets/icons/              favicon (SVG + PNG) e icono para la pantalla de inicio del iPhone
 scripts/extraer-frames.sh  regenera los fotogramas a partir de un vídeo
 ```
 
