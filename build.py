@@ -136,6 +136,10 @@ def validar(c):
             error(f'Tienda: la {k} debe ser un número, no "{c["tienda"].get(k)}"')
         c['tienda'][k] = v
     for h in c['tienda'].get('horario') or []:
+        # Sin comillas, YAML lee 14:00 como un número en base 60 (840): se vuelve a escribir como hora.
+        for k in ('abre', 'cierra'):
+            if isinstance(h.get(k), int) and not isinstance(h.get(k), bool):
+                h[k] = f'{h[k] // 60:02d}:{h[k] % 60:02d}'
         for d in h.get('dias_semana') or []:
             if d not in DIAS:
                 error(f'Horario "{h.get("dias")}": día desconocido "{d}"')
@@ -153,6 +157,12 @@ def euros(v):
 def euros_corto(v):
     v = float(v)
     return f'{int(v)} €' if v.is_integer() else euros(v)
+
+
+def fecha_es(d):
+    meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre',
+             'octubre', 'noviembre', 'diciembre']
+    return f'{d.day} de {meses[d.month - 1]} de {d.year}'
 
 
 def lista(items, y='y'):
@@ -348,9 +358,10 @@ def jsonld(c, faq):
         'potentialAction': {'@type': 'OrderAction', 'target': f'https://ig.me/m/{t["instagram"]}',
                             'description': 'Encargar bandejas de fresas con chocolate por mensaje de Instagram'},
     }
-    if t.get('telefono'):
+    real = lambda v: bool(v) and not str(v).strip().startswith('[')  # sin marcadores provisionales
+    if real(t.get('telefono')):
         tienda['telephone'] = t['telefono']
-    if t.get('email'):
+    if real(t.get('email')):
         tienda['email'] = t['email']
     grafo = [
         tienda,
@@ -385,11 +396,24 @@ def main():
                       trim_blocks=True, lstrip_blocks=True, keep_trailing_newline=True)
     env.filters.update(euros=euros, euros_corto=euros_corto, enlaces=enlaces, sin_enlaces=sin_enlaces, ruta=ruta)
     env.globals.update(img=img, video=video, svg=svg, site=SITE, alergenos=ALERGENOS, year=dt.date.today().year,
-                       hoy=dt.date.today().isoformat(), faq=faq, **c)
+                       hoy=dt.date.today().isoformat(), hoy_texto=fecha_es(dt.date.today()), faq=faq, **c)
     # El JSON-LD usa img(), que también registra errores de fotos.
     env.globals['jsonld'] = jsonld(c, faq)
 
-    for nombre, autoescape in [('index.html', True), ('llms.txt', False), ('sitemap.xml', True), ('robots.txt', False)]:
+    # Páginas legales: solo si están los datos del titular, para no publicar un aviso legal a medias.
+    t = c['tienda']
+    legal = all(str(t.get(k) or '').strip() for k in ('titular', 'nif', 'email'))
+    env.globals['legal'] = legal
+    provisionales = [k for k in ('titular', 'nif', 'email', 'domicilio_fiscal', 'telefono')
+                     if str(t.get(k) or '').strip().startswith('[')]
+    if provisionales:
+        print(f'Aviso: datos provisionales en content/tienda.yml ({", ".join(provisionales)}); sustitúyelos antes de anunciar la web.')
+    paginas = [('index.html', True), ('llms.txt', False), ('sitemap.xml', True), ('robots.txt', False)]
+    if legal:
+        paginas += [('aviso-legal.html', True), ('privacidad.html', True)]
+    else:
+        print('Aviso: faltan titular, NIF o email en content/tienda.yml; no se publican las páginas legales.')
+    for nombre, autoescape in paginas:
         env.autoescape = autoescape
         (OUT / nombre).write_text(env.get_template(nombre + '.j2').render(), encoding='utf-8')
     if errores:

@@ -56,24 +56,29 @@ src/index.html.j2          plantilla de la página (Jinja2)
 src/llms.txt.j2            ficha de la tienda para asistentes de IA
 src/sitemap.xml.j2         sitemap
 src/robots.txt.j2          robots.txt
+src/legal.html.j2          base de las páginas legales: aviso-legal.html.j2 y privacidad.html.j2
+src/pie.html.j2            pie común a todas las páginas
 src/svg/                   logos, símbolo, sello, flecha y ola (van en línea en la página)
 build.py                   genera _site/ a partir de content/ y src/
 requirements.txt           dependencias de Python
 .pages.yml                 formularios de Pages CMS
 .github/workflows/         publicación automática en GitHub Pages
 css/styles.css             estilos, mobile first; paleta de marca en :root
+css/fonts.css              fuentes alojadas en la propia web (Italiana, Jost, Petit Formal Script)
 js/hero.js                 animación del hero ligada al scroll
 js/menu.js                 menú hamburguesa
 js/vaso.js                 "Monta tu vaso": suma el precio y los alérgenos de lo elegido
 js/videos.js               vídeos de la tienda: cargan al acercarse y solo se reproducen en pantalla
 js/carrusel.js             galerías deslizables: flechas para pasar fotos con ratón
 js/faq.js                  preguntas frecuentes: abren y cierran con animación
+js/mapa.js                 el mapa de Google solo se carga al pulsar "Ver el mapa aquí"
 assets/hero/               el vídeo del hero en fotogramas WebP, póster y manifest
 assets/img/                fotos (las que se suben desde el CMS también van aquí)
 assets/video/              vídeos de la tienda y su imagen fija
 assets/logo/               logos SVG limpios (fill = currentColor), símbolo de la fresa y sello
 assets/icons/              favicon e icono para la pantalla de inicio del iPhone
 assets/og/                 imagen para compartir y logo cuadrado para Google
+assets/fonts/              archivos de las fuentes (woff2, latin y latin-ext)
 scripts/extraer-frames.sh  regenera los fotogramas del hero a partir de un vídeo
 docs/                      manual para editores
 ```
@@ -82,7 +87,7 @@ docs/                      manual para editores
 
 | Archivo | Qué contiene |
 |---|---|
-| `tienda.yml` | Nombre, dirección, coordenadas, Google Maps, Instagram, teléfono, email y horario |
+| `tienda.yml` | Nombre, dirección, coordenadas, Google Maps, Instagram, teléfono, email, horario y datos del titular (aviso legal) |
 | `portada.yml` | Lema del hero, título y descripción para Google, descripción de la tienda para IA |
 | `carta.yml` | Monta tu vaso: vaso, cremas, grupos de toppings, precios y alérgenos |
 | `bebidas.yml` | Galería y carta de bebidas |
@@ -182,7 +187,9 @@ caligráficos, en Petit Formal Script.
    estampado en dorado, el texto en párrafos y una despedida con letra a mano.
 6. **Del día a día** (`#instagram`): mosaico de fotos que abre el perfil de Instagram.
 7. **Preguntas frecuentes** (`#preguntas`): desplegables con animación.
-8. **Visítanos** (`#visita`): dirección, horario, botón a Google Maps, mapa e ilustración de la fachada.
+8. **Visítanos** (`#visita`): dirección, horario, botón a Google Maps, mapa (se carga al pulsarlo) e
+   ilustración de la fachada.
+9. **Pie**: dirección, Instagram, enlaces pequeños al aviso legal y a la privacidad, y firma.
 
 **Galerías** (Para beber y Por encargo, macro `galeria()` en la plantilla): cada elemento es una
 foto o un vídeo, recortado a 3:4. En el móvil se desliza con el dedo; con ratón salen flechas
@@ -257,6 +264,21 @@ Perplexity, Gemini, el modo IA de Google…) encuentren la tienda y la citen con
 - **`llms.txt`:** ficha de la tienda en texto plano para asistentes de IA.
 - **`robots.txt` y `sitemap.xml`:** el primero deja entrar a buscadores y bots de IA.
 
+## Legal y privacidad
+
+- **Aviso legal** (`aviso-legal.html`) y **privacidad y cookies** (`privacidad.html`): se generan
+  con los datos del titular de `content/tienda.yml` (`titular`, `nif`, `email` y, opcional,
+  `domicilio_fiscal`). **Hasta que estén los tres primeros no se publican**, ni salen sus enlaces en
+  el pie: `build.py` lo avisa al generar. Se rellenan en Pages CMS › Tienda.
+- **Sin cookies ni rastreo:** la web no usa cookies ni analítica, y las fuentes, fotos y vídeos se
+  sirven desde la propia web. Por eso no hace falta banner de cookies. El mapa de Google solo se
+  carga si el visitante pulsa "Ver el mapa aquí" (`js/mapa.js`).
+- **Si se añade algo de terceros** (analítica, un vídeo de YouTube, un widget de Instagram…),
+  hay que revisar la política de privacidad y, si pone cookies, poner un aviso de consentimiento.
+- Las páginas legales llevan `noindex` para no salir en Google.
+- Los textos son un punto de partida razonable, pero conviene que los revise una gestoría o un
+  abogado.
+
 ## Problemas conocidos y soluciones
 
 | Síntoma | Causa y solución |
@@ -289,10 +311,10 @@ Perplexity, Gemini, el modo IA de Google…) encuentren la tienda y la citen con
 - Menciones en blogs, guías y prensa local de Salamanca.
 - Enlace a la web en la bio de Instagram.
 
-*Legal (obligatorio)*
-- Aviso legal (LSSI: titular, NIF, domicilio, email), política de privacidad y de cookies.
-- Alojar las fuentes en la propia web y cargar el mapa de Google solo al pulsarlo. Ahora los dos
-  envían datos de cada visita a Google sin consentimiento.
+*Legal*
+- Sustituir los marcadores provisionales `[…]` de titular, NIF, email y domicilio fiscal en Pages
+  CMS › Tienda (ahora las páginas legales se publican con ellos; `build.py` avisa mientras sigan).
+  Revisión de los textos por una gestoría.
 
 *Técnico, al conectar el dominio*
 - `CNAME` en el repositorio, HTTPS y redirección de www a sin www.

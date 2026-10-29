@@ -13,10 +13,10 @@
 - Google Maps: {{ t.google_maps }}
 - Instagram: https://www.instagram.com/{{ t.instagram }}/ (@{{ t.instagram }})
 - Web: {{ site }}
-{% if t.telefono %}
+{% if t.telefono and not t.telefono.startswith('[') %}
 - Teléfono: {{ t.telefono }}
 {% endif %}
-{% if t.email %}
+{% if t.email and not t.email.startswith('[') %}
 - Email: {{ t.email }}
 {% endif %}
 - Horario: {% for h in t.horario %}{{ h.dias | lower }} de {{ h.abre }} a {{ h.cierra }}{{ '; ' if not loop.last }}{% endfor %}

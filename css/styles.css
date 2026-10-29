@@ -393,7 +393,12 @@ a { color: inherit; }
 .horario dt { margin: 0; }
 .horario dd { margin: 0; font-variant-numeric: tabular-nums; font-weight: 500; white-space: nowrap; }
 .visita .actions { justify-content: flex-start; }
-.mapa { display: block; width: 100%; aspect-ratio: 4 / 3; margin-top: 28px; border: 0; border-radius: 22px; background: var(--pared-honda); }
+.mapa { display: grid; place-items: center; width: 100%; aspect-ratio: 4 / 3; margin-top: 28px; border-radius: 22px; overflow: hidden; background: var(--pared-honda); }
+.mapa iframe { display: block; width: 100%; height: 100%; border: 0; }
+.mapa-aviso { display: grid; justify-items: center; gap: 10px; padding: 24px; text-align: center; }
+.mapa-aviso .simbolo { width: 40px; height: auto; color: var(--oro); }
+.mapa-dir { margin: 0; font-size: 16px; line-height: 1.4; }
+.mapa-nota { margin: 0; font-size: 12px; opacity: .6; }
 
 /* ---------- footer ---------- */
 .foot { background: var(--pared-honda); padding: 48px var(--gutter) calc(40px + env(safe-area-inset-bottom, 0px)); }
@@ -401,6 +406,24 @@ a { color: inherit; }
 .foot .logo { color: var(--oro); width: min(70vw, 320px); }
 .foot p { margin: 0; font-size: 14px; letter-spacing: .04em; opacity: .85; }
 .foot a { text-underline-offset: 3px; }
+.foot .legales { font-size: 12px; opacity: .6; }
+.foot .legales a { color: inherit; }
+
+/* ---------- páginas legales ---------- */
+.legal-top { display: flex; align-items: center; height: calc(var(--bar) + env(safe-area-inset-top, 0px)); padding: env(safe-area-inset-top, 0px) var(--gutter) 0; background: var(--hero-bg); }
+.legal-top a { display: flex; align-items: center; gap: 10px; color: var(--choco); }
+.legal-top .simbolo { height: 40px; width: auto; }
+.legal-top .logo { height: 30px; width: auto; }
+.legal { max-width: 720px; margin: 0 auto; padding: 56px var(--gutter) 72px; }
+.legal .display { font-size: clamp(40px, 11vw, 72px); }
+.legal-fecha { margin: 0 0 32px; font-size: 13px; color: var(--choco-soft); }
+.legal h2 { margin: 40px 0 10px; font: 600 13px/1.3 var(--font-body); letter-spacing: .16em; text-transform: uppercase; }
+.legal h3 { margin: 24px 0 6px; font-size: 17px; font-weight: 500; }
+.legal p, .legal li { line-height: 1.6; }
+.legal ul { padding-left: 1.2em; }
+.legal li { margin-bottom: 6px; }
+.legal a:not(.btn) { color: var(--fresa); text-underline-offset: 3px; }
+.legal-volver { margin-top: 48px; }
 .foot .firma { font-size: 13px; opacity: .65; }
 .foot .firma a { color: inherit; }
 .foot .firma a:hover { color: var(--oro); }

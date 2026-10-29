@@ -28,6 +28,9 @@ content:
       - { name: referencia, label: Cómo situarla, type: string, description: "Se usa en las preguntas frecuentes. Por ejemplo: a pocos pasos de la Plaza Mayor" }
       - { name: telefono, label: Teléfono, type: string, description: "Si lo rellenas, aparece en Visítanos y en los datos para Google" }
       - { name: email, label: Email, type: string, description: "Si lo rellenas, aparece en Visítanos y en los datos para Google" }
+      - { name: titular, label: Titular (aviso legal), type: string, description: "Nombre y apellidos o razón social de quien lleva el negocio. Con titular, NIF y email se publican el aviso legal y la política de privacidad" }
+      - { name: nif, label: NIF / CIF, type: string }
+      - { name: domicilio_fiscal, label: Domicilio fiscal, type: string, description: "Opcional. Si lo dejas vacío se usa la dirección de la tienda" }
       - { name: instagram, label: Usuario de Instagram, type: string, required: true, description: "Sin la @" }
       - { name: google_maps, label: Enlace de Google Maps, type: string, required: true }
       - { name: google_maps_cid, label: Código de la ficha de Google, type: string, description: "No hace falta tocarlo" }

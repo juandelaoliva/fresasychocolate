@@ -1,0 +1,12 @@
+{# Pie común a la página principal y a las páginas legales. #}
+<footer class="foot">
+  <div class="wrap">
+    {{ svg('logo-horizontal', etiqueta=tienda.nombre) }}
+    <p>{{ tienda.calle | replace('Calle ', '') }} · {{ tienda.codigo_postal }} {{ tienda.ciudad }} · <a href="https://www.instagram.com/{{ tienda.instagram }}/" target="_blank" rel="noopener">@{{ tienda.instagram }}</a></p>
+    <p>© {{ year }} {{ tienda.nombre }}</p>
+{% if legal %}
+    <p class="legales"><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad y cookies</a></p>
+{% endif %}
+    <p class="firma">Hecho con cariño por <a href="https://juandelaoliva.com" target="_blank" rel="noopener">Juan de la Oliva</a></p>
+  </div>
+</footer>

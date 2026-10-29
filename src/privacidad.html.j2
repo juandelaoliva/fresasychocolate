@@ -1,0 +1,39 @@
+{% extends 'legal.html.j2' %}
+{% block titulo %}Privacidad y cookies{% endblock %}
+{% block antetitulo %}tus datos{% endblock %}
+{% block contenido %}
+  <p class="lead">En pocas palabras: esta web no tiene formularios, no usa cookies y no mide tus visitas. Solo tratamos los datos que tú nos das al escribirnos.</p>
+
+  <h2>Responsable</h2>
+  <ul>
+    <li><strong>Responsable:</strong> {{ t.titular }} ({{ t.nombre }})</li>
+    <li><strong>NIF:</strong> {{ t.nif }}</li>
+    <li><strong>Domicilio:</strong> {{ domicilio }}</li>
+    <li><strong>Email:</strong> {% if t.email.startswith("[") %}{{ t.email }}{% else %}<a href="mailto:{{ t.email }}">{{ t.email }}</a>{% endif %}</li>
+  </ul>
+
+  <h2>Qué datos tratamos y para qué</h2>
+  <h3>Al visitar la web</h3>
+  <p>Esta web no te pide datos ni usa herramientas de analítica. Para mostrártela, el servidor que la aloja (GitHub Pages, de GitHub Inc.) registra datos técnicos como tu dirección IP, por seguridad y para que el servicio funcione. Nosotros no usamos esos datos. GitHub los trata según su <a href="https://docs.github.com/es/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">declaración de privacidad</a>.</p>
+  <p>Las fuentes, las fotos y los vídeos se sirven desde la propia web: al verla no se envía nada a otros servicios.</p>
+
+  <h3>Si nos escribes por Instagram o por email</h3>
+  <ul>
+    <li><strong>Datos:</strong> los que nos envíes (tu nombre o usuario y lo que nos cuentes, por ejemplo un encargo o una alergia).</li>
+    <li><strong>Para qué:</strong> contestarte y, si haces un encargo, prepararlo y avisarte para recogerlo.</li>
+    <li><strong>Base legal:</strong> tu consentimiento al escribirnos y, en los encargos, las medidas previas al contrato que nos pides.</li>
+    <li><strong>Cuánto tiempo:</strong> lo necesario para atenderte y, después, el que marque la ley para cumplir obligaciones legales.</li>
+    <li><strong>A quién se comunican:</strong> a nadie, salvo obligación legal. Los mensajes de Instagram pasan por Meta Platforms, que los trata según su propia <a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener">política de privacidad</a>.</li>
+  </ul>
+
+  <h3>El mapa de Google</h3>
+  <p>El mapa de la sección Visítanos no se carga hasta que pulsas «Ver el mapa aquí». Al pulsarlo, tu navegador se conecta con Google, que recibe tu dirección IP y puede usar cookies según su <a href="https://policies.google.com/privacy?hl=es" target="_blank" rel="noopener">política de privacidad</a>. Si no lo pulsas, Google no recibe nada. Lo mismo ocurre con los botones que abren Google Maps o Instagram: te llevan a esos servicios.</p>
+
+  <h2>Cookies</h2>
+  <p>Esta web no usa cookies propias ni de terceros, ni otras tecnologías para seguir tu navegación. Por eso no te mostramos ningún aviso de cookies.</p>
+  <p>La única excepción es el mapa de Google, solo si decides cargarlo: en ese caso Google puede instalar sus cookies, como se explica arriba.</p>
+
+  <h2>Tus derechos</h2>
+  <p>Puedes pedirnos en cualquier momento acceder a tus datos, corregirlos, borrarlos, limitar su uso, oponerte a que los usemos o llevártelos a otro sitio. Escríbenos a {% if t.email.startswith("[") %}{{ t.email }}{% else %}<a href="mailto:{{ t.email }}">{{ t.email }}</a>{% endif %} indicando qué necesitas.</p>
+  <p>Si crees que no hemos tratado bien tus datos, puedes reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>).</p>
+{% endblock %}

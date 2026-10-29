@@ -10,6 +10,9 @@ google_maps_cid: "1651299389623831988"
 latitud: "40.9652327"
 longitud: "-5.665455"
 abierta_desde: "2024"
+titular: "[Nombre y apellidos o razón social del titular]"
+nif: "[NIF]"
+domicilio_fiscal: "[Domicilio fiscal]"
 horario:
   - dias: Lunes a jueves
     dias_semana:

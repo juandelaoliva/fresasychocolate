@@ -1,0 +1,30 @@
+{# Base de las páginas legales (aviso legal, privacidad): cabecera con el logo, texto y pie. #}
+{% set t = tienda %}
+{% set domicilio = t.domicilio_fiscal or (t.calle ~ ', ' ~ t.codigo_postal ~ ' ' ~ t.ciudad) %}
+<!doctype html>
+<html lang="es-ES">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% block titulo %}{% endblock %} · {{ t.nombre }}</title>
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#abc4a9">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="legal-page">
+<header class="legal-top">
+  <a href="./" aria-label="{{ t.nombre }}, volver a la web">{{ svg('simbolo') }}{{ svg('logo-horizontal') }}</a>
+</header>
+<main class="legal">
+  <p class="kicker">{% block antetitulo %}{% endblock %}</p>
+  <h1 class="display">{{ self.titulo() }}</h1>
+  <p class="legal-fecha">Última actualización: {{ hoy_texto }}</p>
+{% block contenido %}{% endblock %}
+  <p class="legal-volver"><a class="btn" href="./">Volver a la web</a></p>
+</main>
+{% include 'pie.html.j2' %}
+</body>
+</html>

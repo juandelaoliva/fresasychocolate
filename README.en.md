@@ -59,24 +59,29 @@ src/index.html.j2          page template (Jinja2)
 src/llms.txt.j2            shop summary for AI assistants
 src/sitemap.xml.j2         sitemap
 src/robots.txt.j2          robots.txt
+src/legal.html.j2          base for the legal pages: aviso-legal.html.j2 and privacidad.html.j2
+src/pie.html.j2            footer shared by every page
 src/svg/                   logos, strawberry symbol, seal, arrow and wave (inlined in the page)
 build.py                   generates _site/ from content/ and src/
 requirements.txt           Python dependencies
 .pages.yml                 Pages CMS forms
 .github/workflows/         automatic publishing to GitHub Pages
 css/styles.css             styles, mobile first; brand palette in :root
+css/fonts.css              self-hosted fonts (Italiana, Jost, Petit Formal Script)
 js/hero.js                 scroll-driven hero animation
 js/menu.js                 burger menu
 js/vaso.js                 "Monta tu vaso": adds up the price and allergens of the chosen options
 js/videos.js               shop videos: load when near the screen, play only while visible
 js/carrusel.js             swipeable galleries: arrows for mouse users
 js/faq.js                  FAQ: animated open and close
+js/mapa.js                 the Google map only loads after tapping "Ver el mapa aquí"
 assets/hero/               the hero video as WebP frames, poster and manifest
 assets/img/                photos (uploads from the CMS land here too)
 assets/video/              shop videos and their still images
 assets/logo/               clean SVG logos (fill = currentColor), strawberry symbol and seal
 assets/icons/              favicon and iPhone home-screen icon
 assets/og/                 social sharing image and square logo for Google
+assets/fonts/              font files (woff2, latin and latin-ext)
 scripts/extraer-frames.sh  regenerates the hero frames from a video
 docs/                      editors' manual
 ```
@@ -85,7 +90,7 @@ The files in `content/`:
 
 | File | Contents |
 |---|---|
-| `tienda.yml` (shop) | Name, address, coordinates, Google Maps, Instagram, phone, email and opening hours |
+| `tienda.yml` (shop) | Name, address, coordinates, Google Maps, Instagram, phone, email, opening hours and the owner's details (legal notice) |
 | `portada.yml` (front page) | Hero tagline, Google title and description, shop description for AI |
 | `carta.yml` (menu) | "Monta tu vaso": cup, creams, topping groups, prices and allergens |
 | `bebidas.yml` (drinks) | Gallery and drinks menu |
@@ -183,8 +188,9 @@ Petit Formal Script.
    the text in paragraphs and a handwritten sign-off.
 6. **Del día a día** (`#instagram`, day to day): photo mosaic that opens the Instagram profile.
 7. **FAQ** (`#preguntas`): animated accordions.
-8. **Visit us** (`#visita`): address, opening hours, Google Maps button, map and an illustration
-   of the shopfront.
+8. **Visit us** (`#visita`): address, opening hours, Google Maps button, map (loads on tap) and an
+   illustration of the shopfront.
+9. **Footer**: address, Instagram, small links to the legal notice and privacy policy, and credit.
 
 **Galleries** (drinks and orders, the `galeria()` macro in the template): each item is a photo or
 a video, cropped to 3:4. On phones they are swiped; with a mouse, arrows appear below
@@ -259,6 +265,21 @@ Google's AI Mode…) to find the shop and quote it accurately (GEO, generative e
 - **`llms.txt`:** a plain-text summary of the shop for AI assistants.
 - **`robots.txt` and `sitemap.xml`:** the first lets search engines and AI crawlers in.
 
+## Legal and privacy
+
+- **Legal notice** (`aviso-legal.html`) and **privacy and cookies** (`privacidad.html`) are
+  generated from the owner's details in `content/tienda.yml` (`titular`, `nif`, `email` and,
+  optionally, `domicilio_fiscal`). **Until the first three are filled in, they are not published**
+  and their footer links don't appear; `build.py` warns about it. They are filled in under Pages
+  CMS › Tienda.
+- **No cookies or tracking:** the site uses no cookies or analytics, and fonts, photos and videos
+  are served from the site itself, so no cookie banner is needed. The Google map only loads if
+  the visitor taps "Ver el mapa aquí" (`js/mapa.js`).
+- **If anything third-party is added** (analytics, a YouTube video, an Instagram widget…), review
+  the privacy policy and, if it sets cookies, add a consent notice.
+- The legal pages are `noindex`, so they stay out of Google.
+- The texts are a reasonable starting point, but should be reviewed by an accountant or lawyer.
+
 ## Known issues and fixes
 
 | Symptom | Cause and fix |
@@ -292,10 +313,10 @@ Google's AI Mode…) to find the shop and quote it accurately (GEO, generative e
 - Mentions in Salamanca blogs, guides and local press.
 - Link to the site in the Instagram bio.
 
-*Legal (required in Spain)*
-- Legal notice (LSSI: owner, tax ID, address, email), privacy and cookie policies.
-- Self-host the fonts and load the Google map only on click. Right now both send each visit's data
-  to Google without consent.
+*Legal*
+- Replace the `[…]` placeholders for owner, tax ID, email and tax address in Pages CMS › Tienda
+  (the legal pages are published with them for now; `build.py` warns while they remain). Have
+  the texts reviewed.
 
 *Technical, when the domain is connected*
 - `CNAME` in the repository, HTTPS and a www to non-www redirect.

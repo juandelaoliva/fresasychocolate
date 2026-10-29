@@ -57,7 +57,7 @@ Arrastra los puntitos de la izquierda (⠿) para cambiar el orden y pulsa la pap
 
 | Apartado del editor | Qué cambia en la web |
 |---|---|
-| **Tienda (dirección y horario)** | Dirección, teléfono, email, Instagram, enlace a Google Maps y horario. Salen en Visítanos, en el pie, en el menú y en las preguntas frecuentes. |
+| **Tienda (dirección y horario)** | Dirección, teléfono, email, Instagram, enlace a Google Maps, horario y datos del titular. Salen en Visítanos, en el pie, en el menú, en las preguntas frecuentes y en el aviso legal. |
 | **Portada y Google** | La frase que aparece al final de la animación inicial, y cómo sale la tienda en Google y en asistentes como ChatGPT. |
 | **Monta tu vaso** | Precio del vaso, cremas, toppings, precios, alérgenos, fotos de las tres tarjetas y la frase que invita a ir a la tienda. |
 | **Para beber** | Galería de fotos y vídeos, y la carta de batidos, matcha y café. |
@@ -140,6 +140,12 @@ En **Quiénes somos**:
 3. Para poner un enlace en la respuesta: `[texto que se ve](https://dirección)`. Por ejemplo,
    `[escríbenos por Instagram](https://ig.me/m/fresasychocolate.salamanca)`.
 4. Guarda.
+
+### Datos del titular (aviso legal y privacidad)
+
+En **Tienda** están **Titular**, **NIF / CIF** y **Domicilio fiscal**. Con titular, NIF y email
+rellenos se publican solas las páginas de aviso legal y de privacidad, con sus enlaces en el pie.
+Si falta alguno, no salen. Si cambia el titular o el email, cámbialo aquí y se actualizan.
 
 ### Cambiar cómo sale la tienda en Google
 
@@ -238,7 +244,7 @@ Estas cosas las cambia quien mantiene la web:
 - El diseño, los colores y las letras.
 - La animación inicial de la fresa.
 - Añadir secciones nuevas a la web.
-- El dominio y los avisos legales.
+- El dominio y el texto de los avisos legales (los datos del titular sí se cambian desde Tienda).
 
 **Con cuidado:** el vídeo de la tarjeta de cremas en "Monta tu vaso" y el de la sección del
 chocolate sí se pueden cambiar desde el editor, pero tienen un encuadre pensado para su hueco.
