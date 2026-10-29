@@ -10,6 +10,14 @@ fotos:
   - foto: assets/img/insta/donuts-pan-de-oro.webp
     alt: Bombones de chocolate con fresas, arándanos y pan de oro
 bandejas:
+  - titulo: Paquetes de Navidad
+    nota: Lo más especial para los tuyos
+    tamanos:
+      - nombre: Caja personalizada
+        detalle: Contiene muchas cosas
+        precio: "18.2"
+      - nombre: Otra cosa
+        precio: "2"
   - titulo: Solo fresas
     tamanos:
       - nombre: Pequeña
