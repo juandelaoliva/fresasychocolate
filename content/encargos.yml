@@ -3,9 +3,12 @@ titulo: Por encargo
 intro: Bandejas de fresas bañadas para regalar, compartir o darte un capricho.
 fotos:
   - foto: assets/img/insta/caja-para-mama.webp
-    alt: Caja de fresas bañadas en chocolate rosa con lazos y una tarjeta que dice Para mamá
+    alt: Caja de fresas bañadas en chocolate rosa con lazos y una tarjeta que dice
+      Para mamá
   - foto: assets/img/insta/donuts-pan-de-oro.webp
     alt: Bombones de chocolate con fresas, arándanos y pan de oro
+  - foto: assets/img/tarta-cajas-2.webp
+    alt: Tarta de Cumpleaños de fresas y chocolate
 bandejas:
   - titulo: Solo fresas
     tamanos:
@@ -29,5 +32,6 @@ bandejas:
         precio: 46
   - titulo: Caja personalizada
     nota: La montamos contigo. El precio depende de lo que lleve.
-como_encargar: Se encargan por Instagram y se recogen en la tienda. Pídelas con antelación, sobre todo para fines de semana y fechas especiales.
+como_encargar: Se encargan por Instagram y se recogen en la tienda. Pídelas con
+  antelación, sobre todo para fines de semana y fechas especiales.
 boton: Encargar por Instagram
