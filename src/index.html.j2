@@ -1,6 +1,26 @@
 {% set t = tienda %}
 {% set ig_url = 'https://www.instagram.com/' ~ t.instagram ~ '/' %}
 {% macro foto(path, alt, donde='', cls='', extra='') %}{% set f = img(path, alt, donde) %}<img{% if cls %} class="{{ cls }}"{% endif %} src="{{ f.src }}" alt="{{ alt }}" loading="lazy" width="{{ f.width }}" height="{{ f.height }}"{{ extra }}>{% endmacro %}
+{# Galería deslizable de fotos y vídeos (Para beber, Por encargo). Los vídeos se reproducen sin
+   sonido mientras se ven (js/videos.js); las flechas solo aparecen con ratón (js/carrusel.js). #}
+{% macro galeria(items, donde, cls='') %}
+<div class="carrusel{{ ' ' ~ cls if cls }}">
+      <div class="strip" role="list">
+{% for f in items %}
+{% if f.video %}
+{% set v = video(f.video, f.foto, donde) %}
+        <video role="listitem" class="loop" muted loop playsinline preload="none"{% if v.poster %} poster="{{ v.poster }}"{% endif %} data-src="{{ v.src }}" aria-label="{{ f.alt }}"></video>
+{% else %}
+        {{ foto(f.foto, f.alt, donde, extra=' role="listitem"' | safe) }}
+{% endif %}
+{% endfor %}
+      </div>
+      <div class="carrusel-nav" hidden>
+        <button type="button" class="carrusel-btn" data-dir="-1" aria-label="Anterior"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="carrusel-btn" data-dir="1" aria-label="Siguiente"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+{% endmacro %}
 {# Alérgenos en el orden de la carta; las opciones aún sin confirmar mandan a preguntar en tienda. #}
 {% macro alergenos_de(op) %}{% if op.alergenos_pendientes %} data-al-pending{% elif op.alergenos %} data-al="{{ alergenos | select('in', op.alergenos) | join(',') }}"{% endif %}{% endmacro %}
 <!doctype html>
@@ -146,11 +166,7 @@
       <p class="kicker">{{ bebidas.antetitulo }}</p>
       <h2 class="display" id="bebidas-t">{{ bebidas.titulo }}</h2>
     </div>
-    <div class="strip" role="list">
-{% for f in bebidas.fotos %}
-      {{ foto(f.foto, f.alt, 'Bebidas › fotos', extra=' role="listitem"' | safe) }}
-{% endfor %}
-    </div>
+    {{ galeria(bebidas.fotos, 'Bebidas › fotos y vídeos') }}
     <div class="wrap drinks">
 {% for g in bebidas.grupos %}
       <div>
@@ -171,11 +187,7 @@
       <h2 class="display" id="encargos-t">{{ encargos.titulo }}</h2>
       <p class="lead">{{ encargos.intro }}</p>
 
-      <div class="encargo-fotos">
-{% for f in encargos.fotos[:2] %}
-        {{ foto(f.foto, f.alt, 'Encargos › fotos', cls='f' ~ loop.index) }}
-{% endfor %}
-      </div>
+      {{ galeria(encargos.fotos, 'Encargos › fotos y vídeos', 'carrusel-encargos') }}
 
       <div class="bandejas">
 {% for b in encargos.bandejas %}
@@ -304,5 +316,6 @@
 <script src="js/vaso.js"></script>
 <script src="js/videos.js"></script>
 <script src="js/faq.js"></script>
+<script src="js/carrusel.js"></script>
 </body>
 </html>

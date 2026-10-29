@@ -21,6 +21,11 @@ falla, sigue la web anterior y en **Actions** sale el error en español.
 Los precios se escriben con punto: `3.5`, `1.25`. Las fotos se pueden subir tal cual desde el
 móvil: al publicar se convierten a WebP y se reducen a 1600 px de ancho como máximo.
 
+En **Para beber** y **Por encargo** hay una galería deslizable de fotos y vídeos. Los vídeos se
+ven sin sonido y en bucle; se pueden subir tal cual desde el móvil (mejor cortos, de menos de
+15 s): al publicar se convierten a un MP4 ligero sin sonido y, si no se pone imagen fija, se saca
+un fotograma del propio vídeo.
+
 Las preguntas de dirección, horario, precio del vaso, encargos y bebidas se escriben solas a
 partir de los datos, así nunca contradicen la carta.
 
@@ -53,6 +58,7 @@ js/menu.js                 menú hamburguesa
 js/vaso.js                 "Monta tu vaso": suma el precio y los alérgenos de lo elegido
 js/videos.js               vídeos cortos de la tienda: cargan al acercarse y solo se reproducen en pantalla
 js/faq.js                  preguntas frecuentes: abren y cierran con animación
+js/carrusel.js             galerías deslizables: flechas para pasar fotos con ratón
 assets/hero/               el vídeo del hero en fotogramas WebP, póster y manifest
 assets/img/                fotos (las que se suben desde el CMS también van aquí)
 assets/video/              clips de la tienda (sin sonido) y su imagen fija

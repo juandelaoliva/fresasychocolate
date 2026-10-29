@@ -14,6 +14,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -106,6 +107,12 @@ def validar(c):
     for b in c['encargos'].get('bandejas') or []:
         for t in b.get('tamanos') or []:
             precio(t.get('precio'), f'Encargos › {b.get("titulo")} › {t.get("nombre")}')
+    for sec in ('bebidas', 'encargos'):
+        for i, f in enumerate(c[sec].get('fotos') or [], 1):
+            if not f.get('foto') and not f.get('video'):
+                error(f'{sec.capitalize()} › fotos y vídeos, elemento {i}: falta la foto o el vídeo')
+            if not str(f.get('alt') or '').strip():
+                error(f'{sec.capitalize()} › fotos y vídeos, elemento {i}: falta la descripción')
     for h in c['tienda'].get('horario') or []:
         for d in h.get('dias_semana') or []:
             if d not in DIAS:
@@ -169,6 +176,7 @@ def img(path, alt=None, donde=''):
             _imgs[p] = {'src': p, 'width': w, 'height': h}
         else:
             out = Path(p).with_suffix('.webp')
+            (OUT / p).unlink(missing_ok=True)  # el original pesado no se publica
             if w > MAX_IMG:
                 h, w = round(h * MAX_IMG / w), MAX_IMG
             dest = OUT / out
@@ -178,6 +186,51 @@ def img(path, alt=None, donde=''):
             im.save(dest, 'WEBP', quality=80)
             _imgs[p] = {'src': str(out), 'width': w, 'height': h}
     return _imgs[p]
+
+
+MAX_VIDEO = 12 * 1024 * 1024  # los MP4 más pesados (o en otro formato) se recomprimen
+_videos = {}
+
+
+def video(path, portada=None, donde=''):
+    """Publica un vídeo para la web: MP4 sin sonido, como mucho 720 px de ancho, y su imagen fija.
+
+    Si el vídeo ya es un MP4 ligero se publica tal cual. Si no hay `portada`, se saca un fotograma
+    del propio vídeo. Hace falta ffmpeg solo cuando hay que convertir algo."""
+    p = ruta(path)
+    if p in _videos:
+        return _videos[p]
+    src = ROOT / p
+    res = {'src': p, 'poster': img(portada, donde=donde)['src'] if portada else ''}
+    _videos[p] = res
+    if not src.is_file():
+        error(f'{donde or p}: no existe el vídeo "{p}"')
+        return res
+    ligero = src.suffix.lower() == '.mp4' and src.stat().st_size <= MAX_VIDEO
+    if ligero and portada:
+        return res
+    ffmpeg = shutil.which('ffmpeg')
+    if not ffmpeg:
+        error(f'{donde or p}: hace falta ffmpeg para preparar el vídeo')
+        return res
+    run = lambda *a: subprocess.run([ffmpeg, '-nostdin', '-loglevel', 'error', '-y', *a], check=True)
+    try:
+        if not ligero:
+            out = Path(p).with_suffix('.mp4')
+            (OUT / p).unlink(missing_ok=True)  # el original pesado no se publica
+            (OUT / out).parent.mkdir(parents=True, exist_ok=True)
+            run('-i', str(src), '-an', '-vf', "scale='min(720,iw)':-2,fps=30,format=yuv420p",
+                '-c:v', 'libx264', '-preset', 'slow', '-crf', '27', '-movflags', '+faststart', str(OUT / out))
+            res['src'] = str(out)
+        if not portada:
+            out = Path(p).with_name(Path(p).stem + '-portada.webp')
+            (OUT / out).parent.mkdir(parents=True, exist_ok=True)
+            run('-ss', '1', '-i', str(src), '-frames:v', '1', '-vf', "scale='min(720,iw)':-2",
+                '-c:v', 'libwebp', '-quality', '75', str(OUT / out))
+            res['poster'] = str(out)
+    except subprocess.CalledProcessError:
+        error(f'{donde or p}: no se ha podido convertir el vídeo')
+    return res
 
 
 def svg(nombre, etiqueta=None):
@@ -303,7 +356,7 @@ def main():
     env = Environment(loader=FileSystemLoader(SRC), autoescape=True,
                       trim_blocks=True, lstrip_blocks=True, keep_trailing_newline=True)
     env.filters.update(euros=euros, euros_corto=euros_corto, enlaces=enlaces, sin_enlaces=sin_enlaces, ruta=ruta)
-    env.globals.update(img=img, svg=svg, site=SITE, alergenos=ALERGENOS, year=dt.date.today().year,
+    env.globals.update(img=img, video=video, svg=svg, site=SITE, alergenos=ALERGENOS, year=dt.date.today().year,
                        hoy=dt.date.today().isoformat(), faq=faq, **c)
     # El JSON-LD usa img(), que también registra errores de fotos.
     env.globals['jsonld'] = jsonld(c, faq)

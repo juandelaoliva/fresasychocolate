@@ -6,7 +6,7 @@
     <image:image><image:loc>{{ site }}assets/og/og.jpg</image:loc></image:image>
     <image:image><image:loc>{{ site }}{{ img(carta.vaso.foto).src }}</image:loc></image:image>
     <image:image><image:loc>{{ site }}{{ img(historia.nosotras.foto).src }}</image:loc></image:image>
-{% for f in encargos.fotos %}
+{% for f in encargos.fotos if f.foto %}
     <image:image><image:loc>{{ site }}{{ img(f.foto).src }}</image:loc></image:image>
 {% endfor %}
     <image:image><image:loc>{{ site }}{{ img(historia.fresas.foto).src }}</image:loc></image:image>

@@ -11,7 +11,7 @@ media:
     label: Vídeos
     input: assets/video
     output: assets/video
-    extensions: [mp4, webp, jpg, png]
+    extensions: [mp4, mov, m4v, webm, webp, jpg, jpeg, png]
     rename: safe
 
 content:
@@ -158,15 +158,17 @@ content:
       - { name: titulo, label: Título, type: string, required: true }
       - &fotos
         name: fotos
-        label: Fotos
+        label: Fotos y vídeos
         type: object
+        description: "Se ven en una galería que se desliza. Cada elemento es una foto o un vídeo; los vídeos se ven sin sonido y en bucle."
         list:
           collapsible:
             collapsed: true
             summary: "{alt}"
         fields:
-          - { name: foto, label: Foto, type: image, required: true, options: { media: fotos } }
-          - { name: alt, label: Descripción de la foto, type: string, required: true, description: "Qué se ve en la foto" }
+          - { name: foto, label: Foto, type: image, options: { media: fotos }, description: "Para un vídeo es opcional: es la imagen que se ve mientras carga (si no pones ninguna, se saca del vídeo)" }
+          - { name: video, label: Vídeo, type: file, options: { media: videos }, description: "Opcional. Mejor vídeos cortos (menos de 15 s). Se pueden subir tal cual desde el móvil" }
+          - { name: alt, label: Descripción, type: string, required: true, description: "Qué se ve en la foto o el vídeo. La leen Google y las personas ciegas" }
       - name: grupos
         label: Grupos
         type: object
