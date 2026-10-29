@@ -15,10 +15,10 @@ Pages CMS (tú o Adri) → content/*.yml en GitHub → GitHub Actions ejecuta bu
    beber, Por encargo, Fresas/chocolate/quiénes somos, Instagram y Preguntas frecuentes.
 4. Guarda. En la pestaña **Actions** de GitHub se ve cómo se publica; tarda alrededor de un minuto.
 
-Si algo está mal (un precio con coma en vez de punto, una foto sin descripción…), la publicación
+Si algo está mal (un precio que no es un número, una foto sin descripción…), la publicación
 falla, sigue la web anterior y en **Actions** sale el error en español.
 
-Los precios se escriben con punto: `3.5`, `1.25`. Las fotos se pueden subir tal cual desde el
+Los precios se escriben como se quiera: `1,70`, `1.70`, `12` o `4,80 €`. Las fotos se pueden subir tal cual desde el
 móvil, también en HEIC (el formato del iPhone): al publicar se convierten a WebP y se reducen a
 1600 px de ancho como máximo.
 

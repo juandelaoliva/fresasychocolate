@@ -69,11 +69,25 @@ def cargar():
     return c
 
 
-def precio(v, donde):
-    if isinstance(v, bool) or not isinstance(v, (int, float)):
-        error(f'{donde}: el precio debe ser un número (por ejemplo 3.5), no "{v}"')
-        return 0
-    return float(v)
+def numero(v):
+    """3.5, "3,50", "3,50 €" o "12" → float; None si no es un número."""
+    if isinstance(v, bool):
+        return None
+    if isinstance(v, (int, float)):
+        return float(v)
+    try:
+        return float(str(v).replace('€', '').strip().replace(',', '.'))
+    except ValueError:
+        return None
+
+
+def precio(d, k, donde):
+    """Valida el precio d[k] y lo deja como número para las plantillas."""
+    v = numero(d.get(k))
+    if v is None or v < 0:
+        error(f'{donde}: el precio debe ser un número (por ejemplo 1,70), no "{d.get(k)}"')
+        v = 0.0
+    d[k] = v
 
 
 def validar(c):
@@ -92,30 +106,35 @@ def validar(c):
     if errores:
         return
     carta = c['carta']
-    precio(carta['vaso'].get('precio'), 'Monta tu vaso › vaso')
-    precio(carta['cremas'].get('precio'), 'Monta tu vaso › cremas')
+    precio(carta['vaso'], 'precio', 'Monta tu vaso › vaso')
+    precio(carta['cremas'], 'precio', 'Monta tu vaso › cremas')
     for op in carta['cremas'].get('opciones') or []:
         for a in op.get('alergenos') or []:
             if a not in ALERGENOS:
                 error(f'Crema "{op.get("nombre")}": alérgeno desconocido "{a}"')
     for i, g in enumerate(carta['toppings'].get('grupos') or [], 1):
-        precio(g.get('precio'), f'Monta tu vaso › toppings, grupo {i}')
+        precio(g, 'precio', f'Monta tu vaso › toppings, grupo {i}')
         for op in g.get('opciones') or []:
             for a in op.get('alergenos') or []:
                 if a not in ALERGENOS:
                     error(f'Topping "{op.get("nombre")}": alérgeno desconocido "{a}"')
     for g in c['bebidas'].get('grupos') or []:
         for p in g.get('productos') or []:
-            precio(p.get('precio'), f'Bebidas › {g.get("titulo")} › {p.get("nombre")}')
+            precio(p, 'precio', f'Bebidas › {g.get("titulo")} › {p.get("nombre")}')
     for b in c['encargos'].get('bandejas') or []:
         for t in b.get('tamanos') or []:
-            precio(t.get('precio'), f'Encargos › {b.get("titulo")} › {t.get("nombre")}')
+            precio(t, 'precio', f'Encargos › {b.get("titulo")} › {t.get("nombre")}')
     for sec in ('bebidas', 'encargos'):
         for i, f in enumerate(c[sec].get('fotos') or [], 1):
             if not f.get('foto') and not f.get('video'):
                 error(f'{sec.capitalize()} › fotos y vídeos, elemento {i}: falta la foto o el vídeo')
             if not str(f.get('alt') or '').strip():
                 error(f'{sec.capitalize()} › fotos y vídeos, elemento {i}: falta la descripción')
+    for k in ('latitud', 'longitud'):
+        v = numero(c['tienda'].get(k))
+        if v is None:
+            error(f'Tienda: la {k} debe ser un número, no "{c["tienda"].get(k)}"')
+        c['tienda'][k] = v
     for h in c['tienda'].get('horario') or []:
         for d in h.get('dias_semana') or []:
             if d not in DIAS:

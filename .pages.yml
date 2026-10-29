@@ -31,8 +31,8 @@ content:
       - { name: instagram, label: Usuario de Instagram, type: string, required: true, description: "Sin la @" }
       - { name: google_maps, label: Enlace de Google Maps, type: string, required: true }
       - { name: google_maps_cid, label: Código de la ficha de Google, type: string, description: "No hace falta tocarlo" }
-      - { name: latitud, label: Latitud, type: number, required: true, description: "No hace falta tocarlo salvo que cambie la tienda de sitio" }
-      - { name: longitud, label: Longitud, type: number, required: true }
+      - { name: latitud, label: Latitud, type: string, required: true, description: "No hace falta tocarlo salvo que cambie la tienda de sitio" }
+      - { name: longitud, label: Longitud, type: string, required: true }
       - { name: abierta_desde, label: Abierta desde (año), type: string }
       - name: horario
         label: Horario
@@ -89,7 +89,7 @@ content:
         type: object
         fields:
           - { name: nombre, label: Nombre, type: string, required: true }
-          - { name: precio, label: Precio (€), type: number, required: true, options: { min: 0 }, description: "Con punto para los céntimos: 3.5" }
+          - { name: precio, label: Precio (€), type: string, required: true, description: "Por ejemplo 1,70 o 12" }
           - { name: nota, label: Nota, type: string }
           - { name: foto, label: Foto, type: image, required: true, options: { media: fotos } }
           - { name: foto_alt, label: Descripción de la foto, type: string, required: true, description: "Qué se ve en la foto. La leen Google y las personas ciegas" }
@@ -98,7 +98,7 @@ content:
         type: object
         fields:
           - { name: titulo, label: Título, type: string, required: true }
-          - { name: precio, label: Precio de la crema (€), type: number, required: true, options: { min: 0 }, description: "Lo mismo para todas las cremas. Con punto: 1.25" }
+          - { name: precio, label: Precio de la crema (€), type: string, required: true, description: "Por ejemplo 1,70 o 12" }
           - { name: video, label: Vídeo (mp4), type: file, required: true, options: { media: videos } }
           - { name: video_portada, label: Imagen fija del vídeo, type: file, required: true, options: { media: videos }, description: "Se ve mientras carga el vídeo" }
           - { name: video_alt, label: Descripción del vídeo, type: string }
@@ -135,7 +135,7 @@ content:
                 collapsed: true
                 summary: "+{precio} €"
             fields:
-              - { name: precio, label: Precio del grupo (€), type: number, required: true, options: { min: 0 }, description: "Con punto: 0.5" }
+              - { name: precio, label: Precio del grupo (€), type: string, required: true, description: "Por ejemplo 1,70 o 12" }
               - name: opciones
                 label: Toppings
                 type: object
@@ -188,7 +188,7 @@ content:
             fields:
               - { name: nombre, label: Nombre, type: string, required: true }
               - { name: detalle, label: Detalle, type: string, description: "Opcional. Por ejemplo: Fresas, leche y miel" }
-              - { name: precio, label: Precio (€), type: number, required: true, options: { min: 0 } }
+              - { name: precio, label: Precio (€), type: string, required: true, description: "Por ejemplo 1,70 o 12" }
 
   - name: encargos
     label: Por encargo
@@ -220,7 +220,7 @@ content:
             fields:
               - { name: nombre, label: Tamaño, type: string, required: true }
               - { name: detalle, label: Detalle, type: string, description: "Opcional. Por ejemplo: 6 fresas aprox." }
-              - { name: precio, label: Precio (€), type: number, required: true, options: { min: 0 } }
+              - { name: precio, label: Precio (€), type: string, required: true, description: "Por ejemplo 1,70 o 12" }
       - { name: como_encargar, label: Cómo se encarga, type: text, required: true }
       - { name: boton, label: Texto del botón, type: string }
 
