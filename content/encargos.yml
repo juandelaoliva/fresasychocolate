@@ -1,4 +1,4 @@
-antetitulo: para regalar probando
+antetitulo: para regalar
 titulo: Por encargo
 intro: Bandejas de fresas bañadas para regalar, compartir o darte un capricho.
 fotos:
@@ -9,6 +9,8 @@ fotos:
     alt: Bombones de chocolate con fresas, arándanos y pan de oro
   - foto: assets/img/tarta-cajas-2.webp
     alt: Tarta de Cumpleaños de fresas y chocolate
+  - video: assets/video/d79e6400-fc2c-4028-8a43-296903b01ea9.mp4
+    alt: Bebida de matcha y fresas
 bandejas:
   - titulo: Solo fresas
     tamanos:
