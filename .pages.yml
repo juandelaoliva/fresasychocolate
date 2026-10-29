@@ -253,7 +253,8 @@ content:
         fields:
           - { name: antetitulo, label: Antetítulo, type: string }
           - { name: titulo, label: Título, type: string, required: true }
-          - { name: texto, label: Texto, type: text }
+          - { name: texto, label: Texto, type: text, description: "Deja una línea en blanco entre párrafos" }
+          - { name: firma, label: Despedida, type: string, description: "Opcional. Sale con letra a mano al final. Por ejemplo: ¡Te esperamos!" }
           - { name: foto, label: Foto, type: image, required: true, options: { media: fotos } }
           - { name: foto_alt, label: Descripción de la foto, type: string, required: true }
 

@@ -235,13 +235,21 @@
 
   <section class="block nosotras" id="nosotras" aria-labelledby="nosotras-t">
     <div class="wrap">
-      <figure class="nosotras-foto">
-        {{ foto(h.nosotras.foto, h.nosotras.foto_alt, 'Quiénes somos') }}
-      </figure>
-      <div>
+      <div class="nosotras-head">
         <p class="kicker">{{ h.nosotras.antetitulo }}</p>
         <h2 class="display" id="nosotras-t">{{ h.nosotras.titulo }}</h2>
-        <p class="lead">{{ h.nosotras.texto }}</p>
+      </div>
+      <figure class="nosotras-foto">
+        {{ foto(h.nosotras.foto, h.nosotras.foto_alt, 'Quiénes somos') }}
+        {{ svg('sello') }}
+      </figure>
+      <div class="nosotras-texto">
+{% for parrafo in h.nosotras.texto.split('\n\n') if parrafo.strip() %}
+        <p{% if loop.first %} class="lead"{% endif %}>{{ parrafo.strip() }}</p>
+{% endfor %}
+{% if h.nosotras.firma %}
+        <p class="firma-mano">{{ h.nosotras.firma }}</p>
+{% endif %}
       </div>
     </div>
   </section>

@@ -14,7 +14,11 @@ chocolate:
   video_alt: La fuente de chocolate llenando un vaso de fresas en la barra de la tienda
 nosotras:
   antetitulo: quiénes somos
-  titulo: Rosi y Adri
-  texto: Rosi lleva la tienda y su hija Adri le ayuda con todo. Desde 2024 en la calle Espoz y Mina.
+  titulo: Rosi
+  texto: |-
+    Rosi abrió Fresas y Chocolate en 2024, en la calle Espoz y Mina, y lo ha levantado con mucho amor y mucho esfuerzo.
+
+    Su idea era sencilla: fresas de aquí, chocolate belga del bueno y cada vaso montado al momento, a tu gusto. Su hija Adri le echa una mano con todo.
+  firma: ¡Te esperamos!
   foto: assets/img/insta/rosi-adri.webp
   foto_alt: Rosi y Adri sonriendo en la tienda, delante del logo dorado de Fresas y Chocolate
