@@ -41,9 +41,8 @@ content:
           collapsible:
             collapsed: true
             summary: "{dias}: {abre} – {cierra}"
-        description: Una fila por cada grupo de días con el mismo horario
         fields:
-          - { name: dias, label: Días (como se ve en la web), type: string, required: true, description: "Por ejemplo: Lunes a jueves" }
+          - { name: dias, label: Días (como se ve en la web), type: string, required: true, description: "Una fila por cada grupo de días con el mismo horario. Por ejemplo: Lunes a jueves" }
           - name: dias_semana
             label: Qué días son
             type: select
@@ -160,13 +159,12 @@ content:
         name: fotos
         label: Fotos y vídeos
         type: object
-        description: "Se ven en una galería que se desliza. Cada elemento es una foto o un vídeo; los vídeos se ven sin sonido y en bucle."
         list:
           collapsible:
             collapsed: true
             summary: "{alt}"
         fields:
-          - { name: foto, label: Foto, type: image, options: { media: fotos }, description: "Para un vídeo es opcional: es la imagen que se ve mientras carga (si no pones ninguna, se saca del vídeo)" }
+          - { name: foto, label: Foto, type: image, options: { media: fotos }, description: "Cada elemento es una foto o un vídeo (sin sonido y en bucle). Para un vídeo, la foto es opcional: es la imagen que se ve mientras carga (si no pones ninguna, se saca del vídeo)" }
           - { name: video, label: Vídeo, type: file, options: { media: videos }, description: "Opcional. Mejor vídeos cortos (menos de 15 s). Se pueden subir tal cual desde el móvil" }
           - { name: alt, label: Descripción, type: string, required: true, description: "Qué se ve en la foto o el vídeo. La leen Google y las personas ciegas" }
       - name: grupos
@@ -270,7 +268,6 @@ content:
       - name: fotos
         label: Fotos
         type: object
-        description: Mejor 6 fotos (o 3), para que el mosaico quede completo
         list:
           collapsible:
             collapsed: true
@@ -290,11 +287,10 @@ content:
       - name: preguntas
         label: Preguntas
         type: object
-        description: "Las de dirección, horario, precio del vaso, encargos y bebidas se escriben solas con los datos de la tienda y la carta. Aquí van las demás. Para poner un enlace: [texto](https://...)"
         list:
           collapsible:
             collapsed: true
             summary: "{pregunta}"
         fields:
-          - { name: pregunta, label: Pregunta, type: string, required: true }
-          - { name: respuesta, label: Respuesta, type: text, required: true }
+          - { name: pregunta, label: Pregunta, type: string, required: true, description: "Las de dirección, horario, precio del vaso, encargos y bebidas se escriben solas con los datos; aquí van las demás" }
+          - { name: respuesta, label: Respuesta, type: text, required: true, description: "Para poner un enlace: [texto del enlace](https://...)" }

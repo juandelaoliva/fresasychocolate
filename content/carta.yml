@@ -1,70 +1,98 @@
-# Monta tu vaso: los tres pasos de la carta.
 antetitulo: la carta
 titulo: Monta tu vaso
 intro: Fresas frescas de Salamanca, chocolate belga Callebaut o la crema que más te guste, y un topping para terminar. Elige y te decimos el precio.
 nota_alergenos: Alérgenos según la carta de la tienda. Si tienes alguna alergia, avísanos al pedir.
-
 vaso:
   nombre: Vaso de fresas
-  precio: 3.5
-  nota: "La base: un vaso lleno de fresas."
+  precio: 3,50
+  nota: 'La base: un vaso lleno de fresas.'
   foto: assets/img/insta/vaso-fresas.webp
   foto_alt: Vaso de fresas con la pegatina de Fresas y Chocolate
-
 cremas:
   titulo: Elige tu crema
-  precio: 1.25
+  precio: 1,25
   video: assets/video/bano.mp4
   video_portada: assets/video/bano.webp
   video_alt: Bañando un vaso de fresas bajo la fuente de chocolate
   opciones:
-    - nombre: Chocolate con leche
-      alergenos: [leche]
-    - nombre: Chocolate blanco
-      alergenos: [leche]
-    - nombre: Chocolate negro
-      alergenos: [leche]
-    - nombre: Chocolate Dubái
-      alergenos_pendientes: true
-    - nombre: Chocolate Tokyo
-      alergenos_pendientes: true
-    - nombre: Crema con avellanas
-      alergenos: [avellanas]
-    - nombre: Crema de leche condensada
-      alergenos: [leche]
-    - nombre: Nata montada
-      alergenos: [leche]
-
+  - nombre: Chocolate con leche
+    alergenos:
+    - leche
+  - nombre: Chocolate blanco
+    alergenos:
+    - leche
+  - nombre: Chocolate negro
+    alergenos:
+    - leche
+  - nombre: Chocolate Dubái
+    alergenos_pendientes: true
+  - nombre: Chocolate Tokyo
+    alergenos_pendientes: true
+  - nombre: Crema con avellanas
+    alergenos:
+    - avellanas
+  - nombre: Crema de leche condensada
+    alergenos:
+    - leche
+  - nombre: Nata montada
+    alergenos:
+    - leche
 toppings:
   titulo: Elige tu topping
   foto: assets/img/insta/copa-pistacho.webp
   foto_alt: Vaso de fresas con chocolate y Lacasitos por encima, junto a una copa de pistacho
   foto_encuadre: 85% 60%
   grupos:
-    - precio: 0.5
-      opciones:
-        - nombre: Crumble de Lotus
-          alergenos: [gluten, soja]
-        - nombre: Crumble de Oreo
-          alergenos: [gluten, soja]
-        - nombre: Coco
-          alergenos: [coco]
-        - nombre: Mikado
-          alergenos: [gluten, leche, soja, avellanas]
-        - nombre: Nubes
-    - precio: 1
-      opciones:
-        - nombre: Crumble de pistacho
-          alergenos: [pistachos]
-        - nombre: Conguitos
-          alergenos: [leche, soja, frutos de cáscara]
-        - nombre: Kinder Bueno
-          alergenos: [gluten, leche, soja, avellanas, mantequilla]
-        - nombre: Lacasitos
-          alergenos: [avellanas]
-        - nombre: Pistachos con chocolate
-          alergenos: [gluten, leche, soja, pistachos, avellanas]
-        - nombre: Avellanas con chocolate negro
-          alergenos: [avellanas]
-        - nombre: Crumble de avellanas caramelizadas
-          alergenos: [avellanas]
+  - precio: 0,50
+    opciones:
+    - nombre: Crumble de Lotus
+      alergenos:
+      - gluten
+      - soja
+    - nombre: Crumble de Oreo
+      alergenos:
+      - gluten
+      - soja
+    - nombre: Coco
+      alergenos:
+      - coco
+    - nombre: Mikado
+      alergenos:
+      - gluten
+      - leche
+      - soja
+      - avellanas
+    - nombre: Nubes
+  - precio: '1'
+    opciones:
+    - nombre: Crumble de pistacho
+      alergenos:
+      - pistachos
+    - nombre: Conguitos
+      alergenos:
+      - leche
+      - soja
+      - frutos de cáscara
+    - nombre: Kinder Bueno
+      alergenos:
+      - gluten
+      - leche
+      - soja
+      - avellanas
+      - mantequilla
+    - nombre: Lacasitos
+      alergenos:
+      - avellanas
+    - nombre: Pistachos con chocolate
+      alergenos:
+      - gluten
+      - leche
+      - soja
+      - pistachos
+      - avellanas
+    - nombre: Avellanas con chocolate negro
+      alergenos:
+      - avellanas
+    - nombre: Crumble de avellanas caramelizadas
+      alergenos:
+      - avellanas
