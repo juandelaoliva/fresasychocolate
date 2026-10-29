@@ -8,6 +8,9 @@
 // - the top bar slides down once the hero's bottom edge is above BAR_AT of the viewport.
 (function () {
   const ANIM_OVERRUN = 0.3, CLOSE = [-0.5, -0.1], BAR_AT = 0.6; // in vh
+  // A fast scroll that runs past the end of the pin stops there, so the closing line and buttons are
+  // seen; a slower one carries on. Speed in px/ms; the stop holds off further wheel input for HOLD ms.
+  const STOP_SPEED = 2.5, HOLD = 450;
   const SUBJECT_W = 0.6; // share of the frame width the strawberry spans, leaves and drips included
   const STALK = 0.04; // share of the frame height the thin stalk rises above the detected strawberry
   const m = window.HERO_MANIFEST;
@@ -151,7 +154,37 @@
   }
   function request() { if (!raf) raf = requestAnimationFrame(tick); }
 
-  window.addEventListener('scroll', request, { passive: true });
+  // Fast-scroll stop at the end of the pin (see STOP_SPEED). Speed is measured between scroll events;
+  // after a pause the gap counts as at most 100 ms, so one big jump still reads as fast.
+  const root = document.documentElement;
+  let lastY = window.scrollY, lastT = performance.now(), speed = 0, holdUntil = 0;
+  function onScroll() {
+    const y = window.scrollY, now = performance.now();
+    const dt = Math.min(100, Math.max(1, now - lastT));
+    const v = (y - lastY) / dt;
+    speed = now - lastT > 100 ? v : speed * 0.5 + v * 0.5;
+    const end = hero.offsetTop + hero.offsetHeight - window.innerHeight;
+    if (lastY < end - 1 && y >= end && speed > STOP_SPEED) {
+      // Locking the page for a moment is what kills touch momentum; scrollTo alone doesn't.
+      root.style.overflow = 'hidden';
+      if (y > end) window.scrollTo({ top: end, behavior: 'instant' });
+      setTimeout(() => { root.style.overflow = ''; }, HOLD);
+      holdUntil = now + HOLD;
+      speed = 0;
+      lastY = end;
+    } else {
+      lastY = y;
+    }
+    lastT = now;
+    request();
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  // While stopped, swallow the rest of the gesture (wheel or trackpad momentum): it has to pause briefly
+  // before scrolling on.
+  window.addEventListener('wheel', (e) => {
+    const now = performance.now();
+    if (now < holdUntil && e.deltaY > 0) { e.preventDefault(); holdUntil = Math.max(holdUntil, now + 180); }
+  }, { passive: false });
   window.addEventListener('resize', () => { resize(); request(); });
   // Redraw while frames near the current position are still arriving.
   (function watch() { if (dirty) request(); if (next < order.length || dirty) setTimeout(watch, 120); })();

@@ -113,7 +113,9 @@ Secuencia (constantes `ANIM_OVERRUN`, `CLOSE` y `BAR_AT` en `js/hero.js`, en alt
    para no quedar tapada.
 3. El hero se suelta poco antes de terminar la animación. Los últimos fotogramas se reproducen
    mientras sube con el logo (`ANIM_OVERRUN` = 0,3 pantallas).
-4. Cuando el borde inferior del hero sube por encima del 60 % de la pantalla, la barra (logo
+4. Si se hace scroll rápido (más de `STOP_SPEED` px/ms), se para justo al final, con el lema y los
+   botones a la vista; hay que soltar y volver a deslizar para seguir. Con scroll lento no frena.
+5. Cuando el borde inferior del hero sube por encima del 60 % de la pantalla, la barra (logo
    horizontal + hamburguesa) entra desde arriba. Si vuelves a subir, se esconde.
 
 - Los fotogramas se cargan de grueso a fino: primero uno de cada 16 y después los intermedios.
