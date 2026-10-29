@@ -269,8 +269,6 @@ a { color: inherit; }
   flex: 0 0 auto; width: min(64vw, 300px); aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px;
   scroll-snap-align: start; background: color-mix(in srgb, currentColor 12%, transparent);
 }
-/* Inside a .wrap column (Por encargo), bleed to the screen edges on mobile. */
-.carrusel-encargos { margin-inline: calc(-1 * var(--gutter)); }
 .carrusel-nav { display: flex; justify-content: flex-end; gap: 8px; padding: 14px var(--gutter) 0; }
 .carrusel-nav[hidden] { display: none; }
 .carrusel-btn {
@@ -400,15 +398,10 @@ a { color: inherit; }
   .strip { padding-inline: max(var(--gutter), (100% - 1120px) / 2); scroll-padding-inline: max(var(--gutter), (100% - 1120px) / 2); }
   .strip > img, .strip > video { width: 280px; }
   .carrusel-nav { max-width: 1120px; margin-inline: auto; padding-inline: 0; }
-  .carrusel-encargos { margin-inline: 0; min-width: 0; }
-  .carrusel-encargos .strip { padding-inline: 0; scroll-padding-inline: 0; }
-  .carrusel-encargos .strip > img, .carrusel-encargos .strip > video { width: 240px; }
   .drinks { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 48px; }
-  .encargos .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 64px; }
-  .encargos .wrap > .kicker, .encargos .wrap > .display, .encargos .wrap > .lead { grid-column: 1 / -1; }
-  .carrusel-encargos { grid-column: 1; margin-block: 40px 0; }
-  .bandejas, .como { grid-column: 2; }
-  .bandejas { margin-top: 40px; }
+  /* Same layout as Para beber: gallery across, then the three trays side by side. */
+  .bandejas { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; }
+  .como { grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 32px; margin-top: 36px; }
   .nosotras .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 64px; }
   .nosotras { padding-top: 16px; }
   .insta { padding-bottom: 48px; }

@@ -186,9 +186,9 @@
       <p class="kicker">{{ encargos.antetitulo }}</p>
       <h2 class="display" id="encargos-t">{{ encargos.titulo }}</h2>
       <p class="lead">{{ encargos.intro }}</p>
-
-      {{ galeria(encargos.fotos, 'Encargos › fotos y vídeos', 'carrusel-encargos') }}
-
+    </div>
+    {{ galeria(encargos.fotos, 'Encargos › fotos y vídeos') }}
+    <div class="wrap">
       <div class="bandejas">
 {% for b in encargos.bandejas %}
         <div class="bandeja">
