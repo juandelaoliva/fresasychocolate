@@ -169,6 +169,9 @@ caligráficos, en Petit Formal Script.
 1. **Monta tu vaso** (`#carta`): la carta en tres tarjetas, como la carta impresa, cada una con
    su foto o vídeo y el número del paso en una esquina de color. Las opciones se pueden marcar:
    abajo se van sumando el precio y los alérgenos. Sin JavaScript sigue siendo una lista legible.
+   Debajo, la llamada a ir a la tienda: "Pídelo así en la tienda", el horario de hoy calculado con
+   la hora del visitante ("Abierto ahora, hasta las 22:00"), el botón de Google Maps y, como
+   secundario, Instagram.
 2. **Para beber** (`#bebidas`): galería deslizable de fotos y vídeos y carta de batidos, matcha y café.
 3. **Por encargo** (`#encargos`): la misma estructura que bebidas, con la galería, las bandejas
    y el botón para encargar por mensaje de Instagram.

@@ -82,6 +82,7 @@ content:
       - { name: antetitulo, label: Antetítulo, type: string }
       - { name: titulo, label: Título, type: string, required: true }
       - { name: intro, label: Texto de entrada, type: text }
+      - { name: pedir_titulo, label: Frase para ir a la tienda, type: string, description: "Sale bajo el precio, encima de los botones de Google Maps e Instagram" }
       - { name: nota_alergenos, label: Nota de alérgenos, type: text }
       - name: vaso
         label: "Paso 1: vaso de fresas"

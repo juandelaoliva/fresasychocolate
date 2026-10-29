@@ -152,6 +152,12 @@
   function request() { if (!raf) raf = requestAnimationFrame(tick); }
 
   window.addEventListener('scroll', request, { passive: true });
+  // The logo in the top bar goes back to the end of the animation (closing line and buttons in view),
+  // not to the top of the pour.
+  topbar.querySelector('.topbar-logo').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: hero.offsetTop + hero.offsetHeight - window.innerHeight, behavior: 'smooth' });
+  });
   window.addEventListener('resize', () => { resize(); request(); });
   // Redraw while frames near the current position are still arriving.
   (function watch() { if (dirty) request(); if (next < order.length || dirty) setTimeout(watch, 120); })();

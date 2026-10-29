@@ -157,7 +157,15 @@
         </div>
       </form>
 
-      <p class="alergenos">{{ carta.nota_alergenos }}</p>
+      <div class="pedir">
+        <p class="pedir-t">{{ carta.pedir_titulo or 'Pídelo así en la tienda' }}</p>
+        <p class="pedir-hoy" id="pedir-hoy" data-horario='{{ t.horario | map(attribute="dias_semana") | list | tojson }}' data-abre='{{ t.horario | map(attribute="abre") | list | tojson }}' data-cierra='{{ t.horario | map(attribute="cierra") | list | tojson }}'>{{ t.calle | replace('Calle ', '') }}</p>
+        <div class="actions">
+          <a class="btn primary" href="{{ t.google_maps }}" target="_blank" rel="noopener">Abrir en Google Maps</a>
+          <a class="btn" href="https://ig.me/m/{{ t.instagram }}" target="_blank" rel="noopener">Escríbenos por Instagram</a>
+        </div>
+        <p class="alergenos">{{ carta.nota_alergenos }}</p>
+      </div>
     </div>
   </section>
 

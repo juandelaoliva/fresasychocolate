@@ -59,12 +59,14 @@ Arrastra los puntitos de la izquierda (⠿) para cambiar el orden y pulsa la pap
 |---|---|
 | **Tienda (dirección y horario)** | Dirección, teléfono, email, Instagram, enlace a Google Maps y horario. Salen en Visítanos, en el pie, en el menú y en las preguntas frecuentes. |
 | **Portada y Google** | La frase que aparece al final de la animación inicial, y cómo sale la tienda en Google y en asistentes como ChatGPT. |
-| **Monta tu vaso** | Precio del vaso, cremas, toppings, precios, alérgenos y fotos de las tres tarjetas. |
+| **Monta tu vaso** | Precio del vaso, cremas, toppings, precios, alérgenos, fotos de las tres tarjetas y la frase que invita a ir a la tienda. |
 | **Para beber** | Galería de fotos y vídeos, y la carta de batidos, matcha y café. |
 | **Por encargo** | Galería de fotos y vídeos, bandejas con sus tamaños y precios, y cómo se encarga. |
 | **Fresas, chocolate y quiénes somos** | Textos, fotos y vídeo de esas tres secciones. |
 | **Del día a día (Instagram)** | Las fotos del mosaico. |
 | **Preguntas frecuentes** | Las preguntas que se escriben a mano. |
+
+**El horario de hoy** que sale bajo "Monta tu vaso" ("Abierto ahora, hasta las 22:00") se calcula solo a partir del horario de **Tienda**.
 
 **Preguntas que se escriben solas.** Las de dirección, horario, precio del vaso, encargos y
 bebidas se generan a partir de los datos de los otros apartados. Si cambias un precio o el

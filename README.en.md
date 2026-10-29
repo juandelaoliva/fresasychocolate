@@ -169,7 +169,9 @@ Petit Formal Script.
 1. **Monta tu vaso** (`#carta`, "build your cup"): the menu as three cards, like the printed
    menu, each with a photo or video and the step number in a coloured corner. Options can be
    selected; the price and allergens add up at the bottom. Without JavaScript it is still a
-   readable list.
+   readable list. Below it, the call to visit the shop: "Pídelo así en la tienda" (order it like
+   this in the shop), today's hours worked out from the visitor's clock ("Abierto ahora, hasta las
+   22:00"), the Google Maps button and, secondary, Instagram.
 2. **Para beber** (`#bebidas`, drinks): a swipeable gallery of photos and videos, and the menu for
    milkshakes, matcha and coffee.
 3. **Por encargo** (`#encargos`, orders): same structure as drinks, with the gallery, the trays

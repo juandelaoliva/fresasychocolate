@@ -1,6 +1,7 @@
 antetitulo: la carta
 titulo: Monta tu vaso
 intro: Fresas frescas de Salamanca, chocolate belga Callebaut o la crema que más te guste, y un topping para terminar. Elige y te decimos el precio.
+pedir_titulo: Pídelo así en la tienda
 nota_alergenos: Alérgenos según la carta de la tienda. Si tienes alguna alergia, avísanos al pedir.
 vaso:
   nombre: Vaso de fresas
