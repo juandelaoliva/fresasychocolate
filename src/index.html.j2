@@ -62,18 +62,24 @@
 <body>
 <a class="skip" href="#carta">Saltar a la carta</a>
 
+{% set secciones = [('#carta', carta.titulo), ('#bebidas', 'Para beber'), ('#encargos', encargos.titulo), ('#nosotras', 'Quiénes somos'), ('#preguntas', 'Preguntas'), ('#visita', 'Visítanos')] %}
 <header class="topbar" id="topbar">
   <a class="topbar-logo" href="#hero" aria-label="{{ t.nombre }}, ir al inicio">{{ svg('simbolo') }}{{ svg('logo-horizontal') }}</a>
+  {# Desktop: the sections inline, the last one as a button; the burger and its panel are for phones. #}
+  <nav class="topnav" aria-label="Secciones">
+    <ul>
+{% for href, texto in secciones %}
+      <li><a href="{{ href }}"{% if loop.last %} class="topnav-cta"{% endif %}>{{ texto }}</a></li>
+{% endfor %}
+    </ul>
+  </nav>
   <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 </header>
 <nav class="nav-panel" id="nav-panel" aria-label="Menú principal" hidden>
   <ul>
-    <li><a href="#carta">{{ carta.titulo }}</a></li>
-    <li><a href="#bebidas">Para beber</a></li>
-    <li><a href="#encargos">{{ encargos.titulo }}</a></li>
-    <li><a href="#nosotras">Quiénes somos</a></li>
-    <li><a href="#preguntas">Preguntas</a></li>
-    <li><a href="#visita">Visítanos</a></li>
+{% for href, texto in secciones %}
+    <li><a href="{{ href }}">{{ texto }}</a></li>
+{% endfor %}
   </ul>
   <p class="nav-foot">{{ t.calle | replace('Calle ', '') }} · {{ t.codigo_postal }} {{ t.ciudad }}<br><a href="{{ ig_url }}" target="_blank" rel="noopener">@{{ t.instagram }}</a></p>
 </nav>

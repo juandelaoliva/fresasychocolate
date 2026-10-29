@@ -70,7 +70,7 @@ requirements.txt           Python dependencies
 css/styles.css             styles, mobile first; brand palette in :root
 css/fonts.css              self-hosted fonts (Italiana, Jost, Petit Formal Script)
 js/hero.js                 scroll-driven hero animation
-js/menu.js                 burger menu
+js/menu.js                 menu: burger on phones; on desktop, marks the section in view
 js/vaso.js                 "Monta tu vaso": adds up the price and allergens of the chosen options
 js/videos.js               shop videos: load when near the screen, play only while visible
 js/carrusel.js             swipeable galleries: arrows for mouse users
@@ -192,6 +192,9 @@ Petit Formal Script.
 8. **Visit us** (`#visita`): address, opening hours, Google Maps button, map (loads on tap) and an
    illustration of the shopfront.
 9. **Footer**: address, Instagram, small links to the legal notice and privacy policy, and credit.
+
+**Top bar:** appears once the hero ends. On phones, logo and burger (full-screen panel). From 1100 px
+wide, the sections inline with an underline marking the one in view, and "Visítanos" as a button.
 
 **Galleries** (drinks and orders, the `galeria()` macro in the template): each item is a photo or
 a video, cropped to 3:4. On phones they are swiped; with a mouse, arrows appear below

@@ -67,7 +67,7 @@ requirements.txt           dependencias de Python
 css/styles.css             estilos, mobile first; paleta de marca en :root
 css/fonts.css              fuentes alojadas en la propia web (Italiana, Jost, Petit Formal Script)
 js/hero.js                 animación del hero ligada al scroll
-js/menu.js                 menú hamburguesa
+js/menu.js                 menú: hamburguesa en móvil; en escritorio marca la sección que se está viendo
 js/vaso.js                 "Monta tu vaso": suma el precio y los alérgenos de lo elegido
 js/videos.js               vídeos de la tienda: cargan al acercarse y solo se reproducen en pantalla
 js/carrusel.js             galerías deslizables: flechas para pasar fotos con ratón
@@ -191,6 +191,10 @@ caligráficos, en Petit Formal Script.
 8. **Visítanos** (`#visita`): dirección, horario, botón a Google Maps, mapa (se carga al pulsarlo) e
    ilustración de la fachada.
 9. **Pie**: dirección, Instagram, enlaces pequeños al aviso legal y a la privacidad, y firma.
+
+**Barra superior:** aparece al terminar el hero. En móvil, logo y hamburguesa (panel a pantalla
+completa). Desde 1100 px de ancho, las secciones en línea con un subrayado que marca la que se está
+viendo, y "Visítanos" como botón.
 
 **Galerías** (Para beber y Por encargo, macro `galeria()` en la plantilla): cada elemento es una
 foto o un vídeo, recortado a 3:4. En el móvil se desliza con el dedo; con ratón salen flechas
