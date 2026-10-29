@@ -152,6 +152,27 @@
   function request() { if (!raf) raf = requestAnimationFrame(tick); }
 
   window.addEventListener('scroll', request, { passive: true });
+  // iOS: while the page is still gliding from a flick, the first tap only stops the glide and no click
+  // fires. In the pinned hero that glide is invisible (the frames barely change), so "Ver la carta"
+  // looked dead until tapped again. A clean tap on the closing buttons (little movement, short) now
+  // follows the link on touchend itself.
+  let tap = null;
+  close.addEventListener('touchstart', (e) => {
+    const t = e.touches[0];
+    tap = e.touches.length === 1 ? { x: t.clientX, y: t.clientY, t: performance.now() } : null;
+  }, { passive: true });
+  close.addEventListener('touchend', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    const t = e.changedTouches[0];
+    if (!a || !tap || Math.hypot(t.clientX - tap.x, t.clientY - tap.y) > 10 || performance.now() - tap.t > 600) return;
+    const target = document.querySelector(a.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault(); // no second jump from the click, if there is one
+    target.scrollIntoView({ block: 'start' });
+    history.replaceState(null, '', a.getAttribute('href'));
+    tap = null;
+  });
+
   // The logo in the top bar goes back to the end of the animation (closing line and buttons in view),
   // not to the top of the pour.
   topbar.querySelector('.topbar-logo').addEventListener('click', (e) => {

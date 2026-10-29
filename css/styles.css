@@ -87,10 +87,14 @@ a { color: inherit; }
     content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 1.5px; background: currentColor;
     transform: scaleX(0); transform-origin: left; transition: transform .3s cubic-bezier(.2, .7, .2, 1);
   }
-  .topnav a:hover::after, .topnav a[aria-current="true"]::after { transform: scaleX(1); }
+  .topnav a[aria-current="true"]::after { transform: scaleX(1); }
   .topnav a[aria-current="true"] { font-weight: 500; }
   .topnav .topnav-cta { padding: 11px 20px; border: 1.5px solid var(--choco); border-radius: 999px; font-weight: 500; transition: background-color .2s, color .2s; }
-  .topnav .topnav-cta:hover, .topnav .topnav-cta[aria-current="true"] { background: var(--choco); color: var(--nata); }
+  .topnav .topnav-cta[aria-current="true"] { background: var(--choco); color: var(--nata); }
+  @media (hover: hover) and (pointer: fine) {
+    .topnav a:hover::after { transform: scaleX(1); }
+    .topnav .topnav-cta:hover { background: var(--choco); color: var(--nata); }
+  }
   .topnav a:focus-visible { outline: 3px solid var(--fresa); outline-offset: 4px; border-radius: 4px; }
 }
 .nav-open, .nav-open body { overflow: hidden; }
@@ -104,8 +108,14 @@ a { color: inherit; }
   color: var(--choco); background: transparent; transition: background-color .2s, color .2s;
 }
 .btn.primary { background: var(--choco); color: var(--crema); }
-.btn:hover { background: var(--choco); color: var(--crema); }
-.btn.primary:hover { background: #4a280d; }
+/* Hover colours only with a real mouse: on touch screens iOS turns the tap into a hover that sticks.
+   Touch gets a short press instead. */
+.btn { transition: background-color .2s, color .2s, border-color .2s, transform .12s; }
+.btn:active { transform: scale(.96); }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { background: var(--choco); color: var(--crema); }
+  .btn.primary:hover { background: #4a280d; }
+}
 
 /* ---------- hero ---------- */
 .hero { position: relative; height: var(--hero-run); background: var(--hero-bg); }
@@ -217,9 +227,13 @@ a { color: inherit; }
 .encargos .display, .nosotras .display, .visita .display { color: var(--oro); }
 .encargos .kicker, .nosotras .kicker, .visita .kicker, .origen .kicker { color: var(--rosa); }
 .encargos .btn, .visita .btn { border-color: var(--nata); color: var(--nata); }
-.encargos .btn:hover, .visita .btn:hover { background: var(--nata); color: var(--pared); }
+@media (hover: hover) and (pointer: fine) {
+  .encargos .btn:hover, .visita .btn:hover { background: var(--nata); color: var(--pared); }
+}
 .btn.gold, .encargos .btn.gold, .visita .btn.gold { background: var(--oro); border-color: var(--oro); color: var(--pared-honda); }
-.btn.gold:hover, .encargos .btn.gold:hover, .visita .btn.gold:hover { background: var(--nata); border-color: var(--nata); color: var(--pared-honda); }
+@media (hover: hover) and (pointer: fine) {
+  .btn.gold:hover, .encargos .btn.gold:hover, .visita .btn.gold:hover { background: var(--nata); border-color: var(--nata); color: var(--pared-honda); }
+}
 
 /* Chocolate drip where the hero meets the menu. */
 .drip { display: block; width: 100%; height: clamp(40px, 7vw, 80px); color: var(--nata); margin-bottom: -1px; background: var(--hero-bg); }
@@ -261,7 +275,9 @@ a { color: inherit; }
 }
 .chip input:checked + span { background: var(--choco); border-color: var(--choco); color: var(--nata); }
 .chip input:focus-visible + span { outline: 3px solid var(--fresa); outline-offset: 2px; }
-.chip:hover input:not(:checked) + span { border-color: var(--choco); }
+@media (hover: hover) and (pointer: fine) {
+  .chip:hover input:not(:checked) + span { border-color: var(--choco); }
+}
 
 /* The running total rides along at the bottom of the screen while the chips are on view. */
 .total {
@@ -302,8 +318,10 @@ a { color: inherit; }
   border: 1.5px solid currentColor; background: none; color: inherit; opacity: .8; transition: opacity .2s, background-color .2s, color .2s;
 }
 .carrusel-btn svg { width: 16px; height: 16px; }
-.carrusel-btn:hover:not(:disabled) { opacity: 1; background: var(--choco); border-color: var(--choco); color: var(--nata); }
-.encargos .carrusel-btn:hover:not(:disabled) { background: var(--oro); border-color: var(--oro); color: var(--pared-honda); }
+@media (hover: hover) and (pointer: fine) {
+  .carrusel-btn:hover:not(:disabled) { opacity: 1; background: var(--choco); border-color: var(--choco); color: var(--nata); }
+  .encargos .carrusel-btn:hover:not(:disabled) { background: var(--oro); border-color: var(--oro); color: var(--pared-honda); }
+}
 .carrusel-btn:disabled { opacity: .3; cursor: default; }
 .carrusel-btn:focus-visible { outline: 3px solid var(--fresa); outline-offset: 3px; }
 
@@ -446,7 +464,9 @@ a { color: inherit; }
 .legal-volver { margin-top: 48px; }
 .foot .firma { font-size: 13px; opacity: .65; }
 .foot .firma a { color: inherit; }
-.foot .firma a:hover { color: var(--oro); }
+@media (hover: hover) and (pointer: fine) {
+  .foot .firma a:hover { color: var(--oro); }
+}
 
 /* ---------- wider screens ---------- */
 @media (min-width: 900px) {
@@ -475,6 +495,10 @@ a { color: inherit; }
   .chocolate .wrap > :not(.chocolate-video) { grid-column: 1; }
   .chocolate-video { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; }
   .mosaic { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .visita .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
-  .fachada { max-width: 420px; }
+  /* The shopfront fills the whole height of the column beside it (address, hours, buttons, map). */
+  .visita .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: stretch; }
+  .fachada { max-width: none; height: 100%; min-height: 0; object-fit: cover; object-position: 50% 30%; }
+  /* FAQ: heading and list centred on the page; answers stay left-aligned for reading. */
+  .faq .wrap { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .faq-list { width: 100%; text-align: left; }
 }
