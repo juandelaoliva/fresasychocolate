@@ -1,27 +1,71 @@
 # Fresas y Chocolate · web
 
-Web estática (HTML + CSS + JS, sin npm ni build). Abre `index.html` con doble clic o publícala
-tal cual en cualquier hosting estático (Netlify, Vercel, GitHub Pages, un servidor Apache…).
+Web estática generada a partir de archivos de contenido. El contenido (precios, horario, textos,
+fotos, preguntas) se edita con **Pages CMS** y GitHub publica la web sola en un minuto.
+
+```
+Pages CMS (tú o Adri) → content/*.yml en GitHub → GitHub Actions ejecuta build.py → GitHub Pages
+```
+
+## Editar el contenido (Pages CMS)
+
+1. Entra en https://app.pagescms.org con tu cuenta de GitHub (hay que ser colaborador del repo).
+2. Elige el repositorio `fresasychocolate` y la rama `main`.
+3. A la izquierda hay un formulario por sección: Tienda, Portada y Google, Monta tu vaso, Para
+   beber, Por encargo, Fresas/chocolate/quiénes somos, Instagram y Preguntas frecuentes.
+4. Guarda. En la pestaña **Actions** de GitHub se ve cómo se publica; tarda alrededor de un minuto.
+
+Si algo está mal (un precio con coma en vez de punto, una foto sin descripción…), la publicación
+falla, sigue la web anterior y en **Actions** sale el error en español.
+
+Los precios se escriben con punto: `3.5`, `1.25`. Las fotos se pueden subir tal cual desde el
+móvil: al publicar se convierten a WebP y se reducen a 1600 px de ancho como máximo.
+
+En **Para beber** y **Por encargo** hay una galería deslizable de fotos y vídeos. Los vídeos se
+ven sin sonido y en bucle; se pueden subir tal cual desde el móvil (mejor cortos, de menos de
+15 s): al publicar se convierten a un MP4 ligero sin sonido y, si no se pone imagen fija, se saca
+un fotograma del propio vídeo.
+
+Las preguntas de dirección, horario, precio del vaso, encargos y bebidas se escriben solas a
+partir de los datos, así nunca contradicen la carta.
+
+## Trabajar en local
+
+```
+pip install -r requirements.txt
+python3 build.py          # genera _site/
+open _site/index.html
+```
+
+`SITE_URL=https://otro-dominio/ python3 build.py` cambia el dominio de la URL canónica, el
+sitemap y los datos para Google (por defecto https://fresasychocolate.com/).
 
 ## Estructura
 
 ```
-index.html                 página completa (los logos van incrustados como SVG)
+content/*.yml              el contenido: lo que se edita desde Pages CMS
+src/index.html.j2          plantilla de la página (Jinja2)
+src/llms.txt.j2            ficha para asistentes de IA
+src/sitemap.xml.j2         sitemap
+src/robots.txt.j2          robots.txt
+src/svg/                   logos, símbolo, flecha y ola (van en línea en la página)
+build.py                   genera _site/: plantillas + datos para Google (JSON-LD) + fotos optimizadas
+.pages.yml                 formularios de Pages CMS
+.github/workflows/         publicación automática en GitHub Pages
 css/styles.css             estilos, mobile first; paleta de marca en :root
 js/hero.js                 animación del hero ligada al scroll
 js/menu.js                 menú hamburguesa
 js/vaso.js                 "Monta tu vaso": suma el precio y los alérgenos de lo elegido
 js/videos.js               vídeos cortos de la tienda: cargan al acercarse y solo se reproducen en pantalla
 js/faq.js                  preguntas frecuentes: abren y cierran con animación
-assets/hero/frames/        el vídeo del hero convertido en fotogramas WebP (0030–0156)
-assets/hero/poster.webp    último fotograma (sin JS / movimiento reducido)
-assets/hero/manifest.js    nº de fotogramas, tamaño y color de fondo del vídeo
-assets/img/insta/          fotos de Instagram optimizadas (1000 px de ancho)
-assets/video/              clips de los reels (recortados, sin sonido) y su fotograma de portada
-assets/img/                fachada y fotos antiguas de WhatsApp (algunas ya sin usar)
+js/carrusel.js             galerías deslizables: flechas para pasar fotos con ratón
+assets/hero/               el vídeo del hero en fotogramas WebP, póster y manifest
+assets/img/                fotos (las que se suben desde el CMS también van aquí)
+assets/video/              clips de la tienda (sin sonido) y su imagen fija
 assets/logo/               logos SVG limpios (fill = currentColor) y el símbolo de la fresa
-assets/icons/              favicon (SVG + PNG) e icono para la pantalla de inicio del iPhone
-scripts/extraer-frames.sh  regenera los fotogramas a partir de un vídeo
+assets/icons/              favicon e icono para la pantalla de inicio del iPhone
+assets/og/                 imagen para compartir y logo cuadrado para Google
+scripts/extraer-frames.sh  regenera los fotogramas del hero a partir de un vídeo
 ```
 
 ## Secciones
@@ -97,17 +141,17 @@ Para que el vídeo funcione bien en el hero:
 La web está preparada para Google (SEO local) y para que los asistentes de IA (ChatGPT, Perplexity,
 Gemini, el modo IA de Google…) encuentren la tienda y la citen con datos correctos (GEO).
 
-- `<head>` de `index.html`: título, descripción, URL canónica (https://fresasychocolate.com/),
+- `<head>` de la página (`src/index.html.j2`): título, descripción, URL canónica (https://fresasychocolate.com/),
   tarjetas para compartir (imagen en `assets/og/og.jpg`) y coordenadas de la tienda.
-- Datos estructurados (JSON-LD, en el `<head>`): la tienda con dirección, coordenadas, horario,
+- Datos estructurados (JSON-LD, los genera `build.py`): la tienda con dirección, coordenadas, horario,
   Instagram y forma de encargar; la carta completa con precios; y las preguntas frecuentes.
 - Sección **Preguntas frecuentes** (`#preguntas`): respuestas cortas y concretas, que es lo que más
   citan las IA. Sus textos también están en el JSON-LD.
 - `llms.txt`: ficha de la tienda en texto plano para asistentes de IA.
 - `robots.txt` (permite buscadores y bots de IA) y `sitemap.xml`.
 
-**Si cambian precios, horario o carta**, hay que actualizarlo en cuatro sitios: la sección visible de
-`index.html`, el JSON-LD del `<head>`, las preguntas frecuentes y `llms.txt`.
+Todo sale de `content/`: si cambia un precio o el horario, se actualiza a la vez en la página,
+los datos para Google, las preguntas frecuentes y `llms.txt`.
 
 ## Revisión de posicionamiento (pendiente, 28/10/2026)
 
@@ -143,12 +187,12 @@ Por orden de impacto. Nada de esto está hecho todavía.
 ## Pendiente / por confirmar
 
 - Alérgenos de las cremas Chocolate Dubái y Chocolate Tokyo: aún no se conocen. Mientras tanto,
-  "Monta tu vaso" pide preguntar en tienda (atributo `data-al-pending` en `index.html`). Cuando
-  se sepan, cámbialo por `data-al="…"` con los números.
+  "Monta tu vaso" pide preguntar en tienda. Cuando se sepan: Pages CMS › Monta tu vaso › cremas,
+  desmarcar "Alérgenos sin confirmar" y elegir los alérgenos.
 - Precios de las bandejas: se han tomado de la publicación de Instagram del 9 de mayo.
   Confirmar que siguen vigentes.
 - Leyenda de alérgenos: en la carta, el nº 7 dice "frutos de cáscara" en español y "peanuts"
   en inglés. Conviene revisarlo con el local.
 - Revisar precios y carta con el local antes de publicar.
-- Las fotos del mosaico de Instagram son una selección fija. Para cambiarlas, sustituye los
-  archivos en `assets/img/insta/` o edita la sección en `index.html`.
+- Al pasar a Pages CMS: en GitHub › Settings › Pages, cambiar el origen a "GitHub Actions", y
+  añadir a Adri como colaboradora del repositorio.

@@ -1,0 +1,300 @@
+# Configuración de Pages CMS (https://pagescms.org). Cada entrada es un formulario que edita un
+# archivo de content/. Al guardar, GitHub genera y publica la web en un minuto (.github/workflows).
+media:
+  - name: fotos
+    label: Fotos
+    input: assets/img
+    output: assets/img
+    categories: [image]
+    rename: safe
+  - name: videos
+    label: Vídeos
+    input: assets/video
+    output: assets/video
+    extensions: [mp4, mov, m4v, webm, webp, jpg, jpeg, png]
+    rename: safe
+
+content:
+  - name: tienda
+    label: Tienda (dirección y horario)
+    type: file
+    path: content/tienda.yml
+    format: yaml
+    fields:
+      - { name: nombre, label: Nombre, type: string, required: true }
+      - { name: calle, label: Calle y número, type: string, required: true, description: "Por ejemplo: Calle Espoz y Mina, 38" }
+      - { name: codigo_postal, label: Código postal, type: string, required: true }
+      - { name: ciudad, label: Ciudad, type: string, required: true }
+      - { name: referencia, label: Cómo situarla, type: string, description: "Se usa en las preguntas frecuentes. Por ejemplo: a pocos pasos de la Plaza Mayor" }
+      - { name: telefono, label: Teléfono, type: string, description: "Si lo rellenas, aparece en Visítanos y en los datos para Google" }
+      - { name: email, label: Email, type: string, description: "Si lo rellenas, aparece en Visítanos y en los datos para Google" }
+      - { name: instagram, label: Usuario de Instagram, type: string, required: true, description: "Sin la @" }
+      - { name: google_maps, label: Enlace de Google Maps, type: string, required: true }
+      - { name: google_maps_cid, label: Código de la ficha de Google, type: string, description: "No hace falta tocarlo" }
+      - { name: latitud, label: Latitud, type: number, required: true, description: "No hace falta tocarlo salvo que cambie la tienda de sitio" }
+      - { name: longitud, label: Longitud, type: number, required: true }
+      - { name: abierta_desde, label: Abierta desde (año), type: string }
+      - name: horario
+        label: Horario
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{dias}: {abre} – {cierra}"
+        description: Una fila por cada grupo de días con el mismo horario
+        fields:
+          - { name: dias, label: Días (como se ve en la web), type: string, required: true, description: "Por ejemplo: Lunes a jueves" }
+          - name: dias_semana
+            label: Qué días son
+            type: select
+            required: true
+            description: Para Google. Marca los mismos días que pones arriba
+            options:
+              multiple: true
+              values:
+                - { name: lunes, label: Lunes }
+                - { name: martes, label: Martes }
+                - { name: miercoles, label: Miércoles }
+                - { name: jueves, label: Jueves }
+                - { name: viernes, label: Viernes }
+                - { name: sabado, label: Sábado }
+                - { name: domingo, label: Domingo }
+          - { name: abre, label: Abre, type: string, required: true, description: "Formato 14:00" }
+          - { name: cierra, label: Cierra, type: string, required: true, description: "Formato 22:30" }
+
+  - name: portada
+    label: Portada y Google
+    type: file
+    path: content/portada.yml
+    format: yaml
+    fields:
+      - { name: lema, label: Lema (al final de la animación), type: string, required: true }
+      - { name: seo_titulo, label: Título en Google, type: string, required: true, description: "Lo que sale en azul en los resultados de Google. Mejor menos de 60 caracteres" }
+      - { name: seo_descripcion, label: Descripción en Google, type: text, required: true, description: "El texto bajo el título en Google. Mejor entre 120 y 160 caracteres" }
+      - { name: titulo_principal, label: Título principal (oculto), type: string, required: true, description: "No se ve, pero es lo primero que leen Google y los lectores de pantalla" }
+      - { name: descripcion_negocio, label: Descripción de la tienda, type: text, required: true, description: "La leen Google y los asistentes de IA (ChatGPT, Perplexity…). Concreta: qué vendéis, dónde y qué os hace distintas" }
+
+  - name: carta
+    label: Monta tu vaso
+    type: file
+    path: content/carta.yml
+    format: yaml
+    fields:
+      - { name: antetitulo, label: Antetítulo, type: string }
+      - { name: titulo, label: Título, type: string, required: true }
+      - { name: intro, label: Texto de entrada, type: text }
+      - { name: nota_alergenos, label: Nota de alérgenos, type: text }
+      - name: vaso
+        label: "Paso 1: vaso de fresas"
+        type: object
+        fields:
+          - { name: nombre, label: Nombre, type: string, required: true }
+          - { name: precio, label: Precio (€), type: number, required: true, options: { min: 0 }, description: "Con punto para los céntimos: 3.5" }
+          - { name: nota, label: Nota, type: string }
+          - { name: foto, label: Foto, type: image, required: true, options: { media: fotos } }
+          - { name: foto_alt, label: Descripción de la foto, type: string, required: true, description: "Qué se ve en la foto. La leen Google y las personas ciegas" }
+      - name: cremas
+        label: "Paso 2: cremas"
+        type: object
+        fields:
+          - { name: titulo, label: Título, type: string, required: true }
+          - { name: precio, label: Precio de la crema (€), type: number, required: true, options: { min: 0 }, description: "Lo mismo para todas las cremas. Con punto: 1.25" }
+          - { name: video, label: Vídeo (mp4), type: file, required: true, options: { media: videos } }
+          - { name: video_portada, label: Imagen fija del vídeo, type: file, required: true, options: { media: videos }, description: "Se ve mientras carga el vídeo" }
+          - { name: video_alt, label: Descripción del vídeo, type: string }
+          - name: opciones
+            label: Cremas
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{nombre}"
+            fields:
+              - { name: nombre, label: Nombre, type: string, required: true }
+              - &alergenos
+                name: alergenos
+                label: Alérgenos
+                type: select
+                options:
+                  multiple: true
+                  values: [gluten, leche, huevo, sésamo, soja, pistachos, frutos de cáscara, avellanas, mantequilla, coco]
+              - &pendientes { name: alergenos_pendientes, label: Alérgenos sin confirmar, type: boolean, description: "Márcalo si aún no se saben: la web pedirá preguntar en tienda" }
+      - name: toppings
+        label: "Paso 3: toppings"
+        type: object
+        fields:
+          - { name: titulo, label: Título, type: string, required: true }
+          - { name: foto, label: Foto, type: image, required: true, options: { media: fotos } }
+          - { name: foto_alt, label: Descripción de la foto, type: string, required: true }
+          - { name: foto_encuadre, label: Encuadre de la foto, type: string, description: "Qué parte de la foto se ve si se recorta. Por ejemplo 50% 50% es el centro; 85% 60% la lleva a la derecha" }
+          - name: grupos
+            label: Grupos de precio
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "+{precio} €"
+            fields:
+              - { name: precio, label: Precio del grupo (€), type: number, required: true, options: { min: 0 }, description: "Con punto: 0.5" }
+              - name: opciones
+                label: Toppings
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{nombre}"
+                fields:
+                  - { name: nombre, label: Nombre, type: string, required: true }
+                  - *alergenos
+                  - *pendientes
+
+  - name: bebidas
+    label: Para beber
+    type: file
+    path: content/bebidas.yml
+    format: yaml
+    fields:
+      - { name: antetitulo, label: Antetítulo, type: string }
+      - { name: titulo, label: Título, type: string, required: true }
+      - &fotos
+        name: fotos
+        label: Fotos y vídeos
+        type: object
+        description: "Se ven en una galería que se desliza. Cada elemento es una foto o un vídeo; los vídeos se ven sin sonido y en bucle."
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - { name: foto, label: Foto, type: image, options: { media: fotos }, description: "Para un vídeo es opcional: es la imagen que se ve mientras carga (si no pones ninguna, se saca del vídeo)" }
+          - { name: video, label: Vídeo, type: file, options: { media: videos }, description: "Opcional. Mejor vídeos cortos (menos de 15 s). Se pueden subir tal cual desde el móvil" }
+          - { name: alt, label: Descripción, type: string, required: true, description: "Qué se ve en la foto o el vídeo. La leen Google y las personas ciegas" }
+      - name: grupos
+        label: Grupos
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{titulo}"
+        fields:
+          - { name: titulo, label: Título del grupo, type: string, required: true }
+          - name: productos
+            label: Productos
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{nombre} · {precio} €"
+            fields:
+              - { name: nombre, label: Nombre, type: string, required: true }
+              - { name: detalle, label: Detalle, type: string, description: "Opcional. Por ejemplo: Fresas, leche y miel" }
+              - { name: precio, label: Precio (€), type: number, required: true, options: { min: 0 } }
+
+  - name: encargos
+    label: Por encargo
+    type: file
+    path: content/encargos.yml
+    format: yaml
+    fields:
+      - { name: antetitulo, label: Antetítulo, type: string }
+      - { name: titulo, label: Título, type: string, required: true }
+      - { name: intro, label: Texto de entrada, type: text }
+      - *fotos
+      - name: bandejas
+        label: Bandejas
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{titulo}"
+        fields:
+          - { name: titulo, label: Título, type: string, required: true }
+          - { name: nota, label: Nota, type: string }
+          - name: tamanos
+            label: Tamaños
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{nombre} · {precio} €"
+            fields:
+              - { name: nombre, label: Tamaño, type: string, required: true }
+              - { name: detalle, label: Detalle, type: string, description: "Opcional. Por ejemplo: 6 fresas aprox." }
+              - { name: precio, label: Precio (€), type: number, required: true, options: { min: 0 } }
+      - { name: como_encargar, label: Cómo se encarga, type: text, required: true }
+      - { name: boton, label: Texto del botón, type: string }
+
+  - name: historia
+    label: Fresas, chocolate y quiénes somos
+    type: file
+    path: content/historia.yml
+    format: yaml
+    fields:
+      - name: fresas
+        label: Las fresas
+        type: object
+        fields:
+          - { name: antetitulo, label: Antetítulo, type: string }
+          - { name: titulo, label: Título, type: string, required: true }
+          - { name: texto, label: Texto, type: text }
+          - { name: foto, label: Foto de fondo, type: image, required: true, options: { media: fotos } }
+          - { name: foto_alt, label: Descripción de la foto, type: string, required: true }
+      - name: chocolate
+        label: El chocolate
+        type: object
+        fields:
+          - { name: antetitulo, label: Antetítulo, type: string }
+          - { name: titulo, label: Título, type: string, required: true }
+          - { name: texto, label: Texto, type: text }
+          - { name: video, label: Vídeo (mp4), type: file, required: true, options: { media: videos } }
+          - { name: video_portada, label: Imagen fija del vídeo, type: file, required: true, options: { media: videos } }
+          - { name: video_alt, label: Descripción del vídeo, type: string }
+      - name: nosotras
+        label: Quiénes somos
+        type: object
+        fields:
+          - { name: antetitulo, label: Antetítulo, type: string }
+          - { name: titulo, label: Título, type: string, required: true }
+          - { name: texto, label: Texto, type: text }
+          - { name: foto, label: Foto, type: image, required: true, options: { media: fotos } }
+          - { name: foto_alt, label: Descripción de la foto, type: string, required: true }
+
+  - name: instagram
+    label: Del día a día (Instagram)
+    type: file
+    path: content/instagram.yml
+    format: yaml
+    fields:
+      - { name: antetitulo, label: Antetítulo, type: string }
+      - { name: titulo, label: Título, type: string, required: true }
+      - name: fotos
+        label: Fotos
+        type: object
+        description: Mejor 6 fotos (o 3), para que el mosaico quede completo
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{alt}"
+        fields:
+          - { name: foto, label: Foto, type: image, required: true, options: { media: fotos } }
+          - { name: alt, label: Descripción de la foto, type: string, required: true, description: "Qué se ve en la foto" }
+
+  - name: preguntas
+    label: Preguntas frecuentes
+    type: file
+    path: content/preguntas.yml
+    format: yaml
+    fields:
+      - { name: antetitulo, label: Antetítulo, type: string }
+      - { name: titulo, label: Título, type: string, required: true }
+      - name: preguntas
+        label: Preguntas
+        type: object
+        description: "Las de dirección, horario, precio del vaso, encargos y bebidas se escriben solas con los datos de la tienda y la carta. Aquí van las demás. Para poner un enlace: [texto](https://...)"
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{pregunta}"
+        fields:
+          - { name: pregunta, label: Pregunta, type: string, required: true }
+          - { name: respuesta, label: Respuesta, type: text, required: true }

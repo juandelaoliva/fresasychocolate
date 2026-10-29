@@ -1,0 +1,28 @@
+# Datos de la tienda. Se usan en toda la web: Visítanos, pie, menú, preguntas frecuentes,
+# datos para Google (JSON-LD) y llms.txt.
+nombre: Fresas y Chocolate
+calle: Calle Espoz y Mina, 38
+codigo_postal: "37002"
+ciudad: Salamanca
+referencia: a pocos pasos de la Plaza Mayor
+latitud: 40.9652327
+longitud: -5.665455
+google_maps: https://maps.app.goo.gl/JiWYEt8AWk3Wj6eS6
+google_maps_cid: "1651299389623831988"
+instagram: fresasychocolate.salamanca
+telefono: ""
+email: ""
+abierta_desde: "2024"
+horario:
+  - dias: Lunes a jueves
+    dias_semana: [lunes, martes, miercoles, jueves]
+    abre: "14:00"
+    cierra: "22:00"
+  - dias: Viernes y sábado
+    dias_semana: [viernes, sabado]
+    abre: "14:00"
+    cierra: "22:30"
+  - dias: Domingo
+    dias_semana: [domingo]
+    abre: "14:00"
+    cierra: "22:00"

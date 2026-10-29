@@ -222,7 +222,6 @@ a { color: inherit; }
 .p3 { --corner: var(--fresa); --n: var(--nata); }
 .paso-media { aspect-ratio: 4 / 3; background: var(--rosa); }
 .paso-media img, .paso-media video { display: block; width: 100%; height: 100%; object-fit: cover; }
-.p3 .paso-media img { object-position: 85% 60%; }
 .paso-body { padding: 20px 18px 24px; }
 .paso-t { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; padding: 0; margin: 0 0 14px; font: 400 clamp(30px, 8vw, 38px)/1 var(--font-display); text-transform: uppercase; }
 .paso .n { position: absolute; z-index: 2; top: 12px; left: 18px; font: 300 34px/1 var(--font-body); color: var(--n); }
@@ -258,22 +257,39 @@ a { color: inherit; }
 
 .alergenos { margin: 28px 0 0; font-size: 14px; color: var(--choco-soft); }
 
-/* ---------- bebidas ---------- */
-.bebidas { background: var(--rosa); }
+/* ---------- galería deslizable (Para beber, Por encargo) ----------
+   Photos and clips side by side, swiped on touch screens; with a mouse, arrows appear underneath. */
+.carrusel { margin: 32px 0 40px; }
 .strip {
   display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
-  margin: 32px 0 40px; padding: 0 var(--gutter); scroll-padding-inline: var(--gutter);
+  padding: 0 var(--gutter); scroll-padding-inline: var(--gutter);
 }
 .strip::-webkit-scrollbar { display: none; }
-.strip img { flex: 0 0 auto; width: min(64vw, 300px); aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px; scroll-snap-align: start; }
+.strip > img, .strip > video {
+  flex: 0 0 auto; width: min(64vw, 300px); aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px;
+  scroll-snap-align: start; background: color-mix(in srgb, currentColor 12%, transparent);
+}
+/* Inside a .wrap column (Por encargo), bleed to the screen edges on mobile. */
+.carrusel-encargos { margin-inline: calc(-1 * var(--gutter)); }
+.carrusel-nav { display: flex; justify-content: flex-end; gap: 8px; padding: 14px var(--gutter) 0; }
+.carrusel-nav[hidden] { display: none; }
+.carrusel-btn {
+  display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border-radius: 50%; cursor: pointer;
+  border: 1.5px solid currentColor; background: none; color: inherit; opacity: .8; transition: opacity .2s, background-color .2s, color .2s;
+}
+.carrusel-btn svg { width: 16px; height: 16px; }
+.carrusel-btn:hover:not(:disabled) { opacity: 1; background: var(--choco); border-color: var(--choco); color: var(--nata); }
+.encargos .carrusel-btn:hover:not(:disabled) { background: var(--oro); border-color: var(--oro); color: var(--pared-honda); }
+.carrusel-btn:disabled { opacity: .3; cursor: default; }
+.carrusel-btn:focus-visible { outline: 3px solid var(--fresa); outline-offset: 3px; }
+
+/* ---------- bebidas ---------- */
+.bebidas { background: var(--rosa); }
 .drinks { display: grid; gap: 32px; }
 .drinks h3, .bandeja h3, .horario h3 { font: 600 12px/1 var(--font-body); letter-spacing: .18em; text-transform: uppercase; margin: 0 0 8px; }
 
 /* ---------- por encargo ---------- */
 .encargos .lead { color: color-mix(in srgb, var(--nata) 85%, transparent); }
-.encargo-fotos { display: grid; grid-template-columns: 1.15fr 1fr; gap: 10px; margin: 32px 0 36px; align-items: start; }
-.encargo-fotos img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 18px; }
-.encargo-fotos .f2 { margin-top: 40px; }
 .bandejas { display: grid; gap: 12px; }
 .bandeja { border: 1px solid color-mix(in srgb, var(--oro) 50%, transparent); border-radius: 20px; padding: 20px; }
 .bandeja h3 { font: 400 30px/1 var(--font-display); letter-spacing: .02em; color: var(--oro); margin-bottom: 10px; }
@@ -380,12 +396,17 @@ a { color: inherit; }
   .builder { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; }
   .total { grid-column: 1 / -1; width: min(100%, 640px); justify-self: center; padding: 18px 24px; }
   .total-price { font-size: 40px; }
-  .strip { max-width: 1120px; margin-inline: auto; padding: 0; overflow: visible; display: grid; grid-template-columns: repeat(4, 1fr); }
-  .strip img { width: 100%; }
+  /* Desktop: the strip starts on the content column and runs off to the right edge. */
+  .strip { padding-inline: max(var(--gutter), (100% - 1120px) / 2); scroll-padding-inline: max(var(--gutter), (100% - 1120px) / 2); }
+  .strip > img, .strip > video { width: 280px; }
+  .carrusel-nav { max-width: 1120px; margin-inline: auto; padding-inline: 0; }
+  .carrusel-encargos { margin-inline: 0; min-width: 0; }
+  .carrusel-encargos .strip { padding-inline: 0; scroll-padding-inline: 0; }
+  .carrusel-encargos .strip > img, .carrusel-encargos .strip > video { width: 240px; }
   .drinks { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 48px; }
   .encargos .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 64px; }
   .encargos .wrap > .kicker, .encargos .wrap > .display, .encargos .wrap > .lead { grid-column: 1 / -1; }
-  .encargo-fotos { grid-column: 1; margin: 40px 0 0; }
+  .carrusel-encargos { grid-column: 1; margin-block: 40px 0; }
   .bandejas, .como { grid-column: 2; }
   .bandejas { margin-top: 40px; }
   .nosotras .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 64px; }

@@ -1,0 +1,20 @@
+# Las fresas, el chocolate y quiénes somos.
+fresas:
+  antetitulo: las fresas
+  titulo: De Salamanca
+  texto: Trabajamos con fresas nacionales y de proximidad, cultivadas aquí, en Salamanca.
+  foto: assets/img/insta/fresas-cajas.webp
+  foto_alt: Cajas de madera llenas de fresas recién recogidas
+chocolate:
+  antetitulo: y el chocolate
+  titulo: Belga, de Callebaut
+  texto: Bañamos las fresas en chocolate belga Callebaut.
+  video: assets/video/fuente.mp4
+  video_portada: assets/video/fuente.webp
+  video_alt: La fuente de chocolate llenando un vaso de fresas en la barra de la tienda
+nosotras:
+  antetitulo: quiénes somos
+  titulo: Rosi y Adri
+  texto: Rosi lleva la tienda y su hija Adri le ayuda con todo. Desde 2024 en la calle Espoz y Mina.
+  foto: assets/img/insta/rosi-adri.webp
+  foto_alt: Rosi y Adri sonriendo en la tienda, delante del logo dorado de Fresas y Chocolate
