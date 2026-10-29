@@ -4,10 +4,10 @@
 // Timeline, in scroll distance from the top of the hero (vh = viewport height, run = pinned distance):
 // - the hero stays pinned for `run`; the video ends ANIM_OVERRUN after that, so its last frames play
 //   while the hero (logo included) is already scrolling away;
-// - the closing line and buttons rise over CLOSE, just before the pin releases;
+// - the closing line and buttons rise over CLOSE, from halfway through the pin, while the chocolate still pours;
 // - the top bar slides down once the hero's bottom edge is above BAR_AT of the viewport.
 (function () {
-  const ANIM_OVERRUN = 0.3, CLOSE = [-0.5, -0.1], BAR_AT = 0.6; // in vh
+  const ANIM_OVERRUN = 0.3, CLOSE = [-1.0, -0.6], BAR_AT = 0.6; // in vh
   const SUBJECT_W = 0.6; // share of the frame width the strawberry spans, leaves and drips included
   const STALK = 0.04; // share of the frame height the thin stalk rises above the detected strawberry
   const m = window.HERO_MANIFEST;

@@ -205,8 +205,9 @@ zooms back out while the tagline appears.
 Sequence (constants at the top of `js/hero.js`; distances are in screen heights):
 
 1. The hero stays pinned for 2 screens of scrolling while the video plays.
-2. Half a screen before it releases, the tagline and buttons appear, and the strawberry moves up
-   just enough not to be covered (`CLOSE`).
+2. About halfway through (from 1 to 0.6 screens before it releases, `CLOSE`), the tagline and
+   buttons appear while the chocolate is still pouring; the video zooms out and the strawberry
+   moves up just enough not to be covered.
 3. The hero releases shortly before the animation ends. The last frames play while it scrolls up
    with the logo (`ANIM_OVERRUN`, 0.3 screens).
 4. Once the bottom of the hero rises above 60% of the screen (`BAR_AT`), the bar (symbol,

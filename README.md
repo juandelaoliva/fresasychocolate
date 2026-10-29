@@ -202,8 +202,9 @@ a su tamaño mientras aparece el lema.
 Secuencia (constantes al principio de `js/hero.js`; las distancias van en alturas de pantalla):
 
 1. El hero queda fijo durante 2 pantallas de scroll mientras el vídeo avanza.
-2. Media pantalla antes de soltarse aparecen el lema y los botones, y la fresa sube lo justo para
-   no quedar tapada (`CLOSE`).
+2. Hacia la mitad del recorrido (de 1 a 0,6 pantallas antes de soltarse, `CLOSE`) aparecen el lema
+   y los botones mientras el chocolate sigue cayendo, y el vídeo se aleja (zoom out) y la fresa
+   sube lo justo para no quedar tapada.
 3. El hero se suelta poco antes de terminar la animación. Los últimos fotogramas se reproducen
    mientras sube con el logo (`ANIM_OVERRUN`, 0,3 pantallas).
 4. Cuando el borde inferior del hero sube por encima del 60 % de la pantalla (`BAR_AT`), la barra
