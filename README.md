@@ -19,12 +19,22 @@ Si algo está mal (un precio con coma en vez de punto, una foto sin descripción
 falla, sigue la web anterior y en **Actions** sale el error en español.
 
 Los precios se escriben con punto: `3.5`, `1.25`. Las fotos se pueden subir tal cual desde el
-móvil: al publicar se convierten a WebP y se reducen a 1600 px de ancho como máximo.
+móvil, también en HEIC (el formato del iPhone): al publicar se convierten a WebP y se reducen a
+1600 px de ancho como máximo.
 
 En **Para beber** y **Por encargo** hay una galería deslizable de fotos y vídeos. Los vídeos se
 ven sin sonido y en bucle; se pueden subir tal cual desde el móvil (mejor cortos, de menos de
 15 s): al publicar se convierten a un MP4 ligero sin sonido y, si no se pone imagen fija, se saca
 un fotograma del propio vídeo.
+
+**Límite de tamaño al subir desde Pages CMS:** la versión alojada (app.pagescms.org) no acepta
+archivos de más de unos 3 MB (da el error "413 failed to upload file"). Para vídeos o fotos más
+grandes:
+1. En GitHub, abre la carpeta `assets/video` (o `assets/img`) › **Add file › Upload files**,
+   arrastra el archivo (hasta 25 MB) y pulsa **Commit changes**.
+2. En Pages CMS, en el campo del vídeo o la foto, elige ese archivo de la biblioteca en vez de
+   subirlo.
+Al publicar se comprime igual que si se hubiera subido desde el CMS.
 
 Las preguntas de dirección, horario, precio del vaso, encargos y bebidas se escriben solas a
 partir de los datos, así nunca contradicen la carta.

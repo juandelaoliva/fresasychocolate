@@ -5,7 +5,7 @@ media:
     label: Fotos
     input: assets/img
     output: assets/img
-    categories: [image]
+    extensions: [jpg, jpeg, png, webp, heic, heif, gif]
     rename: safe
   - name: videos
     label: Vídeos

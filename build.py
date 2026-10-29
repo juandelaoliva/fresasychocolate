@@ -21,7 +21,10 @@ from pathlib import Path
 import yaml
 from jinja2 import Environment, FileSystemLoader
 from markupsafe import Markup
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
+from pillow_heif import register_heif_opener
+
+register_heif_opener()  # fotos HEIC del iPhone
 
 ROOT = Path(__file__).resolve().parent
 CONTENT, SRC, OUT = ROOT / 'content', ROOT / 'src', ROOT / '_site'
@@ -170,7 +173,13 @@ def img(path, alt=None, donde=''):
         error(f'{donde or p}: no existe la foto "{p}"')
         _imgs[p] = {'src': p, 'width': 1, 'height': 1}
         return _imgs[p]
-    with Image.open(src) as im:
+    try:
+        im = Image.open(src)
+    except (UnidentifiedImageError, OSError):
+        error(f'{donde or p}: "{p}" no es una foto que se pueda abrir (JPG, PNG, WebP o HEIC)')
+        _imgs[p] = {'src': p, 'width': 1, 'height': 1}
+        return _imgs[p]
+    with im:
         w, h = im.size
         if src.suffix.lower() == '.webp' and w <= MAX_IMG:
             _imgs[p] = {'src': p, 'width': w, 'height': h}
