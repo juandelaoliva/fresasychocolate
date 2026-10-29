@@ -28,7 +28,7 @@
   color-scheme: light;
 }
 * { box-sizing: border-box; }
-html { background: var(--hero-bg); -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; scroll-padding-top: calc(var(--bar) + env(safe-area-inset-top, 0px)); }
+html { background: var(--hero-bg); -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--bar) + env(safe-area-inset-top, 0px)); }
 body { margin: 0; background: var(--nata); color: var(--choco); font-family: var(--font-body); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
