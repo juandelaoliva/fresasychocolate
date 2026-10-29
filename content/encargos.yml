@@ -10,12 +10,6 @@ fotos:
   - foto: assets/img/insta/donuts-pan-de-oro.webp
     alt: Bombones de chocolate con fresas, arándanos y pan de oro
 bandejas:
-  - titulo: Testing new section
-    nota: this is very important
-    tamanos:
-      - nombre: Caja guay
-        detalle: Algo que pongo aqui para esta especial seccion
-        precio: 17,45
   - titulo: Solo fresas
     tamanos:
       - nombre: Pequeña
