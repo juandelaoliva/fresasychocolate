@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>{{ site }}</loc>
+    <lastmod>{{ hoy }}</lastmod>
+    <image:image><image:loc>{{ site }}assets/og/og.jpg</image:loc></image:image>
+    <image:image><image:loc>{{ site }}{{ img(carta.vaso.foto).src }}</image:loc></image:image>
+    <image:image><image:loc>{{ site }}{{ img(historia.nosotras.foto).src }}</image:loc></image:image>
+{% for f in encargos.fotos %}
+    <image:image><image:loc>{{ site }}{{ img(f.foto).src }}</image:loc></image:image>
+{% endfor %}
+    <image:image><image:loc>{{ site }}{{ img(historia.fresas.foto).src }}</image:loc></image:image>
+  </url>
+</urlset>

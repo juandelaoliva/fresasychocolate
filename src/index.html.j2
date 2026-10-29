@@ -1,0 +1,308 @@
+{% set t = tienda %}
+{% set ig_url = 'https://www.instagram.com/' ~ t.instagram ~ '/' %}
+{% macro foto(path, alt, donde='', cls='', extra='') %}{% set f = img(path, alt, donde) %}<img{% if cls %} class="{{ cls }}"{% endif %} src="{{ f.src }}" alt="{{ alt }}" loading="lazy" width="{{ f.width }}" height="{{ f.height }}"{{ extra }}>{% endmacro %}
+{# Alérgenos en el orden de la carta; las opciones aún sin confirmar mandan a preguntar en tienda. #}
+{% macro alergenos_de(op) %}{% if op.alergenos_pendientes %} data-al-pending{% elif op.alergenos %} data-al="{{ alergenos | select('in', op.alergenos) | join(',') }}"{% endif %}{% endmacro %}
+<!doctype html>
+<html lang="es-ES" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ portada.seo_titulo }}</title>
+<meta name="description" content="{{ portada.seo_descripcion }}">
+<link rel="canonical" href="{{ site }}">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="{{ t.nombre }}">
+<meta property="og:title" content="{{ portada.seo_titulo }}">
+<meta property="og:description" content="{{ portada.seo_descripcion }}">
+<meta property="og:url" content="{{ site }}">
+<meta property="og:image" content="{{ site }}assets/og/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo de {{ t.nombre }} junto a una fresa bañada en chocolate">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="geo.region" content="ES-SA">
+<meta name="geo.placename" content="{{ t.ciudad }}">
+<meta name="geo.position" content="{{ t.latitud }};{{ t.longitud }}">
+<meta name="ICBM" content="{{ t.latitud }}, {{ t.longitud }}">
+<meta name="theme-color" content="#abc4a9">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500;600&family=Petit+Formal+Script&display=swap">
+<link rel="preload" as="image" href="assets/hero/frames/0030.webp">
+<link rel="stylesheet" href="css/styles.css">
+<script type="application/ld+json">{{ jsonld }}</script>
+<script>document.documentElement.classList.replace('no-js', 'js');</script>
+</head>
+<body>
+<a class="skip" href="#carta">Saltar a la carta</a>
+
+<header class="topbar" id="topbar">
+  <a class="topbar-logo" href="#hero" aria-label="{{ t.nombre }}, ir al inicio">{{ svg('simbolo') }}{{ svg('logo-horizontal') }}</a>
+  <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+</header>
+<nav class="nav-panel" id="nav-panel" aria-label="Menú principal" hidden>
+  <ul>
+    <li><a href="#carta">{{ carta.titulo }}</a></li>
+    <li><a href="#bebidas">Para beber</a></li>
+    <li><a href="#encargos">{{ encargos.titulo }}</a></li>
+    <li><a href="#nosotras">Quiénes somos</a></li>
+    <li><a href="#preguntas">Preguntas</a></li>
+    <li><a href="#visita">Visítanos</a></li>
+  </ul>
+  <p class="nav-foot">{{ t.calle | replace('Calle ', '') }} · {{ t.codigo_postal }} {{ t.ciudad }}<br><a href="{{ ig_url }}" target="_blank" rel="noopener">@{{ t.instagram }}</a></p>
+</nav>
+
+<main>
+  <section class="hero" id="hero" aria-label="{{ t.nombre }}">
+    <div class="hero-pin">
+      <div class="hero-brand">
+        <h1 class="sr-only">{{ portada.titulo_principal }}</h1>
+        {{ svg('logo-direccion') }}
+      </div>
+      <div class="hero-stage">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <img class="hero-poster" src="assets/hero/poster.webp" alt="Una fresa bañada en chocolate" width="720" height="1280">
+      </div>
+      <p class="hint" id="hero-hint">{{ svg('flecha') }}Desliza</p>
+      <div class="hero-close" id="hero-close">
+        <p class="lema">{{ portada.lema }}</p>
+        <div class="actions">
+          <a class="btn primary" href="#carta">Ver la carta</a>
+          <a class="btn" href="#visita">Cómo llegar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{ svg('ola') }}
+
+  <section class="block vaso" id="carta" aria-labelledby="vaso-t">
+    <div class="wrap">
+      <p class="kicker">{{ carta.antetitulo }}</p>
+      <h2 class="display" id="vaso-t">{{ carta.titulo }}</h2>
+      <p class="lead">{{ carta.intro }}</p>
+
+      <form class="builder" id="builder" aria-describedby="builder-total" data-base="{{ carta.vaso.precio }}" data-alergenos="{{ alergenos | join(',') }}">
+        <div class="paso p1">
+          <div class="paso-media">{{ foto(carta.vaso.foto, carta.vaso.foto_alt, 'Monta tu vaso › vaso') }}</div>
+          <div class="paso-body">
+            <h3 class="paso-t"><span class="n">1</span> {{ carta.vaso.nombre }} <span class="p">{{ carta.vaso.precio | euros }}</span></h3>
+            <p class="paso-note">{{ carta.vaso.nota }}</p>
+          </div>
+        </div>
+
+        <fieldset class="paso p2">
+          <legend class="sr-only">Paso 2: {{ carta.cremas.titulo | lower }}, +{{ carta.cremas.precio | euros }}</legend>
+          <div class="paso-media"><video class="loop" muted loop playsinline preload="none" poster="{{ carta.cremas.video_portada | ruta }}" data-src="{{ carta.cremas.video | ruta }}" aria-label="{{ carta.cremas.video_alt }}"></video></div>
+          <div class="paso-body">
+          <p class="paso-t" aria-hidden="true"><span class="n">2</span> {{ carta.cremas.titulo }} <span class="p">+{{ carta.cremas.precio | euros }}</span></p>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="crema" value="" data-price="0" checked><span>Sin crema</span></label>
+{% for op in carta.cremas.opciones %}
+            <label class="chip"><input type="radio" name="crema" value="{{ op.nombre }}" data-price="{{ carta.cremas.precio }}"{{ alergenos_de(op) }}><span>{{ op.nombre }}</span></label>
+{% endfor %}
+          </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="paso p3">
+          <legend class="sr-only">Paso 3: {{ carta.toppings.titulo | lower }}</legend>
+          <div class="paso-media">{{ foto(carta.toppings.foto, carta.toppings.foto_alt, 'Monta tu vaso › toppings', extra=(' style="object-position: ' ~ carta.toppings.foto_encuadre ~ '"') | safe if carta.toppings.foto_encuadre else '') }}</div>
+          <div class="paso-body">
+          <p class="paso-t" aria-hidden="true"><span class="n">3</span> {{ carta.toppings.titulo }}</p>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="topping" value="" data-price="0" checked><span>Sin topping</span></label>
+          </div>
+{% for g in carta.toppings.grupos %}
+          <p class="tier">+{{ g.precio | euros }}</p>
+          <div class="chips">
+{% for op in g.opciones %}
+            <label class="chip"><input type="radio" name="topping" value="{{ op.nombre }}" data-price="{{ g.precio }}"{{ alergenos_de(op) }}><span>{{ op.nombre }}</span></label>
+{% endfor %}
+          </div>
+{% endfor %}
+          </div>
+        </fieldset>
+
+        <div class="total" id="builder-total" aria-live="polite">
+          <p class="total-desc" id="total-desc">{{ carta.vaso.nombre }}</p>
+          <p class="total-price"><output id="total-price" for="builder">{{ carta.vaso.precio | euros }}</output></p>
+          <p class="total-al" id="total-al">Sin alérgenos de la carta</p>
+        </div>
+      </form>
+
+      <p class="alergenos">{{ carta.nota_alergenos }}</p>
+    </div>
+  </section>
+
+  <section class="block bebidas" id="bebidas" aria-labelledby="bebidas-t">
+    <div class="wrap">
+      <p class="kicker">{{ bebidas.antetitulo }}</p>
+      <h2 class="display" id="bebidas-t">{{ bebidas.titulo }}</h2>
+    </div>
+    <div class="strip" role="list">
+{% for f in bebidas.fotos %}
+      {{ foto(f.foto, f.alt, 'Bebidas › fotos', extra=' role="listitem"' | safe) }}
+{% endfor %}
+    </div>
+    <div class="wrap drinks">
+{% for g in bebidas.grupos %}
+      <div>
+        <h3>{{ g.titulo }}</h3>
+        <ul class="menu">
+{% for p in g.productos %}
+          <li><span>{{ p.nombre }}{% if p.detalle %} <small>{{ p.detalle }}</small>{% endif %}</span><span class="p">{{ p.precio | euros }}</span></li>
+{% endfor %}
+        </ul>
+      </div>
+{% endfor %}
+    </div>
+  </section>
+
+  <section class="block encargos" id="encargos" aria-labelledby="encargos-t">
+    <div class="wrap">
+      <p class="kicker">{{ encargos.antetitulo }}</p>
+      <h2 class="display" id="encargos-t">{{ encargos.titulo }}</h2>
+      <p class="lead">{{ encargos.intro }}</p>
+
+      <div class="encargo-fotos">
+{% for f in encargos.fotos[:2] %}
+        {{ foto(f.foto, f.alt, 'Encargos › fotos', cls='f' ~ loop.index) }}
+{% endfor %}
+      </div>
+
+      <div class="bandejas">
+{% for b in encargos.bandejas %}
+        <div class="bandeja">
+          <h3>{{ b.titulo }}</h3>
+{% if b.nota %}
+          <p class="bandeja-note">{{ b.nota }}</p>
+{% endif %}
+{% if b.tamanos %}
+          <ul class="menu">
+{% for x in b.tamanos %}
+            <li><span>{{ x.nombre }}{% if x.detalle %} <small>{{ x.detalle }}</small>{% endif %}</span><span class="p">{{ x.precio | euros_corto }}</span></li>
+{% endfor %}
+          </ul>
+{% endif %}
+        </div>
+{% endfor %}
+      </div>
+
+      <div class="como">
+        <p>{{ encargos.como_encargar }}</p>
+        <a class="btn gold" href="https://ig.me/m/{{ t.instagram }}" target="_blank" rel="noopener">{{ encargos.boton }}</a>
+      </div>
+    </div>
+  </section>
+
+{% set h = historia %}
+  <section class="origen" id="origen" aria-labelledby="origen-t">
+    {{ foto(h.fresas.foto, h.fresas.foto_alt, 'Las fresas', cls='origen-img') }}
+    <div class="origen-text">
+      <p class="kicker">{{ h.fresas.antetitulo }}</p>
+      <h2 class="display" id="origen-t">{{ h.fresas.titulo }}</h2>
+      <p>{{ h.fresas.texto }}</p>
+    </div>
+  </section>
+
+  <section class="chocolate" id="chocolate" aria-labelledby="chocolate-t">
+    <div class="wrap">
+      <p class="kicker">{{ h.chocolate.antetitulo }}</p>
+      <h2 class="display" id="chocolate-t">{{ h.chocolate.titulo }}</h2>
+      <p class="lead">{{ h.chocolate.texto }}</p>
+      <div class="chocolate-video"><video class="loop" muted loop playsinline preload="none" poster="{{ h.chocolate.video_portada | ruta }}" data-src="{{ h.chocolate.video | ruta }}" aria-label="{{ h.chocolate.video_alt }}"></video></div>
+    </div>
+  </section>
+
+  <section class="block nosotras" id="nosotras" aria-labelledby="nosotras-t">
+    <div class="wrap">
+      <figure class="nosotras-foto">
+        {{ foto(h.nosotras.foto, h.nosotras.foto_alt, 'Quiénes somos') }}
+      </figure>
+      <div>
+        <p class="kicker">{{ h.nosotras.antetitulo }}</p>
+        <h2 class="display" id="nosotras-t">{{ h.nosotras.titulo }}</h2>
+        <p class="lead">{{ h.nosotras.texto }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block insta" id="instagram" aria-labelledby="insta-t">
+    <div class="wrap">
+      <p class="kicker">{{ instagram.antetitulo }}</p>
+      <h2 class="display" id="insta-t">{{ instagram.titulo }}</h2>
+      <a class="mosaic" href="{{ ig_url }}" target="_blank" rel="noopener" aria-label="Ver más fotos en el Instagram de {{ t.nombre }}">
+{% for f in instagram.fotos %}
+        {{ foto(f.foto, f.alt, 'Instagram › fotos') }}
+{% endfor %}
+      </a>
+      <a class="btn" href="{{ ig_url }}" target="_blank" rel="noopener">Ver @{{ t.instagram }}</a>
+    </div>
+  </section>
+
+  <section class="block faq" id="preguntas" aria-labelledby="faq-t">
+    <div class="wrap">
+      <p class="kicker">{{ preguntas.antetitulo }}</p>
+      <h2 class="display" id="faq-t">{{ preguntas.titulo }}</h2>
+      <div class="faq-list">
+{% for q in faq %}
+        <details class="faq-item">
+          <summary>{{ q.pregunta }}</summary>
+          <p>{{ q.respuesta | enlaces }}</p>
+        </details>
+{% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="block visita" id="visita" aria-labelledby="visita-t">
+    <div class="wrap">
+      <img class="fachada" src="assets/img/fachada.webp" alt="Ilustración de la fachada de {{ t.nombre }} en {{ t.calle | replace('Calle ', '') }}" loading="lazy" width="900" height="1600">
+      <div>
+        <p class="kicker">visítanos</p>
+{% set calle = t.calle | replace('Calle ', '') %}
+{% set partes = calle.rsplit(' ', 1) %}
+        <h2 class="display" id="visita-t">{% if partes | length == 2 and partes[1].isdigit() %}{{ partes[0] }} <span class="num">{{ partes[1] }}</span>{% else %}{{ calle }}{% endif %}</h2>
+        <address class="addr">{{ t.calle }}<br>{{ t.codigo_postal }} {{ t.ciudad }}{% if t.telefono %}<br><a href="tel:{{ t.telefono | replace(' ', '') }}">{{ t.telefono }}</a>{% endif %}{% if t.email %}<br><a href="mailto:{{ t.email }}">{{ t.email }}</a>{% endif %}</address>
+        <div class="horario">
+          <h3>Horario</h3>
+          <dl>
+{% for x in t.horario %}
+            <div><dt>{{ x.dias }}</dt><dd>{{ x.abre }} – {{ x.cierra }}</dd></div>
+{% endfor %}
+          </dl>
+        </div>
+        <div class="actions">
+          <a class="btn gold" href="{{ t.google_maps }}" target="_blank" rel="noopener">Abrir en Google Maps</a>
+          <a class="btn" href="{{ ig_url }}" target="_blank" rel="noopener">Instagram</a>
+        </div>
+        <iframe class="mapa" src="https://maps.google.com/maps?q={{ (t.nombre ~ ', ' ~ t.calle ~ ', ' ~ t.ciudad) | urlencode }}&amp;output=embed&amp;hl=es&amp;z=16" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de {{ t.nombre }}"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    {{ svg('logo-horizontal', etiqueta=t.nombre) }}
+    <p>{{ t.calle | replace('Calle ', '') }} · {{ t.codigo_postal }} {{ t.ciudad }} · <a href="{{ ig_url }}" target="_blank" rel="noopener">@{{ t.instagram }}</a></p>
+    <p>© {{ year }} {{ t.nombre }}</p>
+    <p class="firma">Hecho con cariño por <a href="https://juandelaoliva.com" target="_blank" rel="noopener">Juan de la Oliva</a></p>
+  </div>
+</footer>
+
+<script src="assets/hero/manifest.js"></script>
+<script src="js/hero.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/vaso.js"></script>
+<script src="js/videos.js"></script>
+<script src="js/faq.js"></script>
+</body>
+</html>

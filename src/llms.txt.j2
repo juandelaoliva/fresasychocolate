@@ -1,0 +1,60 @@
+{% set t = tienda %}
+# {{ t.nombre }}
+
+> {{ portada.descripcion_negocio }}
+
+{{ historia.nosotras.titulo }}: {{ historia.nosotras.texto }}
+
+## Datos básicos
+
+- Nombre: {{ t.nombre }}
+- Dirección: {{ t.calle }}, {{ t.codigo_postal }} {{ t.ciudad }}, España
+- Coordenadas: {{ t.latitud }}, {{ t.longitud }}
+- Google Maps: {{ t.google_maps }}
+- Instagram: https://www.instagram.com/{{ t.instagram }}/ (@{{ t.instagram }})
+- Web: {{ site }}
+{% if t.telefono %}
+- Teléfono: {{ t.telefono }}
+{% endif %}
+{% if t.email %}
+- Email: {{ t.email }}
+{% endif %}
+- Horario: {% for h in t.horario %}{{ h.dias | lower }} de {{ h.abre }} a {{ h.cierra }}{{ '; ' if not loop.last }}{% endfor %}
+
+- Encargos: por mensaje de Instagram (https://ig.me/m/{{ t.instagram }}), recogida en la tienda
+
+## Carta: {{ carta.titulo | lower }}
+
+1. {{ carta.vaso.nombre }}: {{ carta.vaso.precio | euros }}
+2. Crema (+{{ carta.cremas.precio | euros }}): {{ carta.cremas.opciones | map(attribute='nombre') | join(', ') }}
+{% for g in carta.toppings.grupos %}
+{{ '3. ' if loop.first else '   ' }}Topping (+{{ g.precio | euros }}): {{ g.opciones | map(attribute='nombre') | join(', ') }}
+{% endfor %}
+
+## Bebidas
+
+{% for g in bebidas.grupos %}
+- {{ g.titulo }}: {% for p in g.productos %}{{ p.nombre }}{% if p.detalle %} ({{ p.detalle | lower }}){% endif %} {{ p.precio | euros }}{{ '; ' if not loop.last }}{% endfor %}
+
+{% endfor %}
+
+## Bandejas por encargo
+
+{% for b in encargos.bandejas %}
+- {{ b.titulo }}{% if b.nota and b.tamanos %} ({{ b.nota | lower }}){% elif b.nota %}: {{ b.nota }}{% endif %}{% if b.tamanos %}: {% for x in b.tamanos %}{{ x.nombre | lower }}{% if x.detalle %} ({{ x.detalle }}){% endif %} {{ x.precio | euros_corto }}{{ ', ' if not loop.last }}{% endfor %}{% endif %}
+
+{% endfor %}
+
+## Preguntas frecuentes
+
+{% for q in faq %}
+### {{ q.pregunta }}
+
+{{ q.respuesta | sin_enlaces }}
+
+{% endfor %}
+## Más información
+
+- [Carta y precios]({{ site }}#carta)
+- [Preguntas frecuentes]({{ site }}#preguntas)
+- [Cómo llegar y horario]({{ site }}#visita)
