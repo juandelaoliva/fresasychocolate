@@ -1,0 +1,5 @@
+{# Cloudflare Web Analytics: cuenta visitas sin cookies ni identificar a nadie, así que no necesita
+   aviso de consentimiento. Solo se incluye si hay token en content/portada.yml. #}
+{% if portada.cloudflare_analytics %}
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{ {"token": portada.cloudflare_analytics} | tojson }}'></script>
+{% endif %}

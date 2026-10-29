@@ -157,6 +157,9 @@ Si falta alguno, no salen. Si cambia el titular o el email, cámbialo aquí y se
 
 Google tarda días o semanas en mostrar los cambios.
 
+El campo **Token de Cloudflare Web Analytics** es para contar visitas. No lo cambies salvo que te lo
+pidan: si se borra, la web deja de contar visitas.
+
 ## 6. Fotos y vídeos
 
 ### Subir una foto o un vídeo a una galería

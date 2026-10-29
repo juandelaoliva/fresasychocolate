@@ -61,6 +61,7 @@ src/sitemap.xml.j2         sitemap
 src/robots.txt.j2          robots.txt
 src/legal.html.j2          base for the legal pages: aviso-legal.html.j2 and privacidad.html.j2
 src/pie.html.j2            footer shared by every page
+src/analitica.html.j2      Cloudflare Web Analytics (only with a token)
 src/svg/                   logos, strawberry symbol, seal, arrow and wave (inlined in the page)
 build.py                   generates _site/ from content/ and src/
 requirements.txt           Python dependencies
@@ -91,7 +92,7 @@ The files in `content/`:
 | File | Contents |
 |---|---|
 | `tienda.yml` (shop) | Name, address, coordinates, Google Maps, Instagram, phone, email, opening hours and the owner's details (legal notice) |
-| `portada.yml` (front page) | Hero tagline, Google title and description, shop description for AI |
+| `portada.yml` (front page) | Hero tagline, Google title and description, shop description for AI and the Cloudflare Web Analytics token |
 | `carta.yml` (menu) | "Monta tu vaso": cup, creams, topping groups, prices and allergens |
 | `bebidas.yml` (drinks) | Gallery and drinks menu |
 | `encargos.yml` (orders) | Gallery, trays and how to order |
@@ -273,8 +274,13 @@ Google's AI Mode…) to find the shop and quote it accurately (GEO, generative e
   **Until the three are filled in, they are not published**
   and their footer links don't appear; `build.py` warns about it. They are filled in under Pages
   CMS › Tienda.
-- **No cookies or tracking:** the site uses no cookies or analytics, and fonts, photos and videos
-  are served from the site itself, so no cookie banner is needed. The Google map only loads if
+- **No cookies or tracking:** the site uses no cookies, and fonts, photos and videos are served from
+  the site itself, so no cookie banner is needed.
+- **Visit statistics:** Cloudflare Web Analytics (free, no cookies, doesn't identify anyone, so no
+  banner either). It is switched on by adding the token in Pages CMS › Portada y Google; the
+  privacy policy adds the paragraph explaining it. To get the token: free account at
+  https://dash.cloudflare.com › Analytics & Logs › Web Analytics › Add a site › the site's current
+  domain › copy the `token` value from the snippet. The Google map only loads if
   the visitor taps "Ver el mapa aquí" (`js/mapa.js`).
 - **If anything third-party is added** (analytics, a YouTube video, an Instagram widget…), review
   the privacy policy and, if it sets cookies, add a consent notice.
@@ -323,7 +329,7 @@ Google's AI Mode…) to find the shop and quote it accurately (GEO, generative e
 - `CNAME` in the repository, HTTPS and a www to non-www redirect.
 - Google Search Console and Bing Webmaster Tools, with the sitemap.
 - A custom 404 page.
-- Cookieless analytics (Plausible or GoatCounter).
+- Cloudflare Web Analytics: add the new domain and update the token if needed.
 
 *Missing data*
 - The shop's phone and email. Pages CMS › Tienda has fields for them; once filled in, they appear

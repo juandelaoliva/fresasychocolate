@@ -2,7 +2,7 @@
 {% block titulo %}Privacidad y cookies{% endblock %}
 {% block antetitulo %}tus datos{% endblock %}
 {% block contenido %}
-  <p class="lead">En pocas palabras: esta web no tiene formularios, no usa cookies y no mide tus visitas. Solo tratamos los datos que tú nos das al escribirnos.</p>
+  <p class="lead">En pocas palabras: esta web no tiene formularios ni usa cookies{% if portada.cloudflare_analytics %}, y solo cuenta las visitas de forma anónima{% else %} y no mide tus visitas{% endif %}. Solo tratamos los datos que tú nos das al escribirnos.</p>
 
   <h2>Responsable</h2>
   <ul>
@@ -14,8 +14,14 @@
 
   <h2>Qué datos tratamos y para qué</h2>
   <h3>Al visitar la web</h3>
-  <p>Esta web no te pide datos ni usa herramientas de analítica. Para mostrártela, el servidor que la aloja (GitHub Pages, de GitHub Inc.) registra datos técnicos como tu dirección IP, por seguridad y para que el servicio funcione. Nosotros no usamos esos datos. GitHub los trata según su <a href="https://docs.github.com/es/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">declaración de privacidad</a>.</p>
-  <p>Las fuentes, las fotos y los vídeos se sirven desde la propia web: al verla no se envía nada a otros servicios.</p>
+  <p>Esta web no te pide datos. Para mostrártela, el servidor que la aloja (GitHub Pages, de GitHub Inc.) registra datos técnicos como tu dirección IP, por seguridad y para que el servicio funcione. Nosotros no usamos esos datos. GitHub los trata según su <a href="https://docs.github.com/es/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">declaración de privacidad</a>.</p>
+  <p>Las fuentes, las fotos y los vídeos se sirven desde la propia web.</p>
+{% if portada.cloudflare_analytics %}
+  <h3>Estadísticas de visitas</h3>
+  <p>Para saber cuántas personas visitan la web y qué secciones interesan más usamos Cloudflare Web Analytics, de Cloudflare, Inc. No usa cookies, no guarda nada en tu navegador y no te identifica ni te sigue por otras webs: solo da recuentos agregados (visitas, páginas vistas, país, tipo de dispositivo y desde qué web llegas). Para ello, al cargar la página tu navegador se conecta con Cloudflare. Base legal: nuestro interés legítimo en saber cómo se usa la web. Más información en la <a href="https://www.cloudflare.com/es-es/privacypolicy/" target="_blank" rel="noopener">política de privacidad de Cloudflare</a>.</p>
+{% else %}
+  <p>No usamos herramientas de analítica: al ver la web no se envía nada a otros servicios.</p>
+{% endif %}
 
   <h3>Si nos escribes por Instagram o por email</h3>
   <ul>
@@ -30,7 +36,7 @@
   <p>El mapa de la sección Visítanos no se carga hasta que pulsas «Ver el mapa aquí». Al pulsarlo, tu navegador se conecta con Google, que recibe tu dirección IP y puede usar cookies según su <a href="https://policies.google.com/privacy?hl=es" target="_blank" rel="noopener">política de privacidad</a>. Si no lo pulsas, Google no recibe nada. Lo mismo ocurre con los botones que abren Google Maps o Instagram: te llevan a esos servicios.</p>
 
   <h2>Cookies</h2>
-  <p>Esta web no usa cookies propias ni de terceros, ni otras tecnologías para seguir tu navegación. Por eso no te mostramos ningún aviso de cookies.</p>
+  <p>Esta web no usa cookies propias ni de terceros, ni otras tecnologías para seguir tu navegación{% if portada.cloudflare_analytics %} (las estadísticas de Cloudflare funcionan sin cookies){% endif %}. Por eso no te mostramos ningún aviso de cookies.</p>
   <p>La única excepción es el mapa de Google, solo si decides cargarlo: en ese caso Google puede instalar sus cookies, como se explica arriba.</p>
 
   <h2>Tus derechos</h2>

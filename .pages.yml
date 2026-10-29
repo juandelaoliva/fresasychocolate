@@ -73,6 +73,7 @@ content:
       - { name: seo_titulo, label: Título en Google, type: string, required: true, description: "Lo que sale en azul en los resultados de Google. Mejor menos de 60 caracteres" }
       - { name: seo_descripcion, label: Descripción en Google, type: text, required: true, description: "El texto bajo el título en Google. Mejor entre 120 y 160 caracteres" }
       - { name: titulo_principal, label: Título principal (oculto), type: string, required: true, description: "No se ve, pero es lo primero que leen Google y los lectores de pantalla" }
+      - { name: cloudflare_analytics, label: Token de Cloudflare Web Analytics, type: string, description: "Para contar visitas sin cookies. Se copia de Cloudflare › Web Analytics › Manage site (el valor de token). Vacío = sin analítica" }
       - { name: descripcion_negocio, label: Descripción de la tienda, type: text, required: true, description: "La leen Google y los asistentes de IA (ChatGPT, Perplexity…). Concreta: qué vendéis, dónde y qué os hace distintas" }
 
   - name: carta

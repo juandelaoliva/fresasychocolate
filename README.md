@@ -58,6 +58,7 @@ src/sitemap.xml.j2         sitemap
 src/robots.txt.j2          robots.txt
 src/legal.html.j2          base de las páginas legales: aviso-legal.html.j2 y privacidad.html.j2
 src/pie.html.j2            pie común a todas las páginas
+src/analitica.html.j2      Cloudflare Web Analytics (solo si hay token)
 src/svg/                   logos, símbolo, sello, flecha y ola (van en línea en la página)
 build.py                   genera _site/ a partir de content/ y src/
 requirements.txt           dependencias de Python
@@ -88,7 +89,7 @@ docs/                      manual para editores
 | Archivo | Qué contiene |
 |---|---|
 | `tienda.yml` | Nombre, dirección, coordenadas, Google Maps, Instagram, teléfono, email, horario y datos del titular (aviso legal) |
-| `portada.yml` | Lema del hero, título y descripción para Google, descripción de la tienda para IA |
+| `portada.yml` | Lema del hero, título y descripción para Google, descripción de la tienda para IA y token de Cloudflare Web Analytics |
 | `carta.yml` | Monta tu vaso: vaso, cremas, grupos de toppings, precios y alérgenos |
 | `bebidas.yml` | Galería y carta de bebidas |
 | `encargos.yml` | Galería, bandejas y cómo encargar |
@@ -271,8 +272,13 @@ Perplexity, Gemini, el modo IA de Google…) encuentren la tienda y la citen con
   se usa la dirección de la tienda, que la LSSI admite como establecimiento permanente. **Hasta que
   estén los tres no se publican**, ni salen sus enlaces en
   el pie: `build.py` lo avisa al generar. Se rellenan en Pages CMS › Tienda.
-- **Sin cookies ni rastreo:** la web no usa cookies ni analítica, y las fuentes, fotos y vídeos se
-  sirven desde la propia web. Por eso no hace falta banner de cookies. El mapa de Google solo se
+- **Sin cookies ni rastreo:** la web no usa cookies, y las fuentes, fotos y vídeos se sirven desde
+  la propia web. Por eso no hace falta banner de cookies.
+- **Estadísticas de visitas:** con Cloudflare Web Analytics (gratis, sin cookies ni identificar a
+  nadie, por eso tampoco necesita banner). Se activa poniendo el token en Pages CMS › Portada y
+  Google; la política de privacidad añade sola el párrafo que lo explica. Para sacar el token:
+  cuenta gratis en https://dash.cloudflare.com › Analytics & Logs › Web Analytics › Add a site ›
+  nombre del dominio (el que tenga la web en ese momento) › copiar el valor `token` del código. El mapa de Google solo se
   carga si el visitante pulsa "Ver el mapa aquí" (`js/mapa.js`).
 - **Si se añade algo de terceros** (analítica, un vídeo de YouTube, un widget de Instagram…),
   hay que revisar la política de privacidad y, si pone cookies, poner un aviso de consentimiento.
@@ -321,7 +327,7 @@ Perplexity, Gemini, el modo IA de Google…) encuentren la tienda y la citen con
 - `CNAME` en el repositorio, HTTPS y redirección de www a sin www.
 - Google Search Console y Bing Webmaster Tools, con el sitemap.
 - Página 404 propia.
-- Analítica sin cookies (Plausible o GoatCounter).
+- Cloudflare Web Analytics: dar de alta el dominio nuevo y cambiar el token si hace falta.
 
 *Datos que faltan*
 - Teléfono y email de la tienda. Hay campos para ellos en Pages CMS › Tienda; al rellenarlos salen
