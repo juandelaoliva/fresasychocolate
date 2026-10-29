@@ -28,7 +28,7 @@ register_heif_opener()  # fotos HEIC del iPhone
 
 ROOT = Path(__file__).resolve().parent
 CONTENT, SRC, OUT = ROOT / 'content', ROOT / 'src', ROOT / '_site'
-STATIC = ['css', 'js', 'assets']
+STATIC = ['css', 'js', 'assets', 'presentacion']  # presentacion/: la presentación para el cliente, tal cual
 SITE = os.environ.get('SITE_URL', 'https://fresasychocolate.com/').rstrip('/') + '/'
 MAX_IMG = 1600  # ancho máximo de las fotos publicadas
 
@@ -419,6 +419,12 @@ def main():
     if errores:
         shutil.rmtree(OUT)
         sys.exit('No se ha generado la web:\n  - ' + '\n  - '.join(errores))
+    # La presentación es HTML suelto (no plantilla): solo se le añaden las estadísticas.
+    pres = OUT / 'presentacion' / 'index.html'
+    if pres.exists():
+        env.autoescape = True
+        snippet = env.get_template('analitica.html.j2').render()
+        pres.write_text(pres.read_text(encoding='utf-8').replace('</body>', snippet + '</body>', 1), encoding='utf-8')
     (OUT / '.nojekyll').write_text('')
     print(f'Web generada en {OUT.relative_to(ROOT)}/ ({SITE})')
 

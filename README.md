@@ -26,6 +26,7 @@ Pages CMS → content/*.yml en GitHub → GitHub Actions ejecuta build.py → Gi
 - [El hero](#el-hero)
 - [Cambiar el vídeo del hero](#cambiar-el-vídeo-del-hero)
 - [SEO y GEO](#seo-y-geo)
+- [Presentación para el cliente](#presentación-para-el-cliente)
 - [Problemas conocidos y soluciones](#problemas-conocidos-y-soluciones)
 - [Pendiente](#pendiente)
 
@@ -82,6 +83,7 @@ assets/og/                 imagen para compartir y logo cuadrado para Google
 assets/fonts/              archivos de las fuentes (woff2, latin y latin-ext)
 scripts/extraer-frames.sh  regenera los fotogramas del hero a partir de un vídeo
 docs/                      manual para editores
+presentacion/index.html    presentación del concepto para el cliente, en /presentacion/ (no se indexa)
 ```
 
 `content/` tiene estos archivos:
@@ -289,6 +291,20 @@ Perplexity, Gemini, el modo IA de Google…) encuentren la tienda y la citen con
 - Las páginas legales llevan `noindex` para no salir en Google.
 - Los textos son un punto de partida razonable, pero conviene que los revise una gestoría o un
   abogado.
+
+## Presentación para el cliente
+
+`presentacion/index.html` es la presentación del concepto de la web, en /presentacion/. Se recorre con
+scroll: a la derecha hay un móvil con la web real (la portada del propio sitio en un iframe) que se mueve
+con cada capítulo. Con el teclado: ↓ o espacio para avanzar, N para las notas del orador, P para usar la
+web dentro del móvil (o tocar el móvil) y F para pantalla completa.
+
+- Es un archivo estático: `build.py` lo copia tal cual y no lee `content/`. Los precios y textos son los
+  del 29/10/2026; si cambian mucho, se editan a mano en el propio archivo.
+- Lleva `noindex`, no está en el sitemap y la web no enlaza a ella. Aun así es pública: cualquiera con el
+  enlace la ve, también las notas del orador (están en el código).
+- Mueve la web del iframe por sus id y clases (`#carta`, `.paso.p2`, `#bebidas .strip`, `.faq-item`,
+  `#visita`…). Si cambian en la plantilla, revisa la presentación.
 
 ## Problemas conocidos y soluciones
 

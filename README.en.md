@@ -29,6 +29,7 @@ Spanish too; the main ones are explained below.
 - [The hero](#the-hero)
 - [Changing the hero video](#changing-the-hero-video)
 - [SEO and GEO](#seo-and-geo)
+- [Client presentation](#client-presentation)
 - [Known issues and fixes](#known-issues-and-fixes)
 - [To do](#to-do)
 
@@ -85,6 +86,7 @@ assets/og/                 social sharing image and square logo for Google
 assets/fonts/              font files (woff2, latin and latin-ext)
 scripts/extraer-frames.sh  regenerates the hero frames from a video
 docs/                      editors' manual
+presentacion/index.html    client presentation of the site concept, at /presentacion/ (not indexed)
 ```
 
 The files in `content/`:
@@ -289,6 +291,20 @@ Google's AI Mode…) to find the shop and quote it accurately (GEO, generative e
   the privacy policy and, if it sets cookies, add a consent notice.
 - The legal pages are `noindex`, so they stay out of Google.
 - The texts are a reasonable starting point, but should be reviewed by an accountant or lawyer.
+
+## Client presentation
+
+`presentacion/index.html` is the presentation of the site concept, at /presentacion/. It is a scroll
+story: on the right, a phone shows the real site (the site's own home page in an iframe) and moves with
+each chapter. Keys: ↓ or space to advance, N for speaker notes, P to use the site inside the phone (or
+tap the phone) and F for full screen.
+
+- It is a static file: `build.py` copies it as is and does not read `content/`. Prices and texts are those
+  of 29/10/2026; if they change a lot, edit them by hand in the file.
+- It has `noindex`, is not in the sitemap and the site does not link to it. It is still public: anyone
+  with the link can see it, speaker notes included (they are in the source).
+- It drives the iframe through the site's ids and classes (`#carta`, `.paso.p2`, `#bebidas .strip`,
+  `.faq-item`, `#visita`…). If they change in the template, check the presentation.
 
 ## Known issues and fixes
 
