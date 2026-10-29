@@ -12,7 +12,6 @@ longitud: "-5.665455"
 abierta_desde: "2024"
 titular: "[Nombre y apellidos o razón social del titular]"
 nif: "[NIF]"
-domicilio_fiscal: "[Domicilio fiscal]"
 horario:
   - dias: Lunes a jueves
     dias_semana:

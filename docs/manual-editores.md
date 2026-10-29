@@ -143,7 +143,7 @@ En **Quiénes somos**:
 
 ### Datos del titular (aviso legal y privacidad)
 
-En **Tienda** están **Titular**, **NIF / CIF** y **Domicilio fiscal**. Con titular, NIF y email
+En **Tienda** están **Titular** y **NIF / CIF**. Como dirección se usa la de la tienda. Con titular, NIF y email
 rellenos se publican solas las páginas de aviso legal y de privacidad, con sus enlaces en el pie.
 Si falta alguno, no salen. Si cambia el titular o el email, cámbialo aquí y se actualizan.
 

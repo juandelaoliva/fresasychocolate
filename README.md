@@ -267,8 +267,9 @@ Perplexity, Gemini, el modo IA de Google…) encuentren la tienda y la citen con
 ## Legal y privacidad
 
 - **Aviso legal** (`aviso-legal.html`) y **privacidad y cookies** (`privacidad.html`): se generan
-  con los datos del titular de `content/tienda.yml` (`titular`, `nif`, `email` y, opcional,
-  `domicilio_fiscal`). **Hasta que estén los tres primeros no se publican**, ni salen sus enlaces en
+  con los datos del titular de `content/tienda.yml` (`titular`, `nif` y `email`); como domicilio
+  se usa la dirección de la tienda, que la LSSI admite como establecimiento permanente. **Hasta que
+  estén los tres no se publican**, ni salen sus enlaces en
   el pie: `build.py` lo avisa al generar. Se rellenan en Pages CMS › Tienda.
 - **Sin cookies ni rastreo:** la web no usa cookies ni analítica, y las fuentes, fotos y vídeos se
   sirven desde la propia web. Por eso no hace falta banner de cookies. El mapa de Google solo se
@@ -312,7 +313,7 @@ Perplexity, Gemini, el modo IA de Google…) encuentren la tienda y la citen con
 - Enlace a la web en la bio de Instagram.
 
 *Legal*
-- Sustituir los marcadores provisionales `[…]` de titular, NIF, email y domicilio fiscal en Pages
+- Sustituir los marcadores provisionales `[…]` de titular y NIF en Pages
   CMS › Tienda (ahora las páginas legales se publican con ellos; `build.py` avisa mientras sigan).
   Revisión de los textos por una gestoría.
 

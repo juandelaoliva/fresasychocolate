@@ -404,7 +404,7 @@ def main():
     t = c['tienda']
     legal = all(str(t.get(k) or '').strip() for k in ('titular', 'nif', 'email'))
     env.globals['legal'] = legal
-    provisionales = [k for k in ('titular', 'nif', 'email', 'domicilio_fiscal', 'telefono')
+    provisionales = [k for k in ('titular', 'nif', 'email', 'telefono')
                      if str(t.get(k) or '').strip().startswith('[')]
     if provisionales:
         print(f'Aviso: datos provisionales en content/tienda.yml ({", ".join(provisionales)}); sustitúyelos antes de anunciar la web.')

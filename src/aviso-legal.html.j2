@@ -7,12 +7,12 @@
   <ul>
     <li><strong>Titular:</strong> {{ t.titular }}</li>
     <li><strong>NIF:</strong> {{ t.nif }}</li>
-    <li><strong>Domicilio:</strong> {{ domicilio }}</li>
+    <li><strong>Dirección del establecimiento:</strong> {{ domicilio }}</li>
     <li><strong>Email:</strong> {% if t.email.startswith("[") %}{{ t.email }}{% else %}<a href="mailto:{{ t.email }}">{{ t.email }}</a>{% endif %}</li>
 {% if t.telefono %}
     <li><strong>Teléfono:</strong> <a href="tel:{{ t.telefono | replace(' ', '') }}">{{ t.telefono }}</a></li>
 {% endif %}
-    <li><strong>Nombre comercial:</strong> {{ t.nombre }}, {{ t.calle }}, {{ t.codigo_postal }} {{ t.ciudad }}</li>
+    <li><strong>Nombre comercial:</strong> {{ t.nombre }}</li>
   </ul>
 
   <h2>Para qué es esta web</h2>

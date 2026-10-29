@@ -1,6 +1,6 @@
 {# Base de las páginas legales (aviso legal, privacidad): cabecera con el logo, texto y pie. #}
 {% set t = tienda %}
-{% set domicilio = t.domicilio_fiscal or (t.calle ~ ', ' ~ t.codigo_postal ~ ' ' ~ t.ciudad) %}
+{% set domicilio = t.calle ~ ', ' ~ t.codigo_postal ~ ' ' ~ t.ciudad %}
 <!doctype html>
 <html lang="es-ES">
 <head>

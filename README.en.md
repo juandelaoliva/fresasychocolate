@@ -268,8 +268,9 @@ Google's AI Mode…) to find the shop and quote it accurately (GEO, generative e
 ## Legal and privacy
 
 - **Legal notice** (`aviso-legal.html`) and **privacy and cookies** (`privacidad.html`) are
-  generated from the owner's details in `content/tienda.yml` (`titular`, `nif`, `email` and,
-  optionally, `domicilio_fiscal`). **Until the first three are filled in, they are not published**
+  generated from the owner's details in `content/tienda.yml` (`titular`, `nif` and `email`);
+  the shop's address is used as the address, which the LSSI accepts as a permanent establishment.
+  **Until the three are filled in, they are not published**
   and their footer links don't appear; `build.py` warns about it. They are filled in under Pages
   CMS › Tienda.
 - **No cookies or tracking:** the site uses no cookies or analytics, and fonts, photos and videos
@@ -314,7 +315,7 @@ Google's AI Mode…) to find the shop and quote it accurately (GEO, generative e
 - Link to the site in the Instagram bio.
 
 *Legal*
-- Replace the `[…]` placeholders for owner, tax ID, email and tax address in Pages CMS › Tienda
+- Replace the `[…]` placeholders for owner and tax ID in Pages CMS › Tienda
   (the legal pages are published with them for now; `build.py` warns while they remain). Have
   the texts reviewed.
 

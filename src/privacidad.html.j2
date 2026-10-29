@@ -8,7 +8,7 @@
   <ul>
     <li><strong>Responsable:</strong> {{ t.titular }} ({{ t.nombre }})</li>
     <li><strong>NIF:</strong> {{ t.nif }}</li>
-    <li><strong>Domicilio:</strong> {{ domicilio }}</li>
+    <li><strong>Dirección:</strong> {{ domicilio }}</li>
     <li><strong>Email:</strong> {% if t.email.startswith("[") %}{{ t.email }}{% else %}<a href="mailto:{{ t.email }}">{{ t.email }}</a>{% endif %}</li>
   </ul>
 
