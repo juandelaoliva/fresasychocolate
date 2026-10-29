@@ -1,39 +1,41 @@
 antetitulo: para beber
 titulo: Batidos, matcha y café
 fotos:
-- foto: assets/img/insta/batido-rosa.webp
-  alt: Batido rosa de fresas con nata en un vaso de Fresas y Chocolate
-- foto: assets/img/insta/matcha-fresas.webp
-  alt: Matcha con hielo y fresas rodeado de flores
-- foto: assets/img/insta/batidos-rosas.webp
-  alt: Dos batidos rosas decorados en el mostrador
-- foto: assets/img/insta/matcha-barra.webp
-  alt: Matcha con fresa sobre la barra de la tienda
+  - video: assets/video/d79e6400-fc2c-4028-8a43-296903b01ea9.mp4
+    alt: Bebida de matcha y fresas
+  - foto: assets/img/insta/batido-rosa.webp
+    alt: Batido rosa de fresas con nata en un vaso de Fresas y Chocolate
+  - foto: assets/img/insta/matcha-fresas.webp
+    alt: Matcha con hielo y fresas rodeado de flores
+  - foto: assets/img/insta/batidos-rosas.webp
+    alt: Dos batidos rosas decorados en el mostrador
+  - foto: assets/img/insta/matcha-barra.webp
+    alt: Matcha con fresa sobre la barra de la tienda
 grupos:
-- titulo: Batidos
-  productos:
-  - nombre: Batido de fresas
-    detalle: Fresas, leche y miel
-    precio: 4,80
-  - nombre: Batido de fresas con nata
-    precio: 5,25
-- titulo: Matcha
-  productos:
-  - nombre: Té matcha
-    precio: 3,80
-  - nombre: Té matcha con leche
-    precio: 4,20
-  - nombre: Matcha strawberry
-    precio: '5'
-- titulo: Café
-  productos:
-  - nombre: Espresso
-    precio: 1,70
-  - nombre: Café con leche
-    precio: 1,70
-  - nombre: Cortado
-    precio: 1,70
-  - nombre: Café bombón
-    precio: 2,50
-  - nombre: Botella de agua
-    precio: 1,50
+  - titulo: Batidos
+    productos:
+      - nombre: Batido de fresas
+        detalle: Fresas, leche y miel
+        precio: 4,80
+      - nombre: Batido de fresas con nata
+        precio: 5,25
+  - titulo: Matcha
+    productos:
+      - nombre: Té matcha
+        precio: 3,80
+      - nombre: Té matcha con leche
+        precio: 4,20
+      - nombre: Matcha strawberry
+        precio: "5"
+  - titulo: Café
+    productos:
+      - nombre: Espresso
+        precio: 1,70
+      - nombre: Café con leche
+        precio: 1,70
+      - nombre: Cortado
+        precio: 1,70
+      - nombre: Café bombón
+        precio: 2,50
+      - nombre: Botella de agua
+        precio: 1,50
