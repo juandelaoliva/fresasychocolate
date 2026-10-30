@@ -299,6 +299,10 @@ story: on the right, a phone shows the real site (the site's own home page in an
 each chapter. Keys: ↓ or space to advance, N for speaker notes, P to use the site inside the phone (or
 tap the phone) and F for full screen.
 
+- The phone starts switched off (cover), turns on with a recreated search of what people find today
+  ("Por qué una web") and shows the real site from "El primer bocado". Each chapter sets it with
+  `data-screen` (`off`, `search` or, by default, the site). To use a real screenshot instead of the
+  search, replace the contents of `.scr-search` with an `<img>`.
 - On wide screens (over 1480 px) everything is centred in a stage of that width (`--max` in the
   file's CSS) and the phone grows a little; on laptops it looks as before.
 - It is a static file: `build.py` copies it as is and does not read `content/`. Prices and texts are those

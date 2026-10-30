@@ -299,6 +299,10 @@ scroll: a la derecha hay un móvil con la web real (la portada del propio sitio 
 con cada capítulo. Con el teclado: ↓ o espacio para avanzar, N para las notas del orador, P para usar la
 web dentro del móvil (o tocar el móvil) y F para pantalla completa.
 
+- El móvil empieza apagado (portada), se enciende con una recreación de la búsqueda de hoy ("Por qué
+  una web") y muestra la web real desde "El primer bocado". Cada capítulo lo indica con `data-screen`
+  (`off`, `search` o, por defecto, la web). Para cambiar la búsqueda por una captura real, sustituye el
+  contenido de `.scr-search` por una `<img>`.
 - En pantallas anchas (más de 1480 px) todo se centra en un escenario de ese ancho (`--max` en el CSS
   del archivo) y el móvil crece un poco; en portátiles se ve como siempre.
 - Es un archivo estático: `build.py` lo copia tal cual y no lee `content/`. Los precios y textos son los
