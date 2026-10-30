@@ -37,8 +37,13 @@
   --s: .9;                 /* phone scale, set by script */
   --dev-w: calc(418px * var(--s));
   --dev-h: calc(872px * var(--s));
-  --dev-right: max(4vw, 28px);
-  --gutter-l: max(16px, env(safe-area-inset-left, 0px), 7vw);
+  /* Wide screens: everything (copy, phone, brand, bar, signature) lives in a centred stage of --max, as it
+     looks on a laptop, instead of spreading to the screen edges. --pad is the empty margin on each side. */
+  --max: 1480px;
+  --pad: max(0px, calc((100vw - var(--max)) / 2));
+  --g: max(16px, env(safe-area-inset-left, 0px), min(7vw, 104px));
+  --gutter-l: calc(var(--pad) + var(--g));
+  --dev-right: calc(var(--pad) + max(min(4vw, 60px), 28px));
   color-scheme: light;
 }
 html { scroll-behavior: auto; }
@@ -88,7 +93,7 @@ button { font: inherit; color: inherit; }
 
 /* signature: always on screen, written up the left margin like a book spine (bottom right on phones) */
 .firma {
-  position: fixed; z-index: 20; top: 50%; left: calc(var(--gutter-l) / 2);
+  position: fixed; z-index: 20; top: 50%; left: calc(var(--pad) + var(--g) / 2);
   transform: translate(-50%, -50%) rotate(180deg); writing-mode: vertical-rl;
   display: flex; align-items: center; gap: 14px;
   color: var(--fg); text-decoration: none; transition: color .8s ease;
@@ -798,7 +803,7 @@ main { position: relative; z-index: 1; }
     const narrow = window.matchMedia('(max-width: 860px), (orientation: portrait) and (max-width: 1100px)').matches;
     const s = narrow
       ? Math.min((window.innerHeight * 0.5) / 872, (window.innerWidth - 32) / 418)
-      : Math.min((window.innerHeight - 64) / 872, (window.innerWidth * 0.4) / 418, 1.08);
+      : Math.min((window.innerHeight - 64) / 872, (window.innerWidth * 0.4) / 418, window.innerWidth > 1700 ? 1.2 : 1.08);
     root.style.setProperty('--s', s.toFixed(4));
   }
 

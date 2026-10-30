@@ -299,6 +299,8 @@ scroll: a la derecha hay un móvil con la web real (la portada del propio sitio 
 con cada capítulo. Con el teclado: ↓ o espacio para avanzar, N para las notas del orador, P para usar la
 web dentro del móvil (o tocar el móvil) y F para pantalla completa.
 
+- En pantallas anchas (más de 1480 px) todo se centra en un escenario de ese ancho (`--max` en el CSS
+  del archivo) y el móvil crece un poco; en portátiles se ve como siempre.
 - Es un archivo estático: `build.py` lo copia tal cual y no lee `content/`. Los precios y textos son los
   del 29/10/2026; si cambian mucho, se editan a mano en el propio archivo.
 - Lleva `noindex`, no está en el sitemap y la web no enlaza a ella. Aun así es pública: cualquiera con el
