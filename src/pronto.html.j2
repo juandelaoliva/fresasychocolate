@@ -1,0 +1,50 @@
+{% set t = tienda %}
+<!doctype html>
+<html lang="es-ES">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ t.nombre }} · {{ pronto.titulo }}</title>
+<meta name="description" content="{{ pronto.texto }}">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#abc4a9">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/italiana-400-latin.woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
+<style>
+  :root { --bg: #acc5aa; --choco: #613613; --choco-soft: #8a6a52; --fresa: #b5485c; color-scheme: light; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0; padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
+    background: var(--bg); color: var(--choco); font-family: "Jost", "Futura", system-ui, sans-serif; text-align: center;
+  }
+  .simbolo { width: clamp(84px, 22vw, 120px); height: auto; color: var(--choco); animation: flota 5s ease-in-out infinite; }
+  .logo { width: min(78vw, 420px); height: auto; margin-top: 28px; color: var(--choco); }
+  h1 { margin: 36px 0 0; font: 400 clamp(44px, 12vw, 84px)/1 "Italiana", "Didot", serif; letter-spacing: .02em; }
+  p { margin: 18px 0 0; max-width: 30ch; font-size: clamp(16px, 4.2vw, 19px); line-height: 1.5; font-weight: 300; }
+  .cta { display: inline-block; margin-top: 32px; padding: 14px 28px; border: 1.5px solid var(--choco); border-radius: 999px; color: var(--choco); font-size: 13px; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; }
+  .cta:active, .cta:focus-visible { background: var(--choco); color: var(--bg); outline: none; }
+  @media (hover: hover) and (pointer: fine) { .cta:hover { background: var(--choco); color: var(--bg); } }
+  .donde { max-width: none; line-height: 1.9; margin-top: 28px; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--choco-soft); }
+  .donde a { color: inherit; text-underline-offset: 4px; }
+  .donde a:hover, .donde a:focus-visible { color: var(--fresa); }
+  @keyframes flota { 50% { transform: translateY(-6px); } }
+  @media (prefers-reduced-motion: reduce) { .simbolo { animation: none; } }
+</style>
+</head>
+<body>
+  <main>
+    {{ svg('simbolo') }}
+    <div>{{ svg('logo-horizontal', etiqueta=t.nombre) }}</div>
+    <h1>{{ pronto.titulo }}</h1>
+    <p style="margin-left:auto;margin-right:auto">{{ pronto.texto }}</p>
+    <a class="cta" href="{{ t.google_maps }}" target="_blank" rel="noopener">Cómo llegar</a>
+  </main>
+  <p class="donde">{{ t.calle | replace('Calle ', '') }} · {{ t.ciudad }}<br><a href="https://www.instagram.com/{{ t.instagram }}/" target="_blank" rel="noopener">@{{ t.instagram }}</a></p>
+{% include 'analitica.html.j2' %}
+</body>
+</html>

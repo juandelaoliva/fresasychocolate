@@ -1,0 +1,6 @@
+# Pantalla de "Próximamente". Mientras esté activa, la dirección principal de la web muestra solo esa
+# pantalla; la web completa sigue generándose en una dirección secreta (/<clave>.html) para revisarla.
+activo: true
+clave: vista-previa-fresas
+titulo: Muy pronto
+texto: Estamos preparando nuestra web. Mientras tanto, te esperamos en la tienda.

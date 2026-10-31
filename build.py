@@ -413,9 +413,27 @@ def main():
         paginas += [('aviso-legal.html', True), ('privacidad.html', True)]
     else:
         print('Aviso: faltan titular, NIF o email en content/tienda.yml; no se publican las páginas legales.')
-    for nombre, autoescape in paginas:
+    # Modo "próximamente": la portada pública es solo la pantalla de espera y la web completa queda en
+    # una dirección secreta, sin indexar. Sin sitemap ni llms.txt, y robots.txt cierra el paso.
+    p = c.get('pronto') or {}
+    pronto = bool(p.get('activo'))
+    if pronto:
+        clave = re.sub(r'[^a-z0-9-]', '', str(p.get('clave') or '').lower())
+        if len(clave) < 8:
+            error('content/pronto.yml: "clave" debe tener al menos 8 letras, números o guiones')
+        else:
+            env.globals['noindex'] = True
+            (OUT / f'{clave}.html').write_text(env.get_template('index.html.j2').render(), encoding='utf-8')
+            env.globals['noindex'] = False
+            paginas = [('index.html', 'pronto.html.j2', True), ('robots.txt', 'robots-cerrado.txt.j2', False)]
+            if legal:
+                paginas += [('aviso-legal.html', 'aviso-legal.html.j2', True), ('privacidad.html', 'privacidad.html.j2', True)]
+            print(f'Modo próximamente ACTIVO. Web completa en {SITE}{clave}.html')
+    else:
+        paginas = [(n, n + '.j2', a) for n, a in paginas]
+    for nombre, plantilla, autoescape in paginas:
         env.autoescape = autoescape
-        (OUT / nombre).write_text(env.get_template(nombre + '.j2').render(), encoding='utf-8')
+        (OUT / nombre).write_text(env.get_template(plantilla).render(), encoding='utf-8')
     if errores:
         shutil.rmtree(OUT)
         sys.exit('No se ha generado la web:\n  - ' + '\n  - '.join(errores))

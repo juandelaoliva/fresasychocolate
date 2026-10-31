@@ -31,7 +31,7 @@
 <title>{{ portada.seo_titulo }}</title>
 <meta name="description" content="{{ portada.seo_descripcion }}">
 <link rel="canonical" href="{{ site }}">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="{{ 'noindex, nofollow' if noindex else 'index, follow, max-image-preview:large' }}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="{{ t.nombre }}">
