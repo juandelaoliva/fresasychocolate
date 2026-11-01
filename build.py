@@ -417,6 +417,7 @@ def main():
     # una dirección secreta, sin indexar. Sin sitemap ni llms.txt, y robots.txt cierra el paso.
     p = c.get('pronto') or {}
     pronto = bool(p.get('activo'))
+    clave = None
     if pronto:
         clave = re.sub(r'[^a-z0-9-]', '', str(p.get('clave') or '').lower())
         if len(clave) < 8:
@@ -442,7 +443,10 @@ def main():
     if pres.exists():
         env.autoescape = True
         snippet = env.get_template('analitica.html.j2').render()
-        pres.write_text(pres.read_text(encoding='utf-8').replace('</body>', snippet + '</body>', 1), encoding='utf-8')
+        doc = pres.read_text(encoding='utf-8').replace('</body>', snippet + '</body>', 1)
+        if pronto and clave:  # con «Muy pronto» activo, el móvil de la presentación enseña la web completa
+            doc = doc.replace('id="site" src="../"', f'id="site" src="../{clave}.html"', 1)
+        pres.write_text(doc, encoding='utf-8')
     (OUT / '.nojekyll').write_text('')
     print(f'Web generada en {OUT.relative_to(ROOT)}/ ({SITE})')
 
