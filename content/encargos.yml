@@ -4,11 +4,14 @@ intro: Bandejas de fresas bañadas para regalar, compartir o darte un capricho.
 fotos:
   - foto: assets/img/tarta-cajas-2.webp
     alt: Tarta de Cumpleaños de fresas y chocolate
+  - video: assets/video/d91e7ff5-620e-43f2-adf9-6c9fb4307240.mp4
+    alt: Donuts de chocolate y fresas u pistacho
   - foto: assets/img/insta/caja-para-mama.webp
     alt: Caja de fresas bañadas en chocolate rosa con lazos y una tarjeta que dice
       Para mamá
   - foto: assets/img/insta/donuts-pan-de-oro.webp
     alt: Bombones de chocolate con fresas, arándanos y pan de oro
+  - {}
 bandejas:
   - titulo: Solo fresas
     tamanos:
