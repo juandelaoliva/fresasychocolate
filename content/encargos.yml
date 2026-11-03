@@ -18,6 +18,14 @@ fotos:
   - foto: assets/img/img2374.jpeg
     alt: Cajita de regalo con oso
 bandejas:
+  - titulo: Solo en Navidad
+    nota: No se
+    tamanos:
+      - nombre: Caja ritonka
+        detalle: Dos tabletas
+        precio: "3"
+      - nombre: Tabletas blancas
+        precio: "4"
   - titulo: Solo fresas
     tamanos:
       - nombre: Pequeña
@@ -40,14 +48,6 @@ bandejas:
         precio: "46"
   - titulo: Caja personalizada
     nota: La montamos contigo. El precio depende de lo que lleve.
-  - titulo: Solo en Navidad
-    nota: No se
-    tamanos:
-      - nombre: Caja ritonka
-        detalle: Dos tabletas
-        precio: "3"
-      - nombre: Tabletas blancas
-        precio: "4"
 como_encargar: Se encargan por Instagram y se recogen en la tienda. Pídelas con
   antelación, sobre todo para fines de semana y fechas especiales.
 boton: Encargar por Instagram
