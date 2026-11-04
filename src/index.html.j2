@@ -93,7 +93,10 @@
 {% endfor %}
     <li class="nav-lang"><a href="{{ pag.otro }}" hreflang="{{ pag.otro_lang }}" lang="{{ pag.otro_lang }}" aria-label="{{ ui.idioma_otro_aria }}">{{ ui.idioma_otro }}</a></li>
   </ul>
-  <p class="nav-foot">{{ t.calle | replace('Calle ', '') }} · {{ t.codigo_postal }} {{ t.ciudad }}<br><a href="{{ ig_url }}" target="_blank" rel="noopener">{{ svg('instagram') }}@{{ t.instagram }}</a></p>
+  <div class="nav-foot">
+    <a class="nav-ig" href="{{ ig_url }}" target="_blank" rel="noopener" aria-label="Instagram @{{ t.instagram }}">{{ svg('instagram') }}</a>
+    <p><a href="{{ ig_url }}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">@{{ t.instagram }}</a><br>{{ t.calle | replace('Calle ', '') }} · {{ t.ciudad }}</p>
+  </div>
 </nav>
 
 <main>
