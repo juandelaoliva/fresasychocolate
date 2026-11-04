@@ -1,0 +1,46 @@
+{% extends 'legal.html.j2' %}
+{% block titulo %}Privacy and cookies{% endblock %}
+{% block antetitulo %}your data{% endblock %}
+{% block contenido %}
+  <p class="legal-nota">This is an English translation for convenience. If the two versions differ, the <a href="../privacidad.html" hreflang="es" lang="es">Spanish version</a> prevails.</p>
+  <p class="lead">In short: this website has no forms and uses no cookies{% if portada.cloudflare_analytics %}, and only counts visits anonymously{% else %} and does not measure your visits{% endif %}. We only handle the data you give us when you write to us.</p>
+
+  <h2>Data controller</h2>
+  <ul>
+    <li><strong>Controller:</strong> {{ t.titular }} ({{ t.nombre }})</li>
+    <li><strong>Tax ID (NIF):</strong> {{ t.nif }}</li>
+    <li><strong>Address:</strong> {{ domicilio }}</li>
+    <li><strong>Email:</strong> {% if t.email.startswith("[") %}{{ t.email }}{% else %}<a href="mailto:{{ t.email }}">{{ t.email }}</a>{% endif %}</li>
+  </ul>
+
+  <h2>What data we handle and why</h2>
+  <h3>When you visit the website</h3>
+  <p>This website does not ask you for data. To show it to you, the server that hosts it (GitHub Pages, by GitHub Inc.) records technical data such as your IP address, for security and so that the service works. We do not use that data. GitHub handles it according to its <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">privacy statement</a>.</p>
+  <p>Fonts, photos and videos are served from the website itself.</p>
+{% if portada.cloudflare_analytics %}
+  <h3>Visit statistics</h3>
+  <p>To know how many people visit the website and which sections interest them most, we use Cloudflare Web Analytics, by Cloudflare, Inc. It uses no cookies, stores nothing in your browser and does not identify you or follow you across other websites: it only provides aggregated counts (visits, page views, country, device type and which website you came from). To do this, your browser connects to Cloudflare when the page loads. Legal basis: our legitimate interest in knowing how the website is used. More information in <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare's privacy policy</a>.</p>
+{% else %}
+  <p>We do not use analytics tools: nothing is sent to other services when you view the website.</p>
+{% endif %}
+
+  <h3>If you write to us on Instagram or by email</h3>
+  <ul>
+    <li><strong>Data:</strong> whatever you send us (your name or username and what you tell us, for example an order or an allergy).</li>
+    <li><strong>Purpose:</strong> to reply to you and, if you place an order, to prepare it and let you know when to collect it.</li>
+    <li><strong>Legal basis:</strong> your consent when you write to us and, for orders, the pre-contractual steps you ask us to take.</li>
+    <li><strong>How long:</strong> as long as needed to attend to you and, after that, the period the law requires to meet legal obligations.</li>
+    <li><strong>Who receives it:</strong> nobody, unless required by law. Instagram messages go through Meta Platforms, which handles them under its own <a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener">privacy policy</a>.</li>
+  </ul>
+
+  <h3>The Google map</h3>
+  <p>The map in the Visit us section does not load until you press "Show the map here". When you press it, your browser connects to Google, which receives your IP address and may use cookies under its <a href="https://policies.google.com/privacy?hl=en" target="_blank" rel="noopener">privacy policy</a>. If you do not press it, Google receives nothing. The same applies to the buttons that open Google Maps or Instagram: they take you to those services.</p>
+
+  <h2>Cookies</h2>
+  <p>This website uses no first-party or third-party cookies, nor other technologies to track your browsing{% if portada.cloudflare_analytics %} (Cloudflare's statistics work without cookies){% endif %}. That is why we do not show you any cookie notice.</p>
+  <p>The only exception is the Google map, and only if you choose to load it: in that case Google may set its own cookies, as explained above.</p>
+
+  <h2>Your rights</h2>
+  <p>You can ask us at any time to access your data, correct it, delete it, restrict its use, object to our using it or take it to another service. Write to us at {% if t.email.startswith("[") %}{{ t.email }}{% else %}<a href="mailto:{{ t.email }}">{{ t.email }}</a>{% endif %} saying what you need.</p>
+  <p>If you believe we have not handled your data properly, you can complain to the Spanish Data Protection Agency (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>).</p>
+{% endblock %}

@@ -1,80 +1,108 @@
 antetitulo: la carta
+antetitulo_en: "the menu"
 titulo: Monta tu vaso
+titulo_en: "Build your cup"
 intro: Fresas frescas de Salamanca, chocolate belga Callebaut o la crema que más te guste, y un topping para terminar. Elige y te decimos el precio.
+intro_en: "Fresh strawberries from Salamanca, Belgian Callebaut chocolate or whichever cream you like best, and a topping to finish. Choose and we'll tell you the price."
 pedir_titulo: Pídelo así en la tienda
+pedir_titulo_en: "Order it like this in the shop"
 nota_alergenos: Alérgenos según la carta de la tienda. Si tienes alguna alergia, avísanos al pedir.
+nota_alergenos_en: "Allergens as listed on the shop's menu. If you have any allergy, let us know when you order."
 vaso:
   nombre: Vaso de fresas
+  nombre_en: "Cup of strawberries"
   precio: 3,50
   nota: 'La base: un vaso lleno de fresas.'
+  nota_en: "The base: a cup full of strawberries."
   foto: assets/img/insta/vaso-fresas.webp
   foto_alt: Vaso de fresas con la pegatina de Fresas y Chocolate
+  foto_alt_en: "Cup of strawberries with the Fresas y Chocolate sticker"
 cremas:
   titulo: Elige tu crema
+  titulo_en: "Choose your chocolate or cream"
   precio: 1,25
   video: assets/video/bano.mp4
   video_portada: assets/video/bano.webp
   video_alt: Bañando un vaso de fresas bajo la fuente de chocolate
+  video_alt_en: "Coating a cup of strawberries under the chocolate fountain"
   opciones:
   - nombre: Chocolate con leche
+    nombre_en: "Milk chocolate"
     alergenos:
     - leche
   - nombre: Chocolate blanco
+    nombre_en: "White chocolate"
     alergenos:
     - leche
   - nombre: Chocolate negro
+    nombre_en: "Dark chocolate"
     alergenos:
     - leche
   - nombre: Chocolate Dubái
+    nombre_en: "Dubai chocolate"
     alergenos_pendientes: true
   - nombre: Chocolate Tokyo
+    nombre_en: "Tokyo chocolate"
     alergenos_pendientes: true
   - nombre: Crema con avellanas
+    nombre_en: "Hazelnut cream"
     alergenos:
     - avellanas
   - nombre: Crema de leche condensada
+    nombre_en: "Condensed milk cream"
     alergenos:
     - leche
   - nombre: Nata montada
+    nombre_en: "Whipped cream"
     alergenos:
     - leche
 toppings:
   titulo: Elige tu topping
+  titulo_en: "Choose your topping"
   foto: assets/img/insta/copa-pistacho.webp
   foto_alt: Vaso de fresas con chocolate y Lacasitos por encima, junto a una copa de pistacho
+  foto_alt_en: "Cup of strawberries with chocolate and Lacasitos on top, next to a pistachio cup"
   foto_encuadre: 85% 60%
   grupos:
   - precio: 0,50
     opciones:
     - nombre: Crumble de Lotus
+      nombre_en: "Lotus crumble"
       alergenos:
       - gluten
       - soja
     - nombre: Crumble de Oreo
+      nombre_en: "Oreo crumble"
       alergenos:
       - gluten
       - soja
     - nombre: Coco
+      nombre_en: "Coconut"
       alergenos:
       - coco
     - nombre: Mikado
+      nombre_en: "Mikado"
       alergenos:
       - gluten
       - leche
       - soja
       - avellanas
     - nombre: Nubes
+      nombre_en: "Marshmallows"
   - precio: '1'
     opciones:
     - nombre: Crumble de pistacho
+      nombre_en: "Pistachio crumble"
       alergenos:
       - pistachos
     - nombre: Conguitos
+      nombre_en: "Conguitos"
       alergenos:
       - leche
       - soja
       - frutos de cáscara
     - nombre: Kinder Bueno
+      nombre_en: "Kinder Bueno"
       alergenos:
       - gluten
       - leche
@@ -82,9 +110,11 @@ toppings:
       - avellanas
       - mantequilla
     - nombre: Lacasitos
+      nombre_en: "Lacasitos"
       alergenos:
       - avellanas
     - nombre: Pistachos con chocolate
+      nombre_en: "Chocolate pistachios"
       alergenos:
       - gluten
       - leche
@@ -92,8 +122,10 @@ toppings:
       - pistachos
       - avellanas
     - nombre: Avellanas con chocolate negro
+      nombre_en: "Dark chocolate hazelnuts"
       alergenos:
       - avellanas
     - nombre: Crumble de avellanas caramelizadas
+      nombre_en: "Caramelised hazelnut crumble"
       alergenos:
       - avellanas

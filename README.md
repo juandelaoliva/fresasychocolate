@@ -21,6 +21,8 @@ Pages CMS → content/*.yml en GitHub → GitHub Actions ejecuta build.py → Gi
 - [Estructura del repositorio](#estructura-del-repositorio)
 - [Cómo se genera la web (build.py)](#cómo-se-genera-la-web-buildpy)
 - [Publicación](#publicación)
+- [Versión en inglés](#versión-en-inglés)
+- [Pantalla «Muy pronto»](#pantalla-muy-pronto)
 - [Pages CMS](#pages-cms)
 - [Diseño y secciones](#diseño-y-secciones)
 - [El hero](#el-hero)
@@ -54,7 +56,9 @@ commits y es fácil que haya cambios nuevos.
 ```
 content/*.yml              el contenido: lo que se edita desde Pages CMS (un archivo por sección)
 src/index.html.j2          plantilla de la página (Jinja2)
-src/llms.txt.j2            ficha de la tienda para asistentes de IA
+src/llms.txt.j2            ficha de la tienda para asistentes de IA (llms.en.txt.j2, en inglés)
+src/i18n.yml               textos fijos en español e inglés
+src/pronto.html.j2         pantalla «Muy pronto»
 src/sitemap.xml.j2         sitemap
 src/robots.txt.j2          robots.txt
 src/legal.html.j2          base de las páginas legales: aviso-legal.html.j2 y privacidad.html.j2
@@ -143,6 +147,47 @@ y se queda con la última, que ya incluye los dos. Verás publicaciones "cancell
 **Configuración necesaria en GitHub:** Settings › Pages › Build and deployment › Source:
 **GitHub Actions**. Si se deja en "Deploy from a branch", GitHub publica también la rama tal
 cual y, como el repositorio no tiene `index.html`, la web enseña el README.
+
+## Versión en inglés
+
+La web está en español en la raíz y en inglés en `/en/` (https://fresasychocolate.com/en/). Hay un
+selector ES / EN en la barra (escritorio), en el menú (móvil) y en el pie.
+
+- **Textos de la tienda.** Cada texto traducible lleva un hermano con el sufijo `_en` en
+  `content/*.yml` (`titulo` / `titulo_en`). En Pages CMS salen como «… (inglés)» justo debajo del
+  campo en español. Si un `_en` está vacío, la versión inglesa usa el español, y `build.py` avisa
+  de cuántos textos faltan por traducir.
+- **Datos que se escriben una vez.** Precios, fotos, vídeos, alérgenos, horas, enlaces y
+  coordenadas valen para los dos idiomas. Los alérgenos se muestran con su nombre en inglés
+  (`ALERGENOS_EN` en `build.py`).
+- **Textos fijos** (menús, botones, avisos, textos de los JS): `src/i18n.yml`, con un bloque `es`
+  y otro `en`. No se editan desde el CMS. Los JS los leen de `window.UI`, que escribe la página.
+- **Páginas legales.** `aviso-legal.en.html.j2` y `privacidad.en.html.j2` son una traducción de
+  cortesía (si difieren, prevalece el español). Salen como `/en/legal-notice.html` y
+  `/en/privacy.html`.
+- **SEO.** Cada página lleva su canónica y `hreflang` es / en / x-default. El JSON-LD, las
+  preguntas automáticas y `llms.txt` se generan también en inglés (`/en/llms.txt`), y el sitemap
+  lista las dos versiones.
+- **Rutas.** La página inglesa está una carpeta más abajo: las plantillas anteponen `{{ base }}`
+  (`''` o `'../'`) a css, js y assets, y `hero.js` usa `window.SITE_BASE`. Al añadir un recurso
+  nuevo en una plantilla, ponle `{{ base }}`.
+- **Cambiar una traducción:** edita el campo `_en` en Pages CMS o en `content/*.yml`. Para un
+  texto fijo, edita `src/i18n.yml`.
+- La presentación para el cliente (`/presentacion/`) se queda solo en español.
+
+## Pantalla «Muy pronto»
+
+`content/pronto.yml` controla una pantalla de espera bilingüe (`src/pronto.html.j2`).
+
+- Con `activo: true`, la dirección principal enseña solo esa pantalla. La web completa se sigue
+  generando en una dirección secreta, `/<clave>.html` (y `/en/<clave>.html`), sin indexar, para
+  que el equipo la revise. La pantalla y esas páginas llevan `noindex`, `robots.txt` cierra el
+  paso y no se generan `sitemap.xml` ni `llms.txt`.
+- La clave (`clave`) necesita al menos 8 letras, números o guiones.
+- Con `activo: false` la web sale con normalidad.
+- Mientras está activa, el móvil de la presentación carga la web completa de la clave.
+- El botón «Cómo llegar» va a Google Maps y el enlace de Instagram sale debajo. La imagen para
+  compartir es `assets/og/og-pronto.jpg`.
 
 ## Pages CMS
 
@@ -262,7 +307,7 @@ Para que el vídeo funcione bien en el hero:
 La web está preparada para Google (SEO local) y para que los asistentes de IA (ChatGPT,
 Perplexity, Gemini, el modo IA de Google…) encuentren la tienda y la citen con datos correctos (GEO).
 
-- **`<head>`:** título, descripción, URL canónica, tarjetas para compartir (`assets/og/og.jpg`)
+- **`<head>`:** título, descripción, URL canónica, tarjetas para compartir (`assets/og/og-pronto.jpg`)
   y coordenadas de la tienda.
 - **Datos estructurados (JSON-LD):** la tienda (`FoodEstablishment`) con dirección, coordenadas,
   horario, Instagram y forma de encargar; la carta completa con precios (`Menu`); la web; y las
@@ -360,7 +405,6 @@ web dentro del móvil (o tocar el móvil) y F para pantalla completa.
   en Visítanos y en los datos para Google.
 
 *Oportunidades*
-- Versión en inglés de la web (turistas y Erasmus).
 - Página de encargos (San Valentín, Día de la Madre…).
 - Hero más ligero en móvil: cargar los fotogramas después del resto, o menos con ahorro de datos.
 - Fijar `runs-on: ubuntu-24.04` en la publicación. GitHub pasará `ubuntu-latest` a Ubuntu 26 y

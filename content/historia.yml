@@ -1,24 +1,40 @@
 # Las fresas, el chocolate y quiénes somos.
 fresas:
   antetitulo: las fresas
+  antetitulo_en: "the strawberries"
   titulo: De Salamanca
+  titulo_en: "From Salamanca"
   texto: Trabajamos con fresas nacionales y de proximidad, cultivadas aquí, en Salamanca.
+  texto_en: "We work with Spanish, locally grown strawberries, cultivated right here in Salamanca."
   foto: assets/img/insta/fresas-cajas.webp
   foto_alt: Cajas de madera llenas de fresas recién recogidas
+  foto_alt_en: "Wooden crates full of freshly picked strawberries"
 chocolate:
   antetitulo: y el chocolate
+  antetitulo_en: "and the chocolate"
   titulo: Belga, de Callebaut
+  titulo_en: "Belgian, from Callebaut"
   texto: Bañamos las fresas en chocolate belga Callebaut.
+  texto_en: "We dip our strawberries in Belgian Callebaut chocolate."
   video: assets/video/fuente.mp4
   video_portada: assets/video/fuente.webp
   video_alt: La fuente de chocolate llenando un vaso de fresas en la barra de la tienda
+  video_alt_en: "The chocolate fountain filling a cup of strawberries at the shop counter"
 nosotras:
   antetitulo: quiénes somos
+  antetitulo_en: "about us"
   titulo: Rosi
+  titulo_en: "Rosi"
   texto: |-
     Rosi abrió Fresas y Chocolate en 2024, en la calle Espoz y Mina, y lo ha levantado con mucho amor y mucho esfuerzo.
 
     Su idea era sencilla: fresas de aquí, chocolate belga del bueno y cada vaso montado al momento, a tu gusto. Su hija Adri le echa una mano con todo.
+  texto_en: |-
+    Rosi opened Fresas y Chocolate in 2024, on Calle Espoz y Mina, and has built it with a lot of love and a lot of hard work.
+
+    Her idea was simple: local strawberries, good Belgian chocolate and every cup made on the spot, just the way you like it. Her daughter Adri lends a hand with everything.
   firma: ¡Te esperamos!
+  firma_en: "We look forward to seeing you!"
   foto: assets/img/insta/rosi-adri.webp
   foto_alt: Rosi y Adri sonriendo en la tienda, delante del logo dorado de Fresas y Chocolate
+  foto_alt_en: "Rosi and Adri smiling in the shop, in front of the golden Fresas y Chocolate logo"

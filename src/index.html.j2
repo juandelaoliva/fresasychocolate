@@ -1,6 +1,6 @@
 {% set t = tienda %}
 {% set ig_url = 'https://www.instagram.com/' ~ t.instagram ~ '/' %}
-{% macro foto(path, alt, donde='', cls='', extra='') %}{% set f = img(path, alt, donde) %}<img{% if cls %} class="{{ cls }}"{% endif %} src="{{ f.src }}" alt="{{ alt }}" loading="lazy" width="{{ f.width }}" height="{{ f.height }}"{{ extra }}>{% endmacro %}
+{% macro foto(path, alt, donde='', cls='', extra='') %}{% set f = img(path, alt, donde) %}<img{% if cls %} class="{{ cls }}"{% endif %} src="{{ base }}{{ f.src }}" alt="{{ alt }}" loading="lazy" width="{{ f.width }}" height="{{ f.height }}"{{ extra }}>{% endmacro %}
 {# Galería deslizable de fotos y vídeos (Para beber, Por encargo). Los vídeos se reproducen sin
    sonido mientras se ven (js/videos.js); las flechas solo aparecen con ratón (js/carrusel.js). #}
 {% macro galeria(items, donde, cls='') %}
@@ -9,83 +9,89 @@
 {% for f in items %}
 {% if f.video %}
 {% set v = video(f.video, f.foto, donde) %}
-        <video role="listitem" class="loop" muted loop playsinline preload="none"{% if v.poster %} poster="{{ v.poster }}"{% endif %} data-src="{{ v.src }}" aria-label="{{ f.alt }}"></video>
+        <video role="listitem" class="loop" muted loop playsinline preload="none"{% if v.poster %} poster="{{ base }}{{ v.poster }}"{% endif %} data-src="{{ base }}{{ v.src }}" aria-label="{{ f.alt }}"></video>
 {% else %}
         {{ foto(f.foto, f.alt, donde, extra=' role="listitem"' | safe) }}
 {% endif %}
 {% endfor %}
         <a role="listitem" class="ig-card" href="{{ ig_url }}" target="_blank" rel="noopener">
           {{ svg('simbolo') }}
-          <span class="ig-card-t">Hay mucho más en Instagram</span>
+          <span class="ig-card-t">{{ ui.ig_card_t }}</span>
           <span class="ig-card-u">{{ svg('instagram') }}@{{ t.instagram }}</span>
-          <span class="ig-card-b">Seguir viendo {{ svg('flecha') }}</span>
+          <span class="ig-card-b">{{ ui.ig_card_b }} {{ svg('flecha') }}</span>
         </a>
       </div>
       <div class="carrusel-nav" hidden>
-        <button type="button" class="carrusel-btn" data-dir="-1" aria-label="Anterior"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button type="button" class="carrusel-btn" data-dir="1" aria-label="Siguiente"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="carrusel-btn" data-dir="-1" aria-label="{{ ui.anterior }}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="carrusel-btn" data-dir="1" aria-label="{{ ui.siguiente }}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
     </div>
 {% endmacro %}
 {# Alérgenos en el orden de la carta; las opciones aún sin confirmar mandan a preguntar en tienda. #}
-{% macro alergenos_de(op) %}{% if op.alergenos_pendientes %} data-al-pending{% elif op.alergenos %} data-al="{{ alergenos | select('in', op.alergenos) | join(',') }}"{% endif %}{% endmacro %}
+{% macro alergenos_de(op) %}{% if op.alergenos_pendientes %} data-al-pending{% elif op.alergenos %} data-al="{{ al_nombres(op.alergenos) | join(',') }}"{% endif %}{% endmacro %}
 <!doctype html>
-<html lang="es-ES" class="no-js">
+<html lang="{{ ui.html_lang }}" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{ portada.seo_titulo }}</title>
 <meta name="description" content="{{ portada.seo_descripcion }}">
-<link rel="canonical" href="{{ site }}">
+<link rel="canonical" href="{{ pag.canonica }}">
+<link rel="alternate" hreflang="es" href="{{ pag.es }}">
+<link rel="alternate" hreflang="en" href="{{ pag.en }}">
+<link rel="alternate" hreflang="x-default" href="{{ pag.es }}">
 <meta name="robots" content="{{ 'noindex, nofollow' if noindex else 'index, follow, max-image-preview:large' }}">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="es_ES">
+<meta property="og:locale" content="{{ ui.locale if lang == 'es' else 'en_GB' }}">
+<meta property="og:locale:alternate" content="{{ 'en_GB' if lang == 'es' else 'es_ES' }}">
 <meta property="og:site_name" content="{{ t.nombre }}">
 <meta property="og:title" content="{{ portada.seo_titulo }}">
 <meta property="og:description" content="{{ portada.seo_descripcion }}">
-<meta property="og:url" content="{{ site }}">
+<meta property="og:url" content="{{ pag.canonica }}">
 <meta property="og:image" content="{{ site }}assets/og/og-pronto.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Fresa bañada en chocolate junto al logo de {{ t.nombre }}">
+<meta property="og:image:alt" content="{{ ui.og_alt.format(nombre=t.nombre) }}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="geo.region" content="ES-SA">
 <meta name="geo.placename" content="{{ t.ciudad }}">
 <meta name="geo.position" content="{{ t.latitud }};{{ t.longitud }}">
 <meta name="ICBM" content="{{ t.latitud }}, {{ t.longitud }}">
 <meta name="theme-color" content="#abc4a9">
-<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
-<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/jost-300-latin.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="assets/fonts/italiana-400-latin.woff2" crossorigin>
-<link rel="stylesheet" href="css/fonts.css">
-<link rel="preload" as="image" href="assets/hero/frames/0030.webp">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="icon" href="{{ base }}assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{{ base }}assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ base }}assets/icons/apple-touch-icon.png">
+<link rel="preload" as="font" type="font/woff2" href="{{ base }}assets/fonts/jost-300-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="{{ base }}assets/fonts/italiana-400-latin.woff2" crossorigin>
+<link rel="stylesheet" href="{{ base }}css/fonts.css">
+<link rel="preload" as="image" href="{{ base }}assets/hero/frames/0030.webp">
+<link rel="stylesheet" href="{{ base }}css/styles.css">
 <script type="application/ld+json">{{ jsonld }}</script>
-<script>document.documentElement.classList.replace('no-js', 'js');</script>
+<script>document.documentElement.classList.replace('no-js', 'js');window.SITE_BASE={{ base | tojson }};window.UI={{ ui_js }};</script>
 </head>
 <body>
-<a class="skip" href="#carta">Saltar a la carta</a>
+<a class="skip" href="#carta">{{ ui.saltar }}</a>
 
-{% set secciones = [('#carta', carta.titulo), ('#bebidas', 'Para beber'), ('#encargos', encargos.titulo), ('#nosotras', 'Quiénes somos'), ('#preguntas', 'Preguntas'), ('#visita', 'Visítanos')] %}
+{% set secciones = [('#carta', carta.titulo), ('#bebidas', ui.nav_bebidas), ('#encargos', encargos.titulo), ('#nosotras', ui.nav_nosotras), ('#preguntas', ui.nav_preguntas), ('#visita', ui.nav_visita)] %}
 <header class="topbar" id="topbar">
-  <a class="topbar-logo" href="#hero" aria-label="{{ t.nombre }}, ir al inicio">{{ svg('simbolo') }}{{ svg('logo-horizontal') }}</a>
+  <a class="topbar-logo" href="#hero" aria-label="{{ t.nombre }}, {{ ui.ir_inicio }}">{{ svg('simbolo') }}{{ svg('logo-horizontal') }}</a>
   {# Desktop: the sections inline, the last one as a button; the burger and its panel are for phones. #}
-  <nav class="topnav" aria-label="Secciones">
+  <nav class="topnav" aria-label="{{ ui.nav_secciones }}">
     <ul>
 {% for href, texto in secciones %}
       <li><a href="{{ href }}"{% if loop.last %} class="topnav-cta"{% endif %}>{{ texto }}</a></li>
 {% endfor %}
+      <li class="topnav-lang"><a href="{{ pag.otro }}" hreflang="{{ pag.otro_lang }}" lang="{{ pag.otro_lang }}" aria-label="{{ ui.idioma_otro_aria }}">{{ ui.idioma_otro_code }}</a></li>
     </ul>
   </nav>
-  <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="{{ ui.abrir_menu }}"><span></span><span></span><span></span></button>
 </header>
-<nav class="nav-panel" id="nav-panel" aria-label="Menú principal" hidden>
+<nav class="nav-panel" id="nav-panel" aria-label="{{ ui.nav_menu }}" hidden>
   <ul>
 {% for href, texto in secciones %}
     <li><a href="{{ href }}">{{ texto }}</a></li>
 {% endfor %}
+    <li class="nav-lang"><a href="{{ pag.otro }}" hreflang="{{ pag.otro_lang }}" lang="{{ pag.otro_lang }}" aria-label="{{ ui.idioma_otro_aria }}">{{ ui.idioma_otro }}</a></li>
   </ul>
   <p class="nav-foot">{{ t.calle | replace('Calle ', '') }} · {{ t.codigo_postal }} {{ t.ciudad }}<br><a href="{{ ig_url }}" target="_blank" rel="noopener">{{ svg('instagram') }}@{{ t.instagram }}</a></p>
 </nav>
@@ -99,14 +105,14 @@
       </div>
       <div class="hero-stage">
         <canvas id="hero-canvas" aria-hidden="true"></canvas>
-        <img class="hero-poster" src="assets/hero/poster.webp" alt="Una fresa bañada en chocolate" width="720" height="1280">
+        <img class="hero-poster" src="{{ base }}assets/hero/poster.webp" alt="{{ ui.poster_alt }}" width="720" height="1280">
       </div>
-      <p class="hint" id="hero-hint">{{ svg('flecha') }}Desliza</p>
+      <p class="hint" id="hero-hint">{{ svg('flecha') }}{{ ui.desliza }}</p>
       <div class="hero-close" id="hero-close">
         <p class="lema">{{ portada.lema }}</p>
         <div class="actions">
-          <a class="btn primary" href="#carta">Ver la carta</a>
-          <a class="btn" href="#visita">Cómo llegar</a>
+          <a class="btn primary" href="#carta">{{ ui.ver_carta }}</a>
+          <a class="btn" href="#visita">{{ ui.como_llegar }}</a>
         </div>
       </div>
     </div>
@@ -120,7 +126,7 @@
       <h2 class="display" id="vaso-t">{{ carta.titulo }}</h2>
       <p class="lead">{{ carta.intro }}</p>
 
-      <form class="builder" id="builder" aria-describedby="builder-total" data-base="{{ carta.vaso.precio }}" data-alergenos="{{ alergenos | join(',') }}">
+      <form class="builder" id="builder" aria-describedby="builder-total" data-base="{{ carta.vaso.precio }}" data-alergenos="{{ alergenos_orden | join(',') }}">
         <div class="paso p1">
           <div class="paso-media">{{ foto(carta.vaso.foto, carta.vaso.foto_alt, 'Monta tu vaso › vaso') }}</div>
           <div class="paso-body">
@@ -130,12 +136,12 @@
         </div>
 
         <fieldset class="paso p2">
-          <legend class="sr-only">Paso 2: {{ carta.cremas.titulo | lower }}, +{{ carta.cremas.precio | euros }}</legend>
-          <div class="paso-media"><video class="loop" muted loop playsinline preload="none" poster="{{ carta.cremas.video_portada | ruta }}" data-src="{{ carta.cremas.video | ruta }}" aria-label="{{ carta.cremas.video_alt }}"></video></div>
+          <legend class="sr-only">{{ ui.paso.format(n=2) }}: {{ carta.cremas.titulo | lower }}, +{{ carta.cremas.precio | euros }}</legend>
+          <div class="paso-media"><video class="loop" muted loop playsinline preload="none" poster="{{ base }}{{ carta.cremas.video_portada | ruta }}" data-src="{{ base }}{{ carta.cremas.video | ruta }}" aria-label="{{ carta.cremas.video_alt }}"></video></div>
           <div class="paso-body">
           <p class="paso-t" aria-hidden="true"><span class="n">2</span> {{ carta.cremas.titulo }} <span class="p">+{{ carta.cremas.precio | euros }}</span></p>
           <div class="chips">
-            <label class="chip"><input type="radio" name="crema" value="" data-price="0" checked><span>Sin crema</span></label>
+            <label class="chip"><input type="radio" name="crema" value="" data-price="0" checked><span>{{ ui.sin_crema }}</span></label>
 {% for op in carta.cremas.opciones %}
             <label class="chip"><input type="radio" name="crema" value="{{ op.nombre }}" data-price="{{ carta.cremas.precio }}"{{ alergenos_de(op) }}><span>{{ op.nombre }}</span></label>
 {% endfor %}
@@ -144,12 +150,12 @@
         </fieldset>
 
         <fieldset class="paso p3">
-          <legend class="sr-only">Paso 3: {{ carta.toppings.titulo | lower }}</legend>
+          <legend class="sr-only">{{ ui.paso.format(n=3) }}: {{ carta.toppings.titulo | lower }}</legend>
           <div class="paso-media">{{ foto(carta.toppings.foto, carta.toppings.foto_alt, 'Monta tu vaso › toppings', extra=(' style="object-position: ' ~ carta.toppings.foto_encuadre ~ '"') | safe if carta.toppings.foto_encuadre else '') }}</div>
           <div class="paso-body">
           <p class="paso-t" aria-hidden="true"><span class="n">3</span> {{ carta.toppings.titulo }}</p>
           <div class="chips">
-            <label class="chip"><input type="radio" name="topping" value="" data-price="0" checked><span>Sin topping</span></label>
+            <label class="chip"><input type="radio" name="topping" value="" data-price="0" checked><span>{{ ui.sin_topping }}</span></label>
           </div>
 {% for g in carta.toppings.grupos %}
           <p class="tier">+{{ g.precio | euros }}</p>
@@ -165,16 +171,16 @@
         <div class="total" id="builder-total" aria-live="polite">
           <p class="total-desc" id="total-desc">{{ carta.vaso.nombre }}</p>
           <p class="total-price"><output id="total-price" for="builder">{{ carta.vaso.precio | euros }}</output></p>
-          <p class="total-al" id="total-al">Sin alérgenos de la carta</p>
+          <p class="total-al" id="total-al">{{ ui.sin_alergenos }}</p>
         </div>
       </form>
 
       <div class="pedir">
-        <p class="pedir-t">{{ carta.pedir_titulo or 'Pídelo así en la tienda' }}</p>
+        <p class="pedir-t">{{ carta.pedir_titulo or ui.pedir_defecto }}</p>
         <p class="pedir-hoy" id="pedir-hoy" data-horario='{{ t.horario | map(attribute="dias_semana") | list | tojson }}' data-abre='{{ t.horario | map(attribute="abre") | list | tojson }}' data-cierra='{{ t.horario | map(attribute="cierra") | list | tojson }}'>{{ t.calle | replace('Calle ', '') }}</p>
         <div class="actions">
-          <a class="btn primary" href="{{ t.google_maps }}" target="_blank" rel="noopener">Abrir en Google Maps</a>
-          <a class="btn" href="https://ig.me/m/{{ t.instagram }}" target="_blank" rel="noopener">{{ svg('instagram') }}Escríbenos por Instagram</a>
+          <a class="btn primary" href="{{ t.google_maps }}" target="_blank" rel="noopener">{{ ui.abrir_maps }}</a>
+          <a class="btn" href="https://ig.me/m/{{ t.instagram }}" target="_blank" rel="noopener">{{ svg('instagram') }}{{ ui.escribenos_ig }}</a>
         </div>
         <p class="alergenos">{{ carta.nota_alergenos }}</p>
       </div>
@@ -249,7 +255,7 @@
       <p class="kicker">{{ h.chocolate.antetitulo }}</p>
       <h2 class="display" id="chocolate-t">{{ h.chocolate.titulo }}</h2>
       <p class="lead">{{ h.chocolate.texto }}</p>
-      <div class="chocolate-video"><video class="loop" muted loop playsinline preload="none" poster="{{ h.chocolate.video_portada | ruta }}" data-src="{{ h.chocolate.video | ruta }}" aria-label="{{ h.chocolate.video_alt }}"></video></div>
+      <div class="chocolate-video"><video class="loop" muted loop playsinline preload="none" poster="{{ base }}{{ h.chocolate.video_portada | ruta }}" data-src="{{ base }}{{ h.chocolate.video | ruta }}" aria-label="{{ h.chocolate.video_alt }}"></video></div>
     </div>
   </section>
 
@@ -278,12 +284,12 @@
     <div class="wrap">
       <p class="kicker">{{ instagram.antetitulo }}</p>
       <h2 class="display" id="insta-t">{{ instagram.titulo }}</h2>
-      <a class="mosaic" href="{{ ig_url }}" target="_blank" rel="noopener" aria-label="Ver más fotos en el Instagram de {{ t.nombre }}">
+      <a class="mosaic" href="{{ ig_url }}" target="_blank" rel="noopener" aria-label="{{ ui.mosaico_aria.format(nombre=t.nombre) }}">
 {% for f in instagram.fotos %}
         {{ foto(f.foto, f.alt, 'Instagram › fotos') }}
 {% endfor %}
       </a>
-      <a class="btn" href="{{ ig_url }}" target="_blank" rel="noopener">{{ svg('instagram') }}Ver @{{ t.instagram }}</a>
+      <a class="btn" href="{{ ig_url }}" target="_blank" rel="noopener">{{ svg('instagram') }}{{ ui.ver_arroba.format(ig=t.instagram) }}</a>
     </div>
   </section>
 
@@ -304,15 +310,15 @@
 
   <section class="block visita" id="visita" aria-labelledby="visita-t">
     <div class="wrap">
-      <img class="fachada" src="assets/img/fachada.webp" alt="Ilustración de la fachada de {{ t.nombre }} en {{ t.calle | replace('Calle ', '') }}" loading="lazy" width="900" height="1600">
+      <img class="fachada" src="{{ base }}assets/img/fachada.webp" alt="{{ ui.fachada_alt.format(nombre=t.nombre, calle=t.calle | replace('Calle ', '')) }}" loading="lazy" width="900" height="1600">
       <div>
-        <p class="kicker">visítanos</p>
+        <p class="kicker">{{ ui.kicker_visita }}</p>
 {% set calle = t.calle | replace('Calle ', '') %}
 {% set partes = calle.rsplit(' ', 1) %}
         <h2 class="display" id="visita-t">{% if partes | length == 2 and partes[1].isdigit() %}{{ partes[0] }} <span class="num">{{ partes[1] }}</span>{% else %}{{ calle }}{% endif %}</h2>
         <address class="addr">{{ t.calle }}<br>{{ t.codigo_postal }} {{ t.ciudad }}{% if t.telefono and not t.telefono.startswith('[') %}<br><a href="tel:{{ t.telefono | replace(' ', '') }}">{{ t.telefono }}</a>{% endif %}{% if t.email and not t.email.startswith('[') %}<br><a href="mailto:{{ t.email }}">{{ t.email }}</a>{% endif %}</address>
         <div class="horario">
-          <h3>Horario</h3>
+          <h3>{{ ui.horario }}</h3>
           <dl>
 {% for x in t.horario %}
             <div><dt>{{ x.dias }}</dt><dd>{{ x.abre }} – {{ x.cierra }}</dd></div>
@@ -320,16 +326,16 @@
           </dl>
         </div>
         <div class="actions">
-          <a class="btn gold" href="{{ t.google_maps }}" target="_blank" rel="noopener">Abrir en Google Maps</a>
+          <a class="btn gold" href="{{ t.google_maps }}" target="_blank" rel="noopener">{{ ui.abrir_maps }}</a>
           <a class="btn" href="{{ ig_url }}" target="_blank" rel="noopener">{{ svg('instagram') }}Instagram</a>
         </div>
 {# The Google map only loads when asked for (js/mapa.js): until then Google receives nothing. #}
-        <div class="mapa" id="mapa" data-src="https://maps.google.com/maps?q={{ (t.nombre ~ ', ' ~ t.calle ~ ', ' ~ t.ciudad) | urlencode }}&amp;output=embed&amp;hl=es&amp;z=16" data-title="Ubicación de {{ t.nombre }}">
+        <div class="mapa" id="mapa" data-src="https://maps.google.com/maps?q={{ (t.nombre ~ ', ' ~ t.calle ~ ', ' ~ t.ciudad) | urlencode }}&amp;output=embed&amp;hl={{ ui.maps_hl }}&amp;z=16" data-title="{{ ui.ubicacion.format(nombre=t.nombre) }}">
           <div class="mapa-aviso">
             {{ svg('simbolo') }}
             <p class="mapa-dir">{{ t.calle }}<br>{{ t.codigo_postal }} {{ t.ciudad }}</p>
-            <button type="button" class="btn mapa-btn" hidden>Ver el mapa aquí</button>
-            <p class="mapa-nota">Al cargarlo, Google recibe tu visita.</p>
+            <button type="button" class="btn mapa-btn" hidden>{{ ui.ver_mapa }}</button>
+            <p class="mapa-nota">{{ ui.mapa_nota }}</p>
           </div>
         </div>
       </div>
@@ -339,14 +345,14 @@
 
 {% include 'pie.html.j2' %}
 
-<script src="assets/hero/manifest.js"></script>
-<script src="js/hero.js"></script>
-<script src="js/menu.js"></script>
-<script src="js/vaso.js"></script>
-<script src="js/videos.js"></script>
-<script src="js/faq.js"></script>
-<script src="js/carrusel.js"></script>
-<script src="js/mapa.js"></script>
+<script src="{{ base }}assets/hero/manifest.js"></script>
+<script src="{{ base }}js/hero.js"></script>
+<script src="{{ base }}js/menu.js"></script>
+<script src="{{ base }}js/vaso.js"></script>
+<script src="{{ base }}js/videos.js"></script>
+<script src="{{ base }}js/faq.js"></script>
+<script src="{{ base }}js/carrusel.js"></script>
+<script src="{{ base }}js/mapa.js"></script>
 {% include 'analitica.html.j2' %}
 </body>
 </html>

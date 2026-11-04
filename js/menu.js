@@ -4,10 +4,11 @@
   const burger = document.getElementById('burger');
   const panel = document.getElementById('nav-panel');
   if (!burger || !panel) return;
+  const T = Object.assign({ abrir_menu: 'Abrir menú', cerrar_menu: 'Cerrar menú' }, window.UI);
 
   function set(open) {
     burger.setAttribute('aria-expanded', String(open));
-    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    burger.setAttribute('aria-label', open ? T.cerrar_menu : T.abrir_menu);
     panel.hidden = !open;
     document.documentElement.classList.toggle('nav-open', open);
     if (open) panel.querySelector('a').focus();

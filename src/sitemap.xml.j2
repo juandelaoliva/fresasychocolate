@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{% for u, otro in [(site, site ~ 'en/'), (site ~ 'en/', site)] %}
   <url>
-    <loc>{{ site }}</loc>
+    <loc>{{ u }}</loc>
     <lastmod>{{ hoy }}</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="{{ site }}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ site }}en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ site }}"/>
     <image:image><image:loc>{{ site }}assets/og/og-pronto.jpg</image:loc></image:image>
     <image:image><image:loc>{{ site }}{{ img(carta.vaso.foto).src }}</image:loc></image:image>
     <image:image><image:loc>{{ site }}{{ img(historia.nosotras.foto).src }}</image:loc></image:image>
@@ -11,4 +15,5 @@
 {% endfor %}
     <image:image><image:loc>{{ site }}{{ img(historia.fresas.foto).src }}</image:loc></image:image>
   </url>
+{% endfor %}
 </urlset>

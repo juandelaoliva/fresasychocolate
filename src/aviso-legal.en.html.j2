@@ -1,0 +1,41 @@
+{% extends 'legal.html.j2' %}
+{% block titulo %}Legal notice{% endblock %}
+{% block antetitulo %}legal information{% endblock %}
+{% block contenido %}
+  <p class="legal-nota">This is an English translation for convenience. If the two versions differ, the <a href="../aviso-legal.html" hreflang="es" lang="es">Spanish version</a> prevails.</p>
+
+  <h2>Website owner</h2>
+  <p>In compliance with Article 10 of Spanish Law 34/2002 on information society services and electronic commerce (LSSI), these are the details of the owner of {{ site }}:</p>
+  <ul>
+    <li><strong>Owner:</strong> {{ t.titular }}</li>
+    <li><strong>Tax ID (NIF):</strong> {{ t.nif }}</li>
+    <li><strong>Shop address:</strong> {{ domicilio }}</li>
+    <li><strong>Email:</strong> {% if t.email.startswith("[") %}{{ t.email }}{% else %}<a href="mailto:{{ t.email }}">{{ t.email }}</a>{% endif %}</li>
+{% if t.telefono %}
+    <li><strong>Phone:</strong> <a href="tel:{{ t.telefono | replace(' ', '') }}">{{ t.telefono }}</a></li>
+{% endif %}
+    <li><strong>Trade name:</strong> {{ t.nombre }}</li>
+  </ul>
+
+  <h2>What this website is for</h2>
+  <p>This website gives information about the shop {{ t.nombre }}: its menu, prices, opening hours, orders and how to find us. Nothing is sold through it. Orders are placed in the shop, and made-to-order trays are requested by Instagram message.</p>
+
+  <h2>Prices, menu and allergens</h2>
+  <p>We try to keep the information on the website up to date, but prices, products and opening hours may change. The ones that count are those in the shop at the time of purchase.</p>
+  <p>The allergen information comes from the shop's menu and is for guidance only. If you have an allergy or intolerance, always tell us when you order and we will inform you on the spot.</p>
+
+  <h2>Intellectual property</h2>
+  <p>The texts, photographs, videos, logos, illustrations and design of this website belong to {{ t.titular }} or are used with their authors' permission. They may not be copied, distributed or used for commercial purposes without authorisation.</p>
+
+  <h2>Links to other websites</h2>
+  <p>The website links to Instagram and Google Maps. When you follow those links you leave this website and the terms and privacy policies of those services apply. We are not responsible for them.</p>
+
+  <h2>Liability</h2>
+  <p>We are not liable for any damage that may arise from service interruptions, errors in the content or viruses, provided that we have acted with due diligence.</p>
+
+  <h2>Privacy</h2>
+  <p>How we handle personal data is explained in the <a href="privacy.html">privacy and cookies policy</a>.</p>
+
+  <h2>Applicable law</h2>
+  <p>This legal notice is governed by Spanish law.</p>
+{% endblock %}

@@ -1,0 +1,155 @@
+# Textos fijos de la web (menús, botones, avisos) en cada idioma. No son contenido que edite el CMS:
+# los textos de la tienda (carta, historia…) llevan su traducción en content/*.yml con el sufijo _en.
+# Los valores con {llaves} se rellenan en la plantilla con .format().
+es:
+  lang: es
+  locale: es_ES
+  html_lang: es-ES
+  maps_hl: es
+  saltar: Saltar a la carta
+  nav_bebidas: Para beber
+  nav_nosotras: Quiénes somos
+  nav_preguntas: Preguntas
+  nav_visita: Visítanos
+  nav_secciones: Secciones
+  nav_menu: Menú principal
+  abrir_menu: Abrir menú
+  ir_inicio: ir al inicio
+  poster_alt: Una fresa bañada en chocolate
+  og_alt: "Fresa bañada en chocolate junto al logo de {nombre}"
+  desliza: Desliza
+  ver_carta: Ver la carta
+  como_llegar: Cómo llegar
+  paso: "Paso {n}"
+  sin_crema: Sin crema
+  sin_topping: Sin topping
+  sin_alergenos: Sin alérgenos de la carta
+  pedir_defecto: Pídelo así en la tienda
+  abrir_maps: Abrir en Google Maps
+  escribenos_ig: Escríbenos por Instagram
+  anterior: Anterior
+  siguiente: Siguiente
+  ig_card_t: Hay mucho más en Instagram
+  ig_card_b: Seguir viendo
+  mosaico_aria: "Ver más fotos en el Instagram de {nombre}"
+  ver_arroba: "Ver @{ig}"
+  kicker_visita: visítanos
+  fachada_alt: "Ilustración de la fachada de {nombre} en {calle}"
+  horario: Horario
+  ubicacion: "Ubicación de {nombre}"
+  ver_mapa: Ver el mapa aquí
+  mapa_nota: Al cargarlo, Google recibe tu visita.
+  aviso_legal: Aviso legal
+  privacidad: Privacidad y cookies
+  hecho_por: Hecho con cariño por
+  idioma_otro: English
+  idioma_otro_aria: Read this page in English
+  idioma_otro_code: EN
+  legal_volver: Volver a la web
+  legal_pagina: "{nombre}, volver a la web"
+  js:
+    cerrar_menu: Cerrar menú
+    abrir_menu: Abrir menú
+    locale: es-ES
+    moneda: "{n} €"
+    alergenos: "Alérgenos: "
+    preguntar: "Pregunta en tienda los alérgenos de: "
+    sin_alergenos: Sin alérgenos de la carta
+    abierto: "Abierto ahora, hasta las {h}"
+    abre_hoy: "Hoy abrimos a las {h}"
+    cerrado: "Hoy ya hemos cerrado · {cuando} abrimos a las {h}"
+    manana: mañana
+    el_dia: "el {d}"
+    dias:
+      domingo: domingo
+      lunes: lunes
+      martes: martes
+      miercoles: miércoles
+      jueves: jueves
+      viernes: viernes
+      sabado: sábado
+  ld:
+    suplemento: Suplemento sobre el vaso de fresas
+    cremas: Cremas
+    toppings: Toppings
+    bandejas: Bandejas por encargo
+    carta_de: "Carta de {nombre}"
+    cocina: [Fresas con chocolate, Postres, Batidos, Café]
+    encargar: Encargar bandejas de fresas con chocolate por mensaje de Instagram
+    inlanguage: es
+en:
+  lang: en
+  locale: en_GB
+  html_lang: en
+  maps_hl: en
+  saltar: Skip to the menu
+  nav_bebidas: To drink
+  nav_nosotras: About us
+  nav_preguntas: FAQ
+  nav_visita: Visit us
+  nav_secciones: Sections
+  nav_menu: Main menu
+  abrir_menu: Open menu
+  ir_inicio: back to top
+  poster_alt: A chocolate-covered strawberry
+  og_alt: "Chocolate-covered strawberry next to the {nombre} logo"
+  desliza: Scroll
+  ver_carta: See the menu
+  como_llegar: Find us
+  paso: "Step {n}"
+  sin_crema: None
+  sin_topping: No topping
+  sin_alergenos: No allergens from the menu
+  pedir_defecto: Order it like this in the shop
+  abrir_maps: Open in Google Maps
+  escribenos_ig: Message us on Instagram
+  anterior: Previous
+  siguiente: Next
+  ig_card_t: There's a lot more on Instagram
+  ig_card_b: Keep browsing
+  mosaico_aria: "See more photos on the {nombre} Instagram"
+  ver_arroba: "See @{ig}"
+  kicker_visita: visit us
+  fachada_alt: "Illustration of the {nombre} shopfront at {calle}"
+  horario: Opening hours
+  ubicacion: "Location of {nombre}"
+  ver_mapa: Show the map here
+  mapa_nota: Loading it sends your visit to Google.
+  aviso_legal: Legal notice
+  privacidad: Privacy and cookies
+  hecho_por: Made with love by
+  idioma_otro: Español
+  idioma_otro_aria: Leer esta página en español
+  idioma_otro_code: ES
+  legal_volver: Back to the website
+  legal_pagina: "{nombre}, back to the website"
+  js:
+    cerrar_menu: Close menu
+    abrir_menu: Open menu
+    locale: en-GB
+    moneda: "€{n}"
+    alergenos: "Allergens: "
+    preguntar: "Ask in the shop about the allergens of: "
+    sin_alergenos: No allergens from the menu
+    abierto: "Open now, until {h}"
+    abre_hoy: "We open today at {h}"
+    cerrado: "We're closed for today · {cuando} we open at {h}"
+    manana: tomorrow
+    el_dia: "on {d}"
+    dias:
+      domingo: Sunday
+      lunes: Monday
+      martes: Tuesday
+      miercoles: Wednesday
+      jueves: Thursday
+      viernes: Friday
+      sabado: Saturday
+  ld:
+    suplemento: Extra on top of the cup of strawberries
+    cremas: Chocolates and creams
+    toppings: Toppings
+    bandejas: Trays made to order
+    carta_de: "{nombre} menu"
+    cocina: [Chocolate-covered strawberries, Desserts, Shakes, Coffee]
+    encargar: Order trays of chocolate-covered strawberries by Instagram message
+    inlanguage: en

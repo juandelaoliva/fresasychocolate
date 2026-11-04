@@ -24,6 +24,8 @@ Spanish too; the main ones are explained below.
 - [Repository layout](#repository-layout)
 - [How the site is built (build.py)](#how-the-site-is-built-buildpy)
 - [Publishing](#publishing)
+- [English version](#english-version)
+- ["Coming soon" screen](#coming-soon-screen)
 - [Pages CMS](#pages-cms)
 - [Design and sections](#design-and-sections)
 - [The hero](#the-hero)
@@ -57,7 +59,9 @@ there are often new changes.
 ```
 content/*.yml              the content: what Pages CMS edits (one file per section)
 src/index.html.j2          page template (Jinja2)
-src/llms.txt.j2            shop summary for AI assistants
+src/llms.txt.j2            shop summary for AI assistants (llms.en.txt.j2, in English)
+src/i18n.yml               fixed texts in Spanish and English
+src/pronto.html.j2         "Coming soon" screen
 src/sitemap.xml.j2         sitemap
 src/robots.txt.j2          robots.txt
 src/legal.html.j2          base for the legal pages: aviso-legal.html.j2 and privacidad.html.j2
@@ -146,6 +150,47 @@ keeps the last one, which already includes both. You will see "cancelled" runs; 
 **Required GitHub setting:** Settings › Pages › Build and deployment › Source: **GitHub Actions**.
 If it is left on "Deploy from a branch", GitHub also publishes the branch as is, and since the
 repository has no `index.html`, the site shows the README.
+
+## English version
+
+The site is in Spanish at the root and in English under `/en/` (https://fresasychocolate.com/en/).
+There is an ES / EN switch in the bar (desktop), the menu (mobile) and the footer.
+
+- **Shop texts.** Every translatable text has a sibling with the `_en` suffix in `content/*.yml`
+  (`titulo` / `titulo_en`). In Pages CMS they show as "… (inglés)" right under the Spanish field.
+  If an `_en` is empty, the English version falls back to the Spanish text, and `build.py` warns
+  how many texts are still untranslated.
+- **Data entered once.** Prices, photos, videos, allergens, times, links and coordinates are shared
+  by both languages. Allergens are shown with their English name (`ALERGENOS_EN` in `build.py`).
+- **Fixed texts** (menus, buttons, notices, strings used by the JS): `src/i18n.yml`, with an `es`
+  and an `en` block. They are not edited from the CMS. The JS reads them from `window.UI`, which
+  the page writes.
+- **Legal pages.** `aviso-legal.en.html.j2` and `privacidad.en.html.j2` are a courtesy translation
+  (if they differ, the Spanish text prevails). They are published as `/en/legal-notice.html` and
+  `/en/privacy.html`.
+- **SEO.** Each page has its own canonical and `hreflang` es / en / x-default. The JSON-LD, the
+  automatic FAQ and `llms.txt` are also generated in English (`/en/llms.txt`), and the sitemap
+  lists both versions.
+- **Paths.** The English page sits one folder deeper: templates prefix css, js and assets with
+  `{{ base }}` (`''` or `'../'`), and `hero.js` uses `window.SITE_BASE`. When you add a new
+  resource to a template, give it `{{ base }}`.
+- **Changing a translation:** edit the `_en` field in Pages CMS or in `content/*.yml`. For a fixed
+  text, edit `src/i18n.yml`.
+- The client presentation (`/presentacion/`) stays Spanish only.
+
+## "Coming soon" screen
+
+`content/pronto.yml` controls a bilingual holding screen (`src/pronto.html.j2`).
+
+- With `activo: true`, the main address shows only that screen. The full site is still generated
+  at a secret address, `/<clave>.html` (and `/en/<clave>.html`), not indexed, so the team can
+  review it. The screen and those pages carry `noindex`, `robots.txt` blocks crawlers, and no
+  `sitemap.xml` or `llms.txt` is generated.
+- The key (`clave`) needs at least 8 letters, digits or hyphens.
+- With `activo: false` the site goes out as usual.
+- While it is on, the phone in the presentation loads the full site at the key address.
+- The "Cómo llegar" button opens Google Maps and the Instagram link sits below. The share image is
+  `assets/og/og-pronto.jpg`.
 
 ## Pages CMS
 
@@ -262,7 +307,7 @@ For a video to work well in the hero:
 The site is set up for Google (local SEO) and for AI assistants (ChatGPT, Perplexity, Gemini,
 Google's AI Mode…) to find the shop and quote it accurately (GEO, generative engine optimisation).
 
-- **`<head>`:** title, description, canonical URL, sharing cards (`assets/og/og.jpg`) and the
+- **`<head>`:** title, description, canonical URL, sharing cards (`assets/og/og-pronto.jpg`) and the
   shop's coordinates.
 - **Structured data (JSON-LD):** the shop (`FoodEstablishment`) with address, coordinates, opening
   hours, Instagram and how to order; the full menu with prices (`Menu`); the website; and the FAQ
@@ -361,7 +406,6 @@ tap the phone) and F for full screen.
   in "Visit us" and in the data for Google.
 
 *Opportunities*
-- An English version of the site (tourists and Erasmus students).
 - An orders page (Valentine's Day, Mother's Day…).
 - A lighter hero on mobile: load the frames after the rest of the page, or fewer of them when
   data saving is on.

@@ -66,6 +66,8 @@ Arrastra los puntitos de la izquierda (⠿) para cambiar el orden y pulsa la pap
 | **Del día a día (Instagram)** | Las fotos del mosaico. |
 | **Preguntas frecuentes** | Las preguntas que se escriben a mano. |
 
+En cada apartado, los campos que acaban en **(inglés)** son la versión en inglés de ese texto.
+
 **El horario de hoy** que sale bajo "Monta tu vaso" ("Abierto ahora, hasta las 22:00") se calcula solo a partir del horario de **Tienda**.
 
 **Preguntas que se escriben solas.** Las de dirección, horario, precio del vaso, encargos y
@@ -130,6 +132,20 @@ En **Quiénes somos**:
 - El **Texto** puede tener varios párrafos: deja una línea en blanco entre uno y otro.
 - La **Despedida** sale al final con letra a mano (por ejemplo, "¡Te esperamos!"). Si la dejas
   vacía, no sale.
+
+### Escribir los textos en inglés
+
+La web también está en inglés (`fresasychocolate.com/en/`). Justo debajo de cada texto en español
+hay otro campo igual que acaba en **(inglés)**: ahí va la traducción. Por ejemplo, bajo **Título**
+está **Título (inglés)**.
+
+- Los **precios, fotos, vídeos, alérgenos, horarios y enlaces** se cambian una sola vez: valen
+  para las dos versiones. No hay que repetirlos.
+- Si dejas un campo en inglés **vacío**, la versión inglesa enseña el texto en español. No se
+  rompe nada, pero queda sin traducir.
+- Si cambias un texto en español, acuérdate de cambiar también el de inglés.
+- Las preguntas que se escriben solas (dirección, horario, precios…) ya se generan en inglés.
+- Puedes dejar en inglés los nombres propios tal cual (por ejemplo, «Mikado» o «Lacasitos»).
 
 ### Añadir o cambiar preguntas frecuentes
 

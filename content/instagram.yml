@@ -1,15 +1,23 @@
 antetitulo: en Instagram
+antetitulo_en: "on Instagram"
 titulo: Del día a día
+titulo_en: "Day to day"
 fotos:
   - foto: assets/img/insta/bol-fresas.webp
     alt: Bol de fresas junto al árbol de Navidad
+    alt_en: "Bowl of strawberries next to the Christmas tree"
   - foto: assets/img/insta/cortando-fresas.webp
     alt: Cortando fresas sobre una tabla verde
+    alt_en: "Cutting strawberries on a green board"
   - foto: assets/img/insta/mesa-tartas.webp
     alt: Mesa con tartas decoradas y cajas de fresas bañadas
+    alt_en: "Table with decorated cakes and boxes of dipped strawberries"
   - foto: assets/img/insta/matcha-flores.webp
     alt: Matcha con hielo entre flores y fresas
+    alt_en: "Iced matcha among flowers and strawberries"
   - foto: assets/img/insta/adri-cajas.webp
     alt: Adri mostrando dos cajas de fresas bañadas en chocolate
+    alt_en: "Adri showing two boxes of chocolate-dipped strawberries"
   - foto: assets/img/insta/donuts-detalle.webp
     alt: Detalle de bombones de chocolate con fresas y pan de oro
+    alt_en: "Close-up of chocolate bonbons with strawberries and gold leaf"

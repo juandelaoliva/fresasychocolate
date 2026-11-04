@@ -5,13 +5,16 @@
 (function () {
   const form = document.getElementById('builder');
   if (!form) return;
+  // Texts per language: the page writes window.UI (src/i18n.yml); these are the Spanish defaults.
+  const T = Object.assign({ locale: 'es-ES', moneda: '{n} €', alergenos: 'Alérgenos: ',
+    preguntar: 'Pregunta en tienda los alérgenos de: ', sin_alergenos: 'Sin alérgenos de la carta' }, window.UI);
   const BASE = Number(form.dataset.base);
   const ORDER = (form.dataset.alergenos || '').split(',');
   const desc = document.getElementById('total-desc');
   const price = document.getElementById('total-price');
   const al = document.getElementById('total-al');
   const base = desc.textContent;
-  const euros = (n) => n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+  const euros = (n) => T.moneda.replace('{n}', n.toLocaleString(T.locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
 
   function update() {
     const picked = ['crema', 'topping'].map((n) => form.querySelector(`input[name="${n}"]:checked`)).filter((i) => i && i.value);
@@ -22,9 +25,9 @@
     price.textContent = euros(total);
     const pending = picked.filter((i) => 'alPending' in i.dataset).map((i) => i.value);
     const parts = [];
-    if (list.length) parts.push('Alérgenos: ' + list.join(', '));
-    if (pending.length) parts.push('Pregunta en tienda los alérgenos de: ' + pending.join(', '));
-    al.textContent = parts.length ? parts.join(' · ') : 'Sin alérgenos de la carta';
+    if (list.length) parts.push(T.alergenos + list.join(', '));
+    if (pending.length) parts.push(T.preguntar + pending.join(', '));
+    al.textContent = parts.length ? parts.join(' · ') : T.sin_alergenos;
   }
 
   form.addEventListener('change', update);
@@ -37,6 +40,11 @@
 (function () {
   const el = document.getElementById('pedir-hoy');
   if (!el) return;
+  const T = Object.assign({
+    abierto: 'Abierto ahora, hasta las {h}', abre_hoy: 'Hoy abrimos a las {h}',
+    cerrado: 'Hoy ya hemos cerrado · {cuando} abrimos a las {h}', manana: 'mañana', el_dia: 'el {d}',
+    dias: { miercoles: 'miércoles', sabado: 'sábado' },
+  }, window.UI);
   const DIAS = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
   let dias, abre, cierra;
   try {
@@ -51,16 +59,16 @@
   const hoy = horasDe(now.getDay());
   if (hoy && hhmm >= hoy.abre && hhmm < hoy.cierra) {
     el.innerHTML = '<span class="abierto"></span>';
-    el.firstChild.textContent = `Abierto ahora, hasta las ${hoy.cierra}`;
+    el.firstChild.textContent = T.abierto.replace('{h}', hoy.cierra);
     return;
   }
-  if (hoy && hhmm < hoy.abre) { el.textContent = `Hoy abrimos a las ${hoy.abre}`; return; }
+  if (hoy && hhmm < hoy.abre) { el.textContent = T.abre_hoy.replace('{h}', hoy.abre); return; }
   for (let k = 1; k <= 7; k++) {
     const d = (now.getDay() + k) % 7;
     const h = horasDe(d);
     if (h) {
-      const cuando = k === 1 ? 'mañana' : `el ${DIAS[d].replace('miercoles', 'miércoles').replace('sabado', 'sábado')}`;
-      el.textContent = `Hoy ya hemos cerrado · ${cuando} abrimos a las ${h.abre}`;
+      const cuando = k === 1 ? T.manana : T.el_dia.replace('{d}', T.dias[DIAS[d]] || DIAS[d]);
+      el.textContent = T.cerrado.replace('{cuando}', cuando).replace('{h}', h.abre);
       return;
     }
   }

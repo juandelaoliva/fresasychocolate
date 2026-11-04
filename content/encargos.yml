@@ -1,45 +1,71 @@
 antetitulo: para regalar
+antetitulo_en: "for gifting"
 titulo: Por encargo
+titulo_en: "Made to order"
 intro: Bandejas de fresas bañadas para regalar, compartir o darte un capricho.
+intro_en: "Trays of chocolate-dipped strawberries to give, share or treat yourself."
 fotos:
   - foto: assets/img/tarta-cajas-2.webp
     alt: Tarta de Cumpleaños de fresas y chocolate
+    alt_en: "Strawberry and chocolate birthday cake"
   - video: assets/video/d91e7ff5-620e-43f2-adf9-6c9fb4307240.mp4
     alt: Donuts de chocolate y fresas u pistacho
+    alt_en: "Chocolate donuts with strawberries and pistachio"
   - foto: assets/img/img2375.jpeg
     alt: Caja de navidad
+    alt_en: "Christmas box"
   - foto: assets/img/img2373.jpeg
     alt: Cajita con flores
+    alt_en: "Small box with flowers"
   - foto: assets/img/insta/caja-para-mama.webp
     alt: Caja de fresas bañadas en chocolate rosa con lazos y una tarjeta que dice
       Para mamá
+    alt_en: "Box of strawberries dipped in pink chocolate with bows and a card that reads \"Para mamá\" (For Mum)"
   - foto: assets/img/insta/donuts-pan-de-oro.webp
     alt: Bombones de chocolate con fresas, arándanos y pan de oro
+    alt_en: "Chocolate bonbons with strawberries, blueberries and gold leaf"
   - foto: assets/img/img2374.jpeg
     alt: Cajita de regalo con oso
+    alt_en: "Small gift box with a teddy bear"
 bandejas:
   - titulo: Solo fresas
+    titulo_en: "Strawberries only"
     tamanos:
       - nombre: Pequeña
+        nombre_en: "Small"
         detalle: 6 fresas aprox.
+        detalle_en: "About 6 strawberries"
         precio: "12"
       - nombre: Mediana
+        nombre_en: "Medium"
         detalle: 12 fresas aprox.
+        detalle_en: "About 12 strawberries"
         precio: "25"
       - nombre: Grande
+        nombre_en: "Large"
         detalle: 24 fresas aprox.
+        detalle_en: "About 24 strawberries"
         precio: "54"
   - titulo: Mixtas
+    titulo_en: "Mixed"
     nota: Fresas y bombones variados
+    nota_en: "Strawberries and assorted chocolates"
     tamanos:
       - nombre: Pequeña
+        nombre_en: "Small"
         precio: "16"
       - nombre: Mediana
+        nombre_en: "Medium"
         precio: "35"
       - nombre: Grande
+        nombre_en: "Large"
         precio: "46"
   - titulo: Caja personalizada
+    titulo_en: "Custom box"
     nota: La montamos contigo. El precio depende de lo que lleve.
+    nota_en: "We put it together with you. The price depends on what goes in it."
 como_encargar: Se encargan por Instagram y se recogen en la tienda. Pídelas con
   antelación, sobre todo para fines de semana y fechas especiales.
+como_encargar_en: "Orders are placed through Instagram and picked up in the shop. Please order in advance, especially for weekends and special dates."
 boton: Encargar por Instagram
+boton_en: "Order on Instagram"

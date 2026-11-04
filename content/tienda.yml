@@ -3,6 +3,7 @@ calle: Calle Espoz y Mina, 38
 codigo_postal: "37002"
 ciudad: Salamanca
 referencia: a pocos pasos de la Plaza Mayor
+referencia_en: "a few steps from the Plaza Mayor"
 email: fresasychocolate.salamanca@gmail.com
 instagram: fresasychocolate.salamanca
 google_maps: https://maps.app.goo.gl/JiWYEt8AWk3Wj6eS6
@@ -14,6 +15,7 @@ titular: "[Nombre y apellidos o razón social del titular]"
 nif: "[NIF]"
 horario:
   - dias: Lunes a jueves
+    dias_en: "Monday to Thursday"
     dias_semana:
       - lunes
       - martes
@@ -22,12 +24,14 @@ horario:
     abre: 14:00
     cierra: 22:00
   - dias: Viernes y sábado
+    dias_en: "Friday and Saturday"
     dias_semana:
       - viernes
       - sabado
     abre: 14:00
     cierra: 22:30
   - dias: Domingo
+    dias_en: "Sunday"
     dias_semana:
       - domingo
     abre: 14:00

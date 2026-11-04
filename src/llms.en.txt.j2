@@ -1,0 +1,62 @@
+{% set t = tienda %}
+# {{ t.nombre }}
+
+> {{ portada.descripcion_negocio }}
+
+{{ historia.nosotras.titulo }}: {{ historia.nosotras.texto | replace('\n\n', ' ') }}
+
+Spanish version: {{ site }}llms.txt
+
+## Basic facts
+
+- Name: {{ t.nombre }}
+- Address: {{ t.calle }}, {{ t.codigo_postal }} {{ t.ciudad }}, Spain
+- Coordinates: {{ t.latitud }}, {{ t.longitud }}
+- Google Maps: {{ t.google_maps }}
+- Instagram: https://www.instagram.com/{{ t.instagram }}/ (@{{ t.instagram }})
+- Website: {{ home }}
+{% if t.telefono and not t.telefono.startswith('[') %}
+- Phone: {{ t.telefono }}
+{% endif %}
+{% if t.email and not t.email.startswith('[') %}
+- Email: {{ t.email }}
+{% endif %}
+- Opening hours: {% for h in t.horario %}{{ h.dias }}, {{ h.abre }} to {{ h.cierra }}{{ '; ' if not loop.last }}{% endfor %}
+
+- Orders: by Instagram message (https://ig.me/m/{{ t.instagram }}), collected in the shop
+
+## Menu: {{ carta.titulo | lower }}
+
+1. {{ carta.vaso.nombre }}: {{ carta.vaso.precio | euros }}
+2. Chocolate or cream (+{{ carta.cremas.precio | euros }}): {{ carta.cremas.opciones | map(attribute='nombre') | join(', ') }}
+{% for g in carta.toppings.grupos %}
+{{ '3. ' if loop.first else '   ' }}Topping (+{{ g.precio | euros }}): {{ g.opciones | map(attribute='nombre') | join(', ') }}
+{% endfor %}
+
+## Drinks
+
+{% for g in bebidas.grupos %}
+- {{ g.titulo }}: {% for p in g.productos %}{{ p.nombre }}{% if p.detalle %} ({{ p.detalle | lower }}){% endif %} {{ p.precio | euros }}{{ '; ' if not loop.last }}{% endfor %}
+
+{% endfor %}
+
+## Trays made to order
+
+{% for b in encargos.bandejas %}
+- {{ b.titulo }}{% if b.nota and b.tamanos %} ({{ b.nota | lower }}){% elif b.nota %}: {{ b.nota }}{% endif %}{% if b.tamanos %}: {% for x in b.tamanos %}{{ x.nombre | lower }}{% if x.detalle %} ({{ x.detalle }}){% endif %} {{ x.precio | euros_corto }}{{ ', ' if not loop.last }}{% endfor %}{% endif %}
+
+{% endfor %}
+
+## Frequently asked questions
+
+{% for q in faq %}
+### {{ q.pregunta }}
+
+{{ q.respuesta | sin_enlaces }}
+
+{% endfor %}
+## More information
+
+- [Menu and prices]({{ home }}#carta)
+- [Frequently asked questions]({{ home }}#preguntas)
+- [Find us and opening hours]({{ home }}#visita)

@@ -2,11 +2,19 @@
 # solas a partir de los datos de la tienda y la carta, así que no hace falta escribirlas aquí.
 # En las respuestas se pueden poner enlaces así: [texto del enlace](https://...)
 antetitulo: antes de venir
+antetitulo_en: "before you visit"
 titulo: Preguntas frecuentes
+titulo_en: "Frequently asked questions"
 preguntas:
   - pregunta: ¿Qué chocolate usáis?
+    pregunta_en: "What chocolate do you use?"
     respuesta: Chocolate belga Callebaut. Además del chocolate con leche, blanco y negro, tenemos Chocolate Dubái y Chocolate Tokyo.
+    respuesta_en: "Belgian Callebaut chocolate. Besides milk, white and dark chocolate, we have Dubai chocolate and Tokyo chocolate."
   - pregunta: ¿De dónde son las fresas?
+    pregunta_en: "Where are the strawberries from?"
     respuesta: Son fresas nacionales y de proximidad, cultivadas en Salamanca.
+    respuesta_en: "They are Spanish, locally grown strawberries, cultivated in Salamanca."
   - pregunta: ¿Tenéis información de alérgenos?
+    pregunta_en: "Do you have allergen information?"
     respuesta: Sí. En [Monta tu vaso](#carta) cada crema y cada topping muestra sus alérgenos según la carta de la tienda. Si tienes alguna alergia, avísanos al pedir.
+    respuesta_en: "Yes. In [Build your cup](#carta) every cream and topping shows its allergens as listed on the shop's menu. If you have any allergy, let us know when you order."
