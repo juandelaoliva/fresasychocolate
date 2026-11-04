@@ -14,6 +14,12 @@
         {{ foto(f.foto, f.alt, donde, extra=' role="listitem"' | safe) }}
 {% endif %}
 {% endfor %}
+        <a role="listitem" class="ig-card" href="{{ ig_url }}" target="_blank" rel="noopener">
+          {{ svg('simbolo') }}
+          <span class="ig-card-t">Hay mucho más en Instagram</span>
+          <span class="ig-card-u">{{ svg('instagram') }}@{{ t.instagram }}</span>
+          <span class="ig-card-b">Seguir viendo {{ svg('flecha') }}</span>
+        </a>
       </div>
       <div class="carrusel-nav" hidden>
         <button type="button" class="carrusel-btn" data-dir="-1" aria-label="Anterior"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -81,7 +87,7 @@
     <li><a href="{{ href }}">{{ texto }}</a></li>
 {% endfor %}
   </ul>
-  <p class="nav-foot">{{ t.calle | replace('Calle ', '') }} · {{ t.codigo_postal }} {{ t.ciudad }}<br><a href="{{ ig_url }}" target="_blank" rel="noopener">@{{ t.instagram }}</a></p>
+  <p class="nav-foot">{{ t.calle | replace('Calle ', '') }} · {{ t.codigo_postal }} {{ t.ciudad }}<br><a href="{{ ig_url }}" target="_blank" rel="noopener">{{ svg('instagram') }}@{{ t.instagram }}</a></p>
 </nav>
 
 <main>
@@ -168,7 +174,7 @@
         <p class="pedir-hoy" id="pedir-hoy" data-horario='{{ t.horario | map(attribute="dias_semana") | list | tojson }}' data-abre='{{ t.horario | map(attribute="abre") | list | tojson }}' data-cierra='{{ t.horario | map(attribute="cierra") | list | tojson }}'>{{ t.calle | replace('Calle ', '') }}</p>
         <div class="actions">
           <a class="btn primary" href="{{ t.google_maps }}" target="_blank" rel="noopener">Abrir en Google Maps</a>
-          <a class="btn" href="https://ig.me/m/{{ t.instagram }}" target="_blank" rel="noopener">Escríbenos por Instagram</a>
+          <a class="btn" href="https://ig.me/m/{{ t.instagram }}" target="_blank" rel="noopener">{{ svg('instagram') }}Escríbenos por Instagram</a>
         </div>
         <p class="alergenos">{{ carta.nota_alergenos }}</p>
       </div>
@@ -223,7 +229,7 @@
 
       <div class="como">
         <p>{{ encargos.como_encargar }}</p>
-        <a class="btn gold" href="https://ig.me/m/{{ t.instagram }}" target="_blank" rel="noopener">{{ encargos.boton }}</a>
+        <a class="btn gold" href="https://ig.me/m/{{ t.instagram }}" target="_blank" rel="noopener">{{ svg('instagram') }}{{ encargos.boton }}</a>
       </div>
     </div>
   </section>
@@ -277,7 +283,7 @@
         {{ foto(f.foto, f.alt, 'Instagram › fotos') }}
 {% endfor %}
       </a>
-      <a class="btn" href="{{ ig_url }}" target="_blank" rel="noopener">Ver @{{ t.instagram }}</a>
+      <a class="btn" href="{{ ig_url }}" target="_blank" rel="noopener">{{ svg('instagram') }}Ver @{{ t.instagram }}</a>
     </div>
   </section>
 
@@ -315,7 +321,7 @@
         </div>
         <div class="actions">
           <a class="btn gold" href="{{ t.google_maps }}" target="_blank" rel="noopener">Abrir en Google Maps</a>
-          <a class="btn" href="{{ ig_url }}" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn" href="{{ ig_url }}" target="_blank" rel="noopener">{{ svg('instagram') }}Instagram</a>
         </div>
 {# The Google map only loads when asked for (js/mapa.js): until then Google receives nothing. #}
         <div class="mapa" id="mapa" data-src="https://maps.google.com/maps?q={{ (t.nombre ~ ', ' ~ t.calle ~ ', ' ~ t.ciudad) | urlencode }}&amp;output=embed&amp;hl=es&amp;z=16" data-title="Ubicación de {{ t.nombre }}">

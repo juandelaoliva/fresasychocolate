@@ -2,7 +2,7 @@
 <footer class="foot">
   <div class="wrap">
     {{ svg('logo-horizontal', etiqueta=tienda.nombre) }}
-    <p>{{ tienda.calle | replace('Calle ', '') }} · {{ tienda.codigo_postal }} {{ tienda.ciudad }} · <a href="https://www.instagram.com/{{ tienda.instagram }}/" target="_blank" rel="noopener">@{{ tienda.instagram }}</a></p>
+    <p>{{ tienda.calle | replace('Calle ', '') }} · {{ tienda.codigo_postal }} {{ tienda.ciudad }} · <a href="https://www.instagram.com/{{ tienda.instagram }}/" target="_blank" rel="noopener">{{ svg('instagram') }}@{{ tienda.instagram }}</a></p>
     <p>© {{ year }} {{ tienda.nombre }}</p>
 {% if legal %}
     <p class="legales"><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad y cookies</a></p>
