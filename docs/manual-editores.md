@@ -63,7 +63,7 @@ Arrastra los puntitos de la izquierda (⠿) para cambiar el orden y pulsa la pap
 | **Para beber** | Galería de fotos y vídeos, y la carta de batidos, matcha y café. |
 | **Por encargo** | Galería de fotos y vídeos, bandejas con sus tamaños y precios, y cómo se encarga. |
 | **Fresas, chocolate y quiénes somos** | Textos, fotos y vídeo de esas tres secciones. |
-| **Del día a día (Instagram)** | Las fotos del mosaico. |
+| **Del día a día (Instagram)** | Las fotos del mosaico y la frase que invita a escribirnos por Instagram (el enlace «Contáctanos» del menú lleva a esta sección). |
 | **Preguntas frecuentes** | Las preguntas que se escriben a mano. |
 
 En cada apartado, los campos que acaban en **(inglés)** son la versión en inglés de ese texto.
@@ -84,14 +84,15 @@ horario, esas respuestas se actualizan solas. No hace falta (ni se puede) escrib
    bien escrito (1,70 €).
 4. Guarda.
 
-En **Monta tu vaso**, las cremas tienen un único precio para todas (en "Paso 2: cremas") y los
-toppings van por **grupos de precio** (por ejemplo, +0,50 € y +1,00 €). Para cambiar el precio de
-un topping, cámbialo de grupo: bórralo de uno y añádelo en el otro.
+En **Monta tu vaso**, tanto las cremas ("Paso 2") como los toppings ("Paso 3") van por **grupos de
+precio** (por ejemplo, cremas a +1,25 € y a +2,00 €; toppings a +0,50 € y a +1,00 €). Para cambiar
+el precio de una crema o de un topping, cámbialo de grupo: bórralo de uno y añádelo en el otro.
+Si hace falta un precio nuevo, añade un grupo nuevo con **Add an item**.
 
 ### Añadir o quitar una crema o un topping
 
-1. **Monta tu vaso** › "Paso 2: cremas" › **Cremas**, o "Paso 3: toppings" › el grupo de precio ›
-   **Toppings**.
+1. **Monta tu vaso** › "Paso 2: cremas" › el grupo de precio › **Cremas y chocolates**, o
+   "Paso 3: toppings" › el grupo de precio › **Toppings**.
 2. **Add an item** para añadir uno, o la papelera para quitarlo.
 3. Escribe el **Nombre** y marca sus **Alérgenos**.
 4. Si aún no se saben los alérgenos, marca **Alérgenos sin confirmar**: la web pedirá al cliente
@@ -99,6 +100,20 @@ un topping, cámbialo de grupo: bórralo de uno y añádelo en el otro.
 5. Guarda.
 
 La calculadora de "Monta tu vaso" y las preguntas frecuentes se actualizan solas.
+
+### Cambiar un especial de la casa (Dubái, Tokio…)
+
+Los especiales son los vasos ya montados que salen encima de «Monta tu vaso», cada uno con su foto,
+sus ingredientes y su precio final.
+
+1. **Monta tu vaso** › al final del formulario, **Especiales de la casa**.
+2. Abre el especial y cambia el **Precio final**, los **Ingredientes** o la **Foto**.
+3. Si todavía no hay foto, déjala vacía: la web enseña «Foto próximamente».
+4. Los alérgenos se marcan igual que en las cremas. Si no se saben, deja marcado
+   **Alérgenos sin confirmar**.
+5. Para añadir uno nuevo, **Add an item**. Para quitarlo, la papelera.
+6. La **Nota bajo los especiales** («Recomendamos pedirlos tal cual…») también se cambia ahí.
+7. Guarda.
 
 ### Cambiar el horario
 

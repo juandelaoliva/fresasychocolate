@@ -2,6 +2,8 @@ antetitulo: en Instagram
 antetitulo_en: "on Instagram"
 titulo: Del día a día
 titulo_en: "Day to day"
+contacto_texto: ¿Tienes un encargo o alguna duda? Escríbenos por mensaje en Instagram y te contestamos.
+contacto_texto_en: "Have an order or a question? Send us a message on Instagram and we will get back to you."
 fotos:
   - foto: assets/img/insta/bol-fresas.webp
     alt: Bol de fresas junto al árbol de Navidad

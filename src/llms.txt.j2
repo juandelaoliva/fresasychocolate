@@ -26,10 +26,21 @@
 ## Carta: {{ carta.titulo | lower }}
 
 1. {{ carta.vaso.nombre }}: {{ carta.vaso.precio | euros }}
-2. Crema (+{{ carta.cremas.precio | euros }}): {{ carta.cremas.opciones | map(attribute='nombre') | join(', ') }}
+{% for g in carta.cremas.grupos %}
+{{ '2. ' if loop.first else '   ' }}Crema (+{{ g.precio | euros }}): {{ g.opciones | map(attribute='nombre') | join(', ') }}
+{% endfor %}
 {% for g in carta.toppings.grupos %}
 {{ '3. ' if loop.first else '   ' }}Topping (+{{ g.precio | euros }}): {{ g.opciones | map(attribute='nombre') | join(', ') }}
 {% endfor %}
+
+{% if carta.especiales %}
+
+## Especiales de la casa
+
+{% for e in carta.especiales %}
+- {{ e.nombre }}: {{ e.ingredientes }}, {{ e.precio | euros }}
+{% endfor %}
+{% endif %}
 
 ## Bebidas
 

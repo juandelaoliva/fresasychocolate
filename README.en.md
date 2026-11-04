@@ -99,7 +99,7 @@ The files in `content/`:
 |---|---|
 | `tienda.yml` (shop) | Name, address, coordinates, Google Maps, Instagram, phone, email, opening hours and the owner's details (legal notice) |
 | `portada.yml` (front page) | Hero tagline, Google title and description, shop description for AI and the Cloudflare Web Analytics token |
-| `carta.yml` (menu) | "Monta tu vaso": cup, creams, topping groups, prices and allergens |
+| `carta.yml` (menu) | "Monta tu vaso": cup, cream groups and topping groups (each with its price), house specials and allergens |
 | `bebidas.yml` (drinks) | Gallery and drinks menu |
 | `encargos.yml` (orders) | Gallery, trays and how to order |
 | `historia.yml` (story) | The strawberries, the chocolate and "about us" |
@@ -371,9 +371,10 @@ tap the phone) and F for full screen.
 ## To do
 
 **Content to confirm with the shop**
-- Allergens for the Chocolate Dubái and Chocolate Tokyo creams. Until then, "Monta tu vaso" asks
-  customers to check in the shop. Once known: Pages CMS › Monta tu vaso › cremas, untick
-  "Alérgenos sin confirmar" and pick them.
+- Allergens for the pistachio cream and the Dubái and Tokio house specials, and the Tokio photo. Until
+  then, "Monta tu vaso" asks customers to check in the shop and Tokio shows "Foto próximamente". Once
+  known: Pages CMS › Monta tu vaso › creams or specials, untick "Alérgenos sin confirmar" and pick them;
+  the photo is uploaded on the special.
 - Tray prices: taken from the Instagram post of 9 May.
 - Allergen no. 7: the printed menu says "frutos de cáscara" (tree nuts) in Spanish and "peanuts"
   in English.

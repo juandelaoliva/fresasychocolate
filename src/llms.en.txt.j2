@@ -28,10 +28,21 @@ Spanish version: {{ site }}llms.txt
 ## Menu: {{ carta.titulo | lower }}
 
 1. {{ carta.vaso.nombre }}: {{ carta.vaso.precio | euros }}
-2. Chocolate or cream (+{{ carta.cremas.precio | euros }}): {{ carta.cremas.opciones | map(attribute='nombre') | join(', ') }}
+{% for g in carta.cremas.grupos %}
+{{ '2. ' if loop.first else '   ' }}Chocolate or cream (+{{ g.precio | euros }}): {{ g.opciones | map(attribute='nombre') | join(', ') }}
+{% endfor %}
 {% for g in carta.toppings.grupos %}
 {{ '3. ' if loop.first else '   ' }}Topping (+{{ g.precio | euros }}): {{ g.opciones | map(attribute='nombre') | join(', ') }}
 {% endfor %}
+
+{% if carta.especiales %}
+
+## House specials
+
+{% for e in carta.especiales %}
+- {{ e.nombre }}: {{ e.ingredientes }}, {{ e.precio | euros }}
+{% endfor %}
+{% endif %}
 
 ## Drinks
 

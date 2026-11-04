@@ -20,42 +20,42 @@ vaso:
 cremas:
   titulo: Elige tu crema
   titulo_en: "Choose your chocolate or cream"
-  precio: 1,25
   video: assets/video/bano.mp4
   video_portada: assets/video/bano.webp
   video_alt: Bañando un vaso de fresas bajo la fuente de chocolate
   video_alt_en: "Coating a cup of strawberries under the chocolate fountain"
-  opciones:
-  - nombre: Chocolate con leche
-    nombre_en: "Milk chocolate"
-    alergenos:
-    - leche
-  - nombre: Chocolate blanco
-    nombre_en: "White chocolate"
-    alergenos:
-    - leche
-  - nombre: Chocolate negro
-    nombre_en: "Dark chocolate"
-    alergenos:
-    - leche
-  - nombre: Chocolate Dubái
-    nombre_en: "Dubai chocolate"
-    alergenos_pendientes: true
-  - nombre: Chocolate Tokyo
-    nombre_en: "Tokyo chocolate"
-    alergenos_pendientes: true
-  - nombre: Crema con avellanas
-    nombre_en: "Hazelnut cream"
-    alergenos:
-    - avellanas
-  - nombre: Crema de leche condensada
-    nombre_en: "Condensed milk cream"
-    alergenos:
-    - leche
-  - nombre: Nata montada
-    nombre_en: "Whipped cream"
-    alergenos:
-    - leche
+  grupos:
+  - precio: 1,25
+    opciones:
+    - nombre: Chocolate con leche
+      nombre_en: "Milk chocolate"
+      alergenos:
+      - leche
+    - nombre: Chocolate blanco
+      nombre_en: "White chocolate"
+      alergenos:
+      - leche
+    - nombre: Chocolate negro
+      nombre_en: "Dark chocolate"
+      alergenos:
+      - leche
+    - nombre: Crema con avellanas
+      nombre_en: "Hazelnut cream"
+      alergenos:
+      - avellanas
+    - nombre: Crema de leche condensada
+      nombre_en: "Condensed milk cream"
+      alergenos:
+      - leche
+    - nombre: Nata montada
+      nombre_en: "Whipped cream"
+      alergenos:
+      - leche
+  - precio: 2
+    opciones:
+    - nombre: Crema de pistacho
+      nombre_en: "Pistachio cream"
+      alergenos_pendientes: true
 toppings:
   titulo: Elige tu topping
   titulo_en: "Choose your topping"
@@ -129,3 +129,23 @@ toppings:
       nombre_en: "Caramelised hazelnut crumble"
       alergenos:
       - avellanas
+especiales_titulo: Especiales de la casa
+especiales_titulo_en: "House specials"
+especiales_nota: Recomendamos pedirlos tal cual, pero se puede cambiar cualquier ingrediente.
+especiales_nota_en: "We recommend ordering them as they come, but any ingredient can be changed."
+especiales:
+  - nombre: Dubái
+    nombre_en: "Dubai"
+    ingredientes: Crema de pistacho, kataifi, chocolate con leche y crumble de pistacho
+    ingredientes_en: "Pistachio cream, kataifi, milk chocolate and pistachio crumble"
+    precio: 7,75
+    foto: assets/img/insta/dubai-especial.webp
+    foto_alt: Vaso del especial Dubái, con crema de pistacho, chocolate, kataifi y pistacho picado, con la pegatina de Fresas y Chocolate
+    foto_alt_en: "Cup of the Dubai special, with pistachio cream, chocolate, kataifi and chopped pistachio, with the Fresas y Chocolate sticker"
+    alergenos_pendientes: true
+  - nombre: Tokio
+    nombre_en: "Tokyo"
+    ingredientes: Chocolate blanco con té matcha, arroz tostado y fresas
+    ingredientes_en: "White chocolate with matcha tea, toasted rice and strawberries"
+    precio: 7,75
+    alergenos_pendientes: true

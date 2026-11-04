@@ -118,29 +118,37 @@ content:
         fields:
           - { name: titulo, label: Título, type: string, required: true }
           - { name: titulo_en, label: Título (inglés), type: string, description: "Opcional. Si se deja vacío, se muestra el español" }
-          - { name: precio, label: Precio de la crema (€), type: string, required: true, description: "Por ejemplo 1,70 o 12" }
           - { name: video, label: Vídeo (mp4), type: file, required: true, options: { media: videos } }
           - { name: video_portada, label: Imagen fija del vídeo, type: file, required: true, options: { media: videos }, description: "Se ve mientras carga el vídeo" }
           - { name: video_alt, label: Descripción del vídeo, type: string }
           - { name: video_alt_en, label: Descripción del vídeo (inglés), type: string, description: "Opcional. Si se deja vacío, se muestra el español" }
-          - name: opciones
-            label: Cremas
+          - name: grupos
+            label: Grupos de precio
             type: object
             list:
               collapsible:
                 collapsed: true
-                summary: "{nombre}"
+                summary: "+{precio} €"
             fields:
-              - { name: nombre, label: Nombre, type: string, required: true }
-              - { name: nombre_en, label: Nombre (inglés), type: string }
-              - &alergenos
-                name: alergenos
-                label: Alérgenos
-                type: select
-                options:
-                  multiple: true
-                  values: [gluten, leche, huevo, sésamo, soja, pistachos, frutos de cáscara, avellanas, mantequilla, coco]
-              - &pendientes { name: alergenos_pendientes, label: Alérgenos sin confirmar, type: boolean, description: "Márcalo si aún no se saben: la web pedirá preguntar en tienda" }
+              - { name: precio, label: Precio del grupo (€), type: string, required: true, description: "Por ejemplo 1,25 o 2" }
+              - name: opciones
+                label: Cremas y chocolates
+                type: object
+                list:
+                  collapsible:
+                    collapsed: true
+                    summary: "{nombre}"
+                fields:
+                  - { name: nombre, label: Nombre, type: string, required: true }
+                  - { name: nombre_en, label: Nombre (inglés), type: string }
+                  - &alergenos
+                    name: alergenos
+                    label: Alérgenos
+                    type: select
+                    options:
+                      multiple: true
+                      values: [gluten, leche, huevo, sésamo, soja, pistachos, frutos de cáscara, avellanas, mantequilla, coco]
+                  - &pendientes { name: alergenos_pendientes, label: Alérgenos sin confirmar, type: boolean, description: "Márcalo si aún no se saben: la web pedirá preguntar en tienda" }
       - name: toppings
         label: "Paso 3: toppings"
         type: object
@@ -173,6 +181,28 @@ content:
                   - *alergenos
                   - *pendientes
 
+      - { name: especiales_titulo, label: Título de los especiales, type: string, description: "Por ejemplo: Especiales de la casa" }
+      - { name: especiales_titulo_en, label: Título de los especiales (inglés), type: string, description: "Opcional. Si se deja vacío, se muestra el español" }
+      - { name: especiales_nota, label: Nota bajo los especiales, type: string, description: "Por ejemplo: Recomendamos pedirlos tal cual, pero se puede cambiar cualquier ingrediente" }
+      - { name: especiales_nota_en, label: Nota bajo los especiales (inglés), type: string, description: "Opcional. Si se deja vacío, se muestra el español" }
+      - name: especiales
+        label: "Especiales de la casa (Dubái, Tokio…)"
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{nombre}: {precio} €"
+        fields:
+          - { name: nombre, label: Nombre, type: string, required: true }
+          - { name: nombre_en, label: Nombre (inglés), type: string }
+          - { name: ingredientes, label: Ingredientes, type: string, required: true, description: "Por ejemplo: Crema de pistacho, kataifi, chocolate con leche y crumble de pistacho" }
+          - { name: ingredientes_en, label: Ingredientes (inglés), type: string }
+          - { name: precio, label: Precio final (€), type: string, required: true, description: "El precio del vaso ya montado, por ejemplo 7,75" }
+          - { name: foto, label: Foto, type: image, options: { media: fotos }, description: "Mejor vertical. Si no hay foto, se muestra un marcador «Foto próximamente»" }
+          - { name: foto_alt, label: Descripción de la foto, type: string, description: "Obligatoria si hay foto. Qué se ve en ella" }
+          - { name: foto_alt_en, label: Descripción de la foto (inglés), type: string }
+          - *alergenos
+          - *pendientes
   - name: bebidas
     label: Para beber
     type: file
@@ -322,6 +352,8 @@ content:
       - { name: antetitulo_en, label: Antetítulo (inglés), type: string, description: "Opcional. Si se deja vacío, se muestra el español" }
       - { name: titulo, label: Título, type: string, required: true }
       - { name: titulo_en, label: Título (inglés), type: string, description: "Opcional. Si se deja vacío, se muestra el español" }
+      - { name: contacto_texto, label: Frase para escribirnos, type: text, description: "Sale bajo el título, junto al botón «Escríbenos por Instagram». El enlace «Contáctanos» del menú lleva a esta sección" }
+      - { name: contacto_texto_en, label: Frase para escribirnos (inglés), type: text, description: "Opcional. Si se deja vacío, se muestra el español" }
       - name: fotos
         label: Fotos
         type: object

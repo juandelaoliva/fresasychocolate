@@ -42,7 +42,8 @@ ALERGENOS_EN = {'gluten': 'Gluten', 'leche': 'Milk', 'huevo': 'Egg', 'sésamo': 
 # Campos de texto que llevan traducción en content/*.yml con el sufijo _en (para avisar de los que faltan).
 TRADUCIBLES = {'referencia', 'dias', 'lema', 'seo_titulo', 'seo_descripcion', 'titulo_principal', 'descripcion_negocio',
                'antetitulo', 'titulo', 'intro', 'pedir_titulo', 'nota_alergenos', 'nombre', 'nota', 'foto_alt', 'video_alt',
-               'alt', 'detalle', 'como_encargar', 'boton', 'texto', 'firma', 'pregunta', 'respuesta'}
+               'alt', 'detalle', 'como_encargar', 'boton', 'texto', 'firma', 'pregunta', 'respuesta', 'ingredientes',
+               'especiales_titulo', 'especiales_nota', 'contacto_texto'}
 # Se traducen si hay `_en`, pero no es un fallo que falte (p. ej. reseñas de clientes en su idioma original).
 OPCIONALES = {'resena'}
 IDIOMAS = ('es', 'en')
@@ -54,8 +55,8 @@ OBLIGATORIOS = [
     'tienda.nombre', 'tienda.calle', 'tienda.codigo_postal', 'tienda.ciudad', 'tienda.latitud', 'tienda.longitud',
     'tienda.google_maps', 'tienda.instagram', 'tienda.horario',
     'portada.seo_titulo', 'portada.seo_descripcion', 'portada.titulo_principal', 'portada.descripcion_negocio', 'portada.lema',
-    'carta.titulo', 'carta.vaso.nombre', 'carta.vaso.precio', 'carta.vaso.foto', 'carta.cremas.titulo', 'carta.cremas.precio',
-    'carta.cremas.opciones', 'carta.cremas.video', 'carta.cremas.video_portada', 'carta.toppings.titulo', 'carta.toppings.foto',
+    'carta.titulo', 'carta.vaso.nombre', 'carta.vaso.precio', 'carta.vaso.foto', 'carta.cremas.titulo',
+    'carta.cremas.grupos', 'carta.cremas.video', 'carta.cremas.video_portada', 'carta.toppings.titulo', 'carta.toppings.foto',
     'carta.toppings.grupos', 'bebidas.titulo', 'bebidas.grupos', 'encargos.titulo', 'encargos.bandejas', 'encargos.como_encargar',
     'historia.fresas.titulo', 'historia.fresas.foto', 'historia.chocolate.titulo', 'historia.chocolate.video',
     'historia.nosotras.titulo', 'historia.nosotras.foto', 'instagram.fotos', 'preguntas.titulo',
@@ -146,17 +147,31 @@ def validar(c):
         return
     carta = c['carta']
     precio(carta['vaso'], 'precio', 'Monta tu vaso › vaso')
-    precio(carta['cremas'], 'precio', 'Monta tu vaso › cremas')
-    for op in carta['cremas'].get('opciones') or []:
-        for a in op.get('alergenos') or []:
-            if a not in ALERGENOS:
-                error(f'Crema "{op.get("nombre")}": alérgeno desconocido "{a}"')
+    for i, g in enumerate(carta['cremas'].get('grupos') or [], 1):
+        precio(g, 'precio', f'Monta tu vaso › cremas, grupo {i}')
+        for op in g.get('opciones') or []:
+            for a in op.get('alergenos') or []:
+                if a not in ALERGENOS:
+                    error(f'Crema "{op.get("nombre")}": alérgeno desconocido "{a}"')
     for i, g in enumerate(carta['toppings'].get('grupos') or [], 1):
         precio(g, 'precio', f'Monta tu vaso › toppings, grupo {i}')
         for op in g.get('opciones') or []:
             for a in op.get('alergenos') or []:
                 if a not in ALERGENOS:
                     error(f'Topping "{op.get("nombre")}": alérgeno desconocido "{a}"')
+    for i, e in enumerate(carta.get('especiales') or [], 1):
+        donde = f'Monta tu vaso › especiales › {e.get("nombre") or i}'
+        for k in ('nombre', 'ingredientes'):
+            if not str(e.get(k) or '').strip():
+                error(f'{donde}: falta "{k}"')
+        precio(e, 'precio', donde)
+        for a in e.get('alergenos') or []:
+            if a not in ALERGENOS:
+                error(f'{donde}: alérgeno desconocido "{a}"')
+        if e.get('foto') and not str(e.get('foto_alt') or '').strip():
+            error(f'{donde}: falta la descripción de la foto')
+        if not e.get('foto'):
+            print(f'Aviso: el especial "{e.get("nombre")}" aún no tiene foto; se muestra un marcador.')
     for g in c['bebidas'].get('grupos') or []:
         for p in g.get('productos') or []:
             precio(p, 'precio', f'Bebidas › {g.get("titulo")} › {p.get("nombre")}')
@@ -352,13 +367,35 @@ def svg(nombre, etiqueta=None):
 # ---------- datos derivados ----------
 
 def preguntas_auto(c, lang='es'):
+    """Preguntas automáticas; si hay especiales de la casa, añade una sobre ellos tras la del precio."""
+    preguntas = _preguntas_base(c, lang)
+    esp = c['carta'].get('especiales') or []
+    if esp:
+        en = lang == 'en'
+        eur = lambda v: euros(v, lang)
+        minus = lambda x: x[0].lower() + x[1:]
+        nombres = lista([e['nombre'] for e in esp], 'and' if en else 'y')
+        detalle = ' '.join(f'{e["nombre"]}: {minus(e["ingredientes"])} ({eur(e["precio"])}).' for e in esp)
+        nota = c['carta'].get('especiales_nota') or ''
+        if en:
+            q = {'pregunta': f'Do you have {esp[0]["nombre"]} chocolate strawberries?',
+                 'respuesta': f'Yes. Our house specials are {nombres}. {detalle} {nota}'.strip()}
+        else:
+            q = {'pregunta': f'¿Tenéis fresas con chocolate {esp[0]["nombre"]}?',
+                 'respuesta': f'Sí. Nuestros especiales de la casa son {nombres}. {detalle} {nota}'.strip()}
+        preguntas.insert(3, q)
+    return preguntas
+
+
+def _preguntas_base(c, lang='es'):
     en = lang == 'en'
     t, carta, enc, beb = c['tienda'], c['carta'], c['encargos'], c['bebidas']
     eur, eurc = (lambda v: euros(v, lang)), (lambda v: euros_corto(v, lang))
     y, o = ('and', 'or') if en else ('y', 'o')
-    vaso, crema = float(carta['vaso']['precio']), float(carta['cremas']['precio'])
+    vaso = float(carta['vaso']['precio'])
+    cr = [float(g['precio']) for g in carta['cremas']['grupos']]
     tops = [float(g['precio']) for g in carta['toppings']['grupos']]
-    cremas = [o_['nombre'] for o_ in carta['cremas']['opciones']]
+    cremas = [o_['nombre'] for g in carta['cremas']['grupos'] for o_ in g['opciones']]
     cap = lambda x: x[0].upper() + x[1:]
     minus = lambda x: x[0].lower() + x[1:]
     if en:  # los días ya vienen con mayúscula
@@ -377,10 +414,14 @@ def preguntas_auto(c, lang='es'):
     calle = minus(t['calle'])
     ref = f', {t["referencia"]}' if t.get('referencia') else ''
     if en:
-        precio_vaso = (f'The {carta["vaso"]["nombre"].lower()} costs {eur(vaso)}. The chocolate or cream adds {eur(crema)}, so a cup of '
-                       f'strawberries with chocolate comes to {eur(vaso + crema)}.')
+        precio_vaso = f'The {carta["vaso"]["nombre"].lower()} costs {eur(vaso)}. '
+        if min(cr) == max(cr):
+            precio_vaso += f'The chocolate or cream adds {eur(min(cr))}, so a cup of strawberries with chocolate comes to {eur(vaso + min(cr))}.'
+        else:
+            precio_vaso += (f'The chocolate or cream adds between {eur(min(cr))} and {eur(max(cr))} depending on which you choose, '
+                            f'so a cup of strawberries with chocolate starts at {eur(vaso + min(cr))}.')
         if tops:
-            precio_vaso += f' With a topping, between {eur(vaso + crema + min(tops))} and {eur(vaso + crema + max(tops))}.'
+            precio_vaso += f' With a topping, between {eur(vaso + min(cr) + min(tops))} and {eur(vaso + max(cr) + max(tops))}.'
         precio_vaso += f' Chocolates and creams to choose from: {lista(cremas, o)}.'
         return [
             {'pregunta': f'Where is {t["nombre"]} in {t["ciudad"]}?',
@@ -391,10 +432,14 @@ def preguntas_auto(c, lang='es'):
              'respuesta': f'Yes. There are trays: {lista(bandejas, y)}. {enc["como_encargar"]} [Message us on Instagram](https://ig.me/m/{t["instagram"]}).'},
             {'pregunta': 'What else can I have?', 'respuesta': 'Besides the cups of strawberries: ' + bebidas + '.'},
         ]
-    precio_vaso = (f'El {carta["vaso"]["nombre"].lower()} cuesta {eur(vaso)}. La crema suma {eur(crema)}, así que un vaso de fresas '
-                   f'con chocolate sale por {eur(vaso + crema)}.')
+    precio_vaso = f'El {carta["vaso"]["nombre"].lower()} cuesta {eur(vaso)}. '
+    if min(cr) == max(cr):
+        precio_vaso += f'La crema suma {eur(min(cr))}, así que un vaso de fresas con chocolate sale por {eur(vaso + min(cr))}.'
+    else:
+        precio_vaso += (f'La crema suma entre {eur(min(cr))} y {eur(max(cr))} según la que elijas, '
+                        f'así que un vaso de fresas con chocolate sale desde {eur(vaso + min(cr))}.')
     if tops:
-        precio_vaso += f' Con topping, entre {eur(vaso + crema + min(tops))} y {eur(vaso + crema + max(tops))}.'
+        precio_vaso += f' Con topping, entre {eur(vaso + min(cr) + min(tops))} y {eur(vaso + max(cr) + max(tops))}.'
     precio_vaso += f' Cremas a elegir: {lista(cremas, o)}.'
     return [
         {'pregunta': f'¿Dónde está {t["nombre"]} en {t["ciudad"]}?',
@@ -424,10 +469,13 @@ def jsonld(c, faq, lang, home):
         {'@type': 'MenuSection', 'name': carta['vaso']['nombre'], 'description': carta['vaso'].get('nota', ''),
          'hasMenuItem': [item(carta['vaso']['nombre'], carta['vaso']['precio'])]},
         {'@type': 'MenuSection', 'name': u['cremas'],
-         'hasMenuItem': [item(o['nombre'], carta['cremas']['precio'], sup) for o in carta['cremas']['opciones']]},
+         'hasMenuItem': [item(o['nombre'], g['precio'], sup) for g in carta['cremas']['grupos'] for o in g['opciones']]},
         {'@type': 'MenuSection', 'name': u['toppings'],
          'hasMenuItem': [item(o['nombre'], g['precio'], sup) for g in carta['toppings']['grupos'] for o in g['opciones']]},
     ]
+    if carta.get('especiales'):
+        secciones.insert(1, {'@type': 'MenuSection', 'name': carta.get('especiales_titulo') or u['especiales'],
+                             'hasMenuItem': [item(e['nombre'], e['precio'], e['ingredientes']) for e in carta['especiales']]})
     for g in c['bebidas']['grupos']:
         secciones.append({'@type': 'MenuSection', 'name': g['titulo'],
                           'hasMenuItem': [item(p['nombre'], p['precio'], p.get('detalle')) for p in g['productos']]})

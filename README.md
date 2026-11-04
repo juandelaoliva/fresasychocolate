@@ -96,7 +96,7 @@ presentacion/index.html    presentación del concepto para el cliente, en /prese
 |---|---|
 | `tienda.yml` | Nombre, dirección, coordenadas, Google Maps, Instagram, teléfono, email, horario y datos del titular (aviso legal) |
 | `portada.yml` | Lema del hero, título y descripción para Google, descripción de la tienda para IA y token de Cloudflare Web Analytics |
-| `carta.yml` | Monta tu vaso: vaso, cremas, grupos de toppings, precios y alérgenos |
+| `carta.yml` | Monta tu vaso: vaso, grupos de cremas y de toppings (cada grupo con su precio), especiales de la casa y alérgenos |
 | `bebidas.yml` | Galería y carta de bebidas |
 | `encargos.yml` | Galería, bandejas y cómo encargar |
 | `historia.yml` | Las fresas, el chocolate y quiénes somos |
@@ -371,9 +371,10 @@ web dentro del móvil (o tocar el móvil) y F para pantalla completa.
 ## Pendiente
 
 **Contenido por confirmar con la tienda**
-- Alérgenos de las cremas Chocolate Dubái y Chocolate Tokyo. Mientras tanto, "Monta tu vaso" pide
-  preguntar en tienda. Cuando se sepan: Pages CMS › Monta tu vaso › cremas, desmarcar "Alérgenos
-  sin confirmar" y elegirlos.
+- Alérgenos de la crema de pistacho y de los especiales Dubái y Tokio, y la foto de Tokio. Mientras
+  tanto, "Monta tu vaso" pide preguntar en tienda y Tokio enseña «Foto próximamente». Cuando se
+  sepan: Pages CMS › Monta tu vaso › cremas o especiales, desmarcar "Alérgenos sin confirmar" y
+  elegirlos; la foto se sube en el especial.
 - Precios de las bandejas: se tomaron de la publicación de Instagram del 9 de mayo.
 - Alérgeno nº 7: en la carta dice "frutos de cáscara" en español y "peanuts" en inglés.
 - Texto de "Quiénes somos": confirmar la frase "cada vaso montado al momento, a tu gusto".

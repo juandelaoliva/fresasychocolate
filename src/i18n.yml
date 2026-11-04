@@ -9,6 +9,7 @@ es:
   saltar: Saltar a la carta
   nav_bebidas: Para beber
   nav_nosotras: Quiénes somos
+  nav_contacto: Contáctanos
   nav_preguntas: Preguntas
   nav_visita: Visítanos
   nav_secciones: Secciones
@@ -36,6 +37,10 @@ es:
   resenas_total_una: "1 reseña en Google"
   ver_resenas: Ver todas las reseñas en Google
   dejar_resena: Deja tu reseña
+  especiales: Especiales de la casa
+  especiales_sub: ¿Prefieres algo ya montado? Estos son los de la casa.
+  especial_preguntar: Pregunta en tienda por los alérgenos
+  especial_sin_foto: Foto próximamente
   g_card_t: Hay más opiniones en Google
   g_card_b: Ver todas
   estrellas_aria: "{n} de 5 estrellas"
@@ -79,6 +84,7 @@ es:
       sabado: sábado
   ld:
     suplemento: Suplemento sobre el vaso de fresas
+    especiales: Especiales de la casa
     cremas: Cremas
     toppings: Toppings
     bandejas: Bandejas por encargo
@@ -94,6 +100,7 @@ en:
   saltar: Skip to the menu
   nav_bebidas: To drink
   nav_nosotras: About us
+  nav_contacto: Contact us
   nav_preguntas: FAQ
   nav_visita: Visit us
   nav_secciones: Sections
@@ -121,6 +128,10 @@ en:
   resenas_total_una: "1 review on Google"
   ver_resenas: See all reviews on Google
   dejar_resena: Leave a review
+  especiales: House specials
+  especiales_sub: Prefer something ready-made? These are the house favourites.
+  especial_preguntar: Ask in the shop about the allergens
+  especial_sin_foto: Photo coming soon
   g_card_t: There are more reviews on Google
   g_card_b: See all
   estrellas_aria: "{n} out of 5 stars"
@@ -164,6 +175,7 @@ en:
       sabado: Saturday
   ld:
     suplemento: Extra on top of the cup of strawberries
+    especiales: House specials
     cremas: Chocolates and creams
     toppings: Toppings
     bandejas: Trays made to order
