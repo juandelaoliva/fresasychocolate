@@ -43,6 +43,8 @@ ALERGENOS_EN = {'gluten': 'Gluten', 'leche': 'Milk', 'huevo': 'Egg', 'sésamo': 
 TRADUCIBLES = {'referencia', 'dias', 'lema', 'seo_titulo', 'seo_descripcion', 'titulo_principal', 'descripcion_negocio',
                'antetitulo', 'titulo', 'intro', 'pedir_titulo', 'nota_alergenos', 'nombre', 'nota', 'foto_alt', 'video_alt',
                'alt', 'detalle', 'como_encargar', 'boton', 'texto', 'firma', 'pregunta', 'respuesta'}
+# Se traducen si hay `_en`, pero no es un fallo que falte (p. ej. reseñas de clientes en su idioma original).
+OPCIONALES = {'resena'}
 IDIOMAS = ('es', 'en')
 DIAS = {'lunes': 'Monday', 'martes': 'Tuesday', 'miercoles': 'Wednesday', 'jueves': 'Thursday',
         'viernes': 'Friday', 'sabado': 'Saturday', 'domingo': 'Sunday'}
@@ -92,12 +94,15 @@ def localizar(obj, lang, faltan, ruta=''):
         if k.endswith('_en'):
             continue
         en = obj.get(k + '_en')
-        if isinstance(v, str) and v.strip() and k in TRADUCIBLES and (raiz != 'tienda' or k in ('referencia', 'dias')):
+        traducible = (k in TRADUCIBLES and (raiz != 'tienda' or k in ('referencia', 'dias'))
+                      and (raiz != 'resenas' or k in ('antetitulo', 'titulo')))
+        if isinstance(v, str) and v.strip() and (traducible or k in OPCIONALES):
             if isinstance(en, str) and en.strip():
                 out[k] = en
             else:
                 out[k] = v
-                faltan.append(f'{ruta}.{k}'.lstrip('.'))
+                if traducible:
+                    faltan.append(f'{ruta}.{k}'.lstrip('.'))
         else:
             out[k] = localizar(v, lang, faltan, f'{ruta}.{k}'.lstrip('.'))
     return out
@@ -164,6 +169,29 @@ def validar(c):
                 error(f'{sec.capitalize()} › fotos y vídeos, elemento {i}: falta la foto o el vídeo')
             if not str(f.get('alt') or '').strip():
                 error(f'{sec.capitalize()} › fotos y vídeos, elemento {i}: falta la descripción')
+    r = c.get('resenas') or {}
+    if r.get('valoracion') not in (None, ''):
+        v = numero(r['valoracion'])
+        if v is None or not 1 <= v <= 5:
+            error(f'Reseñas: la valoración debe ser un número entre 1 y 5, no "{r["valoracion"]}"')
+        r['valoracion_num'] = v
+    if r.get('total') not in (None, ''):
+        v = numero(r['total'])
+        if v is None or v < 1 or v != int(v):
+            error(f'Reseñas: el número de reseñas debe ser un entero, no "{r["total"]}"')
+        r['total_num'] = int(v) if v else None
+        if r['total_num']:
+            # Se enseña «Más de N» redondeado hacia abajo: sigue siendo verdad aunque lleguen reseñas nuevas.
+            paso = 50 if r['total_num'] > 100 else 25 if r['total_num'] > 50 else 10
+            r['total_redondeado'] = (r['total_num'] - 1) // paso * paso
+    for i, it in enumerate(r.get('lista') or [], 1):
+        e = numero(it.get('estrellas'))
+        if e is None or e not in (1, 2, 3, 4, 5):
+            error(f'Reseñas, reseña {i}: las estrellas deben ser de 1 a 5, no "{it.get("estrellas")}"')
+        it['estrellas'] = int(e) if e else 5
+        for k in ('nombre', 'resena'):
+            if not str(it.get(k) or '').strip():
+                error(f'Reseñas, reseña {i}: falta "{k}"')
     for k in ('latitud', 'longitud'):
         v = numero(c['tienda'].get(k))
         if v is None:
@@ -466,6 +494,7 @@ def render_idioma(lang, cl, faltan_en, pronto, clave, legal):
     env = Environment(loader=FileSystemLoader(SRC), autoescape=True,
                       trim_blocks=True, lstrip_blocks=True, keep_trailing_newline=True)
     env.filters.update(euros=lambda v: euros(v, lang), euros_corto=lambda v: euros_corto(v, lang),
+                       un_decimal=lambda v: f'{float(v):.1f}'.replace('.', ',' if es else '.'),
                        enlaces=enlaces, sin_enlaces=sin_enlaces, ruta=ruta)
     faq = preguntas_auto(cl, lang) + list(cl['preguntas'].get('preguntas') or [])
     orden = ALERGENOS if es else [ALERGENOS_EN[a] for a in ALERGENOS]

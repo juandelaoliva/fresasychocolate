@@ -283,6 +283,54 @@
     </div>
   </section>
 
+{% if resenas is defined and resenas.lista %}
+{% set res_link = resenas.enlace or (('https://www.google.com/maps?cid=' ~ t.google_maps_cid) if t.google_maps_cid else t.google_maps) %}
+  <section class="block resenas" id="resenas" aria-labelledby="resenas-t">
+    <div class="wrap">
+      <p class="kicker">{{ resenas.antetitulo }}</p>
+      <h2 class="display" id="resenas-t">{{ resenas.titulo }}</h2>
+{% if resenas.valoracion_num %}
+      <p class="valoracion">
+        <span class="estrellas grandes" style="--v: {{ resenas.valoracion_num }}" role="img" aria-label="{{ ui.valoracion_aria.format(n=resenas.valoracion_num | un_decimal) }}"></span>
+        <strong>{{ resenas.valoracion_num | un_decimal }}</strong>
+{% if resenas.total_num %}
+        <span class="valoracion-total">{{ (ui.resenas_total_una if resenas.total_num == 1 else ui.resenas_mas.format(n=resenas.total_redondeado) if resenas.total_redondeado >= 10 else ui.resenas_total.format(n=resenas.total_num)) }}</span>
+{% endif %}
+      </p>
+{% endif %}
+    </div>
+    <div class="carrusel resenas-carrusel">
+      <div class="strip" role="list">
+{% for r in resenas.lista %}
+        <figure role="listitem" class="resena">
+          <span class="estrellas" style="--v: {{ r.estrellas }}" role="img" aria-label="{{ ui.estrellas_aria.format(n=r.estrellas) }}"></span>
+          <blockquote><p>{{ r.resena }}</p></blockquote>
+          <figcaption><strong>{{ r.nombre }}</strong>{% if r.fecha %} <span>· {{ r.fecha }}</span>{% endif %}</figcaption>
+        </figure>
+{% endfor %}
+        <a role="listitem" class="ig-card" href="{{ res_link }}" target="_blank" rel="noopener">
+          {{ svg('simbolo') }}
+          <span class="ig-card-t">{{ ui.g_card_t }}</span>
+{% if resenas.valoracion_num %}
+          <span class="ig-card-u"><span class="estrellas" style="--v: {{ resenas.valoracion_num }}" aria-hidden="true"></span>{{ resenas.valoracion_num | un_decimal }}</span>
+{% endif %}
+          <span class="ig-card-b">{{ ui.g_card_b }} {{ svg('flecha') }}</span>
+        </a>
+      </div>
+      <div class="carrusel-nav" hidden>
+        <button type="button" class="carrusel-btn" data-dir="-1" aria-label="{{ ui.anterior }}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="carrusel-btn" data-dir="1" aria-label="{{ ui.siguiente }}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+    <div class="wrap resenas-acciones">
+{% if t.google_place_id %}
+      <a class="btn primary" href="https://search.google.com/local/writereview?placeid={{ t.google_place_id }}" target="_blank" rel="noopener">{{ ui.dejar_resena }}</a>
+{% endif %}
+      <a class="btn" href="{{ res_link }}" target="_blank" rel="noopener">{{ ui.ver_resenas }}</a>
+    </div>
+  </section>
+{% endif %}
+
   <section class="block insta" id="instagram" aria-labelledby="insta-t">
     <div class="wrap">
       <p class="kicker">{{ instagram.antetitulo }}</p>

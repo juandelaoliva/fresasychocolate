@@ -34,6 +34,7 @@ content:
       - { name: instagram, label: Usuario de Instagram, type: string, required: true, description: "Sin la @" }
       - { name: google_maps, label: Enlace de Google Maps, type: string, required: true }
       - { name: google_maps_cid, label: Código de la ficha de Google, type: string, description: "No hace falta tocarlo" }
+      - { name: google_place_id, label: Identificador de la ficha de Google, type: string, description: "No hace falta tocarlo. Sirve para el botón «Deja tu reseña»" }
       - { name: latitud, label: Latitud, type: string, required: true, description: "No hace falta tocarlo salvo que cambie la tienda de sitio" }
       - { name: longitud, label: Longitud, type: string, required: true }
       - { name: abierta_desde, label: Abierta desde (año), type: string }
@@ -332,6 +333,33 @@ content:
           - { name: foto, label: Foto, type: image, required: true, options: { media: fotos } }
           - { name: alt, label: Descripción de la foto, type: string, required: true, description: "Qué se ve en la foto" }
           - { name: alt_en, label: Descripción de la foto (inglés), type: string }
+
+  - name: resenas
+    label: Reseñas de Google
+    type: file
+    path: content/resenas.yml
+    format: yaml
+    fields:
+      - { name: antetitulo, label: Antetítulo, type: string }
+      - { name: antetitulo_en, label: Antetítulo (inglés), type: string, description: "Opcional. Si se deja vacío, se muestra el español" }
+      - { name: titulo, label: Título, type: string, required: true }
+      - { name: titulo_en, label: Título (inglés), type: string, description: "Opcional. Si se deja vacío, se muestra el español" }
+      - { name: valoracion, label: Valoración media en Google, type: string, description: "La nota de la ficha de Google, por ejemplo 4,9. Si se deja vacía, no salen las estrellas de arriba" }
+      - { name: total, label: Número de reseñas en Google, type: string, description: "El número real de la ficha, por ejemplo 125. La web enseña «Más de 100» (redondeado hacia abajo), así no hace falta actualizarlo a menudo" }
+      - { name: enlace, label: Enlace a las reseñas en Google, type: string, description: "Opcional. Si se deja vacío, el botón abre la ficha de la tienda en Google Maps" }
+      - name: lista
+        label: Reseñas
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{nombre}: {estrellas} estrellas"
+        fields:
+          - { name: nombre, label: Nombre, type: string, required: true, description: "Solo el nombre de pila (y la inicial del apellido si quieres)" }
+          - { name: estrellas, label: Estrellas, type: select, required: true, options: { values: ["5", "4", "3", "2", "1"] } }
+          - { name: resena, label: Reseña, type: text, required: true, description: "Copia el texto tal cual lo escribió la persona, sin retocarlo" }
+          - { name: resena_en, label: Reseña (inglés), type: text, description: "Opcional. Si se deja vacío, se muestra la reseña original" }
+          - { name: fecha, label: Cuándo la escribió, type: string, description: "Opcional. Por ejemplo: octubre 2026" }
 
   - name: preguntas
     label: Preguntas frecuentes

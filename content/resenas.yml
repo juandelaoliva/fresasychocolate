@@ -1,0 +1,34 @@
+# Reseñas de Google que se enseñan en la web. Mientras no haya ninguna en la lista, la sección no sale.
+# Copia el texto tal cual lo escribió la persona (sin retocarlo) y pon solo su nombre de pila.
+antetitulo: lo que dicen de nosotras
+antetitulo_en: what people say
+titulo: Reseñas
+titulo_en: Reviews
+valoracion: "4,8"
+total: "125"
+enlace: ""
+lista:
+  - nombre: "Fati R."
+    estrellas: "5"
+    resena: "Una maravilla de sitio. Empezando porque es precioso y todo está decorado al detalle. Los vasitos con fresas son una monada y están buenísimos. La fruta se nota que es fresca y de buena calidad porque las fresas están súper ricas. También el matcha con fresa es una delicia, además te hacen al momento el matcha y el sabor es inmejorable, me encantó. Para repetir sin duda."
+    resena_en: "What a wonderful place. First of all it is beautiful and everything is decorated down to the last detail. The little cups with strawberries are adorable and delicious. You can tell the fruit is fresh and good quality because the strawberries are super tasty. The matcha with strawberry is a delight too, and they make the matcha for you on the spot and the flavour is unbeatable, I loved it. Definitely worth going back."
+  - nombre: "Laura R."
+    estrellas: "5"
+    resena: "Están increíbles, teníamos muchas ganas de ir y ha superado todas nuestras expectativas. Lo que más nos ha gustado sin duda es en trato de la dueña, es un encanto y así todo sabe mejor ❤️ hay que apoyar los negocios locales en nuestra ciudad con productos de calidad. 10/10 REPETIREMOS SEGURO 🥹"
+    resena_en: "They are incredible, we had been really looking forward to going and it exceeded all our expectations. What we liked most, without a doubt, was the owner's kindness, she is a delight and that makes everything taste better ❤️ we have to support local businesses in our city with quality products. 10/10 WE'LL BE BACK FOR SURE 🥹"
+  - nombre: "Diego V."
+    estrellas: "5"
+    resena: "Las fresas están de escándalo ¡Buenísimas!. He repetido ya varias veces con combinaciones distintas. La persona que te atiende es muy agradable y te aconseja. ¿Volvería a repetir? Una y otra vez!"
+    resena_en: "The strawberries are outrageous. So good! I have already been back several times with different combinations. The person who serves you is very pleasant and gives you advice. Would I go back? Again and again!"
+  - nombre: "Albus S."
+    estrellas: "5"
+    resena: "Negocio familiar, producto espectacular, riquisimo, mil tipos de toppings, varios tipos de productos... local increíblemente precioso pero lo que más destaco es el trato de 10."
+    resena_en: "Family business, spectacular and delicious product, a thousand kinds of toppings, several types of products... an incredibly beautiful shop, but what I stand out most is the 10 out of 10 service."
+  - nombre: "Sofi"
+    estrellas: "5"
+    resena: "Las fresas están buenísimas, especialmente las de Dubái,se nota que es todo de calidad.Además la dueña es un encanto, súper amable y simpática,totalmente recomendable!!"
+    resena_en: "The strawberries are really good, especially the Dubai ones, you can tell everything is quality. The owner is also a delight, super kind and friendly, totally recommended!!"
+  - nombre: "Clara H."
+    estrellas: "5"
+    resena: "Siempre que he ido he salido con una sonrisa. La mujer que lleva el negocio es un encanto, trabaja durísimo para preparar las mejores copas de fresas. El precio es incluso más asequible que el de cadenas, y siendo un pequeño negocio eso es admirable. Decora el local según la época del año, los toppings están deliciosos, tiene cremas de todos tipos, opciones veganas, café, distintos modos de preparar la fruta... Un sitio 10/10"
+    resena_en: "Every time I have been I have left smiling. The woman who runs the business is a delight, she works incredibly hard to make the best cups of strawberries. The price is even more affordable than the chains', and for a small business that is admirable. She decorates the shop according to the time of year, the toppings are delicious, there are creams of all kinds, vegan options, coffee, different ways of preparing the fruit... A 10/10 place"

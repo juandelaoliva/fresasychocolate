@@ -31,6 +31,15 @@ es:
   siguiente: Siguiente
   ig_card_t: Hay mucho más en Instagram
   ig_card_b: Seguir viendo
+  resenas_total: "{n} reseñas en Google"
+  resenas_mas: "Más de {n} reseñas en Google"
+  resenas_total_una: "1 reseña en Google"
+  ver_resenas: Ver todas las reseñas en Google
+  dejar_resena: Deja tu reseña
+  g_card_t: Hay más opiniones en Google
+  g_card_b: Ver todas
+  estrellas_aria: "{n} de 5 estrellas"
+  valoracion_aria: "Valoración media: {n} de 5 estrellas"
   mosaico_aria: "Ver más fotos en el Instagram de {nombre}"
   ver_arroba: "Ver @{ig}"
   kicker_visita: visítanos
@@ -107,6 +116,15 @@ en:
   siguiente: Next
   ig_card_t: There's a lot more on Instagram
   ig_card_b: Keep browsing
+  resenas_total: "{n} reviews on Google"
+  resenas_mas: "Over {n} reviews on Google"
+  resenas_total_una: "1 review on Google"
+  ver_resenas: See all reviews on Google
+  dejar_resena: Leave a review
+  g_card_t: There are more reviews on Google
+  g_card_b: See all
+  estrellas_aria: "{n} out of 5 stars"
+  valoracion_aria: "Average rating: {n} out of 5 stars"
   mosaico_aria: "See more photos on the {nombre} Instagram"
   ver_arroba: "See @{ig}"
   kicker_visita: visit us
