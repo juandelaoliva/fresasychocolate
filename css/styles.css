@@ -28,7 +28,7 @@
   color-scheme: light;
 }
 * { box-sizing: border-box; }
-html { background: var(--hero-bg); -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--bar) + env(safe-area-inset-top, 0px)); }
+html { background: var(--hero-bg); -webkit-text-size-adjust: 100%; overflow-x: clip; overscroll-behavior-x: none; scroll-padding-top: calc(var(--bar) + env(safe-area-inset-top, 0px)); }
 body { margin: 0; background: var(--nata); color: var(--choco); font-family: var(--font-body); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
@@ -470,7 +470,7 @@ a[href*="instagram.com"]:not(.btn):not(.ig-card):not(.mosaic):not(.nav-ig) { dis
 .nosotras-foto { position: relative; margin: 0 0 28px; }
 .nosotras-foto img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 22px; }
 .nosotras-foto .sello {
-  position: absolute; right: -6px; bottom: -34px; width: clamp(104px, 30vw, 150px); height: auto; color: var(--oro);
+  position: absolute; right: 14px; bottom: -34px; width: clamp(104px, 30vw, 150px); height: auto; color: var(--oro);
   padding: 10px 12px; box-sizing: content-box; background: var(--pared); border-radius: 50% / 46%;
   transform: rotate(-8deg); filter: drop-shadow(0 10px 18px rgba(20, 35, 38, .35));
 }
