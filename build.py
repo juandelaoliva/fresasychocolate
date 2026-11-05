@@ -43,7 +43,7 @@ ALERGENOS_EN = {'gluten': 'Gluten', 'leche': 'Milk', 'huevo': 'Egg', 'sésamo': 
 TRADUCIBLES = {'referencia', 'dias', 'lema', 'seo_titulo', 'seo_descripcion', 'titulo_principal', 'descripcion_negocio',
                'antetitulo', 'titulo', 'intro', 'pedir_titulo', 'nota_alergenos', 'nombre', 'nota', 'foto_alt', 'video_alt',
                'alt', 'detalle', 'como_encargar', 'boton', 'texto', 'firma', 'pregunta', 'respuesta', 'ingredientes',
-               'especiales_titulo', 'especiales_nota', 'contacto_texto'}
+               'especiales_titulo', 'especiales_nota', 'contacto_texto', 'financiacion'}
 # Se traducen si hay `_en`, pero no es un fallo que falte (p. ej. reseñas de clientes en su idioma original).
 OPCIONALES = {'resena'}
 IDIOMAS = ('es', 'en')
@@ -95,7 +95,7 @@ def localizar(obj, lang, faltan, ruta=''):
         if k.endswith('_en'):
             continue
         en = obj.get(k + '_en')
-        traducible = (k in TRADUCIBLES and (raiz != 'tienda' or k in ('referencia', 'dias'))
+        traducible = (k in TRADUCIBLES and (raiz != 'tienda' or k in ('referencia', 'dias', 'financiacion'))
                       and (raiz != 'resenas' or k in ('antetitulo', 'titulo')))
         if isinstance(v, str) and v.strip() and (traducible or k in OPCIONALES):
             if isinstance(en, str) and en.strip():

@@ -37,6 +37,8 @@ content:
       - { name: google_place_id, label: Identificador de la ficha de Google, type: string, description: "No hace falta tocarlo. Sirve para el botón «Deja tu reseña»" }
       - { name: latitud, label: Latitud, type: string, required: true, description: "No hace falta tocarlo salvo que cambie la tienda de sitio" }
       - { name: longitud, label: Longitud, type: string, required: true }
+      - { name: financiacion, label: Texto de financiación (pie de página), type: string, description: "Sale en pequeño al final de la web. Si se deja vacío, no sale" }
+      - { name: financiacion_en, label: Texto de financiación (inglés), type: string, description: "Opcional. Si se deja vacío, se muestra el español" }
       - { name: abierta_desde, label: Abierta desde (año), type: string }
       - name: horario
         label: Horario

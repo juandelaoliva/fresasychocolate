@@ -521,6 +521,7 @@ a[href*="instagram.com"]:not(.btn):not(.ig-card):not(.mosaic):not(.nav-ig) { dis
 .foot p { margin: 0; font-size: 14px; letter-spacing: .04em; opacity: .85; }
 .foot a { text-underline-offset: 3px; }
 .foot .idioma { font-size: 13px; letter-spacing: .08em; }
+.foot .financiacion { max-width: 36ch; margin-inline: auto; font-size: 12px; line-height: 1.4; opacity: .6; }
 .foot .legales { font-size: 12px; opacity: .6; }
 .foot .legales a { color: inherit; }
 

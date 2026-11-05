@@ -8,6 +8,9 @@
     <p class="legales"><a href="{{ 'aviso-legal.html' if lang == 'es' else 'legal-notice.html' }}">{{ ui.aviso_legal }}</a> · <a href="{{ 'privacidad.html' if lang == 'es' else 'privacy.html' }}">{{ ui.privacidad }}</a></p>
 {% endif %}
     <p class="idioma"><a href="{{ pag.otro }}" hreflang="{{ pag.otro_lang }}" lang="{{ pag.otro_lang }}">{{ ui.idioma_otro }}</a></p>
+{% if tienda.financiacion %}
+    <p class="financiacion">{{ tienda.financiacion }}</p>
+{% endif %}
     <p class="firma">{{ ui.hecho_por }} <a href="https://juandelaoliva.com" target="_blank" rel="noopener">Juan de la Oliva</a></p>
   </div>
 </footer>
