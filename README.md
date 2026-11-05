@@ -97,7 +97,8 @@ presentacion/index.html    presentación del concepto para el cliente, en /prese
 | `tienda.yml` | Nombre, dirección, coordenadas, Google Maps, Instagram, teléfono, email, horario y datos del titular (aviso legal) |
 | `portada.yml` | Lema del hero, título y descripción para Google, descripción de la tienda para IA y token de Cloudflare Web Analytics |
 | `carta.yml` | Monta tu vaso: vaso, grupos de cremas y de toppings (cada grupo con su precio), especiales de la casa y alérgenos |
-| `bebidas.yml` | Galería y carta de bebidas |
+| `bebidas.yml` | Galería y carta de bebidas y helados |
+| `productos.yml` | «En la tienda»: galería y listas de chocolates y otros productos que rotan (cada producto con interruptor `mostrar`, precio opcional); sin productos visibles ni fotos, la sección no sale |
 | `encargos.yml` | Galería, bandejas y cómo encargar |
 | `historia.yml` | Las fresas, el chocolate y quiénes somos |
 | `instagram.yml` | Fotos del mosaico "Del día a día" |
@@ -116,8 +117,8 @@ nunca se publica una web rota. Comprueba, entre otras cosas:
 - que las horas tengan el formato `14:00`;
 - que todas las fotos y vídeos existan y tengan descripción (texto alternativo).
 
-**Fotos.** Las WebP de hasta 1600 px se publican tal cual. El resto (JPG, PNG, HEIC del iPhone…)
-se convierte a WebP de 1600 px de ancho como máximo, y el original no se publica.
+**Fotos.** Las WebP de hasta 2000 px se publican tal cual. El resto (JPG, PNG, HEIC del iPhone…)
+se convierte a WebP de 2000 px de ancho como máximo, y el original no se publica.
 
 **Vídeos.** Los MP4 de hasta 12 MB se publican tal cual. El resto (MOV del iPhone, MP4 pesados…)
 se convierte con `ffmpeg` a un MP4 sin sonido de 720 px de ancho como máximo. Si un vídeo no
@@ -219,6 +220,12 @@ alternan con el rosa del packaging y un fondo nata. Los titulares van en Italian
 los números, en Jost (los números de Italiana no se leen bien, ver la clase `.num`); los detalles
 caligráficos, en Petit Formal Script.
 
+**Menú.** La barra de escritorio (desde 1100 px) agrupa lo que se puede pedir o llevarse bajo
+**Carta** (un desplegable con Monta tu vaso, Para tomar, Por encargo y En la tienda); el resto
+(Quiénes somos, Contáctanos, Preguntas, Visítanos) va suelto. En el móvil, el panel enseña el
+mismo grupo como lista con sangría. Está definido al principio de `index.html.j2`
+(`carta_hijos` y `secciones`); «En la tienda» solo sale si esa sección tiene contenido.
+
 1. **Monta tu vaso** (`#carta`): la carta en tres tarjetas, como la carta impresa, cada una con
    su foto o vídeo y el número del paso en una esquina de color. Las opciones se pueden marcar:
    abajo se van sumando el precio y los alérgenos. Sin JavaScript sigue siendo una lista legible.
@@ -313,7 +320,13 @@ Perplexity, Gemini, el modo IA de Google…) encuentren la tienda y la citen con
   horario, Instagram y forma de encargar; la carta completa con precios (`Menu`); la web; y las
   preguntas frecuentes (`FAQPage`).
 - **Preguntas frecuentes:** respuestas cortas y concretas, que es lo que más citan las IA.
-- **`llms.txt`:** ficha de la tienda en texto plano para asistentes de IA.
+- **`llms.txt`:** ficha de la tienda en texto plano para asistentes de IA (carta, especiales, bebidas,
+  encargos y «En la tienda»; también en inglés, `/en/llms.txt`).
+- **«En la tienda»:** entra en `llms.txt`, en el JSON-LD (`hasOfferCatalog`, sin precio si se consulta
+  en tienda), en una pregunta frecuente automática y en las imágenes del sitemap. Los productos con
+  «Mostrar en la web» desmarcado no salen en ninguno.
+- **Reseñas:** no se marcan como `AggregateRating`: Google no premia las reseñas que una web pone en
+  su propia página. En inglés, cada reseña lleva «Translated from Spanish».
 - **`robots.txt` y `sitemap.xml`:** el primero deja entrar a buscadores y bots de IA.
 
 ## Legal y privacidad

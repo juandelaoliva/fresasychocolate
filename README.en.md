@@ -100,7 +100,8 @@ The files in `content/`:
 | `tienda.yml` (shop) | Name, address, coordinates, Google Maps, Instagram, phone, email, opening hours and the owner's details (legal notice) |
 | `portada.yml` (front page) | Hero tagline, Google title and description, shop description for AI and the Cloudflare Web Analytics token |
 | `carta.yml` (menu) | "Monta tu vaso": cup, cream groups and topping groups (each with its price), house specials and allergens |
-| `bebidas.yml` (drinks) | Gallery and drinks menu |
+| `bebidas.yml` (drinks) | Gallery and menu of drinks and ice cream |
+| `productos.yml` (products) | "En la tienda": gallery and lists of chocolates and other rotating products (each product with a `mostrar` switch and an optional price); with no visible product or photo, the section is not generated |
 | `encargos.yml` (orders) | Gallery, trays and how to order |
 | `historia.yml` (story) | The strawberries, the chocolate and "about us" |
 | `instagram.yml` | Photos in the "Del día a día" mosaic |
@@ -119,8 +120,8 @@ so a broken site is never published. Among other things, it checks:
 - that times look like `14:00`;
 - that every photo and video exists and has a description (alt text).
 
-**Photos.** WebP files up to 1600 px wide are published as they are. Everything else (JPG, PNG,
-HEIC from iPhones…) is converted to WebP at most 1600 px wide, and the original is not published.
+**Photos.** WebP files up to 2000 px wide are published as they are. Everything else (JPG, PNG,
+HEIC from iPhones…) is converted to WebP at most 2000 px wide, and the original is not published.
 
 **Videos.** MP4 files up to 12 MB are published as they are. Everything else (iPhone MOV, heavy
 MP4…) is converted with `ffmpeg` to a silent MP4 at most 720 px wide. If a video has no still
@@ -219,6 +220,12 @@ with the pink of the packaging and a cream background. Headings use Italiana; bo
 numbers use Jost (Italiana's figures don't read well; see the `.num` class); script details use
 Petit Formal Script.
 
+**Menu.** The desktop bar (from 1100 px) groups what can be ordered or taken away under **Carta**
+(a dropdown with Monta tu vaso, Para tomar, Por encargo and En la tienda); the rest (Quiénes
+somos, Contáctanos, Preguntas, Visítanos) stays loose. On mobile the panel shows the same group
+as an indented list. It is defined at the top of `index.html.j2` (`carta_hijos` and `secciones`);
+"En la tienda" only appears when that section has content.
+
 1. **Monta tu vaso** (`#carta`, "build your cup"): the menu as three cards, like the printed
    menu, each with a photo or video and the step number in a coloured corner. Options can be
    selected; the price and allergens add up at the bottom. Without JavaScript it is still a
@@ -313,7 +320,13 @@ Google's AI Mode…) to find the shop and quote it accurately (GEO, generative e
   hours, Instagram and how to order; the full menu with prices (`Menu`); the website; and the FAQ
   (`FAQPage`).
 - **FAQ:** short, concrete answers, which is what AI assistants quote most.
-- **`llms.txt`:** a plain-text summary of the shop for AI assistants.
+- **`llms.txt`:** a plain-text summary of the shop for AI assistants (menu, specials, drinks, made-to-order
+  items and "En la tienda"; also in English, `/en/llms.txt`).
+- **"En la tienda":** it goes into `llms.txt`, the JSON-LD (`hasOfferCatalog`, with no price when prices are
+  asked in the shop), an automatic FAQ answer and the sitemap images. Products with "Mostrar en la web"
+  unticked appear in none of them.
+- **Reviews:** they are not marked up as `AggregateRating`: Google does not reward reviews a business puts
+  on its own page. In English each review carries "Translated from Spanish".
 - **`robots.txt` and `sitemap.xml`:** the first lets search engines and AI crawlers in.
 
 ## Legal and privacy

@@ -60,7 +60,8 @@ Arrastra los puntitos de la izquierda (⠿) para cambiar el orden y pulsa la pap
 | **Tienda (dirección y horario)** | Dirección, teléfono, email, Instagram, enlace a Google Maps, horario y datos del titular. Salen en Visítanos, en el pie, en el menú, en las preguntas frecuentes y en el aviso legal. |
 | **Portada y Google** | La frase que aparece al final de la animación inicial, y cómo sale la tienda en Google y en asistentes como ChatGPT. |
 | **Monta tu vaso** | Precio del vaso, cremas, toppings, precios, alérgenos, fotos de las tres tarjetas y la frase que invita a ir a la tienda. |
-| **Para beber** | Galería de fotos y vídeos, y la carta de batidos, matcha y café. |
+| **Para beber** (en la web, «Bebidas y helados») | Galería de fotos y vídeos, y la carta de batidos, granizados, matcha, café y helados. |
+| **En la tienda** | Los chocolates y otros productos que se venden en el mostrador, con interruptor para quitarlos unos días. |
 | **Por encargo** | Galería de fotos y vídeos, bandejas con sus tamaños y precios, y cómo se encarga. |
 | **Fresas, chocolate y quiénes somos** | Textos, fotos y vídeo de esas tres secciones. |
 | **Del día a día (Instagram)** | Las fotos del mosaico y la frase que invita a escribirnos por Instagram (el enlace «Contáctanos» del menú lleva a esta sección). |
@@ -112,8 +113,33 @@ sus ingredientes y su precio final.
 4. Los alérgenos se marcan igual que en las cremas. Si no se saben, deja marcado
    **Alérgenos sin confirmar**.
 5. Para añadir uno nuevo, **Add an item**. Para quitarlo, la papelera.
-6. La **Nota bajo los especiales** («Recomendamos pedirlos tal cual…») también se cambia ahí.
-7. Guarda.
+6. Si el especial tiene un vídeo corto (como Tokio), se ve en lugar de la foto; hace falta una
+   **Imagen fija del vídeo**.
+7. La **Nota bajo los especiales** («Recomendamos pedirlos tal cual…») también se cambia ahí.
+8. Guarda.
+
+### Añadir un helado o una bebida
+
+En **Para beber** (que en la web se llama «Bebidas y helados») hay un grupo para cada tipo
+(Batidos y granizados, Matcha, Café, Helados). Para añadir un helado, abre el grupo **Helados** y
+**Add an item**; el **Detalle** es la línea pequeña bajo el nombre (por ejemplo, «En tulipa, con
+fresas recién cortadas…»).
+
+### Productos de la tienda (chocolates y otros)
+
+La sección **En la tienda** tiene la misma estructura que **Para beber**: una galería de fotos y
+vídeos (con la tarjeta de Instagram al final) y, debajo, las listas de productos con su precio.
+Enseña lo que se vende en el mostrador y no es del vaso, de las bebidas ni de los encargos. Como
+va cambiando:
+
+1. Abre **En la tienda (chocolates y otros productos)** en el editor.
+2. **Fotos y vídeos:** se añaden igual que en Para beber.
+3. **Grupos:** cada grupo es un tipo de producto (por ejemplo, Chocolates). Dentro, **Add an item**
+   para añadir un producto con su **Nombre o marca**, un **Detalle** (opcional) y el **Precio**.
+4. Si un precio cambia a menudo, déjalo vacío: la web enseña el producto sin precio.
+5. Para quitar un producto unos días, **desmarca «Mostrar en la web»** sin borrarlo. Cuando
+   vuelva, vuelve a marcarlo.
+6. Si no queda ningún producto visible ni fotos, la sección desaparece de la web.
 
 ### Cambiar el horario
 

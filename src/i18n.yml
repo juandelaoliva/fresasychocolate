@@ -7,7 +7,8 @@ es:
   html_lang: es-ES
   maps_hl: es
   saltar: Saltar a la carta
-  nav_bebidas: Para beber
+  nav_carta: Carta
+  nav_bebidas: Para tomar
   nav_nosotras: Quiénes somos
   nav_contacto: Contáctanos
   nav_preguntas: Preguntas
@@ -37,6 +38,7 @@ es:
   resenas_total_una: "1 reseña en Google"
   ver_resenas: Ver todas las reseñas en Google
   dejar_resena: Deja tu reseña
+  resena_traducida: Traducción
   especiales: Especiales de la casa
   especiales_sub: ¿Prefieres algo ya montado? Estos son los de la casa.
   especial_preguntar: Pregunta en tienda por los alérgenos
@@ -98,7 +100,8 @@ en:
   html_lang: en
   maps_hl: en
   saltar: Skip to the menu
-  nav_bebidas: To drink
+  nav_carta: Menu
+  nav_bebidas: To have
   nav_nosotras: About us
   nav_contacto: Contact us
   nav_preguntas: FAQ
@@ -128,6 +131,7 @@ en:
   resenas_total_una: "1 review on Google"
   ver_resenas: See all reviews on Google
   dejar_resena: Leave a review
+  resena_traducida: Translated from Spanish
   especiales: House specials
   especiales_sub: Prefer something ready-made? These are the house favourites.
   especial_preguntar: Ask in the shop about the allergens

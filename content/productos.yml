@@ -1,0 +1,59 @@
+# Productos que se venden en la tienda y no son del vaso, de las bebidas ni de los encargos (chocolates y otros).
+# Mismo formato que «Para beber»: galería de fotos y vídeos y, debajo, las listas con sus precios.
+# Rotan: para quitar un producto unos días, desmárcalo en «Mostrar en la web» sin borrarlo.
+# Si no hay ningún producto visible ni fotos, la sección no sale.
+antetitulo: para llevar
+antetitulo_en: "to take home"
+titulo: En la tienda
+titulo_en: "In the shop"
+intro: Además de lo que preparamos al momento, en la tienda también encontrarás chocolates y otros productos. Van cambiando, así que pregunta qué tenemos hoy.
+intro_en: "Besides what we make on the spot, in the shop you will also find chocolates and other products. They change, so ask what we have today."
+fotos:
+  - foto: assets/img/insta/ritonka-cesta.webp
+    alt: Cesta de mimbre llena de tabletas de chocolate Ritonka con fresas y rosas
+    alt_en: "Wicker basket full of Ritonka chocolate bars with strawberries and roses"
+  - foto: assets/img/insta/ritonka-blanco-fresas.webp
+    alt: Tableta Ritonka de chocolate blanco con fresa liofilizada, rodeada de fresas frescas
+    alt_en: "Ritonka white chocolate bar with freeze-dried strawberry, surrounded by fresh strawberries"
+  - foto: assets/img/insta/ritonka-chocolate-taza.webp
+    alt: Tabletas Ritonka y chocolate a la taza con cuchara, junto a fresas cortadas y rosas
+    alt_en: "Ritonka bars and drinking chocolate on a spoon, next to sliced strawberries and roses"
+  - foto: assets/img/insta/ritonka-rosa-primer-plano.webp
+    alt: Primer plano de una tableta Ritonka de chocolate con leche y fresa liofilizada, con una rosa y fresas
+    alt_en: "Close-up of a Ritonka milk chocolate bar with freeze-dried strawberry, with a rose and strawberries"
+  - foto: assets/img/insta/ritonka-cesta-cenital.webp
+    alt: Cesta de tabletas Ritonka vista desde arriba, con fresas y rosas
+    alt_en: "Basket of Ritonka bars seen from above, with strawberries and roses"
+  - foto: assets/img/insta/ritonka-estante.webp
+    alt: Estante de la tienda con tabletas Ritonka junto al logo dorado de Fresas y Chocolate
+    alt_en: "Shop shelf with Ritonka bars next to the golden Fresas y Chocolate logo"
+grupos:
+  - titulo: Chocolates Ritonka
+    titulo_en: "Ritonka chocolates"
+    nota: Los precios se consultan en la tienda.
+    nota_en: "Ask in the shop for prices."
+    productos:
+      - nombre: Tabletas
+        nombre_en: "Chocolate bars"
+        detalle: Chocolate artesano con fruta
+        detalle_en: "Handmade chocolate with fruit"
+        mostrar: true
+      - nombre: Chocolate a la taza
+        nombre_en: "Drinking chocolate"
+        detalle: Con cuchara, para disolver en leche caliente
+        detalle_en: "On a spoon, to stir into hot milk"
+        mostrar: true
+      - nombre: Chocolate con galleta
+        nombre_en: "Chocolate with biscuit"
+        mostrar: true
+      - nombre: Caja de bombones
+        nombre_en: "Box of chocolates"
+        mostrar: true
+  - titulo: Chocolates Heidel
+    titulo_en: "Heidel chocolates"
+    nota: Los precios se consultan en la tienda.
+    nota_en: "Ask in the shop for prices."
+    productos:
+      - nombre: Próximamente
+        nombre_en: "Coming soon"
+        mostrar: false

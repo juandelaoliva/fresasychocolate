@@ -72,12 +72,25 @@
 <body>
 <a class="skip" href="#carta">{{ ui.saltar }}</a>
 
-{% set secciones = [('#carta', carta.titulo), ('#bebidas', ui.nav_bebidas), ('#encargos', encargos.titulo), ('#nosotras', ui.nav_nosotras), ('#instagram', ui.nav_contacto), ('#preguntas', ui.nav_preguntas), ('#visita', ui.nav_visita)] %}
+{# La carta agrupa lo que se puede pedir o llevarse (desplegable en escritorio, grupo en el menú móvil); el resto va suelto. #}
+{% set carta_hijos = [('#carta', carta.titulo), ('#bebidas', ui.nav_bebidas), ('#encargos', encargos.titulo)] %}
+{% if productos is defined and (productos.grupos_visibles or productos.fotos) %}
+{% set carta_hijos = carta_hijos + [('#productos', productos.titulo)] %}
+{% endif %}
+{% set secciones = [('#nosotras', ui.nav_nosotras), ('#instagram', ui.nav_contacto), ('#preguntas', ui.nav_preguntas), ('#visita', ui.nav_visita)] %}
 <header class="topbar" id="topbar">
   <a class="topbar-logo" href="#hero" aria-label="{{ t.nombre }}, {{ ui.ir_inicio }}">{{ svg('simbolo') }}{{ svg('logo-horizontal') }}</a>
   {# Desktop: the sections inline, the last one as a button; the burger and its panel are for phones. #}
   <nav class="topnav" aria-label="{{ ui.nav_secciones }}">
     <ul>
+      <li class="topnav-group">
+        <button type="button" class="topnav-parent" aria-expanded="false" aria-controls="sub-carta">{{ ui.nav_carta }}<svg viewBox="0 0 12 12" aria-hidden="true"><path d="m2.5 4.5 3.5 3.5 3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <ul class="topnav-sub" id="sub-carta">
+{% for href, texto in carta_hijos %}
+          <li><a href="{{ href }}">{{ texto }}</a></li>
+{% endfor %}
+        </ul>
+      </li>
 {% for href, texto in secciones %}
       <li><a href="{{ href }}"{% if loop.last %} class="topnav-cta"{% endif %}>{{ texto }}</a></li>
 {% endfor %}
@@ -88,6 +101,14 @@
 </header>
 <nav class="nav-panel" id="nav-panel" aria-label="{{ ui.nav_menu }}" hidden>
   <ul>
+    <li class="nav-group">
+      <p class="nav-group-t">{{ ui.nav_carta }}</p>
+      <ul class="nav-sub">
+{% for href, texto in carta_hijos %}
+        <li><a href="{{ href }}">{{ texto }}</a></li>
+{% endfor %}
+      </ul>
+    </li>
 {% for href, texto in secciones %}
     <li><a href="{{ href }}">{{ texto }}</a></li>
 {% endfor %}
@@ -191,7 +212,9 @@
 {% for e in carta.especiales %}
           <article class="especial">
             <div class="especial-foto">
-{% if e.foto %}
+{% if e.video %}
+              <video class="loop" muted loop playsinline preload="none" poster="{{ base }}{{ e.video_portada | ruta }}" data-src="{{ base }}{{ e.video | ruta }}" aria-label="{{ e.video_alt }}"></video>
+{% elif e.foto %}
               {{ foto(e.foto, e.foto_alt, 'Monta tu vaso › especial ' ~ e.nombre) }}
 {% else %}
               <div class="especial-vacio" role="img" aria-label="{{ ui.especial_sin_foto }}">{{ svg('simbolo') }}<span>{{ ui.especial_sin_foto }}</span></div>
@@ -276,6 +299,36 @@
     </div>
   </section>
 
+{% if productos is defined and (productos.grupos_visibles or productos.fotos) %}
+  <section class="block productos" id="productos" aria-labelledby="productos-t">
+    <div class="wrap">
+      <p class="kicker">{{ productos.antetitulo }}</p>
+      <h2 class="display" id="productos-t">{{ productos.titulo }}</h2>
+{% if productos.intro %}
+      <p class="lead">{{ productos.intro }}</p>
+{% endif %}
+    </div>
+{% if productos.fotos %}
+    {{ galeria(productos.fotos, 'En la tienda › fotos y vídeos') }}
+{% endif %}
+    <div class="wrap drinks">
+{% for g in productos.grupos_visibles %}
+      <div>
+        <h3>{{ g.titulo }}</h3>
+{% if g.nota %}
+        <p class="grupo-nota">{{ g.nota }}</p>
+{% endif %}
+        <ul class="menu">
+{% for p in g.productos %}
+          <li{% if not p.precio %} class="sin-precio"{% endif %}><span>{{ p.nombre }}{% if p.detalle %} <small>{{ p.detalle }}</small>{% endif %}</span>{% if p.precio %}<span class="p">{{ p.precio | euros }}</span>{% endif %}</li>
+{% endfor %}
+        </ul>
+      </div>
+{% endfor %}
+    </div>
+  </section>
+{% endif %}
+
 {% set h = historia %}
   <section class="origen" id="origen" aria-labelledby="origen-t">
     {{ foto(h.fresas.foto, h.fresas.foto_alt, 'Las fresas', cls='origen-img') }}
@@ -337,7 +390,7 @@
 {% for r in resenas.lista %}
         <figure role="listitem" class="resena">
           <span class="estrellas" style="--v: {{ r.estrellas }}" role="img" aria-label="{{ ui.estrellas_aria.format(n=r.estrellas) }}"></span>
-          <blockquote><p>{{ r.resena }}</p></blockquote>
+          <blockquote><p>{{ r.resena }}</p>{% if r.resena_traducida %}<p class="resena-trad">{{ ui.resena_traducida }}</p>{% endif %}</blockquote>
           <figcaption><strong>{{ r.nombre }}</strong>{% if r.fecha %} <span>· {{ r.fecha }}</span>{% endif %}</figcaption>
         </figure>
 {% endfor %}

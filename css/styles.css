@@ -74,6 +74,9 @@ a { color: inherit; }
 .nav-panel ul { list-style: none; margin: 0; padding: 0; }
 .nav-panel li a { display: block; padding: 10px 0; font: 400 clamp(34px, 10vw, 52px)/1.1 var(--font-body); text-decoration: none; }
 .nav-panel li.nav-lang a { display: inline-flex; margin-top: 14px; padding: 8px 18px; border: 1.5px solid currentColor; border-radius: 999px; font-size: 17px; line-height: 1; letter-spacing: .06em; }
+.nav-group-t { margin: 0 0 2px; font: 600 12px/1 var(--font-body); letter-spacing: .18em; text-transform: uppercase; opacity: .65; }
+.nav-panel .nav-sub { margin: 0 0 8px; padding-left: 14px; border-left: 2px solid color-mix(in srgb, var(--choco) 28%, transparent); }
+.nav-panel .nav-sub a { padding: 6px 0; font-size: clamp(28px, 8vw, 40px); }
 .nav-foot { display: flex; align-items: center; gap: 16px; font-size: 15px; letter-spacing: .04em; line-height: 1.5; }
 .nav-foot p { margin: 0; min-width: 0; }
 .nav-foot p a { text-decoration: none; font-weight: 500; }
@@ -81,13 +84,13 @@ a { color: inherit; }
 .nav-foot .nav-ig:active { background: var(--choco); color: var(--hero-bg); }
 .nav-foot .nav-ig .ig { width: 32px; height: 32px; margin: 0; vertical-align: 0; }
 /* Short phones: smaller links so the language button and Instagram stay on screen. */
-@media (max-height: 700px) { .nav-panel { padding-top: calc(var(--bar) + env(safe-area-inset-top, 0px) + 12px); } .nav-panel li a { padding: 6px 0; font-size: clamp(26px, 7.6vw, 34px); } .nav-panel li.nav-lang a { margin-top: 8px; } }
-@media (max-height: 600px) { .nav-panel { padding-bottom: 20px; } .nav-panel li a { padding: 3px 0; font-size: clamp(24px, 7vw, 28px); } .nav-foot .nav-ig { width: 52px; height: 52px; } .nav-foot .nav-ig .ig { width: 26px; height: 26px; } }
+@media (max-height: 700px) { .nav-panel .nav-sub a { padding: 3px 0; font-size: clamp(22px, 6.4vw, 28px); } .nav-panel .nav-sub { margin-bottom: 4px; } .nav-panel { padding-top: calc(var(--bar) + env(safe-area-inset-top, 0px) + 12px); } .nav-panel li a { padding: 6px 0; font-size: clamp(26px, 7.6vw, 34px); } .nav-panel li.nav-lang a { margin-top: 8px; } }
+@media (max-height: 600px) { .nav-panel .nav-sub a { padding: 2px 0; font-size: clamp(20px, 5.8vw, 24px); } .nav-panel { padding-bottom: 20px; } .nav-panel li a { padding: 3px 0; font-size: clamp(24px, 7vw, 28px); } .nav-foot .nav-ig { width: 52px; height: 52px; } .nav-foot .nav-ig .ig { width: 26px; height: 26px; } }
 
 /* Desktop navigation: the sections inline in the bar, with an underline that grows on hover and
    marks the section on screen (aria-current, set by js/menu.js). "Visítanos" closes the row as a button. */
 .topnav { display: none; }
-@media (min-width: 1260px) {
+@media (min-width: 1100px) {
   .topbar { padding-inline: max(32px, (100% - 1280px) / 2); }
   .burger, .nav-panel { display: none !important; }
   .topnav { display: block; }
@@ -108,6 +111,20 @@ a { color: inherit; }
   .topnav .topnav-lang a { padding: 7px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; letter-spacing: .12em; opacity: .75; transition: opacity .2s, background-color .2s; }
   .topnav .topnav-lang a::after { display: none; }
   @media (hover: hover) and (pointer: fine) { .topnav .topnav-lang a:hover { opacity: 1; background: color-mix(in srgb, var(--choco) 12%, transparent); } }
+  /* "Carta" opens a small list with the sections you can order from. */
+  .topnav-group { position: relative; }
+  .topnav-parent { display: inline-flex; align-items: center; gap: 6px; padding: 8px 0; border: 0; background: none; color: var(--choco); font: 400 15px/1 var(--font-body); letter-spacing: .02em; cursor: pointer; }
+  .topnav-parent svg { width: 10px; height: 10px; transition: transform .2s; }
+  .topnav-group.open .topnav-parent svg { transform: rotate(180deg); }
+  .topnav-parent[aria-current="true"] { font-weight: 500; }
+  .topnav .topnav-sub { display: none; position: absolute; top: 100%; left: -16px; z-index: 5; min-width: 210px; margin: 0; padding: 8px; list-style: none; border-radius: 16px; background: var(--hero-bg); box-shadow: 0 10px 30px rgba(58, 32, 12, .18); }
+  .topnav-group::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 14px; } /* keeps the list open while the pointer crosses the gap */
+  .topnav .topnav-group.open .topnav-sub, .no-js .topnav .topnav-group:hover .topnav-sub, .no-js .topnav .topnav-group:focus-within .topnav-sub { display: block; }
+  .topnav-sub a { padding: 10px 14px; border-radius: 10px; font-size: 15px; }
+  .topnav-sub a::after { display: none; }
+  .topnav-sub a[aria-current="true"] { font-weight: 500; background: color-mix(in srgb, var(--choco) 10%, transparent); }
+  @media (hover: hover) and (pointer: fine) { .topnav-sub a:hover { background: color-mix(in srgb, var(--choco) 12%, transparent); } .topnav-parent:hover { opacity: .75; } }
+  .topnav-parent:focus-visible { outline: 3px solid var(--fresa); outline-offset: 4px; border-radius: 4px; }
   .topnav a:focus-visible { outline: 3px solid var(--fresa); outline-offset: 4px; border-radius: 4px; }
 }
 .nav-open, .nav-open body { overflow: hidden; }
@@ -261,8 +278,8 @@ a[href*="instagram.com"]:not(.btn):not(.ig-card):not(.mosaic):not(.nav-ig) { dis
 .especiales-t { margin: 0 0 8px; font: 400 clamp(28px, 7.5vw, 38px)/1 var(--font-display); text-transform: uppercase; letter-spacing: .01em; }
 .especiales-lista { display: grid; gap: 14px; }
 .especial { display: grid; grid-template-columns: minmax(0, 40%) minmax(0, 1fr); border-radius: 24px; overflow: hidden; background: var(--peonia-suave); }
-.especial-foto { background: var(--rosa); min-height: 190px; }
-.especial-foto img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.especial-foto { background: var(--rosa); min-height: 190px; position: relative; }
+.especial-foto img, .especial-foto video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 .especial-vacio { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; height: 100%; padding: 14px; text-align: center; background: var(--menta); color: color-mix(in srgb, var(--choco) 70%, transparent); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
 .especial-vacio .simbolo { width: 38px; height: auto; color: var(--choco); opacity: .55; }
 .especial-body { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 18px 16px; }
@@ -363,6 +380,12 @@ a[href*="instagram.com"]:not(.btn):not(.ig-card):not(.mosaic):not(.nav-ig) { dis
   .bebidas .ig-card:hover .ig-card-b { background: var(--nata); color: var(--choco); }
   .encargos .ig-card:hover .ig-card-b { background: var(--oro); color: var(--pared-honda); }
 }
+/* ---------- En la tienda: como «Para beber» (galería y listas); sin precio, sin línea de puntos ---------- */
+.productos { padding-bottom: 72px; }
+.productos .lead { margin-bottom: 8px; }
+.menu li.sin-precio::after { display: none; }
+.grupo-nota { margin: -2px 0 6px; font-size: 13px; color: var(--choco-soft); }
+
 /* ---------- reseñas ---------- */
 .resenas { background: var(--rosa); padding-bottom: 72px; }
 .valoracion { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: 6px 0 0; font-size: 17px; }
@@ -383,6 +406,7 @@ a[href*="instagram.com"]:not(.btn):not(.ig-card):not(.mosaic):not(.nav-ig) { dis
 }
 .resena blockquote { margin: 0; flex: 1; }
 .resena blockquote p { margin: 0; font-size: 17px; line-height: 1.5; }
+.resena blockquote .resena-trad { margin: 8px 0 0; font-size: 12px; font-style: italic; opacity: .6; }
 .resena figcaption { font-size: 14px; }
 .resena figcaption span { opacity: .65; }
 .resenas-acciones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
@@ -409,7 +433,7 @@ a[href*="instagram.com"]:not(.btn):not(.ig-card):not(.mosaic):not(.nav-ig) { dis
 .encargos .lead { color: color-mix(in srgb, var(--nata) 85%, transparent); }
 .bandejas { display: grid; gap: 12px; }
 .bandeja { border: 1px solid color-mix(in srgb, var(--oro) 50%, transparent); border-radius: 20px; padding: 20px; }
-.bandeja h3 { font: 400 30px/1 var(--font-display); letter-spacing: .02em; color: var(--oro); margin-bottom: 10px; }
+.bandeja h3 { font: 400 clamp(24px, 2.1vw, 30px)/1.05 var(--font-display); letter-spacing: .02em; color: var(--oro); margin-bottom: 10px; overflow-wrap: anywhere; }
 .bandeja .p { color: var(--oro); }
 .bandeja-note { margin: 0 0 6px; font-size: 15px; opacity: .8; }
 .como { margin-top: 28px; display: grid; gap: 18px; justify-items: start; }
@@ -521,6 +545,7 @@ a[href*="instagram.com"]:not(.btn):not(.ig-card):not(.mosaic):not(.nav-ig) { dis
 .foot p { margin: 0; font-size: 14px; letter-spacing: .04em; opacity: .85; }
 .foot a { text-underline-offset: 3px; }
 .foot .idioma { font-size: 13px; letter-spacing: .08em; }
+.foot .financiacion-logo { display: block; width: min(250px, 66vw); height: auto; margin: 6px auto 0; opacity: .7; }
 .foot .financiacion { max-width: 36ch; margin-inline: auto; font-size: 12px; line-height: 1.4; opacity: .6; }
 .foot .legales { font-size: 12px; opacity: .6; }
 .foot .legales a { color: inherit; }
@@ -561,9 +586,11 @@ a[href*="instagram.com"]:not(.btn):not(.ig-card):not(.mosaic):not(.nav-ig) { dis
   .strip > img, .strip > video, .strip > .ig-card { width: 280px; }
   .strip > .resena { width: 340px; }
   .carrusel-nav { max-width: 1120px; margin-inline: auto; padding-inline: 0; }
-  .drinks { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 48px; }
+  /* Lists flow into three balanced columns, so an odd number of groups never leaves a gap. */
+  .drinks { display: block; column-count: 3; column-gap: 48px; }
+  .drinks > div { break-inside: avoid; margin-bottom: 36px; }
   /* Same layout as Para beber: gallery across, then the three trays side by side. */
-  .bandejas { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; }
+  .bandejas { grid-template-columns: repeat(auto-fit, minmax(232px, 1fr)); gap: 20px; align-items: start; }
   .como { grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 32px; margin-top: 36px; }
   .nosotras .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: 1fr auto auto 1fr; column-gap: 88px; row-gap: 24px; }
   .nosotras-foto { grid-column: 1; grid-row: 1 / -1; margin: 0; }

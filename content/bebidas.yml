@@ -1,7 +1,7 @@
-antetitulo: para beber
-antetitulo_en: "to drink"
-titulo: Batidos, matcha y café
-titulo_en: "Shakes, matcha and coffee"
+antetitulo: para tomar
+antetitulo_en: "to have"
+titulo: Bebidas y helados
+titulo_en: "Drinks and ice cream"
 fotos:
   - video: assets/video/d79e6400-fc2c-4028-8a43-296903b01ea9.mp4
     alt: Bebida de matcha y fresas
@@ -21,9 +21,28 @@ fotos:
   - foto: assets/img/insta/matcha-barra.webp
     alt: Matcha con fresa sobre la barra de la tienda
     alt_en: "Matcha with strawberry on the shop counter"
+  - video: assets/video/cafe-pistacho.mp4
+    foto: assets/video/cafe-pistacho.webp
+    alt: Café de pistacho con nata y pistacho picado, junto a un tarro de pistachos
+    alt_en: "Pistachio coffee with whipped cream and chopped pistachio, next to a jar of pistachios"
+  - foto: assets/img/insta/helado-pistacho.webp
+    alt: Helado de pistacho en tulipa de barquillo con fresas recién cortadas, salsa y crumble de pistacho
+    alt_en: "Pistachio ice cream in a wafer tulip with freshly cut strawberries, pistachio sauce and crumble"
+  - foto: assets/img/insta/helado-fresa-chocolate.webp
+    alt: Helado de fresa en tulipa con cobertura de chocolate, crumble de galleta y fresas
+    alt_en: "Strawberry ice cream in a wafer tulip with a chocolate coating, biscuit crumble and strawberries"
+  - foto: assets/img/insta/granizado.webp
+    alt: Granizado rojo con un osito de gominola, una rodaja de lima y pajitas
+    alt_en: "Red slush with a gummy bear, a slice of lime and straws"
+  - foto: assets/img/insta/batido-fresa-flores.webp
+    alt: Batido de fresa con un osito de gominola y una pajita rosa, sobre un plato de flores
+    alt_en: "Strawberry shake with a gummy bear and a pink straw, on a flowered plate"
+  - foto: assets/img/insta/chocolate-nata-nubes.webp
+    alt: Vaso de chocolate con nata, nubes y barquillos
+    alt_en: "Cup of chocolate with whipped cream, marshmallows and wafer rolls"
 grupos:
-  - titulo: Batidos
-    titulo_en: "Shakes"
+  - titulo: Batidos y granizados
+    titulo_en: "Shakes and slushes"
     productos:
       - nombre: Batido de fresas
         nombre_en: "Strawberry shake"
@@ -33,6 +52,9 @@ grupos:
       - nombre: Batido de fresas con nata
         nombre_en: "Strawberry shake with whipped cream"
         precio: 5,25
+      - nombre: Granizado
+        nombre_en: "Slush"
+        precio: 4,90
   - titulo: Matcha
     titulo_en: "Matcha"
     productos:
@@ -45,8 +67,8 @@ grupos:
       - nombre: Matcha strawberry
         nombre_en: "Matcha strawberry"
         precio: "5"
-  - titulo: Café
-    titulo_en: "Coffee"
+  - titulo: Café y chocolate
+    titulo_en: "Coffee and chocolate"
     productos:
       - nombre: Espresso
         nombre_en: "Espresso"
@@ -60,6 +82,25 @@ grupos:
       - nombre: Café bombón
         nombre_en: "Café bombón"
         precio: 2,50
+      - nombre: Café de pistacho
+        nombre_en: "Pistachio coffee"
+        precio: 5,95
+      - nombre: Chocolate caliente
+        nombre_en: "Hot chocolate"
+        precio: 2,50
       - nombre: Botella de agua
         nombre_en: "Bottle of water"
         precio: 1,50
+  - titulo: Helados
+    titulo_en: "Ice cream"
+    productos:
+      - nombre: Helado de pistacho
+        nombre_en: "Pistachio ice cream"
+        detalle: En tulipa, con fresas recién cortadas, salsa de pistacho y crumble de pistacho
+        detalle_en: "In a wafer tulip, with freshly cut strawberries, pistachio sauce and pistachio crumble"
+        precio: 5,75
+      - nombre: Helado de fresa
+        nombre_en: "Strawberry ice cream"
+        detalle: En tulipa, con fresas recién cortadas y cobertura de chocolate a elegir
+        detalle_en: "In a wafer tulip, with freshly cut strawberries and a chocolate coating of your choice"
+        precio: 5,75

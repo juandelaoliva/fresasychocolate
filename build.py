@@ -31,7 +31,7 @@ CONTENT, SRC, OUT = ROOT / 'content', ROOT / 'src', ROOT / '_site'
 STATIC = ['css', 'js', 'assets', 'presentacion']  # presentacion/: la presentación para el cliente, tal cual
 SITE = os.environ.get('SITE_URL', 'https://fresasychocolate.com/').rstrip('/') + '/'
 I18N = yaml.safe_load((SRC / 'i18n.yml').read_text(encoding='utf-8'))  # textos fijos de la web, por idioma
-MAX_IMG = 1600  # ancho máximo de las fotos publicadas
+MAX_IMG = 2000  # ancho máximo de las fotos publicadas (la foto de «Las fresas» ocupa todo el ancho en escritorio)
 
 # Orden y nombres de los alérgenos de la carta (el número es el de la carta impresa).
 ALERGENOS = ['gluten', 'leche', 'huevo', 'sésamo', 'soja', 'pistachos', 'frutos de cáscara',
@@ -43,7 +43,7 @@ ALERGENOS_EN = {'gluten': 'Gluten', 'leche': 'Milk', 'huevo': 'Egg', 'sésamo': 
 TRADUCIBLES = {'referencia', 'dias', 'lema', 'seo_titulo', 'seo_descripcion', 'titulo_principal', 'descripcion_negocio',
                'antetitulo', 'titulo', 'intro', 'pedir_titulo', 'nota_alergenos', 'nombre', 'nota', 'foto_alt', 'video_alt',
                'alt', 'detalle', 'como_encargar', 'boton', 'texto', 'firma', 'pregunta', 'respuesta', 'ingredientes',
-               'especiales_titulo', 'especiales_nota', 'contacto_texto', 'financiacion'}
+               'especiales_titulo', 'especiales_nota', 'contacto_texto', 'financiacion', 'financiacion_logo_alt', 'tipo'}
 # Se traducen si hay `_en`, pero no es un fallo que falte (p. ej. reseñas de clientes en su idioma original).
 OPCIONALES = {'resena'}
 IDIOMAS = ('es', 'en')
@@ -95,11 +95,14 @@ def localizar(obj, lang, faltan, ruta=''):
         if k.endswith('_en'):
             continue
         en = obj.get(k + '_en')
-        traducible = (k in TRADUCIBLES and (raiz != 'tienda' or k in ('referencia', 'dias', 'financiacion'))
-                      and (raiz != 'resenas' or k in ('antetitulo', 'titulo')))
+        traducible = (k in TRADUCIBLES and (raiz != 'tienda' or k in ('referencia', 'dias', 'financiacion', 'financiacion_logo_alt'))
+                      and (raiz != 'resenas' or k in ('antetitulo', 'titulo'))
+                      and (raiz != 'productos' or k in ('antetitulo', 'titulo', 'intro', 'detalle', 'alt', 'nota', 'nombre')))
         if isinstance(v, str) and v.strip() and (traducible or k in OPCIONALES):
             if isinstance(en, str) and en.strip():
                 out[k] = en
+                if k in OPCIONALES:
+                    out[k + '_traducida'] = True  # se avisa «traducido del español» junto al texto
             else:
                 out[k] = v
                 if traducible:
@@ -170,7 +173,9 @@ def validar(c):
                 error(f'{donde}: alérgeno desconocido "{a}"')
         if e.get('foto') and not str(e.get('foto_alt') or '').strip():
             error(f'{donde}: falta la descripción de la foto')
-        if not e.get('foto'):
+        if e.get('video') and not e.get('video_portada'):
+            error(f'{donde}: falta la imagen fija del vídeo')
+        if not e.get('foto') and not e.get('video'):
             print(f'Aviso: el especial "{e.get("nombre")}" aún no tiene foto; se muestra un marcador.')
     for g in c['bebidas'].get('grupos') or []:
         for p in g.get('productos') or []:
@@ -184,6 +189,23 @@ def validar(c):
                 error(f'{sec.capitalize()} › fotos y vídeos, elemento {i}: falta la foto o el vídeo')
             if not str(f.get('alt') or '').strip():
                 error(f'{sec.capitalize()} › fotos y vídeos, elemento {i}: falta la descripción')
+    pr = c.get('productos') or {}
+    grupos_pr = []
+    for g in pr.get('grupos') or []:
+        vis = [p for p in (g.get('productos') or []) if p.get('mostrar') is not False]
+        for i, p in enumerate(vis, 1):
+            if not str(p.get('nombre') or '').strip():
+                error(f'En la tienda › {g.get("titulo")}, producto {i}: falta el nombre')
+            if p.get('precio') not in (None, ''):
+                precio(p, 'precio', f'En la tienda › {g.get("titulo")} › {p.get("nombre") or i}')
+        if vis:
+            grupos_pr.append(dict(g, productos=vis))
+    pr['grupos_visibles'] = grupos_pr
+    for i, f in enumerate(pr.get('fotos') or [], 1):
+        if not f.get('foto') and not f.get('video'):
+            error(f'En la tienda › fotos y vídeos, elemento {i}: falta la foto o el vídeo')
+        if not str(f.get('alt') or '').strip():
+            error(f'En la tienda › fotos y vídeos, elemento {i}: falta la descripción')
     r = c.get('resenas') or {}
     if r.get('valoracion') not in (None, ''):
         v = numero(r['valoracion'])
@@ -384,6 +406,20 @@ def preguntas_auto(c, lang='es'):
             q = {'pregunta': f'¿Tenéis fresas con chocolate {esp[0]["nombre"]}?',
                  'respuesta': f'Sí. Nuestros especiales de la casa son {nombres}. {detalle} {nota}'.strip()}
         preguntas.insert(3, q)
+    pr = c.get('productos') or {}
+    grupos = pr.get('grupos_visibles') or []
+    if grupos:
+        en = lang == 'en'
+        minus = lambda x: x[0].lower() + x[1:]
+        y = 'and' if en else 'y'
+        det = '; '.join(f'{g["titulo"]} ({lista([p["nombre"] for p in g["productos"]], y)})' for g in grupos)  # tal cual: pueden llevar marcas
+        if en:
+            q = {'pregunta': 'What else can I buy in the shop?',
+                 'respuesta': f'Besides what we make on the spot, the shop sells products to take home: {det}. The products change, so ask in the shop what we have today and the prices.'}
+        else:
+            q = {'pregunta': '¿Qué más se puede comprar en la tienda?',
+                 'respuesta': f'Además de lo que preparamos al momento, en la tienda hay productos para llevar: {det}. Los productos van cambiando, así que pregunta en la tienda qué tenemos hoy y los precios.'}
+        preguntas.append(q)
     return preguntas
 
 
@@ -429,7 +465,7 @@ def _preguntas_base(c, lang='es'):
             {'pregunta': 'What are the opening hours?', 'respuesta': horario},
             {'pregunta': 'How much is a cup of chocolate-covered strawberries?', 'respuesta': precio_vaso},
             {'pregunta': 'Can I order trays of chocolate-covered strawberries?',
-             'respuesta': f'Yes. There are trays: {lista(bandejas, y)}. {enc["como_encargar"]} [Message us on Instagram](https://ig.me/m/{t["instagram"]}).'},
+             'respuesta': f'Yes. Options: {lista(bandejas, y)}. {enc["como_encargar"]} [Message us on Instagram](https://ig.me/m/{t["instagram"]}).'},
             {'pregunta': 'What else can I have?', 'respuesta': 'Besides the cups of strawberries: ' + bebidas + '.'},
         ]
     precio_vaso = f'El {carta["vaso"]["nombre"].lower()} cuesta {eur(vaso)}. '
@@ -447,7 +483,7 @@ def _preguntas_base(c, lang='es'):
         {'pregunta': '¿Qué horario tiene?', 'respuesta': horario},
         {'pregunta': '¿Cuánto cuesta un vaso de fresas con chocolate?', 'respuesta': precio_vaso},
         {'pregunta': '¿Se pueden encargar bandejas de fresas con chocolate?',
-         'respuesta': f'Sí. Hay bandejas {lista(bandejas, y)}. {enc["como_encargar"]} [Escríbenos por Instagram](https://ig.me/m/{t["instagram"]}).'},
+         'respuesta': f'Sí. Opciones: {lista(bandejas, y)}. {enc["como_encargar"]} [Escríbenos por Instagram](https://ig.me/m/{t["instagram"]}).'},
         {'pregunta': '¿Qué más se puede tomar?', 'respuesta': 'Además de los vasos de fresas: ' + bebidas + '.'},
     ]
 
@@ -500,6 +536,19 @@ def jsonld(c, faq, lang, home):
         'foundingDate': str(t.get('abierta_desde', '')), 'sameAs': [ig],
         'potentialAction': {'@type': 'OrderAction', 'target': f'https://ig.me/m/{t["instagram"]}', 'description': u['encargar']},
     }
+    grupos_pr = (c.get('productos') or {}).get('grupos_visibles') or []
+    if grupos_pr:  # productos a la venta en el mostrador (sin precio si se consulta en tienda)
+        def oferta(p):
+            prod = {'@type': 'Product', 'name': p['nombre']}
+            if p.get('detalle'):
+                prod['description'] = p['detalle']
+            o = {'@type': 'Offer', 'itemOffered': prod, 'availability': 'https://schema.org/InStock'}
+            if p.get('precio') not in (None, ''):
+                o.update({'price': f'{float(p["precio"]):.2f}', 'priceCurrency': 'EUR'})
+            return o
+        tienda['hasOfferCatalog'] = {'@type': 'OfferCatalog', 'name': c['productos'].get('titulo') or 'En la tienda',
+                                     'itemListElement': [{'@type': 'OfferCatalog', 'name': g['titulo'],
+                                                          'itemListElement': [oferta(p) for p in g['productos']]} for g in grupos_pr]}
     real = lambda v: bool(v) and not str(v).strip().startswith('[')  # sin marcadores provisionales
     if real(t.get('telefono')):
         tienda['telephone'] = t['telefono']

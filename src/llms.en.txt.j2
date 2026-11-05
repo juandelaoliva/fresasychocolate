@@ -44,6 +44,18 @@ Spanish version: {{ site }}llms.txt
 {% endfor %}
 {% endif %}
 
+{% if productos is defined and productos.grupos_visibles %}
+
+## In the shop (products to take home)
+
+{{ productos.intro }}
+
+{% for g in productos.grupos_visibles %}
+- {{ g.titulo }}{% if g.nota %} ({{ g.nota | lower | trim('.') }}){% endif %}: {% for p in g.productos %}{{ p.nombre }}{% if p.detalle %} ({{ p.detalle | lower }}){% endif %}{% if p.precio %} {{ p.precio | euros }}{% endif %}{{ '; ' if not loop.last }}{% endfor %}
+
+{% endfor %}
+{% endif %}
+
 ## Drinks
 
 {% for g in bebidas.grupos %}
@@ -69,5 +81,8 @@ Spanish version: {{ site }}llms.txt
 ## More information
 
 - [Menu and prices]({{ home }}#carta)
+{% if productos is defined and productos.grupos_visibles %}
+- [In the shop]({{ home }}#productos)
+{% endif %}
 - [Frequently asked questions]({{ home }}#preguntas)
 - [Find us and opening hours]({{ home }}#visita)

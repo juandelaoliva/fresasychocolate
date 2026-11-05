@@ -147,5 +147,9 @@ especiales:
     nombre_en: "Tokyo"
     ingredientes: Chocolate blanco con té matcha, arroz tostado y fresas
     ingredientes_en: "White chocolate with matcha tea, toasted rice and strawberries"
+    video: assets/video/tokio.mp4
+    video_portada: assets/video/tokio.webp
+    video_alt: Preparación del vaso Tokio, con chocolate blanco de matcha vertido sobre fresas y arroz tostado
+    video_alt_en: "Making the Tokyo cup, with white matcha chocolate poured over strawberries and toasted rice"
     precio: 7,75
     alergenos_pendientes: true

@@ -42,6 +42,18 @@
 {% endfor %}
 {% endif %}
 
+{% if productos is defined and productos.grupos_visibles %}
+
+## En la tienda (productos para llevar)
+
+{{ productos.intro }}
+
+{% for g in productos.grupos_visibles %}
+- {{ g.titulo }}{% if g.nota %} ({{ g.nota | lower | trim('.') }}){% endif %}: {% for p in g.productos %}{{ p.nombre }}{% if p.detalle %} ({{ p.detalle | lower }}){% endif %}{% if p.precio %} {{ p.precio | euros }}{% endif %}{{ '; ' if not loop.last }}{% endfor %}
+
+{% endfor %}
+{% endif %}
+
 ## Bebidas
 
 {% for g in bebidas.grupos %}
@@ -67,5 +79,8 @@
 ## Más información
 
 - [Carta y precios]({{ home }}#carta)
+{% if productos is defined and productos.grupos_visibles %}
+- [En la tienda]({{ home }}#productos)
+{% endif %}
 - [Preguntas frecuentes]({{ home }}#preguntas)
 - [Cómo llegar y horario]({{ home }}#visita)
