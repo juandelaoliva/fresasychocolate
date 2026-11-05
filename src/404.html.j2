@@ -1,0 +1,36 @@
+{% set t = tienda %}
+<!doctype html>
+<html lang="es-ES">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ t.nombre }} · 404</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#abc4a9">
+<link rel="icon" href="{{ site }}assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{{ site }}assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="{{ site }}css/fonts.css">
+<style>
+  :root { --bg: #acc5aa; --choco: #613613; --choco-soft: #6f4f38; color-scheme: light; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; background: var(--bg); color: var(--choco); font-family: "Jost", "Futura", system-ui, sans-serif; text-align: center; }
+  .simbolo { width: clamp(70px, 18vw, 96px); height: auto; color: var(--choco); }
+  h1 { margin: 28px 0 0; font: 400 clamp(36px, 10vw, 64px)/1 "Italiana", "Didot", serif; letter-spacing: .02em; }
+  p { margin: 14px 0 0; max-width: 32ch; font-size: clamp(16px, 4.2vw, 19px); line-height: 1.5; font-weight: 300; }
+  .en { color: var(--choco); font-size: 15px; margin-top: 8px; }
+  .volver { display: inline-block; margin-top: 30px; padding: 14px 28px; border: 1.5px solid var(--choco); border-radius: 999px; color: var(--choco); font-size: 13px; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; }
+  .volver:active, .volver:focus-visible { background: var(--choco); color: var(--bg); outline: none; }
+  @media (hover: hover) and (pointer: fine) { .volver:hover { background: var(--choco); color: var(--bg); } }
+</style>
+</head>
+<body>
+  <main>
+    {{ svg('simbolo') }}
+    <h1>Esta página no existe</h1>
+    <p>Puede que el enlace esté mal escrito o que la página ya no esté.</p>
+    <p class="en" lang="en">This page does not exist.</p>
+    <a class="volver" href="{{ site }}">Volver a la web · Back to the website</a>
+  </main>
+</body>
+</html>

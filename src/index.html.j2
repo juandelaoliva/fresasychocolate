@@ -5,16 +5,16 @@
    sonido mientras se ven (js/videos.js); las flechas solo aparecen con ratón (js/carrusel.js). #}
 {% macro galeria(items, donde, cls='') %}
 <div class="carrusel{{ ' ' ~ cls if cls }}">
-      <div class="strip" role="list">
+      <div class="strip">
 {% for f in items %}
 {% if f.video %}
 {% set v = video(f.video, f.foto, donde) %}
-        <video role="listitem" class="loop" muted loop playsinline preload="none"{% if v.poster %} poster="{{ base }}{{ v.poster }}"{% endif %} data-src="{{ base }}{{ v.src }}" aria-label="{{ f.alt }}"></video>
+        <video class="loop" muted loop playsinline preload="none"{% if v.poster %} poster="{{ base }}{{ v.poster }}"{% endif %} data-src="{{ base }}{{ v.src }}" aria-label="{{ f.alt }}"></video>
 {% else %}
-        {{ foto(f.foto, f.alt, donde, extra=' role="listitem"' | safe) }}
+        {{ foto(f.foto, f.alt, donde,) }}
 {% endif %}
 {% endfor %}
-        <a role="listitem" class="ig-card" href="{{ ig_url }}" target="_blank" rel="noopener">
+        <a class="ig-card" href="{{ ig_url }}" target="_blank" rel="noopener">
           {{ svg('simbolo') }}
           <span class="ig-card-t">{{ ui.ig_card_t }}</span>
           <span class="ig-card-u">{{ svg('instagram') }}@{{ t.instagram }}</span>
@@ -386,15 +386,15 @@
 {% endif %}
     </div>
     <div class="carrusel resenas-carrusel">
-      <div class="strip" role="list">
+      <div class="strip">
 {% for r in resenas.lista %}
-        <figure role="listitem" class="resena">
+        <figure class="resena">
           <span class="estrellas" style="--v: {{ r.estrellas }}" role="img" aria-label="{{ ui.estrellas_aria.format(n=r.estrellas) }}"></span>
           <blockquote><p>{{ r.resena }}</p>{% if r.resena_traducida %}<p class="resena-trad">{{ ui.resena_traducida }}</p>{% endif %}</blockquote>
           <figcaption><strong>{{ r.nombre }}</strong>{% if r.fecha %} <span>· {{ r.fecha }}</span>{% endif %}</figcaption>
         </figure>
 {% endfor %}
-        <a role="listitem" class="ig-card" href="{{ res_link }}" target="_blank" rel="noopener">
+        <a class="ig-card" href="{{ res_link }}" target="_blank" rel="noopener">
           {{ svg('simbolo') }}
           <span class="ig-card-t">{{ ui.g_card_t }}</span>
 {% if resenas.valoracion_num %}

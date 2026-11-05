@@ -40,9 +40,9 @@
   .cta { display: inline-block; margin-top: 32px; padding: 14px 28px; border: 1.5px solid var(--choco); border-radius: 999px; color: var(--choco); font-size: 13px; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; }
   .cta:active, .cta:focus-visible { background: var(--choco); color: var(--bg); outline: none; }
   @media (hover: hover) and (pointer: fine) { .cta:hover { background: var(--choco); color: var(--bg); } }
-  .en { margin: 6px 0 0; font: 300 clamp(15px, 4vw, 18px)/1.2 "Jost", system-ui, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: var(--choco-soft); }
-  .en-texto { margin-top: 10px; color: var(--choco-soft); font-size: clamp(14px, 3.8vw, 16px); }
-  .donde { max-width: none; line-height: 1.9; margin-top: 28px; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--choco-soft); }
+  .en { margin: 6px 0 0; font: 300 clamp(15px, 4vw, 18px)/1.2 "Jost", system-ui, sans-serif; letter-spacing: .24em; text-transform: uppercase; color: var(--choco); }
+  .en-texto { margin-top: 10px; color: var(--choco); font-size: clamp(14px, 3.8vw, 16px); }
+  .donde { max-width: none; line-height: 1.9; margin-top: 28px; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--choco); }
   .donde a { color: inherit; text-underline-offset: 4px; }
   .donde a:hover, .donde a:focus-visible { color: var(--fresa); }
   .donde a { display: inline-block; white-space: nowrap; }
@@ -61,7 +61,7 @@
     <p class="en-texto" lang="en" style="margin-left:auto;margin-right:auto">{{ pronto.texto_en }}</p>
     <a class="cta" href="{{ t.google_maps }}" target="_blank" rel="noopener">Cómo llegar · Find us</a>
   </main>
-  <p class="donde">{{ t.calle | replace('Calle ', '') }} · {{ t.ciudad }}<br><a href="https://www.instagram.com/{{ t.instagram }}/" target="_blank" rel="noopener">{{ svg('instagram') }}@{{ t.instagram }}</a></p>
+  <footer>  <p class="donde">{{ t.calle | replace('Calle ', '') }} · {{ t.ciudad }}<br><a href="https://www.instagram.com/{{ t.instagram }}/" target="_blank" rel="noopener">{{ svg('instagram') }}@{{ t.instagram }}</a></p></footer>
 {% include 'analitica.html.j2' %}
 </body>
 </html>

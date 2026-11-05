@@ -631,6 +631,8 @@ def render_idioma(lang, cl, faltan_en, pronto, clave, legal):
     if legal:
         paginas += [(nombre_pagina('aviso', lang, clave), f'aviso-legal{sufijo}.html.j2', True, 'aviso'),
                     (nombre_pagina('privacidad', lang, clave), f'privacidad{sufijo}.html.j2', True, 'privacidad')]
+    if es:
+        paginas.append(('404.html', '404.html.j2', True, None))  # GitHub Pages la sirve en las direcciones que no existen
     for nombre, plantilla, autoescape, id_pagina in paginas:
         env.autoescape = autoescape
         if id_pagina:
