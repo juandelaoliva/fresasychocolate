@@ -351,7 +351,8 @@ a[href*="instagram.com"]:not(.btn):not(.ig-card):not(.mosaic):not(.nav-ig) { dis
 
 /* ---------- galería deslizable (Para beber, Por encargo) ----------
    Photos and clips side by side, swiped on touch screens; with a mouse, arrows appear underneath. */
-.carrusel { margin: 32px 0 40px; }
+/* El carrusel ocupa todo el ancho de la pantalla (sale del relleno de la sección); el padding de .strip alinea la primera tarjeta con el texto. */
+.carrusel { margin: 32px calc(var(--gutter) * -1) 40px; }
 .strip {
   display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
   padding: 0 var(--gutter); scroll-padding-inline: var(--gutter);
