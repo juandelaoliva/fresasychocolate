@@ -3,8 +3,10 @@ calle: Calle Espoz y Mina, 38
 codigo_postal: "37002"
 ciudad: Salamanca
 referencia: a pocos pasos de la Plaza Mayor
-referencia_en: "a few steps from the Plaza Mayor"
+referencia_en: a few steps from the Plaza Mayor
 email: fresasychocolate.salamanca@gmail.com
+titular: Rosa Maria Blanco Hernández
+nif: 07965005J
 instagram: fresasychocolate.salamanca
 google_maps: https://maps.app.goo.gl/JiWYEt8AWk3Wj6eS6
 google_maps_cid: "1651299389623831988"
@@ -12,16 +14,11 @@ google_place_id: ChIJlwSyCSUnPw0RtA1ZwAuY6hY
 latitud: "40.9652327"
 longitud: "-5.665455"
 financiacion: Proyecto financiado por la Junta de Castilla y León a través del ICECYL
-financiacion_logo: assets/img/logo-financiacion.webp
-financiacion_logo_alt: Nos impulsa, ICECYL (competitividad empresarial) y Junta de Castilla y León
-financiacion_logo_alt_en: "Nos impulsa, ICECYL (business competitiveness) and Junta de Castilla y León"
-financiacion_en: "Project funded by the Junta de Castilla y León through ICECYL"
+financiacion_en: Project funded by the Junta de Castilla y León through ICECYL
 abierta_desde: "2024"
-titular: "[Nombre y apellidos o razón social del titular]"
-nif: "[NIF]"
 horario:
   - dias: Lunes a jueves
-    dias_en: "Monday to Thursday"
+    dias_en: Monday to Thursday
     dias_semana:
       - lunes
       - martes
@@ -30,14 +27,14 @@ horario:
     abre: 14:00
     cierra: 22:00
   - dias: Viernes y sábado
-    dias_en: "Friday and Saturday"
+    dias_en: Friday and Saturday
     dias_semana:
       - viernes
       - sabado
     abre: 14:00
     cierra: 22:30
   - dias: Domingo
-    dias_en: "Sunday"
+    dias_en: Sunday
     dias_semana:
       - domingo
     abre: 14:00
