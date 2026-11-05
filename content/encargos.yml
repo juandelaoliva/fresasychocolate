@@ -1,97 +1,107 @@
 antetitulo: para regalar
-antetitulo_en: "for gifting"
+antetitulo_en: for gifting
 titulo: Por encargo
-titulo_en: "Made to order"
+titulo_en: Made to order
 intro: Bandejas de fresas bañadas para regalar, compartir o darte un capricho.
-intro_en: "Trays of chocolate-dipped strawberries to give, share or treat yourself."
+intro_en: Trays of chocolate-dipped strawberries to give, share or treat yourself.
 fotos:
-  - foto: assets/img/tarta-cajas-2.webp
-    alt: Tarta de Cumpleaños de fresas y chocolate
-    alt_en: "Strawberry and chocolate birthday cake"
-  - video: assets/video/donuts-dubai.mp4
-    foto: assets/video/donuts-dubai.webp
-    alt: Proceso de los donuts de chocolate con fresas y pistacho, al estilo Dubái
-    alt_en: "Making the chocolate donuts with strawberries and pistachio, Dubai style"
   - foto: assets/img/img2375.jpeg
     alt: Caja de navidad
-    alt_en: "Christmas box"
+    alt_en: Christmas box
+  - foto: assets/video/donuts-dubai.webp
+    video: assets/video/donuts-dubai.mp4
+    alt: Proceso de los donuts de chocolate con fresas y pistacho, al estilo Dubái
+    alt_en: Making the chocolate donuts with strawberries and pistachio, Dubai style
+  - foto: assets/img/insta/paletas-bandeja.webp
+    alt: Bandeja de paletas de chocolate con fresas y figuras de chocolate rosa
+    alt_en: Tray of chocolate bars on sticks with strawberries and pink chocolate
+      figures
   - foto: assets/img/img2373.jpeg
     alt: Cajita con flores
-    alt_en: "Small box with flowers"
+    alt_en: Small box with flowers
   - foto: assets/img/insta/caja-para-mama.webp
     alt: Caja de fresas bañadas en chocolate rosa con lazos y una tarjeta que dice
       Para mamá
-    alt_en: "Box of strawberries dipped in pink chocolate with bows and a card that reads \"Para mamá\" (For Mum)"
-  - foto: assets/img/insta/donuts-pan-de-oro.webp
-    alt: Bombones de chocolate con fresas, arándanos y pan de oro
-    alt_en: "Chocolate bonbons with strawberries, blueberries and gold leaf"
-  - foto: assets/img/insta/donuts-kataifi.webp
-    alt: Donuts de chocolate con fresas y pistacho junto a un bote de kataifi
-    alt_en: "Chocolate donuts with strawberries and pistachio next to a jar of kataifi"
-  - foto: assets/img/insta/rosas-chocolate-caja.webp
-    alt: Caja de rosas de chocolate en tonos rojos, rosas y blancos, sujeta con las manos
-    alt_en: "Box of chocolate roses in red, pink and white, held in both hands"
+    alt_en: Box of strawberries dipped in pink chocolate with bows and a card that
+      reads "Para mamá" (For Mum)
   - foto: assets/img/insta/paleta-fresas.webp
     alt: Paleta de chocolate blanco con fresas, un lazo rosa y detalles dorados
-    alt_en: "White chocolate bar on a stick with strawberries, a pink bow and gold details"
-  - foto: assets/img/insta/paletas-bandeja.webp
-    alt: Bandeja de paletas de chocolate con fresas y figuras de chocolate rosa
-    alt_en: "Tray of chocolate bars on sticks with strawberries and pink chocolate figures"
+    alt_en: White chocolate bar on a stick with strawberries, a pink bow and gold
+      details
+  - foto: assets/img/insta/donuts-pan-de-oro.webp
+    alt: Bombones de chocolate con fresas, arándanos y pan de oro
+    alt_en: Chocolate bonbons with strawberries, blueberries and gold leaf
+  - foto: assets/img/insta/donuts-kataifi.webp
+    alt: Donuts de chocolate con fresas y pistacho junto a un bote de kataifi
+    alt_en: Chocolate donuts with strawberries and pistachio next to a jar of kataifi
+  - foto: assets/img/insta/rosas-chocolate-caja.webp
+    alt: Caja de rosas de chocolate en tonos rojos, rosas y blancos, sujeta con las
+      manos
+    alt_en: Box of chocolate roses in red, pink and white, held in both hands
   - foto: assets/img/insta/donuts-chocolate-blanco.webp
-    alt: Donuts de chocolate con leche y blanco con fresas, arándanos y pan de oro sobre un tronco de madera
-    alt_en: "Milk and white chocolate donuts with strawberries, blueberries and gold leaf on a wooden log"
+    alt: Donuts de chocolate con leche y blanco con fresas, arándanos y pan de oro
+      sobre un tronco de madera
+    alt_en: Milk and white chocolate donuts with strawberries, blueberries and gold
+      leaf on a wooden log
+  - foto: assets/img/tarta-cajas-2.webp
+    video: assets/video/donuts-dubai.mp4
+    alt: Tarta de Cumpleaños de fresas y chocolate
+    alt_en: Strawberry and chocolate birthday cake
 bandejas:
   - titulo: Solo fresas
-    titulo_en: "Strawberries only"
+    titulo_en: Strawberries only
     tamanos:
       - nombre: Pequeña
-        nombre_en: "Small"
+        nombre_en: Small
         detalle: 6 fresas aprox.
-        detalle_en: "About 6 strawberries"
+        detalle_en: About 6 strawberries
         precio: "12"
       - nombre: Mediana
-        nombre_en: "Medium"
+        nombre_en: Medium
         detalle: 12 fresas aprox.
-        detalle_en: "About 12 strawberries"
+        detalle_en: About 12 strawberries
         precio: "25"
       - nombre: Grande
-        nombre_en: "Large"
+        nombre_en: Large
         detalle: 24 fresas aprox.
-        detalle_en: "About 24 strawberries"
+        detalle_en: About 24 strawberries
         precio: "54"
   - titulo: Mixtas
-    titulo_en: "Mixed"
+    titulo_en: Mixed
     nota: Fresas y bombones variados
-    nota_en: "Strawberries and assorted chocolates"
+    nota_en: Strawberries and assorted chocolates
     tamanos:
       - nombre: Pequeña
-        nombre_en: "Small"
+        nombre_en: Small
         precio: "16"
       - nombre: Mediana
-        nombre_en: "Medium"
+        nombre_en: Medium
         precio: "35"
       - nombre: Grande
-        nombre_en: "Large"
+        nombre_en: Large
         precio: "46"
   - titulo: Donuts
-    titulo_en: "Donuts"
+    titulo_en: Donuts
     nota: Piezas sueltas, por encargo.
-    nota_en: "Single pieces, made to order."
+    nota_en: Single pieces, made to order.
     tamanos:
       - nombre: Donut de fresa
-        nombre_en: "Strawberry donut"
+        nombre_en: Strawberry donut
         precio: 3,25
       - nombre: Donut Dubái
-        nombre_en: "Dubai donut"
+        nombre_en: Dubai donut
         detalle: Con kataifi y pistacho
-        detalle_en: "With kataifi and pistachio"
+        detalle_en: With kataifi and pistachio
         precio: 3,75
   - titulo: Caja personalizada
-    titulo_en: "Custom box"
-    nota: La montamos contigo. El precio depende de lo que lleve. En Navidad, también con paletas de chocolate decoradas.
-    nota_en: "We put it together with you. The price depends on what goes in it. At Christmas, also with decorated chocolate bars on sticks."
+    titulo_en: Custom box
+    nota: La montamos contigo. El precio depende de lo que lleve. En Navidad,
+      también con paletas de chocolate decoradas.
+    nota_en: We put it together with you. The price depends on what goes in it. At
+      Christmas, also with decorated chocolate bars on sticks.
 como_encargar: Se encargan por Instagram y se recogen en la tienda. Pídelas con
   antelación, sobre todo para fines de semana y fechas especiales.
-como_encargar_en: "Orders are placed through Instagram and picked up in the shop. Please order in advance, especially for weekends and special dates."
+como_encargar_en: Orders are placed through Instagram and picked up in the shop.
+  Please order in advance, especially for weekends and special dates.
 boton: Encargar por Instagram
-boton_en: "Order on Instagram"
+boton_en: Order on Instagram
