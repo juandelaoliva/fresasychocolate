@@ -1,155 +1,184 @@
 antetitulo: la carta
-antetitulo_en: "the menu"
+antetitulo_en: the menu
 titulo: Monta tu vaso
-titulo_en: "Build your cup"
-intro: Fresas frescas de Salamanca, chocolate belga Callebaut o la crema que más te guste, y un topping para terminar. Elige y te decimos el precio.
-intro_en: "Fresh strawberries from Salamanca, Belgian Callebaut chocolate or whichever cream you like best, and a topping to finish. Choose and we'll tell you the price."
+titulo_en: Build your cup
+intro: Fresas frescas de Salamanca, chocolate belga Callebaut o la crema que más
+  te guste, y un topping para terminar. Elige y te decimos el precio.
+intro_en: Fresh strawberries from Salamanca, Belgian Callebaut chocolate or
+  whichever cream you like best, and a topping to finish. Choose and we'll tell
+  you the price.
 pedir_titulo: Pídelo así en la tienda
-pedir_titulo_en: "Order it like this in the shop"
-nota_alergenos: Alérgenos según la carta de la tienda. Si tienes alguna alergia, avísanos al pedir.
-nota_alergenos_en: "Allergens as listed on the shop's menu. If you have any allergy, let us know when you order."
+pedir_titulo_en: Order it like this in the shop
+nota_alergenos: Alérgenos según la carta de la tienda. Si tienes alguna alergia,
+  avísanos al pedir.
+nota_alergenos_en: Allergens as listed on the shop's menu. If you have any
+  allergy, let us know when you order.
 vaso:
   nombre: Vaso de fresas
-  nombre_en: "Cup of strawberries"
+  nombre_en: Cup of strawberries
   precio: 3,50
-  nota: 'La base: un vaso lleno de fresas.'
+  nota: "La base: un vaso lleno de fresas."
   nota_en: "The base: a cup full of strawberries."
   foto: assets/img/insta/vaso-fresas.webp
   foto_alt: Vaso de fresas con la pegatina de Fresas y Chocolate
-  foto_alt_en: "Cup of strawberries with the Fresas y Chocolate sticker"
+  foto_alt_en: Cup of strawberries with the Fresas y Chocolate sticker
 cremas:
   titulo: Elige tu crema
-  titulo_en: "Choose your chocolate or cream"
+  titulo_en: Choose your chocolate or cream
   video: assets/video/bano.mp4
   video_portada: assets/video/bano.webp
   video_alt: Bañando un vaso de fresas bajo la fuente de chocolate
-  video_alt_en: "Coating a cup of strawberries under the chocolate fountain"
+  video_alt_en: Coating a cup of strawberries under the chocolate fountain
   grupos:
-  - precio: 1,25
-    opciones:
-    - nombre: Chocolate con leche
-      nombre_en: "Milk chocolate"
-      alergenos:
-      - leche
-    - nombre: Chocolate blanco
-      nombre_en: "White chocolate"
-      alergenos:
-      - leche
-    - nombre: Chocolate negro
-      nombre_en: "Dark chocolate"
-      alergenos:
-      - leche
-    - nombre: Crema con avellanas
-      nombre_en: "Hazelnut cream"
-      alergenos:
-      - avellanas
-    - nombre: Crema de leche condensada
-      nombre_en: "Condensed milk cream"
-      alergenos:
-      - leche
-    - nombre: Nata montada
-      nombre_en: "Whipped cream"
-      alergenos:
-      - leche
-  - precio: 2
-    opciones:
-    - nombre: Crema de pistacho
-      nombre_en: "Pistachio cream"
-      alergenos_pendientes: true
+    - precio: 1,25
+      opciones:
+        - nombre: Chocolate con leche
+          nombre_en: Milk chocolate
+          alergenos:
+            - leche
+          alergenos_pendientes: false
+        - nombre: Chocolate blanco
+          nombre_en: White chocolate
+          alergenos:
+            - leche
+          alergenos_pendientes: false
+        - nombre: Chocolate negro
+          nombre_en: Dark chocolate
+          alergenos:
+            - leche
+          alergenos_pendientes: false
+        - nombre: Crema con avellanas
+          nombre_en: Hazelnut cream
+          alergenos:
+            - avellanas
+          alergenos_pendientes: false
+        - nombre: Crema de leche condensada
+          nombre_en: Condensed milk cream
+          alergenos:
+            - leche
+          alergenos_pendientes: false
+        - nombre: Nata montada
+          nombre_en: Whipped cream
+          alergenos:
+            - leche
+          alergenos_pendientes: false
+    - precio: "2"
+      opciones:
+        - nombre: Crema de pistacho
+          nombre_en: Pistachio cream
+          alergenos_pendientes: true
 toppings:
   titulo: Elige tu topping
-  titulo_en: "Choose your topping"
+  titulo_en: Choose your topping
   foto: assets/img/insta/copa-pistacho.webp
-  foto_alt: Vaso de fresas con chocolate y Lacasitos por encima, junto a una copa de pistacho
-  foto_alt_en: "Cup of strawberries with chocolate and Lacasitos on top, next to a pistachio cup"
+  foto_alt: Vaso de fresas con chocolate y Lacasitos por encima, junto a una copa
+    de pistacho
+  foto_alt_en: Cup of strawberries with chocolate and Lacasitos on top, next to a
+    pistachio cup
   foto_encuadre: 85% 60%
   grupos:
-  - precio: 0,50
-    opciones:
-    - nombre: Crumble de Lotus
-      nombre_en: "Lotus crumble"
-      alergenos:
-      - gluten
-      - soja
-    - nombre: Crumble de Oreo
-      nombre_en: "Oreo crumble"
-      alergenos:
-      - gluten
-      - soja
-    - nombre: Coco
-      nombre_en: "Coconut"
-      alergenos:
-      - coco
-    - nombre: Mikado
-      nombre_en: "Mikado"
-      alergenos:
-      - gluten
-      - leche
-      - soja
-      - avellanas
-    - nombre: Nubes
-      nombre_en: "Marshmallows"
-  - precio: '1'
-    opciones:
-    - nombre: Crumble de pistacho
-      nombre_en: "Pistachio crumble"
-      alergenos:
-      - pistachos
-    - nombre: Conguitos
-      nombre_en: "Conguitos"
-      alergenos:
-      - leche
-      - soja
-      - frutos de cáscara
-    - nombre: Kinder Bueno
-      nombre_en: "Kinder Bueno"
-      alergenos:
-      - gluten
-      - leche
-      - soja
-      - avellanas
-      - mantequilla
-    - nombre: Lacasitos
-      nombre_en: "Lacasitos"
-      alergenos:
-      - avellanas
-    - nombre: Pistachos con chocolate
-      nombre_en: "Chocolate pistachios"
-      alergenos:
-      - gluten
-      - leche
-      - soja
-      - pistachos
-      - avellanas
-    - nombre: Avellanas con chocolate negro
-      nombre_en: "Dark chocolate hazelnuts"
-      alergenos:
-      - avellanas
-    - nombre: Crumble de avellanas caramelizadas
-      nombre_en: "Caramelised hazelnut crumble"
-      alergenos:
-      - avellanas
+    - precio: 0,50
+      opciones:
+        - nombre: Crumble de Lotus
+          nombre_en: Lotus crumble
+          alergenos:
+            - gluten
+            - soja
+          alergenos_pendientes: false
+        - nombre: Crumble de Oreo
+          nombre_en: Oreo crumble
+          alergenos:
+            - gluten
+            - soja
+          alergenos_pendientes: false
+        - nombre: Coco
+          nombre_en: Coconut
+          alergenos:
+            - coco
+          alergenos_pendientes: false
+        - nombre: Mikado
+          nombre_en: Mikado
+          alergenos:
+            - gluten
+            - leche
+            - soja
+            - avellanas
+          alergenos_pendientes: false
+        - nombre: Nubes
+          nombre_en: Marshmallows
+          alergenos_pendientes: false
+    - precio: "1"
+      opciones:
+        - nombre: Crumble de pistacho
+          nombre_en: Pistachio crumble
+          alergenos:
+            - pistachos
+          alergenos_pendientes: false
+        - nombre: Conguitos
+          nombre_en: Conguitos
+          alergenos:
+            - leche
+            - soja
+            - frutos de cáscara
+          alergenos_pendientes: false
+        - nombre: Kinder Bueno
+          nombre_en: Kinder Bueno
+          alergenos:
+            - gluten
+            - leche
+            - soja
+            - avellanas
+            - mantequilla
+          alergenos_pendientes: false
+        - nombre: Lacasitos
+          nombre_en: Lacasitos
+          alergenos:
+            - avellanas
+          alergenos_pendientes: false
+        - nombre: Pistachos con chocolate
+          nombre_en: Chocolate pistachios
+          alergenos:
+            - gluten
+            - leche
+            - soja
+            - pistachos
+            - avellanas
+          alergenos_pendientes: false
+        - nombre: Avellanas con chocolate negro
+          nombre_en: Dark chocolate hazelnuts
+          alergenos:
+            - avellanas
+          alergenos_pendientes: false
+        - nombre: Crumble de almendras caramelizadas
+          nombre_en: Caramelised almond crumble
+          alergenos:
+            - avellanas
+          alergenos_pendientes: false
 especiales_titulo: Especiales de la casa
-especiales_titulo_en: "House specials"
+especiales_titulo_en: House specials
 especiales_nota: Recomendamos pedirlos tal cual, pero se puede cambiar cualquier ingrediente.
-especiales_nota_en: "We recommend ordering them as they come, but any ingredient can be changed."
+especiales_nota_en: We recommend ordering them as they come, but any ingredient can be changed.
 especiales:
   - nombre: Dubái
-    nombre_en: "Dubai"
+    nombre_en: Dubai
     ingredientes: Crema de pistacho, kataifi, chocolate con leche y crumble de pistacho
-    ingredientes_en: "Pistachio cream, kataifi, milk chocolate and pistachio crumble"
+    ingredientes_en: Pistachio cream, kataifi, milk chocolate and pistachio crumble
     precio: 7,75
     foto: assets/img/insta/dubai-especial.webp
-    foto_alt: Vaso del especial Dubái, con crema de pistacho, chocolate, kataifi y pistacho picado, con la pegatina de Fresas y Chocolate
-    foto_alt_en: "Cup of the Dubai special, with pistachio cream, chocolate, kataifi and chopped pistachio, with the Fresas y Chocolate sticker"
+    foto_alt: Vaso del especial Dubái, con crema de pistacho, chocolate, kataifi y
+      pistacho picado, con la pegatina de Fresas y Chocolate
+    foto_alt_en: Cup of the Dubai special, with pistachio cream, chocolate, kataifi
+      and chopped pistachio, with the Fresas y Chocolate sticker
     alergenos_pendientes: true
   - nombre: Tokio
-    nombre_en: "Tokyo"
+    nombre_en: Tokyo
     ingredientes: Chocolate blanco con té matcha, arroz tostado y fresas
-    ingredientes_en: "White chocolate with matcha tea, toasted rice and strawberries"
+    ingredientes_en: White chocolate with matcha tea, toasted rice and strawberries
+    precio: 7,75
     video: assets/video/tokio.mp4
     video_portada: assets/video/tokio.webp
-    video_alt: Preparación del vaso Tokio, con chocolate blanco de matcha vertido sobre fresas y arroz tostado
-    video_alt_en: "Making the Tokyo cup, with white matcha chocolate poured over strawberries and toasted rice"
-    precio: 7,75
+    video_alt: Preparación del vaso Tokio, con chocolate blanco de matcha vertido
+      sobre fresas y arroz tostado
+    video_alt_en: Making the Tokyo cup, with white matcha chocolate poured over
+      strawberries and toasted rice
     alergenos_pendientes: true
