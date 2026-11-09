@@ -102,9 +102,9 @@ grupos:
     productos:
       - nombre: Helado de pistacho
         nombre_en: Pistachio ice cream
-        detalle: En tulipa, con fresas recién cortadas, salsa de pistacho y crumble de
+        detalle: En tulipa, con fresas recién cortadas, crema de pistacho y crumble de
           pistacho
-        detalle_en: In a wafer tulip, with freshly cut strawberries, pistachio sauce and
+        detalle_en: In a wafer tulip, with freshly cut strawberries, pistachio cream and
           pistachio crumble
         precio: 5,75
       - nombre: Helado de fresa
