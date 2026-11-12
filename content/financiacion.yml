@@ -1,6 +1,6 @@
 # Información de las ayudas públicas, tal como aparece en los carteles de la tienda.
 # Los textos oficiales van solo en español: en la versión inglesa se muestran igual, con una frase en inglés delante.
-modo: visible
+modo: ventana
 resumen: Proyecto financiado por la Junta de Castilla y León, a través del ICECYL, y subvencionado por el fomento del autoempleo en Castilla y León
 resumen_en: This project has received public funding from the Junta de Castilla y León (ICECYL) and the Castilla y León self-employment programme
 enlace: Ver la información de las ayudas
