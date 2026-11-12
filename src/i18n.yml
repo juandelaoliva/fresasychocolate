@@ -63,6 +63,9 @@ es:
   idioma_otro_code: EN
   legal_volver: Volver a la web
   legal_pagina: "{nombre}, volver a la web"
+  fin_kicker: ayudas públicas
+  fin_aviso: ""
+  fin_cerrar: Cerrar
   js:
     cerrar_menu: Cerrar menú
     abrir_menu: Abrir menú
@@ -156,6 +159,9 @@ en:
   idioma_otro_code: ES
   legal_volver: Back to the website
   legal_pagina: "{nombre}, back to the website"
+  fin_kicker: public funding
+  fin_aviso: The official information is published in Spanish, as required by the funding bodies.
+  fin_cerrar: Close
   js:
     cerrar_menu: Close menu
     abrir_menu: Open menu

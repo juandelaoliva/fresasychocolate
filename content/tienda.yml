@@ -13,11 +13,6 @@ google_maps_cid: "1651299389623831988"
 google_place_id: ChIJlwSyCSUnPw0RtA1ZwAuY6hY
 latitud: "40.9652327"
 longitud: "-5.665455"
-financiacion: Proyecto financiado por la Junta de Castilla y León a través del ICECYL
-financiacion_en: Project funded by the Junta de Castilla y León through ICECYL
-financiacion_logo: assets/img/logo-financiacion.webp
-financiacion_logo_alt: Nos impulsa, ICECYL (competitividad empresarial) y Junta de Castilla y León
-financiacion_logo_alt_en: Nos impulsa, ICECYL (business competitiveness) and Junta de Castilla y León
 abierta_desde: "2024"
 horario:
   - dias: Lunes a jueves

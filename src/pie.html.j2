@@ -1,4 +1,53 @@
 {# Pie común a la página principal y a las páginas legales. #}
+{% from 'financiacion.inc.j2' import ayuda, logos_resumen, icono_info with context %}
+{% set fin = financiacion if financiacion is defined else {} %}
+{% set fin_modo = fin.modo or 'visible' %}
+{% set fin_pag = 'financiacion.html' if lang == 'es' else 'funding.html' %}
+{# En su propia página no se repite el resumen. #}
+{% if fin.ayudas and not (pag is defined and pag.canonica.endswith('/' ~ fin_pag)) %}
+{# Ayudas públicas, sobre fondo blanco para que los logos oficiales se vean con sus colores. Tres formas (content/financiacion.yml › modo):
+   visible: todo a la vista · pagina: resumen con enlace a su página · ventana: el mismo enlace abre una ventana (sin JS, va a la página). #}
+<section class="fin fin-{{ fin_modo }}" aria-labelledby="fin-t">
+  <div class="fin-wrap">
+{% if fin_modo == 'visible' %}
+    <h2 class="fin-t" id="fin-t">{{ fin.titulo }}</h2>
+{% if ui.fin_aviso %}
+    <p class="fin-aviso">{{ ui.fin_aviso }}</p>
+{% endif %}
+    <div class="fin-ayudas">
+{% for a in fin.ayudas %}
+{{ ayuda(a) }}
+{% endfor %}
+    </div>
+{% else %}
+    <h2 class="sr-only" id="fin-t">{{ fin.titulo }}</h2>
+{{ logos_resumen(fin) }}
+    <p class="fin-resumen">{{ fin.resumen }}</p>
+    <a class="fin-enlace" href="{{ fin_pag }}"{% if fin_modo == 'ventana' %} data-fin-abrir aria-haspopup="dialog"{% endif %}>{{ icono_info() }}<span>{{ fin.enlace }}</span></a>
+{% endif %}
+  </div>
+</section>
+{% if fin_modo == 'ventana' %}
+<dialog class="fin-dialogo" id="fin-dialogo" aria-labelledby="fin-dt">
+  <div class="fin-dialogo-cab">
+    <h2 class="fin-t" id="fin-dt">{{ fin.titulo }}</h2>
+    <button type="button" class="fin-cerrar" data-fin-cerrar aria-label="{{ ui.fin_cerrar }}"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3.5 3.5l9 9m0-9-9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </div>
+{% if ui.fin_aviso %}
+  <p class="fin-aviso">{{ ui.fin_aviso }}</p>
+{% endif %}
+  <div class="fin-ayudas">
+{% for a in fin.ayudas %}
+{{ ayuda(a) }}
+{% endfor %}
+  </div>
+</dialog>
+<script src="{{ base }}js/financiacion.js" defer></script>
+{% endif %}
+{% endif %}
+{% if previa %}
+<p class="previa-etiqueta" lang="es">Vista previa · {{ previa }} · <a href="{{ base }}../">ver las 3 opciones</a></p>
+{% endif %}
 <footer class="foot">
   <div class="wrap">
     {{ svg('logo-horizontal', etiqueta=tienda.nombre) }}
@@ -8,12 +57,6 @@
     <p class="legales"><a href="{{ 'aviso-legal.html' if lang == 'es' else 'legal-notice.html' }}">{{ ui.aviso_legal }}</a> · <a href="{{ 'privacidad.html' if lang == 'es' else 'privacy.html' }}">{{ ui.privacidad }}</a></p>
 {% endif %}
     <p class="idioma"><a href="{{ pag.otro }}" hreflang="{{ pag.otro_lang }}" lang="{{ pag.otro_lang }}">{{ ui.idioma_otro }}</a></p>
-{% if tienda.financiacion %}
-    <p class="financiacion">{{ tienda.financiacion }}</p>
-{% if tienda.financiacion_logo %}
-    <img class="financiacion-logo" src="{{ base }}{{ tienda.financiacion_logo | ruta }}" alt="{{ tienda.financiacion_logo_alt }}" width="720" height="156" loading="lazy">
-{% endif %}
-{% endif %}
     <p class="firma">{{ ui.hecho_por }} <a href="https://juandelaoliva.com" target="_blank" rel="noopener">Juan de la Oliva</a></p>
   </div>
 </footer>

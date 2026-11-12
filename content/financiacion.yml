@@ -1,0 +1,37 @@
+# Información de las ayudas públicas, tal como aparece en los carteles de la tienda.
+# Los textos oficiales van solo en español: en la versión inglesa se muestran igual, con una frase en inglés delante.
+modo: visible
+resumen: Proyecto financiado por la Junta de Castilla y León, a través del ICECYL, y subvencionado por el fomento del autoempleo en Castilla y León
+resumen_en: This project has received public funding from the Junta de Castilla y León (ICECYL) and the Castilla y León self-employment programme
+enlace: Ver la información de las ayudas
+enlace_en: See funding details
+titulo: Ayudas y financiación
+titulo_en: Public funding
+ayudas:
+  - logos:
+      - foto: assets/img/financiacion/icecyl-junta.webp
+        alt: Nos impulsa, ICECYL (competitividad empresarial) y Junta de Castilla y León
+        ancho: 974
+        alto: 168
+    programa: Proyectos de creación de empresas dentro del ámbito territorial de la Comunidad de Castilla y León
+    proyecto: Fresas & Chocolate
+    expediente: 01/23/SA/0057
+    plazo: Del 19 de septiembre de 2024 al 31 de marzo de 2027
+    texto: Proyecto financiado por la Junta de Castilla y León a través del Instituto para la Competitividad Empresarial de Castilla y León (ICECYL).
+  - logos:
+      - foto: assets/img/financiacion/mtes-sepe.webp
+        alt: Ministerio de Trabajo y Economía Social y Servicio Público de Empleo Estatal (SEPE)
+        ancho: 900
+        alto: 248
+      - foto: assets/img/financiacion/junta.webp
+        alt: Junta de Castilla y León
+        ancho: 542
+        alto: 336
+        repetido: true
+    con_logo_propio: true
+    antetitulo: Anexo II
+    programa: Fomento del autoempleo en Castilla y León, para el año 2025
+    proyecto: Fresas & Chocolate
+    expediente: AUTEM/25/SA/0037
+    texto: Esta actividad económica ha sido subvencionada al amparo de la Orden IEM/757/2025, de 10 de julio, de la Consejería de Industria, Comercio y Empleo, por la que se establecen las bases reguladoras de las subvenciones destinadas a fomentar el autoempleo en la Comunidad de Castilla y León.
+    objetivo: Conseguir un empleo y formación de calidad.

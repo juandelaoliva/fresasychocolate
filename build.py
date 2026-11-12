@@ -43,10 +43,12 @@ ALERGENOS_EN = {'gluten': 'Gluten', 'leche': 'Milk', 'huevo': 'Egg', 'sésamo': 
 TRADUCIBLES = {'referencia', 'dias', 'lema', 'seo_titulo', 'seo_descripcion', 'titulo_principal', 'descripcion_negocio',
                'antetitulo', 'titulo', 'intro', 'pedir_titulo', 'nota_alergenos', 'nombre', 'nota', 'foto_alt', 'video_alt',
                'alt', 'detalle', 'como_encargar', 'boton', 'texto', 'firma', 'pregunta', 'respuesta', 'ingredientes',
-               'especiales_titulo', 'especiales_nota', 'contacto_texto', 'financiacion', 'financiacion_logo_alt', 'tipo'}
+               'especiales_titulo', 'especiales_nota', 'contacto_texto', 'tipo', 'resumen', 'enlace'}
 # Se traducen si hay `_en`, pero no es un fallo que falte (p. ej. reseñas de clientes en su idioma original).
 OPCIONALES = {'resena'}
 IDIOMAS = ('es', 'en')
+# Copia de prueba (ver opciones.sh): se genera sin indexar, sin estadísticas y con una etiqueta que la identifica.
+PREVIA = os.environ.get('PREVIA', '').strip()
 DIAS = {'lunes': 'Monday', 'martes': 'Tuesday', 'miercoles': 'Wednesday', 'jueves': 'Thursday',
         'viernes': 'Friday', 'sabado': 'Saturday', 'domingo': 'Sunday'}
 
@@ -95,7 +97,9 @@ def localizar(obj, lang, faltan, ruta=''):
         if k.endswith('_en'):
             continue
         en = obj.get(k + '_en')
-        traducible = (k in TRADUCIBLES and (raiz != 'tienda' or k in ('referencia', 'dias', 'financiacion', 'financiacion_logo_alt'))
+        traducible = (k in TRADUCIBLES and (raiz != 'tienda' or k in ('referencia', 'dias'))
+                      # Ayudas públicas: los textos oficiales se publican solo en español.
+                      and (raiz != 'financiacion' or k in ('resumen', 'enlace', 'titulo'))
                       and (raiz != 'resenas' or k in ('antetitulo', 'titulo'))
                       and (raiz != 'productos' or k in ('antetitulo', 'titulo', 'intro', 'detalle', 'alt', 'nota', 'nombre')))
         if isinstance(v, str) and v.strip() and (traducible or k in OPCIONALES):
@@ -139,6 +143,16 @@ def validar(c):
             error(f'Falta el archivo content/{k}.yml')
     if errores:
         return
+    fin = c.get('financiacion') or {}
+    if fin.get('ayudas'):
+        if fin.get('modo', 'visible') not in ('visible', 'pagina', 'ventana'):
+            error('content/financiacion.yml: "modo" tiene que ser visible, pagina o ventana')
+        for i, a in enumerate(fin['ayudas']):
+            for k in ('programa', 'proyecto', 'expediente', 'texto'):
+                if not str(a.get(k) or '').strip():
+                    error(f'content/financiacion.yml: a la ayuda {i + 1} le falta "{k}"')
+            for l in a.get('logos') or []:
+                img(l.get('foto'), l.get('alt'), donde=f'Financiación › ayuda {i + 1}')
     for ruta_campo in OBLIGATORIOS:
         archivo, *claves = ruta_campo.split('.')
         v = c[archivo]
@@ -573,7 +587,8 @@ def jsonld(c, faq, lang, home):
 def nombre_pagina(clave_pagina, lang, clave):
     """Nombre del archivo de cada página en cada idioma (la web completa se llama <clave>.html en modo «próximamente»)."""
     nombres = {'inicio': ('index.html', 'index.html'), 'completa': (f'{clave}.html', f'{clave}.html'),
-               'aviso': ('aviso-legal.html', 'legal-notice.html'), 'privacidad': ('privacidad.html', 'privacy.html')}
+               'aviso': ('aviso-legal.html', 'legal-notice.html'), 'privacidad': ('privacidad.html', 'privacy.html'),
+               'financiacion': ('financiacion.html', 'funding.html')}
     return nombres[clave_pagina][IDIOMAS.index(lang)]
 
 
@@ -599,7 +614,7 @@ def render_idioma(lang, cl, faltan_en, pronto, clave, legal):
     env.globals.update(img=img, video=video, svg=svg, site=SITE, home=home, lang=lang, ui=ui, base='' if es else '../',
                        alergenos_orden=orden, al_nombres=al_nombres, year=dt.date.today().year,
                        hoy=dt.date.today().isoformat(), hoy_texto=fecha(dt.date.today(), lang), faq=faq,
-                       noindex=False, legal=legal, ui_js=Markup(json.dumps(ui['js'], ensure_ascii=False).replace('</', '<\\/')),
+                       noindex=bool(PREVIA), previa=PREVIA, legal=legal, ui_js=Markup(json.dumps(ui['js'], ensure_ascii=False).replace('</', '<\\/')),
                        **cl)
     # El JSON-LD usa img(), que también registra errores de fotos.
     env.globals['jsonld'] = jsonld(cl, faq, lang, home)
@@ -622,7 +637,7 @@ def render_idioma(lang, cl, faltan_en, pronto, clave, legal):
         env.autoescape = True
         env.globals['pag'] = pag('completa')
         (destino / n).write_text(env.get_template('index.html.j2').render(), encoding='utf-8')
-        env.globals['noindex'] = False
+        env.globals['noindex'] = bool(PREVIA)
     else:
         paginas.append(('index.html', 'index.html.j2', True, 'completa_inicio'))
         if es:
@@ -631,6 +646,9 @@ def render_idioma(lang, cl, faltan_en, pronto, clave, legal):
     if legal:
         paginas += [(nombre_pagina('aviso', lang, clave), f'aviso-legal{sufijo}.html.j2', True, 'aviso'),
                     (nombre_pagina('privacidad', lang, clave), f'privacidad{sufijo}.html.j2', True, 'privacidad')]
+    fin = cl.get('financiacion') or {}
+    if fin.get('ayudas') and fin.get('modo') in ('pagina', 'ventana'):
+        paginas.append((nombre_pagina('financiacion', lang, clave), 'financiacion.html.j2', True, 'financiacion'))
     if es:
         paginas.append(('404.html', '404.html.j2', True, None))  # GitHub Pages la sirve en las direcciones que no existen
     for nombre, plantilla, autoescape, id_pagina in paginas:
@@ -642,6 +660,9 @@ def render_idioma(lang, cl, faltan_en, pronto, clave, legal):
 
 def main():
     c = cargar()
+    # Para comparar las tres formas de mostrar las ayudas sin tocar el contenido: FIN_MODO=visible|pagina|ventana
+    if os.environ.get('FIN_MODO') and 'financiacion' in c:
+        c['financiacion']['modo'] = os.environ['FIN_MODO']
     validar(c)
     if errores:
         sys.exit('No se ha generado la web:\n  - ' + '\n  - '.join(errores))

@@ -1,0 +1,42 @@
+{# Bloques de las ayudas públicas, tal como aparecen en los carteles de la tienda. Los usan el pie, la ventana y la página propia.
+   Los textos oficiales van en español también en la versión inglesa (lang="es"). #}
+{% macro ayuda(a, h='h3') %}
+<article class="ayuda" lang="es">
+  <div class="ayuda-logos">
+{% for l in a.logos %}
+    <img src="{{ base }}{{ l.foto | ruta }}" alt="{{ l.alt }}" width="{{ l.ancho }}" height="{{ l.alto }}" loading="lazy">
+{% endfor %}
+{% if a.con_logo_propio %}
+    <span class="ayuda-propio">{{ svg('logo-horizontal', etiqueta=tienda.nombre) }}</span>
+{% endif %}
+  </div>
+{% if a.antetitulo %}
+  <p class="ayuda-ante">{{ a.antetitulo }}</p>
+{% endif %}
+  <{{ h }} class="ayuda-programa">{{ a.programa }}</{{ h }}>
+  <dl class="ayuda-datos">
+    <div><dt>Proyecto</dt><dd>{{ a.proyecto }}</dd></div>
+    <div><dt>Código de expediente</dt><dd>{{ a.expediente }}</dd></div>
+{% if a.plazo %}
+    <div><dt>Plazo de ejecución</dt><dd>{{ a.plazo }}</dd></div>
+{% endif %}
+  </dl>
+  <p class="ayuda-texto">{{ a.texto }}</p>
+{% if a.objetivo %}
+  <p class="ayuda-objetivo"><strong>Objetivo:</strong> {{ a.objetivo }}</p>
+{% endif %}
+</article>
+{% endmacro %}
+
+{# Todos los logos juntos para el resumen del pie; los marcados como `repetido` (ya salen en otro logo) se omiten. #}
+{% macro logos_resumen(fin) %}
+<div class="fin-logos">
+{% for a in fin.ayudas %}
+{% for l in a.logos if not l.repetido %}
+  <img src="{{ base }}{{ l.foto | ruta }}" alt="{{ l.alt }}" width="{{ l.ancho }}" height="{{ l.alto }}" loading="lazy">
+{% endfor %}
+{% endfor %}
+</div>
+{% endmacro %}
+
+{% macro icono_info() %}<svg class="fin-icono" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="8.6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="6.2" r="1.1" fill="currentColor"/><path d="M10 9v5.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>{% endmacro %}

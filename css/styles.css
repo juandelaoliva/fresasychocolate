@@ -546,10 +546,68 @@ a[href*="instagram.com"]:not(.btn):not(.ig-card):not(.mosaic):not(.nav-ig) { dis
 .foot p { margin: 0; font-size: 14px; letter-spacing: .04em; opacity: .85; }
 .foot a { text-underline-offset: 3px; }
 .foot .idioma { font-size: 13px; letter-spacing: .08em; }
-.foot .financiacion-logo { display: block; width: min(250px, 66vw); height: auto; margin: 6px auto 0; opacity: .7; }
-.foot .financiacion { max-width: 36ch; margin-inline: auto; font-size: 12px; line-height: 1.4; opacity: .6; }
 .foot .legales { font-size: 12px; opacity: .6; }
 .foot .legales a { color: inherit; }
+
+/* ---------- ayudas públicas (encima del pie, fondo blanco para los logos oficiales) ----------
+   Tres formas, según content/financiacion.yml › modo: .fin-visible, .fin-pagina y .fin-ventana. */
+.fin { background: #fff; color: var(--choco); padding: 32px var(--gutter) 36px; }
+.fin-wrap { max-width: 1120px; margin: 0 auto; }
+.fin-t { margin: 0 0 4px; font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.fin-aviso { margin: 0 0 4px; font-size: 13px; color: var(--choco-soft); }
+.fin-ayudas { display: grid; gap: 14px; margin-top: 16px; }
+.ayuda { border: 1px solid color-mix(in srgb, var(--choco) 16%, transparent); border-radius: 14px; padding: 18px 18px 16px; font-size: 13px; line-height: 1.5; color: var(--choco); background: #fff; }
+.ayuda-logos { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-bottom: 14px; }
+.ayuda-logos img { height: 38px; width: auto; max-width: 100%; }
+.ayuda-propio { display: inline-flex; align-items: center; padding-left: 14px; border-left: 1px solid color-mix(in srgb, var(--choco) 22%, transparent); }
+.ayuda-propio .logo { width: 116px; height: auto; color: var(--choco); }
+.ayuda-ante { margin: 0 0 2px; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--choco-soft); }
+.ayuda-programa { margin: 0 0 10px; font-family: var(--font-body); font-size: 15px; font-weight: 600; line-height: 1.35; letter-spacing: 0; text-transform: none; }
+.ayuda-datos { margin: 0 0 10px; display: grid; gap: 2px; }
+.ayuda-datos div { display: flex; flex-wrap: wrap; gap: 0 6px; }
+.ayuda-datos dt { font-weight: 600; }
+.ayuda-datos dt::after { content: ':'; }
+.ayuda-datos dd { margin: 0; }
+.ayuda-texto, .ayuda-objetivo { margin: 0 0 6px; color: var(--choco-soft); }
+.ayuda-objetivo { margin: 0; }
+/* modos «pagina» y «ventana»: resumen compacto con logos y enlace */
+.fin-pagina .fin-wrap, .fin-ventana .fin-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+.fin-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px 24px; }
+.fin-logos img { height: 34px; width: auto; max-width: 100%; }
+.fin-resumen { margin: 0; max-width: 62ch; font-size: 13px; line-height: 1.5; color: var(--choco-soft); }
+.fin-enlace { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid currentColor; border-radius: 999px;
+  font-size: 14px; font-weight: 500; color: var(--choco); text-decoration: none; }
+.fin-enlace:hover { background: var(--choco); color: #fff; }
+.fin-icono { width: 18px; height: 18px; flex: none; }
+/* ventana */
+.fin-dialogo { width: min(720px, calc(100vw - 24px)); max-height: calc(100dvh - 32px); padding: 22px 20px 20px; border: 0; border-radius: 20px; background: #fff; color: var(--choco); box-shadow: 0 24px 60px rgba(20, 35, 38, .35); }
+.fin-dialogo::backdrop { background: rgba(34, 58, 63, .62); }
+.fin-dialogo-cab { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.fin-dialogo-cab .fin-t { margin: 0; }
+.fin-cerrar { display: grid; place-items: center; width: 44px; height: 44px; margin: -8px -8px -8px 0; border: 0; border-radius: 50%; background: transparent; color: var(--choco); cursor: pointer; }
+.fin-cerrar:hover { background: color-mix(in srgb, var(--choco) 10%, transparent); }
+.fin-cerrar svg { width: 18px; height: 18px; }
+.fin-abierto { overflow: hidden; }
+/* página propia */
+.fin-ayudas-pagina { margin: 24px 0 8px; }
+.legal .ayuda-programa { margin: 0 0 10px; font: 600 17px/1.35 var(--font-body); letter-spacing: 0; text-transform: none; }
+/* en móvil, la versión «visible» en formato reducido */
+@media (max-width: 819px) {
+  .fin-visible .ayuda { padding: 14px 14px 12px; font-size: 12px; line-height: 1.45; }
+  .fin-visible .ayuda-logos { gap: 8px 12px; margin-bottom: 10px; }
+  .fin-visible .ayuda-logos img { height: 28px; }
+  .fin-visible .ayuda-propio .logo { width: 92px; }
+  .fin-visible .ayuda-programa { font-size: 13px; margin-bottom: 6px; }
+  .fin-visible .ayuda-datos { margin-bottom: 6px; gap: 0; }
+}
+@media (min-width: 820px) {
+  .fin-visible .fin-ayudas, .fin-dialogo .fin-ayudas, .fin-ayudas-pagina { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* etiqueta de las copias de prueba (opciones.sh) */
+.previa-etiqueta { position: fixed; left: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 60; margin: 0; padding: 8px 14px;
+  border-radius: 999px; background: var(--fresa); color: #fff; font-size: 13px; font-weight: 500; box-shadow: 0 6px 18px rgba(0, 0, 0, .25); }
+.previa-etiqueta a { color: #fff; }
 
 /* ---------- páginas legales ---------- */
 .legal-top { display: flex; align-items: center; height: calc(var(--bar) + env(safe-area-inset-top, 0px)); padding: env(safe-area-inset-top, 0px) var(--gutter) 0; background: var(--hero-bg); }

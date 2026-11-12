@@ -1,0 +1,15 @@
+{# Página con la información completa de las ayudas públicas (modos «pagina» y «ventana»). #}
+{% extends 'legal.html.j2' %}
+{% from 'financiacion.inc.j2' import ayuda with context %}
+{% block titulo %}{{ financiacion.titulo }}{% endblock %}
+{% block antetitulo %}{{ ui.fin_kicker }}{% endblock %}
+{% block contenido %}
+{% if ui.fin_aviso %}
+  <p>{{ ui.fin_aviso }}</p>
+{% endif %}
+  <div class="fin-ayudas fin-ayudas-pagina">
+{% for a in financiacion.ayudas %}
+{{ ayuda(a, h='h2') }}
+{% endfor %}
+  </div>
+{% endblock %}

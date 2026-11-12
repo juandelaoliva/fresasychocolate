@@ -37,11 +37,6 @@ content:
       - { name: google_place_id, label: Identificador de la ficha de Google, type: string, description: "No hace falta tocarlo. Sirve para el botón «Deja tu reseña»" }
       - { name: latitud, label: Latitud, type: string, required: true, description: "No hace falta tocarlo salvo que cambie la tienda de sitio" }
       - { name: longitud, label: Longitud, type: string, required: true }
-      - { name: financiacion, label: Texto de financiación (pie de página), type: string, description: "Sale en pequeño al final de la web. Si se deja vacío, no sale" }
-      - { name: financiacion_en, label: Texto de financiación (inglés), type: string, description: "Opcional. Si se deja vacío, se muestra el español" }
-      - { name: financiacion_logo, label: Logo de financiación (pie de página), type: image, options: { media: fotos }, description: "Logos de la ayuda (Nos impulsa, ICECYL, Junta). Mejor en blanco y con fondo transparente (PNG o WebP): sale pequeño y atenuado sobre el pie verde. Si se deja vacío, no sale" }
-      - { name: financiacion_logo_alt, label: Descripción del logo, type: string, description: "Por ejemplo: Nos impulsa · ICECYL · Junta de Castilla y León" }
-      - { name: financiacion_logo_alt_en, label: Descripción del logo (inglés), type: string }
       - { name: abierta_desde, label: Abierta desde (año), type: string }
       - name: horario
         label: Horario
@@ -464,3 +459,43 @@ content:
           - { name: pregunta_en, label: Pregunta (inglés), type: string }
           - { name: respuesta, label: Respuesta, type: text, required: true, description: "Para poner un enlace: [texto del enlace](https://...)" }
           - { name: respuesta_en, label: Respuesta (inglés), type: text }
+
+  - name: financiacion
+    label: Ayudas y financiación
+    type: file
+    path: content/financiacion.yml
+    format: yaml
+    fields:
+      - { name: modo, label: Cómo se muestra, type: select, required: true, options: { values: [{ value: visible, label: "A la vista, encima del pie" }, { value: pagina, label: "Resumen en el pie con enlace a su página" }, { value: ventana, label: "Resumen en el pie; el enlace abre una ventana" }] }, description: "Antes de cambiarlo, confirma con quien da la ayuda que esa forma es válida" }
+      - { name: titulo, label: Título, type: string, required: true }
+      - { name: titulo_en, label: Título (inglés), type: string }
+      - { name: resumen, label: Frase de resumen, type: text, description: "Sale en el pie cuando no está todo a la vista" }
+      - { name: resumen_en, label: Frase de resumen (inglés), type: text }
+      - { name: enlace, label: Texto del enlace, type: string }
+      - { name: enlace_en, label: Texto del enlace (inglés), type: string }
+      - name: ayudas
+        label: Ayudas
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{expediente}: {programa}"
+        fields:
+          - name: logos
+            label: Logos oficiales
+            type: object
+            list: true
+            fields:
+              - { name: foto, label: Logo, type: image, required: true, options: { media: fotos }, description: "El archivo oficial, en color y con fondo blanco o transparente" }
+              - { name: alt, label: Qué pone en el logo, type: string, required: true }
+              - { name: ancho, label: Ancho en píxeles, type: number }
+              - { name: alto, label: Alto en píxeles, type: number }
+              - { name: repetido, label: Ya sale dentro de otro logo, type: boolean, description: "Márcalo para que no se repita en el resumen del pie" }
+          - { name: con_logo_propio, label: Añadir el logo de Fresas y Chocolate (emblema del beneficiario), type: boolean }
+          - { name: antetitulo, label: Antetítulo, type: string, description: "Por ejemplo: Anexo II" }
+          - { name: programa, label: Programa, type: text, required: true, description: "Copia el texto tal cual aparece en el cartel oficial" }
+          - { name: proyecto, label: Proyecto, type: string, required: true }
+          - { name: expediente, label: Código de expediente, type: string, required: true }
+          - { name: plazo, label: Plazo de ejecución, type: string }
+          - { name: texto, label: Texto oficial, type: text, required: true }
+          - { name: objetivo, label: Objetivo, type: string }
