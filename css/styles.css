@@ -576,8 +576,7 @@ a[href*="instagram.com"]:not(.btn):not(.ig-card):not(.mosaic):not(.nav-ig) { dis
 .fin-logos img { height: 34px; width: auto; max-width: 100%; }
 .fin-resumen { margin: 0; max-width: 62ch; font-size: 13px; line-height: 1.5; color: var(--choco-soft); }
 .fin-enlace { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid currentColor; border-radius: 999px;
-  font-size: 14px; font-weight: 500; color: var(--choco); text-decoration: none; }
-.fin-enlace:hover { background: var(--choco); color: #fff; }
+  font-size: 14px; font-weight: 500; color: var(--choco); text-decoration: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .fin-icono { width: 18px; height: 18px; flex: none; }
 /* ventana */
 .fin-dialogo { width: min(720px, calc(100vw - 24px)); max-height: calc(100dvh - 32px); padding: 22px 20px 20px; border: 0; border-radius: 20px; background: #fff; color: var(--choco); box-shadow: 0 24px 60px rgba(20, 35, 38, .35); }
@@ -585,7 +584,12 @@ a[href*="instagram.com"]:not(.btn):not(.ig-card):not(.mosaic):not(.nav-ig) { dis
 .fin-dialogo-cab { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .fin-dialogo-cab .fin-t { margin: 0; }
 .fin-cerrar { display: grid; place-items: center; width: 44px; height: 44px; margin: -8px -8px -8px 0; border: 0; border-radius: 50%; background: transparent; color: var(--choco); cursor: pointer; }
-.fin-cerrar:hover { background: color-mix(in srgb, var(--choco) 10%, transparent); }
+.fin-enlace:active { background: color-mix(in srgb, var(--choco) 12%, transparent); }
+/* El hover solo con ratón: en iPhone, un :hover en el enlace hacía que el primer toque no abriera la ventana. */
+@media (hover: hover) and (pointer: fine) {
+  .fin-enlace:hover { background: var(--choco); color: #fff; }
+  .fin-cerrar:hover { background: color-mix(in srgb, var(--choco) 10%, transparent); }
+}
 .fin-cerrar svg { width: 18px; height: 18px; }
 .fin-abierto { overflow: hidden; }
 /* página propia */
